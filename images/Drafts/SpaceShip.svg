@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="50"
+   height="50"
+   viewBox="0 0 13.229166 13.229167"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="SpaceShip.svg"
+   inkscape:export-filename="C:\Users\Administrator\Desktop\Vince\Training\Space\images\player1ship.png"
+   inkscape:export-xdpi="176.12755"
+   inkscape:export-ydpi="176.12755">
+  <title
+     id="title10">Space Ship</title>
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="31.678384"
+     inkscape:cx="31.709061"
+     inkscape:cy="27.531564"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:pagecheckerboard="true"
+     showguides="true"
+     inkscape:window-width="3200"
+     inkscape:window-height="1683"
+     inkscape:window-x="-13"
+     inkscape:window-y="-13"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Space Ship</dc:title>
+        <dc:date>March 28, 2018</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Vince McKeown</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>Jaza Solutions</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-283.77082)">
+    <rect
+       style="fill:#ff0000;stroke-width:0.26458332"
+       id="rect65"
+       width="3.3241646"
+       height="2.330256"
+       x="3.6582515"
+       y="288.81485" />
+    <rect
+       style="fill:#ff0000;stroke-width:0.26458332"
+       id="rect67"
+       width="2.8564429"
+       height="1.987817"
+       x="2.2133257"
+       y="287.74579" />
+    <rect
+       style="fill:#ff0000;stroke-width:0.26458332"
+       id="rect67-9"
+       width="2.8564432"
+       height="1.9878172"
+       x="2.2133257"
+       y="290.08438" />
+    <rect
+       style="fill:#ff0000;stroke-width:0.26458332"
+       id="rect84"
+       width="4.7607384"
+       height="1.1525998"
+       x="4.1677341"
+       y="289.40787" />
+    <ellipse
+       style="fill:#ff0000;stroke-width:0.26458332"
+       id="path86"
+       cx="5.1574669"
+       cy="288.74805"
+       rx="0.93126726"
+       ry="0.55959558" />
+    <ellipse
+       style="fill:#ff0000;stroke-width:0.26458332"
+       id="path86-2"
+       cx="5.1449385"
+       cy="290.93631"
+       rx="0.93126726"
+       ry="0.55959558" />
+    <ellipse
+       style="fill:#ff0000;stroke-width:0.26458332"
+       id="path129"
+       cx="2.2425582"
+       cy="288.69794"
+       rx="0.4886021"
+       ry="0.43431297" />
+    <ellipse
+       style="fill:#ff0000;stroke-width:0.26458332"
+       id="path129-1"
+       cx="2.2801433"
+       cy="291.08664"
+       rx="0.48860213"
+       ry="0.43431297" />
+    <rect
+       style="fill:#000000;stroke-width:0.26458332"
+       id="rect146"
+       width="2.455539"
+       height="0.30903038"
+       x="2.3970735"
+       y="287.97964" />
+    <rect
+       style="fill:#000000;stroke-width:0.26458332"
+       id="rect146-5"
+       width="2.455539"
+       height="0.30903038"
+       x="2.3469603"
+       y="291.55856" />
+    <rect
+       style="fill:#00ffff;stroke-width:0.26458332"
+       id="rect163"
+       width="1.1358955"
+       height="2.3803692"
+       x="4.4767647"
+       y="288.74805" />
+    <rect
+       style="fill:#000000;stroke-width:0.24300468"
+       id="rect146-9"
+       width="2.0713391"
+       height="0.30903038"
+       x="2.4054258"
+       y="289.23666" />
+    <rect
+       style="fill:#000000;stroke-width:0.24300468"
+       id="rect146-9-2"
+       width="2.0713391"
+       height="0.30903038"
+       x="2.3970733"
+       y="290.39761" />
+    <rect
+       style="fill:#000000;stroke-width:0.26815894"
+       id="rect146-9-6"
+       width="2.5223565"
+       height="0.30903038"
+       x="6.0052118"
+       y="289.82129" />
+    <path
+       style="fill:#ffff00;stroke-width:0.03156727"
+       d="m 9.0753307,16.492752 v -0.583994 h 4.6246043 4.624605 v 0.583994 0.583995 H 13.699935 9.0753307 Z"
+       id="path30"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.26458333,0,0,0.26458333,0,283.77082)" />
+    <path
+       style="fill:#ffff00;stroke-width:0.03156727"
+       d="m 9.106898,21.243626 v -0.568211 h 3.898557 3.898558 v 0.568211 0.568211 H 13.005455 9.106898 Z"
+       id="path32"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.26458333,0,0,0.26458333,0,283.77082)" />
+    <path
+       style="fill:#ffff00;stroke-width:0.03156727"
+       d="m 9.0753307,25.631476 v -0.568211 h 3.8985573 3.898558 v 0.568211 0.568211 H 12.973888 9.0753307 Z"
+       id="path34"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.26458333,0,0,0.26458333,0,283.77082)" />
+    <path
+       style="fill:#ffff00;stroke-width:0.03156727"
+       d="m 8.8859271,30.019326 v -0.568211 h 4.6246049 4.624604 v 0.568211 0.568211 H 13.510532 8.8859271 Z"
+       id="path36"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.26458333,0,0,0.26458333,0,283.77082)" />
+    <path
+       style="fill:#ffff00;stroke-width:0.03156727"
+       d="m 22.71239,23.453335 v -0.568211 h 4.750874 4.750873 v 0.568211 0.568211 H 27.463264 22.71239 Z"
+       id="path38"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.26458333,0,0,0.26458333,0,283.77082)" />
+  </g>
+</svg>

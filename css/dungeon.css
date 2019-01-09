@@ -1,0 +1,37 @@
+body {
+	background-color: blue;
+}
+
+div {
+	background-color: lightblue;
+	border-style: solid;	
+	border-color: darkblue;
+	border-radius: 5px;
+	width: 250px;
+}
+
+#narrative {
+	text-align: center;
+	position: relative;
+	width: 300x;
+	float: left;
+}
+
+#inventory {
+	text-align: center;
+	position: relative;
+	width: 300px;
+	float: right;
+	
+}
+
+#gameCanvas {
+	float: left;
+}
+
+#reset {
+	text-align: center;
+	position: relative;
+	width: 300px;
+	float: left;
+}
