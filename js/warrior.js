@@ -1,6 +1,16 @@
 var playerMoveSpeed = 3.0;
 var direction = "south";
 
+level02Experience = 500;
+level03Experience = 2,000;
+level04Experience = 4,000;
+level05Experience = 6,000;
+level06Experience = 10,000;
+level07Experience = 16,000;
+level08Experience = 26,000;
+level09Experience = 42,000;
+level10Experience = 68,000;
+
 function warriorClass() {
 	this.mySword = new swordClass();
 	this.myArrow = new arrowClass(); 
@@ -20,6 +30,7 @@ function warriorClass() {
 	this.keysHeld = 0;
 	this.goldpieces = 10;
 	this.experience = 0;
+	this.maxhealth = 4;
 	this.health = 4;
 	this.waitTime = 0;
 	this.previousTileType = -1;
@@ -32,7 +43,14 @@ function warriorClass() {
 	this.height = 50;
 	this.ticksPerFrame = 5;
 	this.playerMove = false;
-	
+	this.strength = 0;
+	this.dexterity = 0;
+	this.constitution = 0;
+	this.intelligence = 0;
+	this.wisdom = 0;
+	this.charisma = 0;
+	this.experienceLevel = 1;
+	this.armor = 10;
 	
 	this.keyHeld_WalkNorth = false;
 	this.keyHeld_WalkSouth = false;
@@ -46,7 +64,7 @@ function warriorClass() {
 	this.controlKeyLeft;
 	this.controlKeySword;
 	
-	this.setupInput = function(upKey, rightKey, downKey, leftKey, swordKey, arrowKey, rockKey, inventoryKey, statsKey) {
+	this.setupInput = function(upKey, rightKey, downKey, leftKey, swordKey, arrowKey, rockKey, inventoryKey, statsKey, healthKey) {
 		this.controlKeyUp = upKey;
 		this.controlKeyRight = rightKey;
 		this.controlKeyDown = downKey;
@@ -56,6 +74,7 @@ function warriorClass() {
 		this.controlKeyRock = rockKey;
 		this.controlKeyInventory = inventoryKey;
 		this.controlKeyStats = statsKey;
+		this.controlKeyDisplayHealth = healthKey;
 	}
 
 	this.releaseKeys = function(){
@@ -294,6 +313,37 @@ function warriorClass() {
 		
 	}	
 	
+	this.checkForLevelUp = function(){
+		if(this.experience >= level02Experience && this.experienceLevel == 1){
+			this.levelup();
+		} else if (this.experience >= level03Experience && this.experienceLevel == 2){
+			this.levelup();
+		} else if (this.experience >= level04Experience && this.experienceLevel == 3){
+			this.levelup();
+		} else if (this.experience >= level05Experience && this.experienceLevel == 4){
+				this.levelup();
+		} else if (this.experience >= level06Experience && this.experienceLevel == 5){
+				this.levelup();
+		} else if (this.experience >= level07Experience && this.experienceLevel == 6){
+				this.levelup();
+		} else if (this.experience >= level08Experience && this.experienceLevel == 7){
+				this.levelup();
+		} else if (this.experience >= level09Experience && this.experienceLevel == 8){
+				this.levelup();
+		} else if (this.experience >= level10Experience && this.experienceLevel == 9){
+				this.levelup();
+		}
+	}
+	
+	this.levelup = function(){
+		// results when player hits certain experience
+		var increasedHitPoints = 0;
+		this.experienceLevel++;
+		increasedHitPoints = Math.floor(Math.random() * 6) + 1;
+		this.health = this.health + increasedHitPoints;
+		dialog = "I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points";
+	}
+	
 	this.checkWarriorandSwordCollisionAgainst = function(thisEnemy) {
 		
 		this.centerX = this.x + this.width/2;
@@ -351,6 +401,13 @@ function warriorClass() {
 		this.sx = this.frameIndex * this.width;
 		
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+			
+			if(displayHealth){
+				colorRect(this.x,this.y-16, 40,12, "black"); 
+				colorRect(this.x+2,this.y-14, 35, 8, "red");
+				colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+			}
+			
 			if(debugMode){
 				
 				

@@ -24,6 +24,10 @@ function arrowClass() {
 		arrowDead = true;
 	} 
 	
+	this.rollForDamage = function() {
+		this.damagePoints = Math.floor(Math.random() * this.damageDice) + 1
+	}
+	
 	this.move = function() {  /////// Need to Fix arrow from moving in player's direction after shot
 		if(this.arrowLife > 0) {
 			this.arrowLife--;

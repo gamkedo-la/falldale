@@ -9,6 +9,7 @@ function goblinClass(goblinName) {
 	this.myGoblinPic = goblinPic; // which picture to use
 	this.myName = "Untitled goblin";
 	this.health = 12;
+	this.maxhealth = 12;
 	this.alive = true;
 	this.biteReadyTicker = 30;
 	this.biteReady = true;
@@ -340,6 +341,12 @@ function goblinClass(goblinName) {
 				colorRect(this.x+this.width,this.y, 5,5, "red")
 				colorRect(this.x+this.width,this.y+this.height, 5,5, "red")
 			}
+			
+			if(displayHealth){
+				colorRect(this.x,this.y-16, 40,12, "black"); 
+				colorRect(this.x+2,this.y-14, 35, 8, "red");
+				colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+			}
 		} else {   
 			canvasContext.drawImage(deadGoblinPic, this.x,this.y); 
 		}
@@ -347,27 +354,5 @@ function goblinClass(goblinName) {
 		if (this.health <= 0) {
 			this.alive = false;
 		}
-		
-		if (this.alive == true){
-			if (this.health < .5) {
-				colorRect(this.x-7, this.y-this.height+10, 5 , 10, 'red');
-			} if (this.health > 0) {
-				colorRect(this.x-10, this.y-this.height+10, 2 , 10, 'green');
-			} if (this.health >= .5) {
-				colorRect(this.x-10, this.y-this.height+10, 5 , 10, 'green'); // 0.5 HP
-			} if (this.health < 1) {
-				colorRect(this.x-5, this.y-this.height+10, 5 , 10, 'red');
-			} if (this.health >= 1) {
-				colorRect(this.x-5, this.y-this.height+10, 5 , 10, 'green'); // 1 HP **********
-			} if (this.health < 1.5) {
-				colorRect(this.x+5, this.y-this.height+10, 5 , 10, 'red'); 
-			} if (this.health >= 1.5) {
-				colorRect(this.x+5, this.y-this.height+10, 5 , 10, 'green'); // 1.5 HP	
-			} if (this.health < 2 ) {
-				colorRect(this.x+10, this.y-this.height+10, 5 , 10, 'red');
-			} if (this.health >= 2) {
-				colorRect(this.x+10, this.y-this.height+10, 5 , 10, 'green');
-			}
-		} 	
 	}
 }

@@ -59,7 +59,7 @@ function setupInput() {
 	document.addEventListener('keydown', keyPressed);
 	document.addEventListener('keyup', keyReleased);
 	
-	redWarrior.setupInput(KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_DOWN_ARROW, KEY_LEFT_ARROW, KEY_SPACEBAR, KEY_A, KEY_S, KEY_I, KEY_O);
+	redWarrior.setupInput(KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_DOWN_ARROW, KEY_LEFT_ARROW, KEY_SPACEBAR, KEY_A, KEY_S, KEY_I, KEY_O, KEY_H);
 }
 
 function updateMousePos(evt) {
@@ -88,12 +88,14 @@ function keySet(keyEvent, redWarrior, setTo) {
 
 function keyPressed(evt) {
 	
-	var debugModeKey = NUM_0;
+	var debugModeKey = NUM_1;
+	var textEditorModeKey = NUM_2;
 	
 	if(isInShop){
-		console.log(evt.keyCode);
 		shopInput(evt.keyCode);
 		
+	} else if(characterCreationScreen){
+		characterCreationScreenInput(evt.keyCode);
 	} else {
 		
 		keySet(evt, redWarrior, true);
@@ -121,6 +123,19 @@ function keyPressed(evt) {
 			} else {
 				debugMode = true;
 			}	
+		} else if(evt.keyCode == textEditorModeKey) {
+				if(tileEditor){
+					tileEditor = false;
+					dialog = "Exited Text Mode";
+			} else {
+				tileEditor = true;
+			}
+		} else if(evt.keyCode == redWarrior.controlKeyDisplayHealth) {
+			if(displayHealth){
+					displayHealth = false;
+			} else {
+				displayHealth = true;
+			}	
 		}
 	}
     evt.preventDefault(); // without this, arrow keys scroll the browser!
@@ -133,6 +148,7 @@ function keyReleased(evt) {
 function handleMouseClick(evt) {
 	if(menuScreen) {
 		menuScreen = false;
+		characterCreationScreen = true;
 	}
 }
 

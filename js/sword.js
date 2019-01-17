@@ -1,6 +1,7 @@
 const SWORD_LIFE = 5;
 const SWORD_SPEED = 1.0;
 var swordAlive = false;
+var displayDamangePoints = 0;
 
 
 function swordClass() {
@@ -15,15 +16,25 @@ function swordClass() {
 	this.damagePoints = 6;
 	this.damageDice = 6; // 6 Sided Dice
 	this.immunity = false;
+	this.attackHitBonus = 10;
+	this.toHitPoint = 0;
+	this.attackDice = 20;
 
 
 	this.reset = function() {
 		this.swordLife = 0;
 		swordAlive = true;
 	} 
-			
+	
+	this.rollToDetermineIfHit = function() {
+			this.toHitPoints = Math.floor(Math.random() * this.attackDice) + 1
+	}
+	
 	this.rollForDamage = function() {
+		if(this.toHitPoints >= 10){
 			this.damagePoints = Math.floor(Math.random() * this.damageDice) + 1
+			displayDamangePoints = this.damagePoints;
+		}
 	}
 	
 
@@ -43,17 +54,20 @@ function swordClass() {
 		this.x = warriorAttack.x;
 		this.y = warriorAttack.y;
 		
-		this.rollForDamage();
+		this.rollToDetermineIfHit();
+		if(this.toHitPoints > 0){
+			this.rollForDamage();
+		}
 		this.swordLife = SWORD_LIFE;
 	}
 	
 	this.hitTest = function(thisEnemy) {
-		
 		if(this.swordLife <= 0) {
 			return false;
 		}
 
 	this.checkhit = function() {
+		if(this.toHitPoints >= 10){
 			
 			if(this.damagePoints > 0){
 				dialog = "Successful hit "+ thisEnemy.myName+" for " + this.damagePoints +" damage point!";
@@ -63,6 +77,7 @@ function swordClass() {
 
 			if(thisEnemy.health < 0){
 				redWarrior.experience = redWarrior.experience + 100;
+				redWarrior.checkForLevelUp();
 			}
 			if(thisEnemy == goblin) {
 				goblinHurtSound.play();
@@ -73,8 +88,11 @@ function swordClass() {
 			} else if (thisEnemy == bat1 || thisEnemy == bat2) {
 				batHurtSound.play();
 			}
-	}		
-		
+		} else {
+			dialog = thisEnemy.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints;
+		}
+	}
+	
 		if(direction == "north") {// warrior facing North
 			
 						
@@ -129,25 +147,21 @@ function swordClass() {
 			swordLength = 20;
 			swordXLocation = redWarrior.centerX+5;
 			swordYLocation = redWarrior.y - swordLength;
-		}
-		else if(direction == "south") {
+		} else if(direction == "south") {
 			swordWidth = 10;
 			swordLength = 40;
 			swordXLocation = redWarrior.centerX-10;
 			swordYLocation = redWarrior.centerY+10;
-		}
-		else if(direction == "west") {
+		} else if(direction == "west") {
 			swordWidth = 40;
 			swordLength = 10;
 			swordXLocation = redWarrior.x - swordWidth + 10;
 			swordYLocation = redWarrior.centerY;
-		}
-		else if(direction == "east") {
+		} else if(direction == "east") {
 			swordWidth = 40;
 			swordLength = 10;
 			swordXLocation = redWarrior.x + 20;
 			swordYLocation = redWarrior.centerY;
-		
 		} 
 		
 		if(this.swordLife > 0) {

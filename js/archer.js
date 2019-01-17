@@ -8,7 +8,8 @@ function archerClass(archerName) {
 	this.speed = 4;
 	this.myArcherPic = archerPic; // which picture to use
 	this.myName = "Untitled archer";
-	this.health = 4;
+	this.health = 6;
+	this.maxhealth = 6;
 	this.alive = true;
 	this.biteReadyTicker = 30;
 	this.biteReady = true;
@@ -42,7 +43,7 @@ function archerClass(archerName) {
 		this.name = archerName;
 		this.myArcherPic;
 
-		this.health = 32;
+		this.health = 6;
 		
 		for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
 			for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
@@ -331,6 +332,11 @@ function archerClass(archerName) {
 		if(this.health > 0){
 			this.sx = this.frameIndex * this.width;
 			canvasContext.drawImage(this.myArcherPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+				if(displayHealth){
+				colorRect(this.x,this.y-16, 40,12, "black"); 
+				colorRect(this.x+2,this.y-14, 35, 8, "red");
+				colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+				}
 				if(debugMode){
 					colorText(this.myName, this.x, this.y-20, "red");
 					colorText("HP: "+this.health, this.x, this.y-10, "red");
@@ -348,26 +354,5 @@ function archerClass(archerName) {
 			this.alive = false;
 		}
 		
-		if (this.alive == true){
-			if (this.health < .5) {
-				colorRect(this.x-7, this.y-this.height+10, 5 , 10, 'red');
-			} if (this.health > 0) {
-				colorRect(this.x-10, this.y-this.height+10, 2 , 10, 'green');
-			} if (this.health >= .5) {
-				colorRect(this.x-10, this.y-this.height+10, 5 , 10, 'green'); // 0.5 HP
-			} if (this.health < 1) {
-				colorRect(this.x-5, this.y-this.height+10, 5 , 10, 'red');
-			} if (this.health >= 1) {
-				colorRect(this.x-5, this.y-this.height+10, 5 , 10, 'green'); // 1 HP **********
-			} if (this.health < 1.5) {
-				colorRect(this.x+5, this.y-this.height+10, 5 , 10, 'red'); 
-			} if (this.health >= 1.5) {
-				colorRect(this.x+5, this.y-this.height+10, 5 , 10, 'green'); // 1.5 HP	
-			} if (this.health < 2 ) {
-				colorRect(this.x+10, this.y-this.height+10, 5 , 10, 'red');
-			} if (this.health >= 2) {
-				colorRect(this.x+10, this.y-this.height+10, 5 , 10, 'green');
-			}
-		} 	
 	}
 }

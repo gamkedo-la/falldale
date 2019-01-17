@@ -19,8 +19,11 @@ var statsScreen = false;
 // Game State //
 
 var menuScreen = true;
+var characterCreationScreen = false;
 var isInShop = false;
 var debugMode = false;
+var displayHealth = false;
+var tileEditor = false;
 
 // Sound //
 
@@ -87,8 +90,11 @@ function moveAll() {
 	if(menuScreen){
 		// no movement
 	} else if (isInShop){
-		
-	} else { 
+		// no movement
+	} else if (tileEditor){
+	
+	}
+	else { 
 		redWarrior.move();
 		bat1.move();
 		bat2.move();
@@ -131,41 +137,7 @@ function moveAll() {
 	};
 };
 
-function health() {
-	colorRect(695,15,115,30, 'black');
-	if (redWarrior.health >= 0) {
-	colorRect(700,20,10,20, 'green'); // 0.5 HP
-	} if (redWarrior.health < .5) {
-	colorRect(700,20,10,20, 'red'); // 0.5 HP //
-	} if (redWarrior.health >= .5) {
-	colorRect(710,20,10,20, 'green'); // 0.5 HP
-	} if (redWarrior.health < 1) {
- 	colorRect(710,20,10,20, 'red'); // 0.5 HP //
-	} if (redWarrior.health >= 1) {
-	colorRect(725,20,10,20, 'green'); // 1 HP **********
-	} if (redWarrior.health < 1.5) {
-	colorRect(725,20,10,20, 'red'); // 1 HP //  
-	} if (redWarrior.health >= 1.5) {
-	colorRect(735,20,10,20, 'green'); // 1.5 HP	
-	} if (redWarrior.health < 2 ) {
-	colorRect(735,20,10,20, 'red'); // 1.5 HP //
-	} if (redWarrior.health >= 2) {
-	colorRect(750,20,10,20, 'green'); // 2 HP ***********
-	} if (redWarrior.health < 2.5) {
-	colorRect(750,20,10,20, 'red'); // 2 HP 
-	} if (redWarrior.health >= 2.5) {
-	colorRect(760,20,10,20, 'green'); // 2.5 HP
-	} if (redWarrior.health < 3) {
-	colorRect(760,20,10,20, 'red'); // 2.5 HP
-	} if (redWarrior.health >= 3) {
-	colorRect(775,20,10,20, 'green'); // 3 HP ******************
-	} if (redWarrior.health < 3.5) {
-	colorRect(775,20,10,20, 'red'); // 3 HP
-	} if (redWarrior.health >= 3.5) {
-	colorRect(785,20,10,20, 'green'); // 3.5 HP
-	} if (redWarrior.health < 4) {
-	colorRect(785,20,10,20, 'red'); // 3.5 HP
-	}
+function health() {  
 	
 	if (redWarrior.health <= 0) {
 		resetLevel();
@@ -181,22 +153,34 @@ function messageDraw(){
 function damageDraw(){
 	var sx = 0;
 	
-	if(redWarrior.mySword.damagePoints == 1){
+	if(displayDamangePoints == 1){
 		sx = 0;
-	} else if(redWarrior.mySword.damagePoints == 2){
+	} else if(displayDamangePoints == 2){
 		sx = 40;
-	} else if(redWarrior.mySword.damagePoints == 3){
+	} else if(displayDamangePoints == 3){
 		sx = 80;
-	} else if(redWarrior.mySword.damagePoints == 4){
+	} else if(displayDamangePoints == 4){
 		sx = 120;
-	} else if(redWarrior.mySword.damagePoints == 5){
+	} else if(displayDamangePoints == 5){
 		sx = 160;
-	} else if(redWarrior.mySword.damagePoints == 6){
+	} else if(displayDamangePoints == 6){
 		sx = 200;
 	}
-	colorText("Damage", canvas.width-120, canvas.height-32, "Black");
-	colorText("Roll", canvas.width-120, canvas.height-12, "Black");
-	canvasContext.drawImage(dicePic, sx, 0, 40, 40, canvas.width-50,canvas.height-40, 30, 30);
+	
+	if(redWarrior.mySword.toHitPoints > 0){
+		colorText("Attack", canvas.width-230, canvas.height-32, "Black");
+		colorText("Roll", canvas.width-230, canvas.height-12, "Black");
+		//canvasContext.drawImage(dicePic, sx, 0, 40, 40, canvas.width-170,canvas.height-40, 30, 30);
+		colorText(redWarrior.mySword.toHitPoints, canvas.width-180, canvas.height-12, "Black");
+		
+		if(redWarrior.mySword.toHitPoints > 10){ /////////  eventually would like to incorporate armor and weapon to determine if a hit is done.... for now, greater than 10. //////
+			colorText("Damage", canvas.width-120, canvas.height-32, "Black");
+			colorText("Roll", canvas.width-120, canvas.height-12, "Black");
+			canvasContext.drawImage(dicePic, sx, 0, 40, 40, canvas.width-50,canvas.height-40, 30, 30);
+		} else {
+			colorRect(canvas.width-120,canvas.height-40, 115, 35, "white");
+		}
+	} 
 }
 
 function inventoryDraw() {
@@ -212,13 +196,19 @@ function inventoryDraw() {
 }
 
 function statsDraw() {
-	colorRect(canvas.width-200,canvas.height-200, 200, 150, "black");
-	colorRect(canvas.width-195,canvas.height-195, 190, 140, "white");
-	colorText( "Hit Point: " + redWarrior.health , canvas.width-180,canvas.height-180, "Black");	
-	colorText( "Experience: " + redWarrior.experience, canvas.width-180,canvas.height-160, "Black");
-	colorText( "Max Sword Damage: " + redWarrior.mySword.damageDice, canvas.width-180,canvas.height-140, "Black");
-	colorText( "Max Arrow Damage: " + redWarrior.myArrow.damage, canvas.width-180,canvas.height-120, "Black");
-	colorText( "Max Stone Damage: " + redWarrior.myRock.damage, canvas.width-180,canvas.height-100, "Black");
+	colorRect(canvas.width-200,canvas.height-380, 200, 330, "black");
+	colorRect(canvas.width-195,canvas.height-375, 190, 320, "white");
+	colorText( "Experience Level: " + redWarrior.experienceLevel, canvas.width-180,canvas.height-300, "Black");
+	colorText( "Level Up at: " + redWarrior.experienceLevel, canvas.width-180,canvas.height-280, "Black");
+	colorText( "Armor Class: " + redWarrior.armor, canvas.width-180,canvas.height-260, "Black");
+	colorText( "Hit Point: " + redWarrior.health , canvas.width-180,canvas.height-240, "Black");	
+	colorText( "Experience: " + redWarrior.experience, canvas.width-180,canvas.height-220, "Black");
+	colorText( "Max Sword Damage: " + redWarrior.mySword.damageDice, canvas.width-180,canvas.height-200, "Black");
+	colorText( "Max Arrow Damage: " + redWarrior.myArrow.damage, canvas.width-180,canvas.height-180, "Black");
+	colorText( "Max Stone Damage: " + redWarrior.myRock.damage, canvas.width-180,canvas.height-160, "Black");
+	colorText( "STR: " + redWarrior.strength + "     DEX: " + redWarrior.dexterity, canvas.width-180, canvas.height-120, "Black");
+	colorText( "CON: " + redWarrior.constitution + "     INT: " + redWarrior.intelligence, canvas.width-180,canvas.height-100, "Black");
+	colorText( "WIS: " + redWarrior.wisdom + "     CHA: " + redWarrior.charisma, canvas.width-180,canvas.height-80, "Black");
 }
 
 
@@ -226,12 +216,12 @@ function drawAll() {
 		if(menuScreen){
 			canvasContext.drawImage(titlepagePic, 0,0);  // blanks out the screen
 			canvasContext.font="30px Georgia";
-			colorText("Welcome to Vince's Warrior Legend!", 120, 100, "white");				
+			colorText("Falldale", 120, 100, "white");				
 			canvasContext.font="20px Georgia";
-			colorText("This game is still Work in Progress, but playable!", 170, 150, "white");	
-			colorText("Move from level to level by collecting keys.", 170, 200, "white");	
-			colorText("Kill monsters with your sword, and collect gold.", 170, 225, "white");	
-			colorText("Click to start", 170, 255, "white");
+			colorText("", 170, 150, "white");	
+			colorText("", 170, 200, "white");	
+			colorText("", 170, 225, "white");	
+			colorText("Click to start to begin", 170, 255, "white");
 			canvasContext.font="15px Georgia";
 			colorText("Move Left - Left Arrow", 170, 300, "white");	
 			colorText("Move Down - Down Arrow", 170, 325, "white");
@@ -240,7 +230,17 @@ function drawAll() {
 			colorText("Sword Attack - Space bar", 170, 400, "white");
 		} else if (isInShop){ 
 			drawShop();
-		} else {
+		} else if (characterCreationScreen){
+			//if(redWarrior.strength == 0){			
+				drawCreationScreen(strength);
+				drawDice(Dice1);
+				drawDice(Dice2);
+				drawDice(Dice3);
+			//}
+		} else if (tileEditor){
+			drawEditorMood();
+		}
+		else {
 			canvasContext.save();
 			canvasContext.translate(-camPanX,-camPanY);
 			drawRoom();
