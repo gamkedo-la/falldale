@@ -340,7 +340,11 @@ function warriorClass() {
 		var increasedHitPoints = 0;
 		this.experienceLevel++;
 		increasedHitPoints = Math.floor(Math.random() * 6) + 1;
+		this.maxhealth = this.maxhealth + increasedHitPoints;
 		this.health = this.health + increasedHitPoints;
+		if(this.health > this.maxhealth){
+			this.health = this.maxhealth;
+		}
 		dialog = "I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points";
 	}
 	

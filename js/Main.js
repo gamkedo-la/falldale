@@ -22,7 +22,7 @@ var menuScreen = true;
 var characterCreationScreen = false;
 var isInShop = false;
 var debugMode = false;
-var displayHealth = false;
+var displayHealth = true;
 var tileEditor = false;
 
 // Sound //

@@ -80,6 +80,7 @@ function loadImages() {
 			{tileType: TILE_GRAVE_YARD_PORTAL,  theFile: "worldRoad.png"},
 			{tileType: TILE_HOME_VILLAGE_PORTAL,  theFile: "worldRoad.png"},
 			{tileType: TILE_THROWINGROCKS,  theFile: "throwingRocks.png"},
+			{tileType: TILE_ARROWS,  theFile: "arrow.png"},
 	
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
