@@ -2,28 +2,19 @@ var goblinMoveSpeed = 0.5;
 const SKELETON_TIME_BETWEEN_CHANGE_DIR = 700;
 const SKELETON_COLLISION_RADIUS = 10;
 
+skeletonClass.prototype = new enemyClass();
 function skeletonClass(skeletonName) {
-	this.x = 0;
-	this.y = 0;
 	this.speed = 2;
 	this.mySkeletonPic = skeletonPic; // which picture to use
 	this.myName = "Untitled skeleton";
-	this.health = 8;
+
 	this.maxhealth = 8;
 	this.alive = true;
 	this.biteReadyTicker = 30;
 	this.biteReady = true;
 	this.myName = skeletonName;
+		
 	
-	this.cyclesTilDirectionChange = 0;
-	this.addedCyclesTilDirectionChange = 0;
-	this.cyclesOfSkeletonActive = 0;
-	this.cyclesofSkeletonResting = Math.random()*400;
-	this.skeletonResting = false;
-	this.skeletonRestingTime = Math.random()*400;
-	
-	this.sx = 50;
-	this.sy = 0;
 	this.tickCount = 0;
 	this.frameIndex = 0;
 	this.width = 35;
@@ -31,10 +22,7 @@ function skeletonClass(skeletonName) {
 	this.height = 50;
 	this.ticksPerFrame = 5;
 	this.skeletonMove = true;
-	this.walkNorth = false;
-	this.walkEast = true;
-	this.walkSouth = false;
-	this.walkWest = false;
+
 
 	this.reset = function(whichImage, skeletonName) {
 		this.name = skeletonName;
@@ -56,169 +44,11 @@ function skeletonClass(skeletonName) {
 		console.log("No Skeleton Start found!");
 	} // end of skeletonRest func
 	
-	this.changeDirection = function() {
-		if(this.walkNorth == true) {
-			this.walkNorth = false;
-			this.walkEast = true;
-		} else if(this.walkWest == true) {
-			this.walkWest = false;
-			this.walkNorth = true;
-		} else if(this.walkEast == true) {
-			this.walkEast = false;
-			this.walkSouth = true;
-		} else if(this.walkSouth == true) {
-			this.walkSouth = false;
-			this.walkWest = true;
-		}	
-	}
+
 	
+	this.superClassMove = this.move;
 	this.move = function() {
-		var nextX = this.x; 
-		var nextY = this.y;
-		
-		if(this.health > 0){
-					
-			this.cyclesTilDirectionChange--;
-			if(this.cyclesTilDirectionChange <= 0) {
-				if(this.addedCyclesTilDirectionChange <= 0) {
-					this.cyclesTilDirectionChange = SKELETON_TIME_BETWEEN_CHANGE_DIR;
-					this.changeDirection();
-					this.addedCyclesTilDirectionChange++; 
-				}
-				else if(this.addedCyclesTilDirectionChange == 1) {
-					this.cyclesTilDirectionChange = SKELETON_TIME_BETWEEN_CHANGE_DIR;
-					this.changeDirection();
-					this.addedCyclesTilDirectionChange++;
-				}
-				else if(this.addedCyclesTilDirectionChange == 2) {
-					this.cyclesTilDirectionChange = SKELETON_TIME_BETWEEN_CHANGE_DIR;
-					this.changeDirection();
-					this.addedCyclesTilDirectionChange++;
-				}
-				else if(this.addedCyclesTilDirectionChange == 3) {
-					this.cyclesTilDirectionChange = SKELETON_TIME_BETWEEN_CHANGE_DIR;
-					this.changeDirection();
-					this.addedCyclesTilDirectionChange = 0;
-				}
-			}
-			
-			// which directional image to use
-
-			if(this.walkNorth) {
-				nextY -= goblinMoveSpeed;
-				this.sx = 0;
-				this.sy = 50;
-				skeletonDirection = "north";
-			}
-			
-			if(this.walkSouth) {
-				nextY += goblinMoveSpeed;
-				this.sx = 0;
-				this.sy = 0;
-				skeletonDirection = "south";
-			}
-			if(this.walkWest) {
-				nextX -= goblinMoveSpeed;
-				this.sx = 0;
-				this.sy = 100;
-				skeletonDirection = "west";
-			}
-			if(this.walkEast) {
-				nextX += goblinMoveSpeed;
-				this.sx = 0;
-				this.sy = 150;
-				skeletonDirection = "east";
-			}
-			
-			var walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, nextY);
-			var walkIntoTileType = TILE_WALL;
-			
-			if(skeletonDirection == "north") {
-				walkIntoTileIndex = getTileTypeAtPixelCoord(nextX,(nextY-25));
-			}
-			if(skeletonDirection == "south") {
-				walkIntoTileIndex = getTileTypeAtPixelCoord(nextX,(nextY+25));
-			}
-			if(skeletonDirection == "west") {
-				walkIntoTileIndex = getTileTypeAtPixelCoord((nextX-25), nextY);
-			}
-			if(skeletonDirection == "east") {
-				walkIntoTileIndex = getTileTypeAtPixelCoord((nextX+25), nextY);
-			}
-
-			if(walkIntoTileIndex != undefined) {
-				walkIntoTileType = roomGrid[walkIntoTileIndex];
-			}
-			
-		switch(walkIntoTileType) {
-				case TILE_ROAD:
-					this.x = nextX;
-					this.y = nextY;
-					goblinMoveSpeed = 0.5;
-					break;
-				case TILE_GRASS:
-					this.x = nextX;
-					this.y = nextY;
-					goblinMoveSpeed = 0.3;
-					break;
-				case TILE_TREE:
-					this.changeDirection();
-					break;
-				case TILE_FINISH:
-					this.changeDirection();
-					break;
-				case TILE_YELLOW_DOOR:
-					this.changeDirection();
-					break;
-				case TILE_GREEN_DOOR:
-					this.changeDirection();
-					break;
-				case TILE_RED_DOOR:
-					this.changeDirection();
-					break;
-				case TILE_BLUE_DOOR:
-					this.changeDirection();
-					break;	
-				case TILE_YELLOW_KEY:
-					this.x = nextX;
-					this.y = nextY;
-					break;
-				case TILE_RED_KEY:
-					this.x = nextX;
-					this.y = nextY;
-					break;
-				case TILE_BLUE_KEY:
-					this.x = nextX;
-					this.y = nextY;
-					break;
-				case TILE_GREEN_KEY:
-					this.x = nextX;
-					this.y = nextY;
-					break;
-				case TILE_WATER:
-					this.changeDirection();
-					break	
-				case TILE_WALL:
-					this.changeDirection();
-					break;
-				case TILE_SPIKES:
-					var i = 1;
-					this.x = nextX;
-					this.y = nextY;
-					this.health = this.health - .5; // Damage to Health
-					roomGrid[walkIntoTileIndex] = TILE_SPIKES_BLOODY;
-					spikeSound.play();
-					break;
-				case TILE_SPIKES_BLOODY:
-					var i = 1;
-					this.x = nextX;
-					this.y = nextY;
-					break;
-			}
-		} else {
-			this.x = this.x;
-			this.y = this.y;
-		}		
+		this.superClassMove(SKELETON_TIME_BETWEEN_CHANGE_DIR, goblinMoveSpeed);
 	}
 	
 	this.skeletonBite = function() {
