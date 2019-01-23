@@ -1,20 +1,17 @@
-var goblinMoveSpeed = 0.5;
+var skeletonMoveSpeed = 0.5;
 const SKELETON_TIME_BETWEEN_CHANGE_DIR = 700;
-const SKELETON_COLLISION_RADIUS = 10;
 
 skeletonClass.prototype = new enemyClass();
 function skeletonClass(skeletonName) {
 	this.speed = 2;
 	this.mySkeletonPic = skeletonPic; // which picture to use
-	this.myName = "Untitled skeleton";
+	this.myName = skeletonName;
 
 	this.maxhealth = 8;
 	this.alive = true;
 	this.biteReadyTicker = 30;
 	this.biteReady = true;
-	this.myName = skeletonName;
 		
-	
 	this.tickCount = 0;
 	this.frameIndex = 0;
 	this.width = 35;
@@ -23,32 +20,20 @@ function skeletonClass(skeletonName) {
 	this.ticksPerFrame = 5;
 	this.skeletonMove = true;
 
-
+	this.superClassReset = this.reset;
 	this.reset = function(whichImage, skeletonName) {
+		this.superClassReset(TILE_SKELETON);
 		this.name = skeletonName;
 		this.mySkeletonPic;
 
 		this.health = 8;
-		
-		for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
-			for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
-				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
-				if(roomGrid[arrayIndex] == TILE_SKELETON) {
-					roomGrid[arrayIndex] = TILE_ROAD;
-					this.x = eachCol * TILE_W + TILE_W/2;
-					this.y = eachRow * TILE_H + TILE_H/2;
-					return;
-				} // end of Player Start if
-			} //end of col row for
-		} // end of row for
-		console.log("No Skeleton Start found!");
-	} // end of skeletonRest func
+	}
 	
 
 	
 	this.superClassMove = this.move;
 	this.move = function() {
-		this.superClassMove(SKELETON_TIME_BETWEEN_CHANGE_DIR, goblinMoveSpeed);
+		this.superClassMove(SKELETON_TIME_BETWEEN_CHANGE_DIR, skeletonMoveSpeed);
 	}
 	
 	this.skeletonBite = function() {

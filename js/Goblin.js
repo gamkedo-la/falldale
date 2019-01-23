@@ -2,9 +2,8 @@ var goblinMoveSpeed = 0.5;
 const GOBLIN_TIME_BETWEEN_CHANGE_DIR = 300;
 const GOBLIN_PATROL_RADIUS = 200;
 
+goblinClass.prototype = new enemyClass();
 function goblinClass(goblinName) {
-	this.x = 0;
-	this.y = 0;
 	this.speed = 4;
 	this.myGoblinPic = goblinPic; // which picture to use
 	this.myName = "Untitled goblin";
@@ -14,16 +13,7 @@ function goblinClass(goblinName) {
 	this.biteReadyTicker = 30;
 	this.biteReady = true;
 	this.myName = goblinName;
-	
-	this.cyclesTilDirectionChange = 0;
-	this.addedCyclesTilDirectionChange = 0;
-	this.cyclesOfGoblinActive = 0;
-	this.cyclesofGoblinResting = Math.random()*400;
-	this.goblinResting = false;
-	this.goblinRestingTime = Math.random()*400;
-	
-	this.sx = 50;
-	this.sy = 0;
+		
 	this.tickCount = 0;
 	this.frameIndex = 0;
 	this.width = 39;
@@ -31,14 +21,11 @@ function goblinClass(goblinName) {
 	this.height = 37;
 	this.ticksPerFrame = 5;
 	this.goblinMove = true;
+	
 	this.patrolling = true;
 	this.chasing = false;
 	this.attacking = false;
-	this.walkNorth = false;
-	this.walkEast = false;
-	this.walkSouth = true;
-	this.walkWest = false;
-
+	
 	this.reset = function(whichImage, goblinName) {
 		this.name = goblinName;
 		this.myGoblinPic;
@@ -58,7 +45,8 @@ function goblinClass(goblinName) {
 		} // end of row for
 		console.log("No Goblin Start found!");
 	} // end of goblinRest func
-		
+	
+this.superClassMove = this.move;	
 	this.move = function() {
 		var nextX = this.x; 
 		var nextY = this.y;
@@ -81,7 +69,7 @@ function goblinClass(goblinName) {
 		
 		if(this.health > 0){
 							
-			var deltaX = redWarrior.x - this.x;
+			/*var deltaX = redWarrior.x - this.x;
 			var deltaY = redWarrior.y - this.y;
 			var dist = Math.sqrt((deltaX*deltaX) + (deltaY*deltaY));
 			var dist = Math.floor(dist);
@@ -133,7 +121,7 @@ function goblinClass(goblinName) {
 					}
 				}
 			}
-			else if(this.chasing){
+			/* else if(this.chasing){
 				
 				dialog = "I'm being chased!";		
 				
@@ -158,6 +146,7 @@ function goblinClass(goblinName) {
 					this.attacking = true;
 			}
 			
+	
 			
 			// which directional image to use
 
@@ -278,11 +267,8 @@ function goblinClass(goblinName) {
 					this.x = nextX;
 					this.y = nextY;
 					break;
-			}
-		} else {
-			this.x = this.x;
-			this.y = this.y;
-		}		
+			}		
+		} */
 	}
 	
 	this.goblinBite = function() {
