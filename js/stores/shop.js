@@ -1,5 +1,5 @@
 function drawShop() {
-    canvasContext.drawImage(storeFrontPic, 0, 0); // replace with inventory background
+    canvasContext.drawImage(storeFrontPic, 0, 0); 
     colorText("Please let me know if you would like any of our", 25, 50, "white");
     colorText("items in stock.", 25, 65, "white");
     colorText("1.) 10 Arrows 	- 	10 gp", 50, 100, "white");

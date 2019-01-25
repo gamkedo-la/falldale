@@ -30,7 +30,7 @@ function warriorClass() {
 	this.keysHeld = 0;
 	this.goldpieces = 10;
 	this.experience = 0;
-	this.maxhealth = 4;
+	this.maxHealth = 4;
 	this.health = 4;
 	this.waitTime = 0;
 	this.previousTileType = -1;
@@ -51,6 +51,7 @@ function warriorClass() {
 	this.charisma = 0;
 	this.experienceLevel = 1;
 	this.armor = 10;
+	this.healingPotion = 0;
 	
 	this.keyHeld_WalkNorth = false;
 	this.keyHeld_WalkSouth = false;
@@ -194,6 +195,12 @@ function warriorClass() {
 					isInShop = true;
 				}
 				break;
+			case TILE_ALTER:
+				if(walkIntoTileType != this.previousTileType){
+					this.releaseKeys();
+					isAtHealer = true;
+				}
+				break;
 			case TILE_YELLOW_DOOR:
 				if(this.yellowKeysHeld > 0) {
 					this.yellowKeysHeld--; // one less key
@@ -274,6 +281,11 @@ function warriorClass() {
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
 				dialog = "What luck!  I can use these rocks for throwing at enemies.";
 				break;	
+			case TILE_ARROWS:
+				redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
+				roomGrid[walkIntoTileIndex] = TILE_GRASS;
+				dialog = "I'll add these 5 arrows to my inventory.";
+				break;	
 			case TILE_GRAVE:
 				dialog = "Too many good people have died from the Skeleton King and his army of the dead.";
 				break;
@@ -340,10 +352,10 @@ function warriorClass() {
 		var increasedHitPoints = 0;
 		this.experienceLevel++;
 		increasedHitPoints = Math.floor(Math.random() * 6) + 1;
-		this.maxhealth = this.maxhealth + increasedHitPoints;
+		this.maxHealth = this.maxHealth + increasedHitPoints;
 		this.health = this.health + increasedHitPoints;
-		if(this.health > this.maxhealth){
-			this.health = this.maxhealth;
+		if(this.health > this.maxHealth){
+			this.health = this.maxHealth;
 		}
 		dialog = "I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points";
 	}
@@ -407,9 +419,10 @@ function warriorClass() {
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			
 			if(displayHealth){
+				console.log(this.maxHealth);
 				colorRect(this.x,this.y-16, 40,12, "black"); 
 				colorRect(this.x+2,this.y-14, 35, 8, "red");
-				colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+				colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
 			}
 			
 			if(debugMode){

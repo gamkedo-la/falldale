@@ -21,6 +21,7 @@ var statsScreen = false;
 var menuScreen = true;
 var characterCreationScreen = false;
 var isInShop = false;
+var isAtHealer = false;
 var debugMode = false;
 var displayHealth = true;
 var tileEditor = false;
@@ -90,6 +91,8 @@ function moveAll() {
     if (menuScreen) {
         // no movement
     } else if (isInShop) {
+        // no movement
+    } else if (isAtHealer) {
         // no movement
     } else if (tileEditor) {
 
@@ -169,8 +172,8 @@ function damageDraw() {
     if (redWarrior.mySword.toHitPoints > 0) {
         colorText("Attack", canvas.width - 230, canvas.height - 32, "Black");
         colorText("Roll", canvas.width - 230, canvas.height - 12, "Black");
-        //canvasContext.drawImage(dicePic, sx, 0, 40, 40, canvas.width-170,canvas.height-40, 30, 30);
-        colorText(redWarrior.mySword.toHitPoints, canvas.width - 180, canvas.height - 12, "Black");
+        canvasContext.drawImage(twentySidedDicePic , canvas.width-170,canvas.height-40, 30, 30);
+        colorText(redWarrior.mySword.toHitPoints, canvas.width - 162, canvas.height - 20, "Black");
 
         if (redWarrior.mySword.toHitPoints > 10) { /////////  eventually would like to incorporate armor and weapon to determine if a hit is done.... for now, greater than 10. //////
             colorText("Damage", canvas.width - 120, canvas.height - 32, "Black");
@@ -229,7 +232,9 @@ function drawAll() {
         colorText("Sword Attack - Space bar", 170, 400, "white");
     } else if (isInShop) {
         drawShop();
-    } else if (characterCreationScreen) {
+    } else if (isAtHealer) {
+        drawHealerShop();
+    }else if (characterCreationScreen) {
         //if(redWarrior.strength == 0){			
         drawCreationScreen(strength);
         drawDice(Dice1);

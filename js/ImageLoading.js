@@ -1,5 +1,6 @@
 var titlepagePic = document.createElement("img");
 var storeFrontPic = document.createElement("img");
+var healerStorePic = document.createElement("img");
 
 var warriorPic = document.createElement("img");
 var swordPic = document.createElement("img");
@@ -20,6 +21,7 @@ var archerPic = document.createElement("img");
 var deadArcherPic = document.createElement("img");
 
 var dicePic = document.createElement("img");
+var twentySidedDicePic = document.createElement("img");
 
 var worldPics = [];
 
@@ -81,6 +83,8 @@ function loadImages() {
 			{tileType: TILE_HOME_VILLAGE_PORTAL,  theFile: "worldRoad.png"},
 			{tileType: TILE_THROWINGROCKS,  theFile: "throwingRocks.png"},
 			{tileType: TILE_ARROWS,  theFile: "arrow.png"},
+			{tileType: TILE_HEALER,  theFile: "healer.png"},
+			{tileType: TILE_ALTER,  theFile: "alter.png"},
 	
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
@@ -95,7 +99,9 @@ function loadImages() {
 			{varName: archerPic, theFile: "archer.png"},
 			{varName: deadArcherPic, theFile: "deadgoblin.png"},
 			{varName: storeFrontPic, theFile: "storefront.jpg"},
+			{varName: healerStorePic, theFile: "healerStore.jpg"},
 			{varName: dicePic, theFile: "dice.png"},
+			{varName: twentySidedDicePic, theFile: "20sided.png"},
 			{varName: titlepagePic, theFile: "background.png"}
 			
 		];

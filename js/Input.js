@@ -93,8 +93,9 @@ function keyPressed(evt) {
 
     if (isInShop) {
         shopInput(evt.keyCode);
-
-    } else if (characterCreationScreen) {
+    } else if (isAtHealer) {
+		healerInput(evt.keyCode);
+	} else if (characterCreationScreen) {
         characterCreationScreenInput(evt.keyCode);
     } else {
 
