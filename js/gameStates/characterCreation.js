@@ -134,15 +134,19 @@ function characterCreationScreenInput(whichKeyCode){
 		} else if(redWarrior.charisma == 0){
 			characterCreationRolling(redWarrior.charisma);
 		} else {
-			characterCreationScreen = false;		
+			characterCreationScreen = false;
+			scrollBackgroundScreen = true;
 		}
 		
 		break;
 		
 		default:
-			gameKeeperFeedback = "Shop Keeper:  Please come again.";
+			gameKeeperFeedback = "";
 			break;
 	} 
 	
 	dialog = gameKeeperFeedback;				
 }
+
+
+

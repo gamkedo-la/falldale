@@ -15,10 +15,12 @@ var dialog = " ";
 var inventory = " ";
 var inventoryScreen = false;
 var statsScreen = false;
+var scrollBackgroundScreen = true;
 
 // Game States //
 
 var menuScreen = true;
+var scrollBackground = false;
 var characterCreationScreen = false;
 var isInShop = false;
 var isAtHealer = false;
@@ -234,14 +236,17 @@ function drawAll() {
         drawShop();
     } else if (isAtHealer) {
         drawHealerShop();
-    }else if (characterCreationScreen) {
+    } else if (characterCreationScreen) {
         //if(redWarrior.strength == 0){			
         drawCreationScreen(strength);
         drawDice(Dice1);
         drawDice(Dice2);
         drawDice(Dice3);
         //}
-    } else if (tileEditor) {
+    } else if (scrollBackgroundScreen) {
+		canvasContext.drawImage(scrollBackgroundPic, 0, 0);
+		drawScrollNarrative();
+	} else if (tileEditor) {
         drawEditorMood();
     } else {
         canvasContext.save();

@@ -1,6 +1,8 @@
 var titlepagePic = document.createElement("img");
+var scrollBackgroundPic = document.createElement("img");
 var storeFrontPic = document.createElement("img");
 var healerStorePic = document.createElement("img");
+
 
 var warriorPic = document.createElement("img");
 var swordPic = document.createElement("img");
@@ -103,6 +105,7 @@ function loadImages() {
 			{varName: healerStorePic, theFile: "healerStore.jpg"},
 			{varName: dicePic, theFile: "dice.png"},
 			{varName: twentySidedDicePic, theFile: "20sided.png"},
+			{varName: scrollBackgroundPic, theFile: "scrollBackground.jpg"},
 			{varName: titlepagePic, theFile: "background.png"}
 			
 		];

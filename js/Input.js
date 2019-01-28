@@ -97,7 +97,9 @@ function keyPressed(evt) {
 		healerInput(evt.keyCode);
 	} else if (characterCreationScreen) {
         characterCreationScreenInput(evt.keyCode);
-    } else {
+    } else if (scrollBackgroundScreen) {
+        scrollBackgroundScreenInput(evt.keyCode);
+	} else {
 
         keySet(evt, redWarrior, true);
         if (evt.keyCode == redWarrior.controlKeySword) {
