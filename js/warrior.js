@@ -293,7 +293,10 @@ function warriorClass() {
 				dialog = "I need to avenge my friend.  The Skeleton King and his army of the dead must be destroyed!.";
 				break;
 			case TILE_BED:
-					dialog = "I am not tired.";
+				dialog = "I am not tired.";
+				break;
+			case TILE_FOUNTAIN:
+				dialog = "What a beautiful fountain.";
 				break;
 			case TILE_CABINET:
 					dialog = "The bookcase is bare.  One day, I'll have a library of my own.";

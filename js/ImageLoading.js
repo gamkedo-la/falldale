@@ -85,6 +85,7 @@ function loadImages() {
 			{tileType: TILE_ARROWS,  theFile: "arrow.png"},
 			{tileType: TILE_HEALER,  theFile: "healer.png"},
 			{tileType: TILE_ALTER,  theFile: "alter.png"},
+			{tileType: TILE_FOUNTAIN,  theFile: "fountain.png"},
 	
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
