@@ -89,7 +89,19 @@ function loadImages() {
 			{tileType: TILE_ALTER,  theFile: "alter.png"},
 			{tileType: TILE_FOUNTAIN,  theFile: "fountain.png"},
 			{tileType: TILE_PRINCESS,  theFile: "princess.png"},
-	
+			{tileType: TILE_ROOF_SIDERIGHT,  theFile: "roofbottomright.png"},
+			{tileType: TILE_ROOF_BACKRIGHT,  theFile: "roofbackright.png"},
+			{tileType: TILE_ROOF_FRONTRIGHT,  theFile: "roofFrontRight.png"},
+			{tileType: TILE_FRONTDOOR_YELLOW,  theFile: "door.png"},
+			{tileType: TILE_FRONTWALL_SOLID,  theFile: "solidwall.png"},
+			{tileType: TILE_FRONTWALL_WINDOW,  theFile: "frontwall.png"},
+			{tileType: TILE_ROOF_BACKSIDE,  theFile: "roofbackside.png"},
+			{tileType: TILE_ROOF_BACKLEFT,  theFile: "roofbackleft.png"},
+			{tileType: TILE_ROOF_LEFTSIDE,  theFile: "roofleftside.png"},
+			{tileType: TILE_ROOF_FRONTLEFT,  theFile: "rooffrontleft.png"},
+			{tileType: TILE_ROOF_FRONT,  theFile: "rooffront.png"},
+			{tileType: TILE_ROOF_CENTER,  theFile: "roofcenter.png"},				
+							
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
 			{varName: skeletonPic, theFile: "skeleton.png"},
@@ -108,7 +120,6 @@ function loadImages() {
 			{varName: twentySidedDicePic, theFile: "20sided.png"},
 			{varName: scrollBackgroundPic, theFile: "scrollBackground.jpg"},
 			{varName: titlepagePic, theFile: "background.png"}
-			
 		];
 			
 	picsToLoad = imageList.length;
