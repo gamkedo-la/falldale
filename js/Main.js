@@ -97,7 +97,7 @@ function moveAll() {
     } else if (isAtHealer) {
         // no movement
     } else if (tileEditor) {
-
+		mouseMovement();
     } else {
         redWarrior.move();
         bat1.move();

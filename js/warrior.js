@@ -106,7 +106,7 @@ function warriorClass() {
 				} // end of Player Start if
 			} //end of col row for
 		} // end of row for
-		console.log("No Player Start found!");
+		//console.log("No Player Start found!");
 		this.mySword.reset();
 		this.myArrow.reset();
 		this.myRock.reset();

@@ -53,6 +53,8 @@ const ENTER = 13;
 var mouseX = 0;
 var mouseY = 0;
 
+
+
 function setupInput() {
     canvas.addEventListener('mousemove', updateMousePos);
 
@@ -63,6 +65,7 @@ function setupInput() {
 }
 
 function updateMousePos(evt) {
+	
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
 
@@ -89,7 +92,7 @@ function keySet(keyEvent, redWarrior, setTo) {
 function keyPressed(evt) {
 
     var debugModeKey = NUM_1;
-    var textEditorModeKey = NUM_2;
+    var tileEditorModeKey = NUM_2;
 
     if (isInShop) {
         shopInput(evt.keyCode);
@@ -126,10 +129,10 @@ function keyPressed(evt) {
             } else {
                 debugMode = true;
             }
-        } else if (evt.keyCode == textEditorModeKey) {
+        } else if (evt.keyCode == tileEditorModeKey) {
             if (tileEditor) {
                 tileEditor = false;
-                dialog = "Exited Text Mode";
+                dialog = "Exited Tile Editor Mode";
             } else {
                 tileEditor = true;
             }
