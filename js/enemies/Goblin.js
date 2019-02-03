@@ -1,5 +1,5 @@
 var goblinMoveSpeed = 0.5;
-const GOBLIN_TIME_BETWEEN_CHANGE_DIR = 300;
+const GOBLIN_TIME_BETWEEN_CHANGE_DIR = 100;
 
 goblinClass.prototype = new enemyClass();
 function goblinClass(goblinName) {
@@ -33,7 +33,22 @@ function goblinClass(goblinName) {
     this.superClassMove = this.move;
     this.move = function() {
         this.superClassMove(GOBLIN_TIME_BETWEEN_CHANGE_DIR, goblinMoveSpeed);
-    }
+    
+		if (this.walkNorth) {
+            this.sy = this.height;
+        }
+
+        if (this.walkSouth) {
+            this.sy = 0;
+        }
+        if (this.walkWest) {
+            this.sy = this.height*3;
+        }
+        if (this.walkEast) {
+            this.sy = this.height*2;
+        }
+	
+	}
 
     this.goblinBite = function() {
 
@@ -69,6 +84,7 @@ function goblinClass(goblinName) {
 
         if (this.goblinMove) {
             this.tickCount++;
+			
         }
         if (this.tickCount > this.ticksPerFrame) {
             this.tickCount = 0;

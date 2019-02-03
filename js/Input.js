@@ -132,6 +132,7 @@ function keyPressed(evt) {
         } else if (evt.keyCode == tileEditorModeKey) {
             if (tileEditor) {
                 tileEditor = false;
+				loadLevel(levelOne);
                 dialog = "Exited Tile Editor Mode";
             } else {
                 tileEditor = true;

@@ -23,8 +23,7 @@ function enemyClass() {
         if (this.health <= 0) {
             return;
         }
-
-
+		
         var nextX = this.x;
         var nextY = this.y;
         this.cyclesTilDirectionChange--;

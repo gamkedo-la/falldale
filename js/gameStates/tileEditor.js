@@ -1,16 +1,16 @@
 ///// Building the Tile Editor (WIP)
 
-///// turn on tile editor
-///// draw the entire map
+///// turn on tile editor - done ////////////////////
+///// draw the entire map - done ////////////////////
 function drawEditorMood() {
     dialog = "Now in Tile Editor Mode";
-
-    loadLevel(allGrass);
+	loadLevel(allGrass);
     drawRoom();
 
     updateDialog();
 }
 
+///// determine where mouse is and identify tile under the mouse - done /////////////////////
 function mouseMovement() { //// this should move to Input.js
     canvas.addEventListener('mousemove', function(evt) {
         var mousePos = calculateMousePos(evt);
@@ -40,7 +40,6 @@ function updateDialog() {
 
 
 
-///// determine where mouse is
 ///// make tile selectable
 ///// Use Up and Down to switch between tiles
 ///// Use Left and Right to switch within that section
