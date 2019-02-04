@@ -160,17 +160,17 @@ function damageDraw() {
 
     if (damageUIVisibilityCountdown <= 0) {
         return;
-    } else if (displayDamangePoints == 1) {
+    } else if (displayDamagePoints == 1) {
         sx = 0;
-    } else if (displayDamangePoints == 2) {
+    } else if (displayDamagePoints == 2) {
         sx = 40;
-    } else if (displayDamangePoints == 3) {
+    } else if (displayDamagePoints == 3) {
         sx = 80;
-    } else if (displayDamangePoints == 4) {
+    } else if (displayDamagePoints == 4) {
         sx = 120;
-    } else if (displayDamangePoints == 5) {
+    } else if (displayDamagePoints == 5) {
         sx = 160;
-    } else if (displayDamangePoints == 6) {
+    } else if (displayDamagePoints == 6) {
         sx = 200;
     }
 

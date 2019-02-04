@@ -1,7 +1,7 @@
 const SWORD_LIFE = 5;
 const SWORD_SPEED = 1.0;
 var swordAlive = false;
-var displayDamangePoints = 0;
+var displayDamagePoints = 0;
 var damageUIVisibilityCountdown = 0;
 
 
@@ -35,7 +35,7 @@ function swordClass() {
 	this.rollForDamage = function() {
 		if(this.toHitPoints >= 10){
 			this.damagePoints = Math.floor(Math.random() * this.damageDice) + 1
-			displayDamangePoints = this.damagePoints;
+			displayDamagePoints = this.damagePoints;
 		}
 	}
 	
