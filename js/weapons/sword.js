@@ -2,6 +2,7 @@ const SWORD_LIFE = 5;
 const SWORD_SPEED = 1.0;
 var swordAlive = false;
 var displayDamangePoints = 0;
+var damageUIVisibilityCountdown = 0;
 
 
 function swordClass() {
@@ -27,7 +28,8 @@ function swordClass() {
 	} 
 	
 	this.rollToDetermineIfHit = function() {
-			this.toHitPoints = Math.floor(Math.random() * this.attackDice) + 1
+		this.setDamageUICountdown(3);
+		this.toHitPoints = Math.floor(Math.random() * this.attackDice) + 1
 	}
 	
 	this.rollForDamage = function() {
@@ -37,6 +39,9 @@ function swordClass() {
 		}
 	}
 	
+	this.setDamageUICountdown = function (seconds) {
+		damageUIVisibilityCountdown = seconds * 30; // 30fps
+	}
 
 	this.move = function() {
 		if(this.swordLife > 0) {

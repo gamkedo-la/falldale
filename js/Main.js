@@ -156,8 +156,11 @@ function messageDraw() {
 
 function damageDraw() {
     var sx = 0;
+    damageUIVisibilityCountdown--;
 
-    if (displayDamangePoints == 1) {
+    if (damageUIVisibilityCountdown <= 0) {
+        return;
+    } else if (displayDamangePoints == 1) {
         sx = 0;
     } else if (displayDamangePoints == 2) {
         sx = 40;
@@ -181,8 +184,6 @@ function damageDraw() {
             colorText("Damage", canvas.width - 120, canvas.height - 32, "Black");
             colorText("Roll", canvas.width - 120, canvas.height - 12, "Black");
             canvasContext.drawImage(dicePic, sx, 0, 40, 40, canvas.width - 50, canvas.height - 40, 30, 30);
-        } else {
-            colorRect(canvas.width - 120, canvas.height - 40, 115, 35, "white");
         }
     }
 }
