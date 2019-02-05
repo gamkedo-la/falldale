@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'endorregular';
+    src: url('fonts/endor___.woff2') format('woff2'),
+         url('fonts/endor___.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'endor_altregular';
+    src: url('fonts/endoralt.woff2') format('woff2'),
+         url('fonts/endoralt.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -298,9 +298,11 @@ function drawAll() {
             statsDraw();
         }
 		if (gamePaused) {
-			colorRect(canvas.width/2-50, canvas.height/2-25, 100, 50, "red");
-			colorRect(canvas.width/2-45, canvas.height/2-20, 90, 40, "white");
-			colorText("PAUSED", canvas.width/2-33, canvas.height/2+3, "red");
+            colorRect(0,0, canvas.width, canvas.height, "rgba(0,0,0,0.8");
+            colorRect(canvas.width/2-150, canvas.height/2-75, 300, 4, "rgba(255,255,255,0.7)");
+            colorRect(canvas.width/2-150, canvas.height/2+50, 300, 4, "rgba(255,255,255,0.7 )");
+            drawTextWithShadowCentered("Game Paused", canvas.width/2, canvas.height/2-20, "white", "20px endorregular");
+            drawTextWithShadowCentered("Press 'P' to resume", canvas.width/2, canvas.height/2+15, "white", "12px endorregular");
 		}
     }
 }
