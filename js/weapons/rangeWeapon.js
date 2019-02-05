@@ -17,16 +17,7 @@ function rangedWeaponClass(){
 			this.damagePoints = Math.floor(Math.random() * damageDice) + 1
 			displayDamagePoints = this.damagePoints;
 			dialog = "Successful hit on "+ thisEnemy.myName+"!";
-			thisEnemy.health = thisEnemy.health - 0.5;
-			if(thisEnemy == goblin) {
-				goblinHurtSound.play();
-			} else if (thisEnemy == skeleton || thisEnemy == skeleton2) {
-				skeletonHurtSound.play();
-			} else if (thisEnemy == zombie || thisEnemy == zombie2) {
-				zombieHurtSound.play();
-			} else if (thisEnemy == bat1 || thisEnemy == bat2) {
-				batHurtSound.play();
-			}	
+			thisEnemy.takeDamage(damagePoints);
 		}
 	}
 	

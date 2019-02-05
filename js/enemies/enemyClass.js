@@ -178,19 +178,8 @@ function enemyClass() {
         }
     }
 	
-	this.reset = function(enemytype){
-		for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
-			for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
-				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);				
-				var tileType = enemytype;
-				
-				if(roomGrid[arrayIndex] == tileType) {
-					roomGrid[arrayIndex] = TILE_ROAD;
-					this.x = eachCol * TILE_W + TILE_W/2;
-					this.y = eachRow * TILE_H + TILE_H/2;
-					return;
-				} // end of Player Start if
-			} //end of col row for
-		} // end of row for
+	this.reset = function(resetX, resetY){
+        this.x = resetX;
+        this.y = resetY;
 	}
 }

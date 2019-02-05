@@ -129,37 +129,19 @@ function arrowClass() {
 			{ // within bottom 
 				dialog = "Successful archery hit on "+ thisEnemy.myName+"!";
 				if (this.damage == 0.5) {
-					thisEnemy.health = thisEnemy.health - 0.5;
-					this.damage = this.damage - 0.5;
-					if(thisEnemy == goblin) {
-					goblinHurtSound.play();
-					} else if (thisEnemy == skeleton || thisEnemy == skeleton2) {
-						skeletonHurtSound.play();
-					} else if (thisEnemy == zombie || thisEnemy == zombie2) {
-						zombieHurtSound.play();
-					} else if (thisEnemy == bat1 || thisEnemy == bat2) {
-						batHurtSound.play();
-					}	
+					thisEnemy.takeDamage(this.damage)
+					this.damage -= 0.5;
 				} else {
 					return false;
 			}
 		}
 	}
 	
-		this.checkhit = function() {
+	this.checkhit = function() {
 		if(this.damage == 1.0) {
 			dialog = "Successful hit "+ thisEnemy.myName+" for 1 damage point!";
 			this.damage = this.damage - 1;
-			thisEnemy.health = thisEnemy.health - 1;
-			if(thisEnemy == goblin) {
-				goblinHurtSound.play();
-			} else if (thisEnemy == skeleton || thisEnemy == skeleton2) {
-				skeletonHurtSound.play();
-			} else if (thisEnemy == zombie || thisEnemy == zombie2) {
-				zombieHurtSound.play();
-			} else if (thisEnemy == bat1 || thisEnemy == bat2) {
-				batHurtSound.play();
-			}
+			thisEnemy.takeDamage(this.damage);
 		}
 	}	
 	

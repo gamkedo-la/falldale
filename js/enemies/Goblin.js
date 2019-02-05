@@ -22,11 +22,9 @@ function goblinClass(goblinName) {
     this.goblinMove = true;
 
 	this.superClassReset = this.reset;
-    this.reset = function(whichImage, goblinName) {
-		this.superClassReset(TILE_GOBLIN);
-        this.name = goblinName;
-        this.myGoblinPic;
-
+    this.reset = function(resetX, resetY) {
+		this.superClassReset(resetX, resetY);
+        this.myGoblinPic = goblinPic;
         this.health = 12;
     } 
 
@@ -48,6 +46,11 @@ function goblinClass(goblinName) {
             this.sy = this.height*2;
         }
 	
+    }
+    
+    this.takeDamage = function(howMuch) {
+        this.health -= howMuch;
+        goblinHurtSound.play();
 	}
 
     this.goblinBite = function() {

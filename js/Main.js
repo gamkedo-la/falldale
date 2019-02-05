@@ -2,16 +2,7 @@
 
 var canvas, canvasContext;
 var redWarrior = new warriorClass();
-var bat1 = new batClass("Bat Carlos");
-var bat2 = new batClass("Bat Anely");
-var skeleton = new skeletonClass("Skeleton Greg");
-var skeleton2 = new skeletonClass("Skeleton Keith");
-var zombie = new zombieClass("Zombie Mike");
-var zombie2 = new zombieClass("Zombie Bob");
-var goblin = new goblinClass("Goblin Vince");
-var orc1 = new orcClass("Orc Ruth");
-var archer = new archerClass("Archer Kevin", archerPic);
-var archer2 = new archerClass("Archer Aaron", archerPic);
+var enemyList = [];
 var dialog = "H: Hides health, I: Inventory, O: Stats";
 var inventory = " ";
 var inventoryScreen = false;
@@ -78,16 +69,38 @@ function nextLevel() {
 function loadLevel(whichLevel) {
     roomGrid = whichLevel.slice();
     redWarrior.reset(warriorPic, "Red warrior");
-    skeleton.reset(skeletonPic);
-    skeleton2.reset(skeletonPic);
-    zombie.reset(zombiePic);
-    zombie2.reset(zombiePic);
-    bat1.reset(batPic);
-    bat2.reset(batPic);
-    goblin.reset(goblinPic);
-	orc1.reset(orcPic);
-    archer.reset(archerPic);
-    archer2.reset(archerPic);
+
+    enemyList.splice(0, enemyList.length); //Empty enemyList
+
+    var arrayIndex = 0
+    for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
+        for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
+            var newEnemy;
+            if(roomGrid[arrayIndex] == TILE_BAT) {
+                newEnemy = new batClass('Bat');
+            } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
+                newEnemy = new skeletonClass('Skeleton');
+            } else if(roomGrid[arrayIndex] == TILE_ZOMBIE) {
+                newEnemy = new zombieClass('Zombie');
+            } else if(roomGrid[arrayIndex] == TILE_GOBLIN) {
+                newEnemy = new goblinClass('Goblin');
+            } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC) {
+                newEnemy = new orcClass('Orc');
+            } else if(roomGrid[arrayIndex] == TILE_ARCHER) {
+                newEnemy = new archerClass('Archer');
+            } else {
+                arrayIndex++;
+                continue;//Don't reset or add to enemyList if no enemy tile found
+            }
+            resetX = eachCol * TILE_W + TILE_W/2;
+            resetY = eachRow * TILE_H + TILE_H/2;
+            newEnemy.reset(resetX, resetY);
+            enemyList.push(newEnemy);
+
+            roomGrid[arrayIndex] = TILE_ROAD;
+            arrayIndex++;
+        } //end of col for
+    } // end of row for
 }
 
 function updateAll() {
@@ -100,47 +113,12 @@ function moveAll() {
         // no movement
     } else if (gamePaused == false) {
         redWarrior.move();
-        bat1.move();
-        bat2.move();
-        skeleton.move();
-        skeleton2.move();
-        zombie.move();
-        zombie2.move();
-        goblin.move();
-		orc1.move();
-        archer.move();
-        archer2.move();
-        if (bat1.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(bat1);
+        for (var i=0; i< enemyList.length; i++) {
+            enemyList[i].move();
+            if (enemyList[i].health > 0) {
+                redWarrior.checkWarriorandSwordCollisionAgainst(enemyList[i]);
+            }
         }
-        if (bat2.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(bat2);
-        }
-        if (skeleton.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(skeleton);
-        }
-        if (skeleton2.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(skeleton2);
-        }
-        if (zombie.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(zombie);
-        }
-        if (zombie2.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(zombie2);
-        }
-        if (goblin.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(goblin);
-        }
-		if (orc1.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(orc1);
-        }
-        if (archer.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(archer);
-        }
-        if (archer2.health > 0) {
-            redWarrior.checkWarriorandSwordCollisionAgainst(archer2);
-        }
-
         cameraFollow();
     };
 };
@@ -277,16 +255,9 @@ function drawAll() {
         drawRoom();
         //drawOnlyTilesOnScreen();
         redWarrior.draw();
-        bat1.draw();
-        bat2.draw();
-        skeleton.draw();
-        skeleton2.draw();
-        zombie.draw();
-        zombie2.draw();
-        goblin.draw();
-		orc1.draw();
-        archer.draw();
-        archer2.draw();
+        for (var i=0; i<enemyList.length; i++) {
+            enemyList[i].draw();
+        }
         canvasContext.restore();
         health();
         messageDraw();

@@ -23,17 +23,20 @@ function zombieClass(zombieName) {
 	this.zombieMove = true; 
 	
 	this.superClassReset = this.reset;
-	this.reset = function(whichImage, zombieName) {
-		this.superClassReset(TILE_ZOMBIE);
-		this.name = zombieName;
-		this.myZombiePic;
-
+	this.reset = function(resetX, resetY) {
+		this.superClassReset(resetX, resetY);
+		this.myZombiePic = zombiePic; 
 		this.health = 30;
 	}
 		
 	this.superClassMove = this.move;
 	this.move = function() {
 		this.superClassMove(ZOMBIE_TIME_BETWEEN_CHANGE_DIR, zombieMoveSpeed);
+	}
+
+	this.takeDamage = function(howMuch) {
+		this.health -= howMuch;
+		zombieHurtSound.play();
 	}
 	
 	this.zombieBite = function() {

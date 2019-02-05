@@ -22,17 +22,19 @@ function archerClass(archerName) {
 	this.archerMove = true;
 	
 	this.superClassReset = this.reset;
-	this.reset = function(whichImage, archerName) {
-		this.superClassReset(TILE_ARCHER);
-		this.name = archerName;
+	this.reset = function(resetX, resetY) {
+		this.superClassReset(resetX, resetY);
 		this.myArcherPic;
-
 		this.health = 6;
 	} 
 			
 	this.superClassMove = this.move;
 	this.move = function() {
 		this.superClassMove(ARCHER_TIME_BETWEEN_CHANGE_DIR, archerMoveSpeed);
+	}
+
+	this.takeDamage = function(howMuch) {
+		this.health -= howMuch;
 	}
 	
 	this.archerBite = function() {

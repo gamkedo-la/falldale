@@ -118,17 +118,8 @@ function rockClass() {
             this.y < (thisEnemy.y + thisEnemy.height)) { // within bottom 
             dialog = "Successful rock throw hit on " + thisEnemy.myName + " for .25 points of damage!";
             if (this.damage == 0.25) {
-                thisEnemy.health = thisEnemy.health - 0.25;
+                thisEnemy.takeDamage(this.damage);
                 this.damage = this.damage - 0.25;
-                if (thisEnemy == goblin) {
-                    goblinHurtSound.play();
-                } else if (thisEnemy == skeleton || thisEnemy == skeleton2) {
-                    skeletonHurtSound.play();
-                } else if (thisEnemy == zombie || thisEnemy == zombie2) {
-                    zombieHurtSound.play();
-                } else if (thisEnemy == bat1 || thisEnemy == bat2) {
-                    batHurtSound.play();
-                }
             }
         } else {
             return false;

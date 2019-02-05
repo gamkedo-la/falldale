@@ -76,22 +76,13 @@ function swordClass() {
 			
 			if(this.damagePoints > 0){
 				dialog = "Successful hit "+ thisEnemy.myName+" for " + this.damagePoints +" damage point!";
-				thisEnemy.health = thisEnemy.health - this.damagePoints;
-				this.damagePoints = this.damagePoints - this.damagePoints
+				thisEnemy.takeDamage(this.damagePoints)
+				this.damagePoints = 0;
 			}
 
 			if(thisEnemy.health < 0){
 				redWarrior.experience = redWarrior.experience + 100;
 				redWarrior.checkForLevelUp();
-			}
-			if(thisEnemy == goblin) {
-				goblinHurtSound.play();
-			} else if (thisEnemy == skeleton || thisEnemy == skeleton2) {
-				skeletonHurtSound.play();
-			} else if (thisEnemy == zombie || thisEnemy == zombie2) {
-				zombieHurtSound.play();
-			} else if (thisEnemy == bat1 || thisEnemy == bat2) {
-				batHurtSound.play();
 			}
 		} else {
 			dialog = thisEnemy.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints;

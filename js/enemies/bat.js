@@ -3,7 +3,7 @@ const BAT_TIME_BETWEEN_CHANGE_DIR = 85;
 const BAT_COLLISION_RADIUS = 5;
 const BAT_RESTING_TIME = 850;
 
-batClass.prototype = new movingWrapPositionClass();
+batClass.prototype = new enemyClass();
 
 
 function batClass() {
@@ -27,7 +27,8 @@ function batClass() {
     this.ticksPerFrame = 10;
     this.numberOfFrames = 5 || 1;
 
-    this.reset = function() {
+    this.reset = function(resetX, resetY) {
+        this.superClassReset(resetX, resetY);
         this.myBatPic = batPic;
         this.cyclesOfBatResting = 0;
         this.cyclesTilDirectionChange = 0;
@@ -75,6 +76,11 @@ function batClass() {
             }
         }
     }
+
+    this.takeDamage = function(howMuch) {
+        this.health -= howMuch;
+        batHurtSound.play();
+	}
 
     this.isOverlappingPoint = function(testX, testY) {
         var deltaX = testX - this.x;

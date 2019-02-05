@@ -21,11 +21,9 @@ function skeletonClass(skeletonName) {
 	this.skeletonMove = true;
 
 	this.superClassReset = this.reset;
-	this.reset = function(whichImage, skeletonName) {
-		this.superClassReset(TILE_SKELETON);
-		this.name = skeletonName;
-		this.mySkeletonPic;
-
+	this.reset = function(resetX, resetY) {
+		this.superClassReset(resetX, resetY);
+		this.mySkeletonPic = skeletonPic;
 		this.health = 8;
 	}
 	
@@ -34,6 +32,11 @@ function skeletonClass(skeletonName) {
 	this.superClassMove = this.move;
 	this.move = function() {
 		this.superClassMove(SKELETON_TIME_BETWEEN_CHANGE_DIR, skeletonMoveSpeed);
+	}
+
+	this.takeDamage = function(howMuch) {
+		this.health -= howMuch;
+		skeletonHurtSound.play();
 	}
 	
 	this.skeletonBite = function() {

@@ -22,11 +22,9 @@ function orcClass(orcName) {
     this.goblinMove = true;
 
 	this.superClassReset = this.reset;
-    this.reset = function(whichImage, goblinName) {
-		this.superClassReset(TILE_GREEN_ORC);
-        this.name = orcName;
-        this.myOrcPic;
-
+    this.reset = function(resetX, resetY) {
+		this.superClassReset(resetX, resetY);
+        this.myOrcPic = orcPic;
         this.health = 12;
     } 
 
@@ -48,6 +46,10 @@ function orcClass(orcName) {
             this.sy = this.height*2;
         }
 	
+    }
+    
+    this.takeDamage = function(howMuch) {
+		this.health -= howMuch;
 	}
 
     this.orcBite = function() {
