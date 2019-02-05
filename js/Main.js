@@ -191,29 +191,29 @@ function damageDraw() {
 function inventoryDraw() {
     colorRect(canvas.width - 200, canvas.height - 200, 200, 150, "black");
     colorRect(canvas.width - 195, canvas.height - 195, 190, 140, "white");
-    colorText("Arrows: " + redWarrior.myArrow.arrowQuantity, canvas.width - 180, canvas.height - 180, "Black");
-    colorText("Rocks: " + redWarrior.myRock.rockQuantity, canvas.width - 180, canvas.height - 160, "Black");
-    colorText("Gold Pieces: " + redWarrior.goldpieces, canvas.width - 180, canvas.height - 140, "Black");
-    colorText("Yellow Keys: " + redWarrior.yellowKeysHeld, canvas.width - 180, canvas.height - 120, "Black");
-    colorText("Red Keys: " + redWarrior.redKeysHeld, canvas.width - 180, canvas.height - 100, "Black");
-    colorText("Blue Keys: " + redWarrior.blueKeysHeld, canvas.width - 180, canvas.height - 80, "Black");
-    colorText("Green Keys: " + redWarrior.greenKeysHeld, canvas.width - 180, canvas.height - 60, "Black");
+    colorText("Arrows: " + redWarrior.myArrow.arrowQuantity, canvas.width - 170, canvas.height - 180, "Black");
+    colorText("Rocks: " + redWarrior.myRock.rockQuantity, canvas.width - 170, canvas.height - 160, "Black");
+    colorText("Gold Pieces: " + redWarrior.goldpieces, canvas.width - 170, canvas.height - 140, "Black");
+    colorText("Yellow Keys: " + redWarrior.yellowKeysHeld, canvas.width - 170, canvas.height - 120, "Black");
+    colorText("Red Keys: " + redWarrior.redKeysHeld, canvas.width - 170, canvas.height - 100, "Black");
+    colorText("Blue Keys: " + redWarrior.blueKeysHeld, canvas.width - 170, canvas.height - 80, "Black");
+    colorText("Green Keys: " + redWarrior.greenKeysHeld, canvas.width - 170, canvas.height - 60, "Black");
 }
 
 function statsDraw() {
-    colorRect(canvas.width - 200, canvas.height - 380, 200, 330, "black");
-    colorRect(canvas.width - 195, canvas.height - 375, 190, 320, "white");
-    colorText("Experience Level: " + redWarrior.experienceLevel, canvas.width - 180, canvas.height - 300, "Black");
-    colorText("Level Up at: " + redWarrior.experienceLevel, canvas.width - 180, canvas.height - 280, "Black");
-    colorText("Armor Class: " + redWarrior.armor, canvas.width - 180, canvas.height - 260, "Black");
-    colorText("Hit Point: " + redWarrior.health, canvas.width - 180, canvas.height - 240, "Black");
-    colorText("Experience: " + redWarrior.experience, canvas.width - 180, canvas.height - 220, "Black");
-    colorText("Max Sword Damage: " + redWarrior.mySword.damageDice, canvas.width - 180, canvas.height - 200, "Black");
-    colorText("Max Arrow Damage: " + redWarrior.myArrow.damage, canvas.width - 180, canvas.height - 180, "Black");
-    colorText("Max Stone Damage: " + redWarrior.myRock.damage, canvas.width - 180, canvas.height - 160, "Black");
-    colorText("STR: " + redWarrior.strength + "     DEX: " + redWarrior.dexterity, canvas.width - 180, canvas.height - 120, "Black");
-    colorText("CON: " + redWarrior.constitution + "     INT: " + redWarrior.intelligence, canvas.width - 180, canvas.height - 100, "Black");
-    colorText("WIS: " + redWarrior.wisdom + "     CHA: " + redWarrior.charisma, canvas.width - 180, canvas.height - 80, "Black");
+    colorRect(canvas.width - 210, canvas.height - 320, 210, 270, "black");
+    colorRect(canvas.width - 205, canvas.height - 315, 200, 265, "white");
+    colorText("Experience Level: " + redWarrior.experienceLevel, canvas.width - 190, canvas.height - 300, "Black");
+    colorText("Level Up at: " + redWarrior.experienceLevel, canvas.width - 190, canvas.height - 280, "Black");
+    colorText("Armor Class: " + redWarrior.armor, canvas.width - 190, canvas.height - 260, "Black");
+    colorText("Hit Point: " + redWarrior.health, canvas.width - 190, canvas.height - 240, "Black");
+    colorText("Experience: " + redWarrior.experience, canvas.width - 190, canvas.height - 220, "Black");
+    colorText("Max Sword Damage: " + redWarrior.mySword.damageDice, canvas.width - 190, canvas.height - 200, "Black");
+    colorText("Max Arrow Damage: " + redWarrior.myArrow.damage, canvas.width - 190, canvas.height - 180, "Black");
+    colorText("Max Stone Damage: " + redWarrior.myRock.damage, canvas.width - 190, canvas.height - 160, "Black");
+    colorText("STR: " + redWarrior.strength + "     DEX: " + redWarrior.dexterity, canvas.width - 190, canvas.height - 120, "Black");
+    colorText("CON: " + redWarrior.constitution + "     INT: " + redWarrior.intelligence, canvas.width - 190, canvas.height - 100, "Black");
+    colorText("WIS: " + redWarrior.wisdom + "     CHA: " + redWarrior.charisma, canvas.width - 190, canvas.height - 80, "Black");
 }
 
 
