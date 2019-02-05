@@ -3,7 +3,6 @@ var scrollBackgroundPic = document.createElement("img");
 var storeFrontPic = document.createElement("img");
 var healerStorePic = document.createElement("img");
 
-
 var warriorPic = document.createElement("img");
 var swordPic = document.createElement("img");
 
@@ -19,7 +18,7 @@ var deadBatPic = document.createElement("img");
 var goblinPic = document.createElement("img");
 var deadGoblinPic = document.createElement("img");
 
-var orcPic = document.createElement("img");
+var greenOrcPic = document.createElement("img");
 var deadOrcPic = document.createElement("img");
 
 var archerPic = document.createElement("img");
@@ -27,10 +26,6 @@ var deadArcherPic = document.createElement("img");
 
 var dicePic = document.createElement("img");
 var twentySidedDicePic = document.createElement("img");
-
-
-
-
 
 var worldPics = [];
 
@@ -116,7 +111,7 @@ function loadImages() {
 			{varName: deadZombiePic, theFile: "deadZombie.png"},
 			{varName: batPic, theFile: "bat.png"},
 			{varName: deadBatPic, theFile: "deadbat.png"},
-			{varName: orcPic, theFile: "goblin.png"},
+			{varName: greenOrcPic, theFile: "orc1.png"},
 			{varName: zombiePic, theFile: "zombie.png"},
 			{varName: goblinPic, theFile: "goblin.png"},
 			{varName: deadGoblinPic, theFile: "deadgoblin.png"},

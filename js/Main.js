@@ -85,7 +85,7 @@ function loadLevel(whichLevel) {
     bat1.reset(batPic);
     bat2.reset(batPic);
     goblin.reset(goblinPic);
-	//orc1.reset(orcPic);
+	orc1.reset(goblinPic);
     archer.reset(archerPic);
     archer2.reset(archerPic);
 }
@@ -284,7 +284,7 @@ function drawAll() {
         zombie.draw();
         zombie2.draw();
         goblin.draw();
-		//orc1.draw();
+		orc1.draw();
         archer.draw();
         archer2.draw();
         canvasContext.restore();
