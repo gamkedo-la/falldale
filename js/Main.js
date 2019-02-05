@@ -42,6 +42,10 @@ var playerHurtSound = new SoundOverlapsClass("playerHurt");
 var backgroundMusic = new BackgroundMusicClass();
 
 
+
+var dialogUIVisibilityCountdown = 3;
+
+
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
     canvasContext = canvas.getContext('2d');
@@ -143,9 +147,27 @@ function health() {
 }
 
 function messageDraw() {
-    colorRect(0, canvas.height - 50, canvas.width, 50, "black");
-    colorRect(5, canvas.height - 45, canvas.width - 10, 40, "white");
-    colorText(dialog, 20, canvas.height - 20, "Black");
+	
+	dialogUIVisibilityCountdown--;
+	displayMessage();
+}
+
+function setDialogUICountdown(seconds) {
+	dialogUIVisibilityCountdown = seconds * 30; // 30fps
+}
+	
+function displayMessage() {	
+
+	colorRect(0, canvas.height - 50, canvas.width, 50, "black");
+	colorRect(5, canvas.height - 45, canvas.width - 10, 40, "white");
+
+	console.log(dialogUIVisibilityCountdown);
+	
+    if (dialogUIVisibilityCountdown <= 0) {
+		return;
+	} else {	
+		colorText(dialog, 20, canvas.height - 20, "Black");
+	}
 }
 
 function damageDraw() {

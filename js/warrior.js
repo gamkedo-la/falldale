@@ -271,35 +271,43 @@ function warriorClass() {
 					this.goldpieces = this.goldpieces + 50;
 					redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					setDialogUICountdown(3);
 					dialog = "I've used a yellow key and found 50 gold pieces, and 5 arrows";
 				} else {
+					setDialogUICountdown(3);
 					dialog = "I need a yellow key to open this treasure chest.";
 				}
 				break;
 			case TILE_THROWINGROCKS:
 				redWarrior.myRock.rockQuantity = redWarrior.myRock.rockQuantity + 5;
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
+				setDialogUICountdown(3);
 				dialog = "What luck!  I can use these rocks for throwing at enemies.";
 				break;	
 			case TILE_ARROWS:
 				redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
+				setDialogUICountdown(3);
 				dialog = "I'll add these 5 arrows to my inventory.";
 				break;	
 			case TILE_GRAVE:
+				setDialogUICountdown(3);
 				dialog = "Too many good people have died from the Skeleton King and his army of the dead.";
 				break;
 			case TILE_FRESH_GRAVE:
+				setDialogUICountdown(3);
 				dialog = "I need to avenge my friend.  The Skeleton King and his army of the dead must be destroyed!.";
 				break;
 			case TILE_BED:
+				setDialogUICountdown(3);
 				dialog = "I am not tired.";
 				break;
 			case TILE_FOUNTAIN:
 				dialog = "What a beautiful fountain.";
 				break;
 			case TILE_CABINET:
-					dialog = "The bookcase is bare.  One day, I'll have a library of my own.";
+				setDialogUICountdown(3);
+				dialog = "The bookcase is bare.  One day, I'll have a library of my own.";
 				break;
 			case TILE_SPIKES:
 				var i = 1;
@@ -313,6 +321,7 @@ function warriorClass() {
 				var i = 1;
 				this.x = nextX;
 				this.y = nextY;
+				setDialogUICountdown(3);
 				dialog = "OUCH! Bloody Spikes!";
 				break;
 			case TILE_WALL:
