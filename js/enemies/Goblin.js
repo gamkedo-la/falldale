@@ -95,7 +95,11 @@ function goblinClass(goblinName) {
             }
         }
         if (this.health > 0) {
-            this.sx = this.frameIndex * this.width;
+            			
+			if(gamePaused == false){
+				this.sx = this.frameIndex * this.width;
+			}
+				
             canvasContext.drawImage(this.myGoblinPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
             if (debugMode) {
                 colorText(this.myName, this.x, this.y - 20, "red");

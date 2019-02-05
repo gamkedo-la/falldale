@@ -83,7 +83,11 @@ function skeletonClass(skeletonName) {
 			}
 		}	
 		if(this.health > 0){
-			this.sx = this.frameIndex * this.width;
+			
+			if(gamePaused == false){
+				this.sx = this.frameIndex * this.width;
+			}
+				
 			canvasContext.drawImage(this.mySkeletonPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			
 			if(displayHealth){

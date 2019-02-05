@@ -93,6 +93,7 @@ function keyPressed(evt) {
 
     var debugModeKey = NUM_1;
     var tileEditorModeKey = NUM_2;
+	var paused = KEY_P;
 
     if (isInShop) {
         shopInput(evt.keyCode);
@@ -142,6 +143,12 @@ function keyPressed(evt) {
                 displayHealth = false;
             } else {
                 displayHealth = true;
+            }
+        } else if (evt.keyCode == paused) {
+            if (gamePaused) {
+                gamePaused = false;
+            } else {
+                gamePaused = true;
             }
         }
     }

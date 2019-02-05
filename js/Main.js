@@ -27,6 +27,7 @@ var isAtHealer = false;
 var debugMode = false;
 var displayHealth = true;
 var tileEditor = false;
+var gamePaused = false;
 
 // Sounds //
 
@@ -59,7 +60,6 @@ function imageLoadingDoneSoStartGame() {
     setupInput();
 
     loadLevel(levelOne);
-
 }
 
 function nextLevel() {
@@ -90,15 +90,9 @@ function updateAll() {
 }
 
 function moveAll() {
-    if (menuScreen) {
+    if (menuScreen || isAtHealer || tileEditor || gamePaused) {
         // no movement
-    } else if (isInShop) {
-        // no movement
-    } else if (isAtHealer) {
-        // no movement
-    } else if (tileEditor) {
-		mouseMovement();
-    } else {
+    } else if (gamePaused == false) {
         redWarrior.move();
         bat1.move();
         bat2.move();
@@ -274,5 +268,10 @@ function drawAll() {
         if (statsScreen) {
             statsDraw();
         }
+		if (gamePaused) {
+			colorRect(canvas.width/2-50, canvas.height/2-25, 100, 50, "red");
+			colorRect(canvas.width/2-45, canvas.height/2-20, 90, 40, "white");
+			colorText("PAUSED", canvas.width/2-33, canvas.height/2+3, "red");
+		}
     }
 }

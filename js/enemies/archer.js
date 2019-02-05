@@ -80,7 +80,11 @@ function archerClass(archerName) {
 			}
 		}	
 		if(this.health > 0){
-			this.sx = this.frameIndex * this.width;
+			
+			if(gamePaused == false){
+				this.sx = this.frameIndex * this.width;
+			}
+			
 			canvasContext.drawImage(this.myArcherPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 				if(displayHealth){
 				colorRect(this.x,this.y-16, 40,12, "black"); 

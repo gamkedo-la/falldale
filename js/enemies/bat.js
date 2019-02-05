@@ -120,7 +120,11 @@ function batClass() {
         if (this.batResting == true) {
             this.frameIndex = 4;
         }
-
+		
+		if(gamePaused){
+			this.frameIndex = 1;
+		}
+			
         if (this.alive) {
             this.sx = this.frameIndex * this.width / this.numberOfFrames;
             canvasContext.drawImage(this.myBatPic, this.sx, this.sy, 50, this.height, this.x, this.y, 50, this.height);
