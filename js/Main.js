@@ -284,7 +284,7 @@ function drawAll() {
         zombie.draw();
         zombie2.draw();
         goblin.draw();
-		//orc1.draw();
+		orc1.draw();
         archer.draw();
         archer2.draw();
         canvasContext.restore();

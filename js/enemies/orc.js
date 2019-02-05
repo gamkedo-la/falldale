@@ -19,11 +19,11 @@ function orcClass(orcName) {
     this.numberOfFrames = 4;
     this.height = 37;
     this.ticksPerFrame = 5;
-    this.orcMove = true;
+    this.goblinMove = true;
 
 	this.superClassReset = this.reset;
-    this.reset = function(whichImage, orcName) {
-		this.superClassReset(TILE_ORC);
+    this.reset = function(whichImage, goblinName) {
+		this.superClassReset(TILE_GREEN_ORC);
         this.name = orcName;
         this.myOrcPic;
 
@@ -54,7 +54,7 @@ function orcClass(orcName) {
 
         if (this.biteReady == true) {
             redWarrior.health = redWarrior.health - 1;
-            dialog = "Ouch! I've been bite by a orc.";
+            dialog = "Ouch! I've been bite by an Orc.";
             this.biteReady = false;
         } else if (this.biteReady == false) {
             this.biteReadyCounter();
@@ -82,7 +82,7 @@ function orcClass(orcName) {
 
     this.draw = function() {
 
-        if (this.orcMove) {
+        if (this.goblinMove) {
             this.tickCount++;
 			
         }
@@ -117,7 +117,7 @@ function orcClass(orcName) {
                 colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
             }
         } else {
-            canvasContext.drawImage(deadGoblinPic, this.x, this.y);
+            canvasContext.drawImage(deadOrcPic, this.x, this.y);
         }
 
         if (this.health <= 0) {
