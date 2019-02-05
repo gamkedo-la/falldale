@@ -4,7 +4,7 @@ const ORC_TIME_BETWEEN_CHANGE_DIR = 100;
 orcClass.prototype = new enemyClass();
 function orcClass(orcName) {
     this.speed = 4;
-   // this.myOrcPic = orcPic; // which picture to use
+    this.myOrcPic = orcPic; // which picture to use
     this.myName = "Untitled orc";
     this.health = 12;
     this.maxhealth = 12;

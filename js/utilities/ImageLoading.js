@@ -19,6 +19,9 @@ var deadBatPic = document.createElement("img");
 var goblinPic = document.createElement("img");
 var deadGoblinPic = document.createElement("img");
 
+var orcPic = document.createElement("img");
+var deadOrcPic = document.createElement("img");
+
 var archerPic = document.createElement("img");
 var deadArcherPic = document.createElement("img");
 

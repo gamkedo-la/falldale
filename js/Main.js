@@ -85,7 +85,7 @@ function loadLevel(whichLevel) {
     bat1.reset(batPic);
     bat2.reset(batPic);
     goblin.reset(goblinPic);
-	//orc1.reset(orcPic);
+	orc1.reset(orcPic);
     archer.reset(archerPic);
     archer2.reset(archerPic);
 }
@@ -167,7 +167,7 @@ function displayMessage() {
 	colorRect(0, canvas.height - 50, canvas.width, 50, "black");
 	colorRect(5, canvas.height - 45, canvas.width - 10, 40, "white");
 
-	console.log(dialogUIVisibilityCountdown);
+	// console.log(dialogUIVisibilityCountdown);
 	
     if (dialogUIVisibilityCountdown <= 0) {
 		return;
