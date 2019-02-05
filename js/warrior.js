@@ -422,7 +422,6 @@ function warriorClass() {
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			
 			if(displayHealth){
-				console.log(this.maxHealth);
 				colorRect(this.x,this.y-16, 40,12, "black"); 
 				colorRect(this.x+2,this.y-14, 35, 8, "red");
 				colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
