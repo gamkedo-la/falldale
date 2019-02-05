@@ -9,6 +9,7 @@ var skeleton2 = new skeletonClass("Skeleton Keith");
 var zombie = new zombieClass("Zombie Mike");
 var zombie2 = new zombieClass("Zombie Bob");
 var goblin = new goblinClass("Goblin Vince");
+var orc1 = new orcClass("Orc Ruth");
 var archer = new archerClass("Archer Kevin", archerPic);
 var archer2 = new archerClass("Archer Aaron", archerPic);
 var dialog = "H: Hides health, I: Inventory, O: Stats";
@@ -84,6 +85,7 @@ function loadLevel(whichLevel) {
     bat1.reset(batPic);
     bat2.reset(batPic);
     goblin.reset(goblinPic);
+	//orc1.reset(orcPic);
     archer.reset(archerPic);
     archer2.reset(archerPic);
 }
@@ -105,6 +107,7 @@ function moveAll() {
         zombie.move();
         zombie2.move();
         goblin.move();
+		orc1.move();
         archer.move();
         archer2.move();
         if (bat1.health > 0) {
@@ -127,6 +130,9 @@ function moveAll() {
         }
         if (goblin.health > 0) {
             redWarrior.checkWarriorandSwordCollisionAgainst(goblin);
+        }
+		if (orc1.health > 0) {
+            redWarrior.checkWarriorandSwordCollisionAgainst(orc1);
         }
         if (archer.health > 0) {
             redWarrior.checkWarriorandSwordCollisionAgainst(archer);
@@ -278,6 +284,7 @@ function drawAll() {
         zombie.draw();
         zombie2.draw();
         goblin.draw();
+		//orc1.draw();
         archer.draw();
         archer2.draw();
         canvasContext.restore();

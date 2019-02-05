@@ -202,6 +202,7 @@ const TILE_ROOF_CENTER = 58;
 const TILE_DODD = 59;
 const TILE_TARAN = 60;
 const TILE_DELKON = 61;
+const TILE_ORC = 62;
 
 
 function returnTileTypeAtColRow(col, row) {
