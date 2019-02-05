@@ -13,7 +13,7 @@ var levelOne =   [53,53,53,53,53,32,18,32,32,18,18,32,32,32,32,32,18,18,20,04,04
 				  57,57,57,57,57,18,32,18,18,32,32,18,18,32,32,18,32,18,20,04,33,33,33,33,04,18,04,33,33,33,33,04,
 				  51,50,50,52,51,18,18,18,18,18,18,18,18,18,18,18,18,32,20,04,00,31,00,00,04,18,04,00,00,43,00,04,
 				  32,18,18,05,18,18,18,32,04,04,04,04,04,04,04,04,04,18,20,04,00,30,00,34,04,18,04,34,00,44,00,04,
-				  32,18,18,00,18,18,18,35,04,02,00,00,19,46,00,02,04,18,20,04,04,00,04,04,04,18,04,04,04,00,04,04,
+				  32,18,18,00,18,18,18,35,04,02,60,59,19,46,61,02,04,18,20,04,04,00,04,04,04,18,04,04,04,00,04,04,
 				  32,18,18,00,00,00,18,18,04,12,00,00,00,00,00,02,04,18,20,18,18,00,18,18,18,18,18,18,18,00,18,32,
 				  32,32,18,18,18,08,18,18,04,02,00,00,00,00,00,02,04,18,20,18,18,00,18,18,18,18,18,18,18,00,32,18,
 				  32,18,18,18,41,00,18,18,04,02,00,00,00,00,00,02,04,18,20,00,00,00,00,00,21,00,00,00,00,37,00,38,
@@ -199,8 +199,9 @@ const TILE_ROOF_LEFTSIDE = 55;
 const TILE_ROOF_FRONTLEFT = 56;
 const TILE_ROOF_FRONT = 57;
 const TILE_ROOF_CENTER = 58;
-
-
+const TILE_DODD = 59;
+const TILE_TARAN = 60;
+const TILE_DELKON = 61;
 
 
 function returnTileTypeAtColRow(col, row) {
@@ -256,7 +257,10 @@ function tileTypeHasTransparency(checkTileType) {
 			checkTileType == TILE_FOUNTAIN ||
 			checkTileType == TILE_SHOPKEEPER ||
 			checkTileType == TILE_ALTER ||
-			checkTileType == TILE_PRINCESS ||	
+			checkTileType == TILE_PRINCESS ||
+			checkTileType == TILE_DODD ||
+			checkTileType == TILE_TARAN ||
+			checkTileType == TILE_DELKON ||
 			checkTileType == TILE_HEALER 
 			);
 }

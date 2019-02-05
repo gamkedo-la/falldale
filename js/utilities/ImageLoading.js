@@ -100,7 +100,10 @@ function loadImages() {
 			{tileType: TILE_ROOF_LEFTSIDE,  theFile: "roofleftside.png"},
 			{tileType: TILE_ROOF_FRONTLEFT,  theFile: "rooffrontleft.png"},
 			{tileType: TILE_ROOF_FRONT,  theFile: "rooffront.png"},
-			{tileType: TILE_ROOF_CENTER,  theFile: "roofcenter.png"},				
+			{tileType: TILE_ROOF_CENTER,  theFile: "roofcenter.png"},	
+			{tileType: TILE_DODD,  theFile: "Dodd.png"},
+			{tileType: TILE_TARAN,  theFile: "Taran.png"},
+			{tileType: TILE_DELKON,  theFile: "Delkon.png"},				
 							
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
