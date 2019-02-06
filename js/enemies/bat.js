@@ -27,6 +27,7 @@ function batClass() {
     this.ticksPerFrame = 10;
     this.numberOfFrames = 5 || 1;
 
+    this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
         this.superClassReset(resetX, resetY);
         this.myBatPic = batPic;
@@ -38,10 +39,9 @@ function batClass() {
     this.superclassMove = this.move;
     this.move = function() {
         if (this.alive) {
-            this.superclassMove();
+            this.superclassMove(BAT_TIME_BETWEEN_CHANGE_DIR, BAT_SPEED);
             if (this.batResting == false) {
-                this.cyclesOfBatActive++;
-                // this.myBatPic = batPic;			
+                this.cyclesOfBatActive++;		
                 this.cyclesOfBatResting = 0;
                 this.sx = 0;
                 this.sy = 0;
@@ -60,8 +60,7 @@ function batClass() {
                 }
             } else if (this.batResting == true) {
                 this.cyclesOfBatActive = 0;
-                this.cyclesOfBatResting++;
-                // this.myBatPic = batPic;			
+                this.cyclesOfBatResting++;		
                 this.xv = 0;
                 this.yv = 0;
                 this.sx = 0;
