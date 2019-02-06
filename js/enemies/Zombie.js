@@ -92,6 +92,7 @@ function zombieClass(zombieName) {
 				this.sx = this.frameIndex * this.width;
 			}
 			
+			canvasContext.drawImage(shadowPic, this.x-20, this.y+32);
 			canvasContext.drawImage(this.myZombiePic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 
 			if(displayHealth){

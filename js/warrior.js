@@ -441,6 +441,7 @@ function warriorClass() {
 			
 		this.sx = this.frameIndex * this.width;
 		
+		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			
 			if(displayHealth){

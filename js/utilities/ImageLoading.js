@@ -30,6 +30,8 @@ var deadArcherPic = document.createElement("img");
 var dicePic = document.createElement("img");
 var twentySidedDicePic = document.createElement("img");
 
+var shadowPic = document.createElement("img");
+
 var worldPics = [];
 
 var picsToLoad = 0;
@@ -45,6 +47,7 @@ function countLoadedImagesAndLaunchIfReady(){
 function beginLoadingImage(imgVar, fileName) {
 	imgVar.onload = countLoadedImagesAndLaunchIfReady;
 	imgVar.src = "images/" + fileName;
+	console.log("Downloading " + imgVar.src);
 }
 
 function loadImageForWorldCode(worldCode, fileName)  {
@@ -130,7 +133,8 @@ function loadImages() {
 			{varName: dicePic, theFile: "dice.png"},
 			{varName: twentySidedDicePic, theFile: "20sided.png"},
 			{varName: scrollBackgroundPic, theFile: "scrollBackground.jpg"},
-			{varName: titlepagePic, theFile: "background.png"}
+			{varName: titlepagePic, theFile: "background.png"},
+			{varName: shadowPic, theFile: "shadow.png"}			
 		];
 			
 	picsToLoad = imageList.length;
