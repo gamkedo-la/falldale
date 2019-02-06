@@ -275,12 +275,26 @@ function tileTypeHasGrassTransparency(checkTileType) {
 			);
 }
 
+// add special fx for tiles that need it
+var shinyAngle = 0;
+var shinyAngleDelta = 0.03; // radians of rotation per frame
+function drawTileFX(checkTileType, drawTileX, drawTileY) {
+	if (checkTileType == TILE_RED_KEY ||
+		checkTileType == TILE_GREEN_KEY ||
+		checkTileType == TILE_YELLOW_KEY ||
+		checkTileType == TILE_BLUE_KEY
+		) 
+	{
+		drawBitmapCenteredWithRotation(shinyPic, drawTileX+24, drawTileY+16, shinyAngle);
+	}
+}
 
 function drawRoom() {
 
 	var arrayIndex = 0;
 	var drawTileX = 0;
 	var drawTileY = 0;
+	shinyAngle += shinyAngleDelta;
 	
 	for(var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
 		for(var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
@@ -295,6 +309,7 @@ function drawRoom() {
 			if( tileTypeHasGrassTransparency(tileKindHere) ) {
 				canvasContext.drawImage(worldPics[TILE_GRASS], drawTileX, drawTileY);
 			}
+			drawTileFX(tileKindHere, drawTileX, drawTileY);
 			canvasContext.drawImage(useImg, drawTileX, drawTileY);
 			drawTileX += TILE_W;
 			arrayIndex++;

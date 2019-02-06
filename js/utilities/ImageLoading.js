@@ -31,6 +31,7 @@ var dicePic = document.createElement("img");
 var twentySidedDicePic = document.createElement("img");
 
 var shadowPic = document.createElement("img");
+var shinyPic = document.createElement("img");
 
 var worldPics = [];
 
@@ -134,7 +135,8 @@ function loadImages() {
 			{varName: twentySidedDicePic, theFile: "20sided.png"},
 			{varName: scrollBackgroundPic, theFile: "scrollBackground.jpg"},
 			{varName: titlepagePic, theFile: "background.png"},
-			{varName: shadowPic, theFile: "shadow.png"}			
+			{varName: shadowPic, theFile: "shadow.png"},
+			{varName: shinyPic, theFile: "shiny.png"}		
 		];
 			
 	picsToLoad = imageList.length;
