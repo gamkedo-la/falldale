@@ -21,6 +21,7 @@ var deadGoblinPic = document.createElement("img");
 
 var orcPic = document.createElement("img");
 var orcPic2 = document.createElement("img");
+var orcPic3 = document.createElement("img");
 var deadOrcPic = document.createElement("img");
 
 var archerPic = document.createElement("img");
@@ -120,6 +121,7 @@ function loadImages() {
 			{varName: goblinPic, theFile: "monsters/goblin.png"},
 			{varName: orcPic, theFile: "monsters/orc1.png"},
 			{varName: orcPic2, theFile: "monsters/orc2.png"},
+			{varName: orcPic3, theFile: "monsters/orc3.png"},
 			{varName: deadGoblinPic, theFile: "monsters/deadgoblin.png"},
 			{varName: archerPic, theFile: "monsters/archer.png"},
 			{varName: deadArcherPic, theFile: "monsters/deadgoblin.png"},
