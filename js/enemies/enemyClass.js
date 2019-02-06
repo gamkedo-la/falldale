@@ -1,5 +1,3 @@
-console.log("enemy Class Loaded");
-
 function enemyClass() {
     this.x = 0;
     this.y = 0;

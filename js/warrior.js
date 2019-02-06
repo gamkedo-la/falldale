@@ -186,7 +186,6 @@ function warriorClass() {
 				loadLevel(levelOne);
 				break;	
 			case TILE_FINISH:
-				console.log(this.name + " WINS!");
 				nextLevel();
 				break;
 			case TILE_SHOP_A:
@@ -205,9 +204,11 @@ function warriorClass() {
 				if(this.yellowKeysHeld > 0) {
 					this.yellowKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					setDialogUICountdown(3);
 					dialog = "I've used a yellow key.";
 					doorSound.play();
 				} else {
+					setDialogUICountdown(3);
 					dialog = "I need a yellow key to open this door.";
 				}
 				break;
@@ -215,9 +216,11 @@ function warriorClass() {
 				if(this.greenKeysHeld > 0) {
 					this.greenKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					setDialogUICountdown(3);
 					dialog = "I've used a green key.";
 					doorSound.play();
 				} else {
+					setDialogUICountdown(3);
 					dialog = "I need a green key to open this door.";
 				}
 				break;
@@ -225,9 +228,11 @@ function warriorClass() {
 				if(this.redKeysHeld > 0) {
 					this.redKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					setDialogUICountdown(3);
 					dialog = "I've used a red key.";
 					doorSound.play();
 				} else {
+					setDialogUICountdown(3);
 					dialog = "I need a red key to open this door.";
 				}
 				break;
@@ -235,33 +240,39 @@ function warriorClass() {
 				if(this.blueKeysHeld > 0) {
 					this.blueKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					setDialogUICountdown(3);
 					dialog = "I've used a blue key.";
 					doorSound.play();
 				} else {
+					setDialogUICountdown(3);
 					dialog = "I need a blue key to open this door.";
 				}
 				break;	
 			case TILE_YELLOW_KEY:
 				this.yellowKeysHeld++; // one more key
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				setDialogUICountdown(3);
 				dialog = "I've found a yellow key.";
 				keySound.play();
 				break;
 			case TILE_RED_KEY:
 				this.redKeysHeld++; // one more key
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				setDialogUICountdown(3);
 				dialog = "I've found a red key.";
 				keySound.play();
 				break;
 			case TILE_BLUE_KEY:
 				this.blueKeysHeld++; // one more key
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				setDialogUICountdown(3);
 				dialog = "I've found a blue key.";
 				keySound.play();
 				break;
 			case TILE_GREEN_KEY:
 				this.greenKeysHeld++; // one more key
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				setDialogUICountdown(3);
 				dialog = "I've found a green key.";
 				keySound.play();
 				break;
@@ -303,6 +314,7 @@ function warriorClass() {
 				dialog = "I am not tired.";
 				break;
 			case TILE_FOUNTAIN:
+				setDialogUICountdown(3);
 				dialog = "What a beautiful fountain.";
 				break;
 			case TILE_CABINET:
@@ -369,6 +381,7 @@ function warriorClass() {
 		if(this.health > this.maxHealth){
 			this.health = this.maxHealth;
 		}
+		setDialogUICountdown(3);
 		dialog = "I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points";
 	}
 	

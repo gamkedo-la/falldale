@@ -15,9 +15,9 @@ function orcClass(orcName) {
 
     this.tickCount = 0;
     this.frameIndex = 0;
-    this.width = 39;
+    this.width = 51;
     this.numberOfFrames = 4;
-    this.height = 37;
+    this.height = 69;
     this.ticksPerFrame = 5;
     this.goblinMove = true;
 
@@ -101,6 +101,11 @@ function orcClass(orcName) {
 			if(gamePaused == false){
 				this.sx = this.frameIndex * this.width;
 			}
+				
+			this.sx = 0;
+			this.sy = 0;			
+				
+				
 				
             canvasContext.drawImage(this.myOrcPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
             if (debugMode) {

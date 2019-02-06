@@ -117,6 +117,7 @@ function loadImages() {
 			{varName: deadBatPic, theFile: "monsters/deadbat.png"},
 			{varName: zombiePic, theFile: "monsters/zombie.png"},
 			{varName: goblinPic, theFile: "monsters/goblin.png"},
+			{varName: orcPic, theFile: "monsters/orc1.png"},
 			{varName: deadGoblinPic, theFile: "monsters/deadgoblin.png"},
 			{varName: archerPic, theFile: "monsters/archer.png"},
 			{varName: deadArcherPic, theFile: "monsters/deadgoblin.png"},
