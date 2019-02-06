@@ -31,6 +31,9 @@ function batClass() {
     this.reset = function(resetX, resetY) {
         this.superClassReset(resetX, resetY);
         this.myBatPic = batPic;
+        this.numberOfFrames = 4;
+        this.width = 50;
+        this.height = 21;
         this.cyclesOfBatResting = 0;
         this.cyclesTilDirectionChange = 0;
         this.health = 2;
@@ -45,10 +48,7 @@ function batClass() {
                 this.cyclesOfBatResting = 0;
                 this.sx = 0;
                 this.sy = 0;
-                this.width = 200;
-                this.height = 21;
                 this.cyclesTilDirectionChange--;
-                this.numberOfFrames = 4;
                 if (this.cyclesTilDirectionChange <= 0) {
                     var randAng = Math.random() * Math.PI * 2.0;
                     this.xv = Math.cos(randAng) * BAT_SPEED;
@@ -65,10 +65,7 @@ function batClass() {
                 this.yv = 0;
                 this.sx = 0;
                 this.sy = 0;
-                this.width = 200;
-                this.height = 21;
                 this.frameIndex = 0;
-                this.numberOfFrames = 4;
                 if (this.cyclesOfBatResting >= 100) {
                     this.batResting = false;
                 }
@@ -131,16 +128,11 @@ function batClass() {
 		}
 			
         if (this.alive) {
-            this.sx = this.frameIndex * this.width / this.numberOfFrames;
+            this.sx = this.frameIndex * this.width;
             canvasContext.drawImage(shadowPic, this.x-this.width/2, this.y+this.height/2+8+16); // shadow a bit lower so it looks in midair
             canvasContext.drawImage(this.myBatPic, this.sx, this.sy, 50, this.height, this.x, this.y, 50, this.height);
         }
-
     }
-
-
-
-
 }
 
 function movingWrapPositionClass() {
