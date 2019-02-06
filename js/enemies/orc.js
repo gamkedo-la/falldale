@@ -106,7 +106,7 @@ function orcClass(orcName) {
 			this.sy = 0;			
 				
 				
-				
+			canvasContext.drawImage(shadowPic, this.x-4, this.y+54);
             canvasContext.drawImage(this.myOrcPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
             if (debugMode) {
                 colorText(this.myName, this.x, this.y - 20, "red");

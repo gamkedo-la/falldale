@@ -133,6 +133,7 @@ function batClass() {
 			
         if (this.alive) {
             this.sx = this.frameIndex * this.width / this.numberOfFrames;
+            canvasContext.drawImage(shadowPic, this.x-this.width/2, this.y+this.height/2+8+16); // shadow a bit lower so it looks in midair
             canvasContext.drawImage(this.myBatPic, this.sx, this.sy, 50, this.height, this.x, this.y, 50, this.height);
         }
 

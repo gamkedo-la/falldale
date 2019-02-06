@@ -87,7 +87,9 @@ function archerClass(archerName) {
 				this.sx = this.frameIndex * this.width;
 			}
 			
+			canvasContext.drawImage(shadowPic, this.x-8, this.y+32);
 			canvasContext.drawImage(this.myArcherPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+
 				if(displayHealth){
 				colorRect(this.x,this.y-16, 40,12, "black"); 
 				colorRect(this.x+2,this.y-14, 35, 8, "red");
