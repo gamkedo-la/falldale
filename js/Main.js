@@ -38,9 +38,16 @@ var backgroundMusic = new BackgroundMusicClass();
 var dialogUIVisibilityCountdown = 3;
 
 
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
     canvasContext = canvas.getContext('2d');
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
 
     colorRect(0, 0, canvas.width, canvas.height, 'orange'); // startup page
     colorText("Loading Images... please wait", 400, 300, 'black');
@@ -250,6 +257,7 @@ function drawAll() {
 	} else if (tileEditor) {
         drawEditorMood();
     } else {
+        colorRect(0,0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
         canvasContext.save();
         canvasContext.translate(-camPanX, -camPanY);
         drawRoom();
