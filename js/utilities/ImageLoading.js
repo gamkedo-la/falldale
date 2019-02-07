@@ -112,7 +112,9 @@ function loadImages() {
 			{tileType: TILE_ROOF_CENTER,  theFile: "house1/roofcenter.png"},	
 			{tileType: TILE_DODD,  theFile: "NPCs/Dodd.png"},
 			{tileType: TILE_TARAN,  theFile: "NPCs/Taran.png"},
-			{tileType: TILE_DELKON,  theFile: "NPCs/Delkon.png"},				
+			{tileType: TILE_DELKON,  theFile: "NPCs/Delkon.png"},
+			{tileType: TILE_TREE2,  theFile: "tree2.png"},
+			{tileType: TILE_TREE3,  theFile: "tree3.png"},			
 							
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
