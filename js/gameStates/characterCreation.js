@@ -6,6 +6,7 @@ var Dice2 = false;
 var Dice3 = false;
 var strength = false;
 var dexterity = false;
+var ready = false; // prevents starting the game without rolling
 
 function drawCreationScreen(){
 	canvasContext.drawImage(storeFrontPic, 0,0);  // replace with a Creation Screen background
@@ -17,7 +18,8 @@ function drawCreationScreen(){
 	colorText("Intelligence: " + redWarrior.intelligence, 50, 160, "white");
 	colorText("Wisdom: " + redWarrior.wisdom, 50, 180, "white");
 	colorText("Charisma: " + redWarrior.charisma, 50, 200, "white");
-}	
+	colorText('Press "Enter" to continue', 25, 230, "white");
+}
 
 function drawDice(DiceNumber){
 	var Dice = DiceNumber
@@ -42,7 +44,7 @@ function drawDice(DiceNumber){
 }
 
 	
-function characterCreationRolling(attribute){
+function characterCreationRolling(){
 
 	var sx;
 	var diceRoll1;
@@ -99,20 +101,8 @@ function characterCreationRolling(attribute){
 	
 	canvasContext.drawImage(dicePic, sx, 0, 40, 40, canvas.width-200,canvas.height-40, 30, 30);
 	diceRollTotal = diceRoll1 + diceRoll2 + diceRoll3;
-	
-	if(redWarrior.strength == 0){
-		redWarrior.strength = diceRollTotal;
-	} else if(redWarrior.dexterity == 0){
-		redWarrior.dexterity = diceRollTotal;
-	} else if(redWarrior.constitution == 0){
-		redWarrior.constitution = diceRollTotal;
-	} else if(redWarrior.intelligence == 0){
-		redWarrior.intelligence = diceRollTotal;
-	} else if(redWarrior.wisdom == 0){
-		redWarrior.wisdom = diceRollTotal;
-	} else if(redWarrior.charisma == 0){
-		redWarrior.charisma = diceRollTotal;
-	}
+
+	return diceRollTotal;
 }
 
 function characterCreationScreenInput(whichKeyCode){
@@ -120,26 +110,24 @@ function characterCreationScreenInput(whichKeyCode){
 	
 	switch(whichKeyCode){
 		
-		case KEY_SPACEBAR: 
-		if(redWarrior.strength == 0){
-			characterCreationRolling(redWarrior.strength);
-		} else if(redWarrior.dexterity == 0){
-			characterCreationRolling(redWarrior.dexterity);
-		} else if(redWarrior.constitution == 0){
-			characterCreationRolling(redWarrior.constitution);
-		} else if(redWarrior.intelligence == 0){
-			characterCreationRolling(redWarrior.intelligence);
-		} else if(redWarrior.wisdom == 0){
-			characterCreationRolling(redWarrior.wisdom);
-		} else if(redWarrior.charisma == 0){
-			characterCreationRolling(redWarrior.charisma);
-		} else {
+		case KEY_SPACEBAR:
+		redWarrior.strength = characterCreationRolling();
+		redWarrior.dexterity = characterCreationRolling();
+		redWarrior.constitution = characterCreationRolling();
+		redWarrior.intelligence = characterCreationRolling();
+		redWarrior.wisdom = characterCreationRolling();
+		redWarrior.charisma = characterCreationRolling();
+		ready = true;
+
+		break;
+
+		case ENTER:
+		if (ready)
+		{
 			characterCreationScreen = false;
 			scrollBackgroundScreen = true;
 		}
-		
-		break;
-		
+
 		default:
 			gameKeeperFeedback = "";
 			break;
@@ -147,6 +135,3 @@ function characterCreationScreenInput(whichKeyCode){
 	
 	dialog = gameKeeperFeedback;				
 }
-
-
-
