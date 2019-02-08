@@ -73,7 +73,7 @@ function npcClass(npcName, npcPic) {
             this.sx = this.frameIndex * this.width;
         }
 
-        canvasContext.drawImage(shadowPic, this.x - 16, this.y + 20);
+        canvasContext.drawImage(shadowPic, this.x - 20, this.y + 32);
         canvasContext.drawImage(this.myNPCPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
         if (debugMode) {
             colorText(this.myName, this.x, this.y - 20, "red");
