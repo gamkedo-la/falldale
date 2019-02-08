@@ -90,7 +90,7 @@ function keySet(keyEvent, redWarrior, setTo) {
 }
 
 function keyPressed(evt) {
-
+	console.log("Correct File - Reached input");
     var debugModeKey = NUM_1;
     var tileEditorModeKey = NUM_2;
     var paused = KEY_P;

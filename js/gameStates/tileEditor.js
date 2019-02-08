@@ -12,8 +12,6 @@ function drawEditorMode() {
 	drawDialog();
 }
 
-///// determine where mouse is and identify tile under the mouse - done /////////////////////
-
 function calculateMousePos(evt) { //// this will move to Input.js
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
@@ -36,6 +34,7 @@ function tileEditorInput(whichKeyCode){
 	switch(whichKeyCode){
 		
 		case KEY_UP_ARROW:
+		console.log("worked!")
 		if(tileSelected != -1){
 			roomGrid[tileSelected]++;
 		}		
