@@ -56,5 +56,6 @@ function healerInput(whichKeyCode) {
             break;
     }
 	isAtHealer = false;
+	setDialogUICountdown(3);
     dialog = shopKeeperFeedback;
 }

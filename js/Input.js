@@ -57,7 +57,7 @@ var mouseY = 0;
 
 function setupInput() {
     canvas.addEventListener('mousemove', updateMousePos);
-	console.log("setup INput");
+	console.log("Setup Input");
     document.addEventListener('keydown', keyPressed);
     document.addEventListener('keyup', keyReleased);
 
@@ -96,12 +96,16 @@ function keyPressed(evt) {
 	console.log("Inside Key Pressed");
     if (isInShop) {
         shopInput(evt.keyCode);
-    } else if (isAtHealer) {
+		console.log("catching input");
+   } else if (isAtHealer) {
 		healerInput(evt.keyCode);
+		console.log("catching input");
 	} else if (characterCreationScreen) {
         characterCreationScreenInput(evt.keyCode);
+		console.log("catching input");
     } else if (scrollBackgroundScreen) {
-        scrollBackgroundScreenInput(evt.keyCode);
+        scrollBackgroundScreenInput(evt.keyCode); 
+		console.log("catching input");
 	} else if (tileEditor) {
 		console.log("catching input");
 		tileEditorInput(evt.keyCode);

@@ -63,7 +63,7 @@ function imageLoadingDoneSoStartGame() {
     setInterval(updateAll, 1000 / framesPerSecond);
 
     setupInput();
-
+	console.log("setupInput should run - Main.js");
     loadLevel(levelOne);
 	if(debugSkipToGame){
 		console.log("Debug Mode is on, skip directly to game");

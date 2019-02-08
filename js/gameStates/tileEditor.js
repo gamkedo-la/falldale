@@ -2,16 +2,13 @@
 
 var tileSelected = -1;
 
-///// turn on tile editor - done ////////////////////
-///// draw the entire map - done ////////////////////
 function drawEditorMode() {
-    dialog = "Now in Tile Editor Mode";
+	dialog = "Now in Tile Editor Mode";
 	//loadLevel(allGrass);
     drawRoom();
 	var tileUnderMouseIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
     var tileUnderMouseType = roomGrid[tileUnderMouseIndex];
 	//roomGrid[tileUnderMouseIndex] = 18;
-	console.log(tileUnderMouseType);
 	drawDialog();
 }
 

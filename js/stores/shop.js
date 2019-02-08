@@ -49,5 +49,6 @@ function shopInput(whichKeyCode) {
             break;
     }
     isInShop = false;
+	setDialogUICountdown(3);
     dialog = shopKeeperFeedback;
 }

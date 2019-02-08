@@ -132,6 +132,6 @@ function characterCreationScreenInput(whichKeyCode){
 			gameKeeperFeedback = "";
 			break;
 	} 
-	
+	setDialogUICountdown(3);
 	dialog = gameKeeperFeedback;				
 }
