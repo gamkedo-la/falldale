@@ -19,7 +19,7 @@ function orcClass(orcName, whichPicture) {
     this.numberOfFrames = 4;
     this.height = 69;
     this.ticksPerFrame = 5;
-    this.goblinMove = true;
+    this.orcMove = true;
 
 	this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
@@ -84,7 +84,7 @@ function orcClass(orcName, whichPicture) {
 
     this.draw = function() {
 
-        if (this.goblinMove) {
+        if (this.orcMove) {
             this.tickCount++;
 			
         }

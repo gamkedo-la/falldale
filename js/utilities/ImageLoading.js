@@ -24,6 +24,16 @@ var orcPic2 = document.createElement("img");
 var orcPic3 = document.createElement("img");
 var deadOrcPic = document.createElement("img");
 
+var addyPic = document.createElement("img");
+var delkonPic = document.createElement("img");
+var doddPic = document.createElement("img");
+var fentonPic = document.createElement("img");
+var gabrielPic = document.createElement("img");
+var healerPic = document.createElement("img");
+var princessPic = document.createElement("img");
+var shopkeeperPic = document.createElement("img");
+var taranPic = document.createElement("img");
+
 var archerPic = document.createElement("img");
 var deadArcherPic = document.createElement("img");
 
@@ -85,7 +95,6 @@ function loadImages() {
 			{tileType: TILE_SHOP_9,  theFile: "table9.png"},
 			{tileType: TILE_SHOP_A,  theFile: "tablea.png"},
 			{tileType: TILE_BED,  theFile: "bed.png"},
-			{tileType: TILE_SHOPKEEPER,  theFile: "NPCs/shopkeeper.png"},
 			{tileType: TILE_TREE,  theFile: "Trees/tree.png"},
 			{tileType: TILE_GRAVE,  theFile: "grave.png"},
 			{tileType: TILE_FRESH_GRAVE,  theFile: "freshgrave.png"},
@@ -94,10 +103,8 @@ function loadImages() {
 			{tileType: TILE_HOME_VILLAGE_PORTAL,  theFile: "worldRoad.png"},
 			{tileType: TILE_THROWINGROCKS,  theFile: "throwingRocks.png"},
 			{tileType: TILE_ARROWS,  theFile: "arrow.png"},
-			{tileType: TILE_HEALER,  theFile: "NPCs/healer.png"},
 			{tileType: TILE_ALTER,  theFile: "alter.png"},
 			{tileType: TILE_FOUNTAIN,  theFile: "fountain.png"},
-			{tileType: TILE_PRINCESS,  theFile: "NPCs/princess.png"},
 			{tileType: TILE_ROOF_SIDERIGHT,  theFile: "house1/roofbottomright.png"},
 			{tileType: TILE_ROOF_BACKRIGHT,  theFile: "house1/roofbackright.png"},
 			{tileType: TILE_ROOF_FRONTRIGHT,  theFile: "house1/roofFrontRight.png"},
@@ -110,9 +117,6 @@ function loadImages() {
 			{tileType: TILE_ROOF_FRONTLEFT,  theFile: "house1/rooffrontleft.png"},
 			{tileType: TILE_ROOF_FRONT,  theFile: "house1/rooffront.png"},
 			{tileType: TILE_ROOF_CENTER,  theFile: "house1/roofcenter.png"},	
-			{tileType: TILE_DODD,  theFile: "NPCs/Dodd.png"},
-			{tileType: TILE_TARAN,  theFile: "NPCs/Taran.png"},
-			{tileType: TILE_DELKON,  theFile: "NPCs/Delkon.png"},
 			{tileType: TILE_TREE2TOPHALF,  theFile: "Trees/tree2tophalf.png"},
 			{tileType: TILE_TREE2BOTTOMHALF,  theFile: "Trees/tree2bottomhalf.png"},		
 			{tileType: TILE_TREE3TOPHALF,  theFile: "Trees/tree3tophalf.png"},
@@ -140,7 +144,15 @@ function loadImages() {
 			{varName: scrollBackgroundPic, theFile: "scrollBackground.jpg"},
 			{varName: titlepagePic, theFile: "background.png"},
 			{varName: shadowPic, theFile: "shadow.png"},
-			{varName: shinyPic, theFile: "shiny.png"}		
+			{varName: addyPic, theFile: "NPCs/addy.png"},
+			{varName: delkonPic, theFile: "NPCs/delkon.png"},
+			{varName: doddPic, theFile: "NPCs/dodd.png"},
+			{varName: fentonPic, theFile: "NPCs/fenton.png"},
+			{varName: gabrielPic, theFile: "NPCs/gabriel.png"},
+			{varName: healerPic, theFile: "NPCs/healer.png"},
+			{varName: princessPic, theFile: "NPCs/princess.png"},
+			{varName: shopkeeperPic, theFile: "NPCs/shopkeeper.png"},
+			{varName: taranPic, theFile: "NPCs/taran.png"}
 		];
 			
 	picsToLoad = imageList.length;

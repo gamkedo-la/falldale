@@ -99,12 +99,30 @@ function loadLevel(whichLevel) {
             } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_SWORD) {
                 newEnemy = new orcClass('Orc - Sword', orcPic);
 			} else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_CLUB) {
-                newEnemy = new orcClass('Orc - Club', orcPic2);	
+                newEnemy = new orcClass('Orc - Club2', orcPic2);	
 			} else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_AX) {
                 newEnemy = new orcClass('Orc - Ax', orcPic3);	
             } else if(roomGrid[arrayIndex] == TILE_ARCHER) {
                 newEnemy = new archerClass('Archer');
-            } else {
+            } else if(roomGrid[arrayIndex] == TILE_ADDY) {   // NPC
+                newEnemy = new npcClass('Addy', addyPic );
+			} else if(roomGrid[arrayIndex] == TILE_DELKON) {   // NPC
+                newEnemy = new npcClass('Delkon', delkonPic);
+			} else if(roomGrid[arrayIndex] == TILE_DODD) {   // NPC
+                newEnemy = new npcClass('Dodd', doddPic);
+			} else if(roomGrid[arrayIndex] == TILE_FENTON) {   // NPC
+                newEnemy = new npcClass('Fenton', fentonPic);
+			} else if(roomGrid[arrayIndex] == TILE_GABRIEL) {   // NPC
+                newEnemy = new npcClass('Gabriel', gabrielPic);
+			} else if(roomGrid[arrayIndex] == TILE_HEALER) {   // NPC
+                newEnemy = new npcClass('Healer', healerPic);
+			} else if(roomGrid[arrayIndex] == TILE_PRINCESS) {   // NPC
+                newEnemy = new npcClass('Princess', princessPic);
+			} else if(roomGrid[arrayIndex] == TILE_SHOPKEEPER) {   // NPC
+                newEnemy = new npcClass('Shop Keeper', shopkeeperPic);
+			} else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
+                newEnemy = new npcClass('Taran', taranPic);
+			} else {
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
             }
