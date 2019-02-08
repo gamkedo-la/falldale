@@ -1,6 +1,6 @@
 ///// Building the Tile Editor (WIP)
 
-var tileSelected = false;
+var tileSelected = -1;
 
 ///// turn on tile editor - done ////////////////////
 ///// draw the entire map - done ////////////////////
@@ -34,7 +34,22 @@ function drawDialog() {
     colorText(dialog, 20, canvas.height - 20, "Black");
 }
 
-
+function tileEditorInput(whichKeyCode){
+	console.log("editorInput");
+	switch(whichKeyCode){
+		
+		case KEY_UP_ARROW:
+		if(tileSelected != -1){
+			roomGrid[tileSelected]++;
+		}		
+		break;
+		case KEY_DOWN_ARROW:
+		if(tileSelected != -1){
+			roomGrid[tileSelected]--;
+		}		
+		break;
+	}
+}
 
 ///// make tile selectable
 ///// Use Up and Down to switch between tiles
