@@ -249,7 +249,7 @@ function drawAll() {
 		canvasContext.drawImage(scrollBackgroundPic, 0, 0);
 		drawScrollNarrative();
 	} else if (tileEditor) {
-        drawEditorMood();
+        drawEditorMode();
     } else {
         colorRect(0,0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
         canvasContext.save();

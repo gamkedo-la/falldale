@@ -222,7 +222,7 @@ function returnTileTypeAtColRow(col, row) {
 	}
 }
 
-function getTileTypeAtPixelCoord(atX, atY) {
+function getTileIndexAtPixelCoord(atX, atY) {
 	var warriorWorldCol = Math.floor(atX / TILE_W);
 	var warriorWorldRow = Math.floor(atY / TILE_H);
 	var worldIndexUnderWarrior = rowColToArrayIndex(warriorWorldCol, warriorWorldRow);

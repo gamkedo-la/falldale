@@ -148,20 +148,20 @@ function warriorClass() {
 		}
 		
 		
-		var walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, nextY);
+		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL;
 
 		if(direction == "north") {
-			walkIntoTileIndex = getTileTypeAtPixelCoord(nextX+(this.width/2),nextY);
+			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+(this.width/2),nextY);
 		}
 		if(direction == "south") {
-			walkIntoTileIndex = getTileTypeAtPixelCoord(nextX+(this.width/2),nextY+this.height);
+			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+(this.width/2),nextY+this.height);
 		}
 		if(direction == "west") {
-			walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, nextY+(this.height/2));
+			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY+(this.height/2));
 		}
 		if(direction == "east") {
-			walkIntoTileIndex = getTileTypeAtPixelCoord(nextX+this.width, nextY+(this.height/2));
+			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+this.width, nextY+(this.height/2));
 		}		
 		if(walkIntoTileIndex != undefined) {
 			walkIntoTileType = roomGrid[walkIntoTileIndex];

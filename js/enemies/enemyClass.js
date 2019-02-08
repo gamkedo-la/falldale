@@ -73,20 +73,20 @@ function enemyClass() {
             this.direction = "east";
         }
 
-        var walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, nextY);
+        var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL;
 
         if (this.direction == "north") {
-            walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, (nextY - 25));
+            walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, (nextY - 25));
         }
         if (this.direction == "south") {
-            walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, (nextY + 25));
+            walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, (nextY + 25));
         }
         if (this.direction == "west") {
-            walkIntoTileIndex = getTileTypeAtPixelCoord((nextX - 25), nextY);
+            walkIntoTileIndex = getTileIndexAtPixelCoord((nextX - 25), nextY);
         }
         if (this.direction == "east") {
-            walkIntoTileIndex = getTileTypeAtPixelCoord((nextX + 25), nextY);
+            walkIntoTileIndex = getTileIndexAtPixelCoord((nextX + 25), nextY);
         }
 
         if (walkIntoTileIndex != undefined) {

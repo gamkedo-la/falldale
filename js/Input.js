@@ -102,6 +102,10 @@ function keyPressed(evt) {
         characterCreationScreenInput(evt.keyCode);
     } else if (scrollBackgroundScreen) {
         scrollBackgroundScreenInput(evt.keyCode);
+	} else if (tileEditor) {
+		updateMousePos(evt);
+	}	
+	
 	} else {
 
         keySet(evt, redWarrior, true);
@@ -156,5 +160,11 @@ function handleMouseClick(evt) {
     if (menuScreen) {
         menuScreen = false;
         characterCreationScreen = true;
-    }
+    } else if (tileEditor) {
+		if(tileSelected){
+			tileSelected = false;
+		} else {
+			tileSelected = true;
+		}
+	}
 }

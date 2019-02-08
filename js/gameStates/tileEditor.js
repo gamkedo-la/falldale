@@ -1,29 +1,25 @@
 ///// Building the Tile Editor (WIP)
 
+var tileSelected = false;
+
 ///// turn on tile editor - done ////////////////////
 ///// draw the entire map - done ////////////////////
-function drawEditorMood() {
+function drawEditorMode() {
     dialog = "Now in Tile Editor Mode";
-	loadLevel(allGrass);
+	//loadLevel(allGrass);
     drawRoom();
-
-    updateDialog();
+	var tileUnderMouseIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
+    var tileUnderMouseType = roomGrid[tileUnderMouseIndex];
+	//roomGrid[tileUnderMouseIndex] = 18;
+	console.log(tileUnderMouseType);
+	drawDialog();
 }
 
 ///// determine where mouse is and identify tile under the mouse - done /////////////////////
-function mouseMovement() { //// this should move to Input.js
-    canvas.addEventListener('mousemove', function(evt) {
-        var mousePos = calculateMousePos(evt);
-        var tileUnderMouse = getTileTypeAtPixelCoord(mouseX, mouseY);
-        var tileUnderMouseType = roomGrid[tileUnderMouse];
-        console.log(tileUnderMouseType);
-		
-    });
-}
 
-function calculateMousePos(evt) { //// this should move to Input.js
-    var rect = canvas.getBoundingClientRect(),
-        root = document.documentElement;
+function calculateMousePos(evt) { //// this will move to Input.js
+    var rect = canvas.getBoundingClientRect();
+    var root = document.documentElement;
     var mouseX = evt.clientX - rect.left - root.scrollLeft;
     var mouseY = evt.clientY - rect.top - root.scrollTop;
     return {
@@ -32,7 +28,7 @@ function calculateMousePos(evt) { //// this should move to Input.js
     };
 }
 
-function updateDialog() {
+function drawDialog() {
     colorRect(0, canvas.height - 50, canvas.width, 50, "red");
     colorRect(5, canvas.height - 45, canvas.width - 5, 40, "white");
     colorText(dialog, 20, canvas.height - 20, "Black");
