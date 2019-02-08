@@ -1,3 +1,5 @@
+var debugSkipToGame = true;
+
 // Characters //
 
 var canvas, canvasContext;
@@ -63,6 +65,9 @@ function imageLoadingDoneSoStartGame() {
     setupInput();
 
     loadLevel(levelOne);
+	if(debugSkipToGame){
+		console.log("Debug Mode is on, skip directly to game");
+	}
 }
 
 function nextLevel() {
@@ -234,7 +239,11 @@ function drawAll() {
         colorText("Move Right - Right Arrow", 170, 350, "white");
         colorText("Move Up - Up Arrow", 170, 375, "white");
         colorText("Sword Attack - Space bar", 170, 400, "white");
-    } else if (isInShop) {
+		if(debugSkipToGame){
+			handleMouseClick(null);
+		}
+	
+	} else if (isInShop) {
         drawShop();
     } else if (isAtHealer) {
         drawHealerShop();
@@ -244,10 +253,17 @@ function drawAll() {
         drawDice(Dice1);
         drawDice(Dice2);
         drawDice(Dice3);
+		if(debugSkipToGame){
+			characterCreationScreenInput(KEY_SPACEBAR);	
+			characterCreationScreenInput(ENTER);	
+		}
         //}
     } else if (scrollBackgroundScreen) {
 		canvasContext.drawImage(scrollBackgroundPic, 0, 0);
 		drawScrollNarrative();
+		if(debugSkipToGame){
+			scrollBackgroundScreenInput(KEY_SPACEBAR);
+		}
 	} else if (tileEditor) {
         drawEditorMode();
     } else {

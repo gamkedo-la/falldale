@@ -39,7 +39,7 @@ var picsToLoad = 0;
 
 function countLoadedImagesAndLaunchIfReady(){
 		picsToLoad--;
-		console.log(picsToLoad);
+		//console.log(picsToLoad);
 		if(picsToLoad == 0) {
 			imageLoadingDoneSoStartGame();
 	}
@@ -48,7 +48,7 @@ function countLoadedImagesAndLaunchIfReady(){
 function beginLoadingImage(imgVar, fileName) {
 	imgVar.onload = countLoadedImagesAndLaunchIfReady;
 	imgVar.src = "images/" + fileName;
-	console.log("Downloading " + imgVar.src);
+	//console.log("Downloading " + imgVar.src);
 }
 
 function loadImageForWorldCode(worldCode, fileName)  {
