@@ -33,17 +33,17 @@ function orcClass(orcName, whichPicture) {
         this.superClassMove(ORC_TIME_BETWEEN_CHANGE_DIR, orcMoveSpeed);
     
 		if (this.walkNorth) {
-            this.sy = this.height;
+            this.sy = 0;
         }
 
         if (this.walkSouth) {
-            this.sy = 0;
+            this.sy = this.height * 1;
         }
         if (this.walkWest) {
-            this.sy = this.height*3;
+            this.sy = this.height*2;
         }
         if (this.walkEast) {
-            this.sy = this.height*2;
+            this.sy = this.height*3;
         }
 	
     }
@@ -103,8 +103,6 @@ function orcClass(orcName, whichPicture) {
 			}
 				
 			this.sx = 0;
-			this.sy = 0;			
-				
 				
 			canvasContext.drawImage(shadowPic, this.x-4, this.y+54);
             canvasContext.drawImage(this.myOrcPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
