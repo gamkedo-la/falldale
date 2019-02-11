@@ -74,6 +74,17 @@ function updateMousePos(evt) {
 
 }
 
+function calculateMousePos(evt) { //// this will move to Input.js
+    var rect = canvas.getBoundingClientRect();
+    var root = document.documentElement;
+    var mouseX = evt.clientX - rect.left - root.scrollLeft;
+    var mouseY = evt.clientY - rect.top - root.scrollTop;
+    return {
+        x: mouseX,
+        y: mouseY
+    };
+}
+
 function keySet(keyEvent, redWarrior, setTo) {
     if (keyEvent.keyCode == redWarrior.controlKeyLeft) {
         redWarrior.keyHeld_WalkWest = setTo;
@@ -90,7 +101,6 @@ function keySet(keyEvent, redWarrior, setTo) {
 }
 
 function keyPressed(evt) {
-	console.log("Correct File - Reached input");
     var debugModeKey = NUM_1;
     var tileEditorModeKey = NUM_2;
     var paused = KEY_P;
@@ -116,8 +126,9 @@ function keyPressed(evt) {
         characterCreationScreenInput(evt.keyCode);
     } else if (scrollBackgroundScreen) {
         scrollBackgroundScreenInput(evt.keyCode);
+	} else if (tileEditor) {
+        tileEditorInput(evt.keyCode);	
 	} else {
-
         keySet(evt, redWarrior, true);
         if (evt.keyCode == redWarrior.controlKeySword) {
             redWarrior.swordSwing();
@@ -171,4 +182,7 @@ function handleMouseClick(evt) {
         menuScreen = false;
         characterCreationScreen = true;
     }
+	if (tileEditor) {
+		tileSelectedClicked = true;
+	}
 }

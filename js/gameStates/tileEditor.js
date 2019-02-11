@@ -1,6 +1,7 @@
 ///// Building the Tile Editor (WIP)
 
 var tileSelected = -1;
+var tileSelectedClicked = false;
 
 function drawEditorMode() {
 	dialog = "Now in Tile Editor Mode";
@@ -9,18 +10,13 @@ function drawEditorMode() {
 	var tileUnderMouseIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
     var tileUnderMouseType = roomGrid[tileUnderMouseIndex];
 	//roomGrid[tileUnderMouseIndex] = 18;
+	if(tileSelectedClicked){ // mouse click
+		tileSelected = roomGrid[tileUnderMouseIndex];
+		console.log("Tile Selected: "+tileSelected);
+		roomGrid[tileUnderMouseIndex] = roomGrid[tileSelected];
+		tileSelectedClicked = false;
+	}
 	drawDialog();
-}
-
-function calculateMousePos(evt) { //// this will move to Input.js
-    var rect = canvas.getBoundingClientRect();
-    var root = document.documentElement;
-    var mouseX = evt.clientX - rect.left - root.scrollLeft;
-    var mouseY = evt.clientY - rect.top - root.scrollTop;
-    return {
-        x: mouseX,
-        y: mouseY
-    };
 }
 
 function drawDialog() {
@@ -29,12 +25,12 @@ function drawDialog() {
     colorText(dialog, 20, canvas.height - 20, "Black");
 }
 
+///// Use Up and Down to switch between tiles
 function tileEditorInput(whichKeyCode){
-	console.log("editorInput");
+	
+	console.log(tileSelected);
 	switch(whichKeyCode){
-		
 		case KEY_UP_ARROW:
-		console.log("worked!")
 		if(tileSelected != -1){
 			roomGrid[tileSelected]++;
 		}		
@@ -45,9 +41,12 @@ function tileEditorInput(whichKeyCode){
 		}		
 		break;
 	}
+	//roomGrid[tileUnderMouseIndex] = tileSelected;
 }
 
-///// make tile selectable
-///// Use Up and Down to switch between tiles
+
+
+
+
 ///// Use Left and Right to switch within that section
 ///// Save tilemap for export
