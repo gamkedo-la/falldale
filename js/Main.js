@@ -3,6 +3,7 @@ var debugSkipToGame = true;
 // Characters //
 
 var canvas, canvasContext;
+var stateScreenOffsetX, stateScreenOffsetY;
 var redWarrior = new warriorClass();
 var enemyList = [];
 var dialog = "H: Hides health, I: Inventory, O: Stats";
@@ -43,6 +44,8 @@ var dialogUIVisibilityCountdown = 3;
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    stateScreenOffsetX = canvas.width/2 - 400;
+    stateScreenOffsetY = canvas.height/2 - 300;
 }
 
 window.onload = function() {
@@ -238,32 +241,33 @@ function statsDraw() {
     colorText("WIS: " + redWarrior.wisdom + "     CHA: " + redWarrior.charisma, canvas.width - 190, canvas.height - 80, "Black");
 }
 
+function drawMenuScreen() {
+    canvasContext.save();
+    canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
+    canvasContext.drawImage(titlepagePic, 0, 0); // blanks out the screen
+    canvasContext.font = "30px Georgia";
+    colorText("Falldale", 120, 100, "white");
+    canvasContext.font = "20px Georgia";
+    colorText("", 170, 150, "white");
+    colorText("", 170, 200, "white");
+    colorText("", 170, 225, "white");
+    colorText("Click to start to begin", 170, 255, "white");
+    canvasContext.font = "15px Georgia";
+    colorText("Move Left - Left Arrow", 170, 300, "white");
+    colorText("Move Down - Down Arrow", 170, 325, "white");
+    colorText("Move Right - Right Arrow", 170, 350, "white");
+    colorText("Move Up - Up Arrow", 170, 375, "white");
+    colorText("Sword Attack - Space bar", 170, 400, "white");
+    canvasContext.restore();
+}
+
 
 function drawAll() {
     if (menuScreen) {
-        var xOffset = canvas.width/2 - titlepagePic.width/2;
-        var yOffset = canvas.height/2 - titlepagePic.height/2
-        canvasContext.save();
-        canvasContext.translate(xOffset, yOffset);
-        canvasContext.drawImage(titlepagePic, 0, 0); // blanks out the screen
-        canvasContext.font = "30px Georgia";
-        colorText("Falldale", 120, 100, "white");
-        canvasContext.font = "20px Georgia";
-        colorText("", 170, 150, "white");
-        colorText("", 170, 200, "white");
-        colorText("", 170, 225, "white");
-        colorText("Click to start to begin", 170, 255, "white");
-        canvasContext.font = "15px Georgia";
-        colorText("Move Left - Left Arrow", 170, 300, "white");
-        colorText("Move Down - Down Arrow", 170, 325, "white");
-        colorText("Move Right - Right Arrow", 170, 350, "white");
-        colorText("Move Up - Up Arrow", 170, 375, "white");
-        colorText("Sword Attack - Space bar", 170, 400, "white");
-        canvasContext.restore();
+        drawMenuScreen();
 		if(debugSkipToGame){
 			handleMouseClick(null);
 		}
-	
 	} else if (isInShop) {
         drawShop();
     } else if (isAtHealer) {
@@ -280,13 +284,7 @@ function drawAll() {
 		}
         //}
     } else if (scrollBackgroundScreen) {
-        var xOffset = canvas.width/2 - scrollBackgroundPic.width/2;
-        var yOffset = canvas.height/2 - scrollBackgroundPic.height/2
-        canvasContext.save();
-        canvasContext.translate(xOffset, yOffset);
-        canvasContext.drawImage(scrollBackgroundPic, 0, 0);
         drawScrollNarrative();
-        canvasContext.restore();
 		if(debugSkipToGame){
 			scrollBackgroundScreenInput(KEY_SPACEBAR);
 		}

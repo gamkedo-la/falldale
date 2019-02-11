@@ -1,8 +1,6 @@
 function drawHealerShop() {
-    var xOffset = canvas.width/2 - healerStorePic.width/2;
-    var yOffset = canvas.height/2 - healerStorePic.height/2
     canvasContext.save();
-    canvasContext.translate(xOffset, yOffset);
+    canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
     canvasContext.drawImage(healerStorePic, 0, 0); // replace with healer background
     colorText("Please make a donation to our mission.", 25, 50, "white");
     colorText("Suggested Donations.", 25, 65, "white");

@@ -9,10 +9,8 @@ var dexterity = false;
 var ready = false; // prevents starting the game without rolling
 
 function drawCreationScreen(){
-	var xOffset = canvas.width/2 - storeFrontPic.width/2;
-    var yOffset = canvas.height/2 - storeFrontPic.height/2
     canvasContext.save();
-    canvasContext.translate(xOffset, yOffset);
+    canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
 	canvasContext.drawImage(storeFrontPic, 0,0);  // replace with a Creation Screen background
 	colorText("Character Creation" , 25, 50, "white");
 	colorText('Press "Space Bar" to Roll' , 25, 70, "white");

@@ -1,10 +1,8 @@
 function drawShop() {
-    var xOffset = canvas.width/2 - storeFrontPic.width/2;
-    var yOffset = canvas.height/2 - storeFrontPic.height/2
     canvasContext.save();
-    canvasContext.translate(xOffset, yOffset);
+    canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
     canvasContext.drawImage(storeFrontPic, 0, 0); 
-    colorText("Please let me know if you would like any of our", xOffset + 25, yOffset + 50, "white");
+    colorText("Please let me know if you would like any of our", 25, 50, "white");
     colorText("items in stock.", 25, 65, "white");
     colorText("1.) 10 Arrows 	- 	10 gp", 50, 100, "white");
     colorText("2.) 10 Rocks 	- 	 10 gp", 50, 120, "white");
