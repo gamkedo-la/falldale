@@ -1,11 +1,16 @@
 function drawShop() {
+    var xOffset = canvas.width/2 - storeFrontPic.width/2;
+    var yOffset = canvas.height/2 - storeFrontPic.height/2
+    canvasContext.save();
+    canvasContext.translate(xOffset, yOffset);
     canvasContext.drawImage(storeFrontPic, 0, 0); 
-    colorText("Please let me know if you would like any of our", 25, 50, "white");
+    colorText("Please let me know if you would like any of our", xOffset + 25, yOffset + 50, "white");
     colorText("items in stock.", 25, 65, "white");
     colorText("1.) 10 Arrows 	- 	10 gp", 50, 100, "white");
     colorText("2.) 10 Rocks 	- 	 10 gp", 50, 120, "white");
     colorText("3.)  1 Heart 	- 	 5 gp", 50, 140, "white");
     colorText("4.) 'Nothing at this time'", 50, 160, "white");
+    canvasContext.restore();
 }
 
 function shopInput(whichKeyCode) {

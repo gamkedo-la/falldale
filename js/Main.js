@@ -1,4 +1,4 @@
-var debugSkipToGame = true;
+var debugSkipToGame = false;
 
 // Characters //
 
@@ -243,6 +243,10 @@ function statsDraw() {
 
 function drawAll() {
     if (menuScreen) {
+        var xOffset = canvas.width/2 - titlepagePic.width/2;
+        var yOffset = canvas.height/2 - titlepagePic.height/2
+        canvasContext.save();
+        canvasContext.translate(xOffset, yOffset);
         canvasContext.drawImage(titlepagePic, 0, 0); // blanks out the screen
         canvasContext.font = "30px Georgia";
         colorText("Falldale", 120, 100, "white");
@@ -257,6 +261,7 @@ function drawAll() {
         colorText("Move Right - Right Arrow", 170, 350, "white");
         colorText("Move Up - Up Arrow", 170, 375, "white");
         colorText("Sword Attack - Space bar", 170, 400, "white");
+        canvasContext.restore();
 		if(debugSkipToGame){
 			handleMouseClick(null);
 		}
@@ -277,8 +282,13 @@ function drawAll() {
 		}
         //}
     } else if (scrollBackgroundScreen) {
-		canvasContext.drawImage(scrollBackgroundPic, 0, 0);
-		drawScrollNarrative();
+        var xOffset = canvas.width/2 - scrollingBackgroundPic.width/2;
+        var yOffset = canvas.height/2 - scrollingBackgroundPic.height/2
+        canvasContext.save();
+        canvasContext.translate(xOffset, yOffset);
+        canvasContext.drawImage(scrollBackgroundPic, 0, 0);
+        drawScrollNarrative();
+        canvasContext.restore();
 		if(debugSkipToGame){
 			scrollBackgroundScreenInput(KEY_SPACEBAR);
 		}

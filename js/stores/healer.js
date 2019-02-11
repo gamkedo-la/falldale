@@ -1,4 +1,8 @@
 function drawHealerShop() {
+    var xOffset = canvas.width/2 - healerStorePic.width/2;
+    var yOffset = canvas.height/2 - healerStorePic.height/2
+    canvasContext.save();
+    canvasContext.translate(xOffset, yOffset);
     canvasContext.drawImage(healerStorePic, 0, 0); // replace with healer background
     colorText("Please make a donation to our mission.", 25, 50, "white");
     colorText("Suggested Donations.", 25, 65, "white");
@@ -6,6 +10,7 @@ function drawHealerShop() {
     colorText("2.) Restore 5 Hit Points - 	 		40 gp", 50, 120, "white");
     colorText("3.) Healing Potion (cures 5 HP) -	50 gp", 50, 140, "white");
     colorText("4.) 'Nothing at this time'", 50, 160, "white");
+    canvasContext.restore();
 }
 
 function healerInput(whichKeyCode) {

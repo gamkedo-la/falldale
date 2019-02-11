@@ -9,6 +9,10 @@ var dexterity = false;
 var ready = false; // prevents starting the game without rolling
 
 function drawCreationScreen(){
+	var xOffset = canvas.width/2 - storeFrontPic.width/2;
+    var yOffset = canvas.height/2 - storeFrontPic.height/2
+    canvasContext.save();
+    canvasContext.translate(xOffset, yOffset);
 	canvasContext.drawImage(storeFrontPic, 0,0);  // replace with a Creation Screen background
 	colorText("Character Creation" , 25, 50, "white");
 	colorText('Press "Space Bar" to Roll' , 25, 70, "white");
@@ -19,6 +23,7 @@ function drawCreationScreen(){
 	colorText("Wisdom: " + redWarrior.wisdom, 50, 180, "white");
 	colorText("Charisma: " + redWarrior.charisma, 50, 200, "white");
 	colorText('Press "Enter" to continue', 25, 230, "white");
+	canvasContext.restore();
 }
 
 function drawDice(DiceNumber){
