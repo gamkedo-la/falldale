@@ -280,8 +280,8 @@ function drawAll() {
 		}
         //}
     } else if (scrollBackgroundScreen) {
-        var xOffset = canvas.width/2 - scrollingBackgroundPic.width/2;
-        var yOffset = canvas.height/2 - scrollingBackgroundPic.height/2
+        var xOffset = canvas.width/2 - scrollBackgroundPic.width/2;
+        var yOffset = canvas.height/2 - scrollBackgroundPic.height/2
         canvasContext.save();
         canvasContext.translate(xOffset, yOffset);
         canvasContext.drawImage(scrollBackgroundPic, 0, 0);
