@@ -1,4 +1,4 @@
-var debugSkipToGame = false;
+var debugSkipToGame = true;
 
 // Characters //
 
@@ -276,7 +276,7 @@ function drawAll() {
         drawDice(Dice3);
 		if(debugSkipToGame){
 			characterCreationScreenInput(KEY_SPACEBAR);	
-			characterCreationScreenInput(ENTER);	
+			characterCreationScreenInput(ENTER);
 		}
         //}
     } else if (scrollBackgroundScreen) {

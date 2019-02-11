@@ -23,6 +23,7 @@ function drawCreationScreen(){
 	colorText("Wisdom: " + redWarrior.wisdom, 50, 180, "white");
 	colorText("Charisma: " + redWarrior.charisma, 50, 200, "white");
 	colorText('Press "Enter" to continue', 25, 230, "white");
+	colorText('bug: press "spacebar" to bypass', 25, 280, "red");
 	canvasContext.restore();
 }
 
