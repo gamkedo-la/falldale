@@ -16,13 +16,17 @@ function drawEditorMode() {
 		roomGrid[tileUnderMouseIndex] = roomGrid[tileSelected];
 		tileSelectedClicked = false;
 	}
-	drawDialog();
+	drawDialog()
 }
 
 function drawDialog() {
     colorRect(0, canvas.height - 50, canvas.width, 50, "red");
     colorRect(5, canvas.height - 45, canvas.width - 5, 40, "white");
-    colorText(dialog, 20, canvas.height - 20, "Black");
+	if (dialogUIVisibilityCountdown <= 0) {
+		return;
+	} else {	
+		colorText(dialog, 20, canvas.height - 20, "Black");
+	}
 }
 
 ///// Use Up and Down to switch between tiles
@@ -40,8 +44,12 @@ function tileEditorInput(whichKeyCode){
 			roomGrid[tileSelected]--;
 		}		
 		break;
+		case KEY_SPACEBAR:
+			console.log(roomGrid);
 	}
-	//roomGrid[tileUnderMouseIndex] = tileSelected;
+	dialog = "Room Grid tile number: "+roomGrid[tileSelected];
+	setDialogUICountdown(5);
+	drawDialog
 }
 
 

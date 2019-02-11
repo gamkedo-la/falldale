@@ -178,8 +178,6 @@ function displayMessage() {
 
 	colorRect(0, canvas.height - 50, canvas.width, 50, "black");
 	colorRect(5, canvas.height - 45, canvas.width - 10, 40, "white");
-
-	// console.log(dialogUIVisibilityCountdown);
 	
     if (dialogUIVisibilityCountdown <= 0) {
 		return;
