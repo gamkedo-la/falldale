@@ -23,10 +23,10 @@ function orcClass(orcName, whichPicture) {
 
 	this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
-		this.superClassReset(resetX, resetY);
-        //this.myOrcPic = orcPic3;
+        this.superClassReset(resetX, resetY);
+        this.newRandomPic();
         this.health = 12;
-    } 
+    }
 
     this.superClassMove = this.move;
     this.move = function() {
@@ -80,6 +80,21 @@ function orcClass(orcName, whichPicture) {
             this.orcBite();
         }
         // add result if true
+    }
+
+    this.newRandomPic = function() {
+        var whichPic = Math.round(Math.random() * 3);
+        switch (whichPic) {
+            case 0:
+                this.myOrcPic = orcPic;
+                break;
+            case 1:
+                this.myOrcPic = orcPic2;
+                break;
+            case 2:
+                this.myOrcPic = orcPic3;
+                break;
+        }
     }
 
     this.draw = function() {
