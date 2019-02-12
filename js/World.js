@@ -315,6 +315,59 @@ function drawTileFX(checkTileType, drawTileX, drawTileY) {
 	}
 }
 
+// TODO: add to level editor
+var rooftops = [
+	[8,3,16,8] // x1,y1,x2,y2 of nearby blue door house
+];
+//{tileType: TILE_ROOF_BACKSIDE,  theFile: "House1/roofbackside.png"},
+//{tileType: TILE_ROOF_BACKLEFT,  theFile: "House1/roofbackleft.png"},
+//{tileType: TILE_ROOF_LEFTSIDE,  theFile: "House1/roofleftside.png"},
+//{tileType: TILE_ROOF_FRONTLEFT,  theFile: "House1/rooffrontleft.png"},
+//{tileType: TILE_ROOF_FRONT,  theFile: "House1/rooffront.png"},
+//{tileType: TILE_ROOF_CENTER,  theFile: "House1/roofcenter.png"},	
+function drawRooftops() {
+	var px = redWarrior.x/TILE_W;
+	var py = redWarrior.y/TILE_H;
+	
+	for (var roofnum = 0; roofnum < rooftops.length; roofnum++) {
+
+		var firstRow = rooftops[roofnum][1];
+		var lastRow = rooftops[roofnum][3];
+		var firstCol = rooftops[roofnum][0];
+		var lastCol = rooftops[roofnum][2];
+		var pic = TILE_ROOF_CENTER;
+		var playerInsideBuilding = false;
+
+		// only draw roof if playter is not underneath it
+		if (px>=firstCol && px<=lastCol && py>=firstRow && py<=lastRow) {
+			playerInsideBuilding = true;
+		}
+
+		if (!playerInsideBuilding) {
+			for(var row = firstRow; row < lastRow+1; row++) {
+				for(var col = firstCol; col < lastCol+1; col++) {
+					
+					pic = TILE_ROOF_CENTER;
+					if (row==firstRow) {
+						if (col==firstCol) pic = TILE_ROOF_BACKLEFT;
+						else pic = TILE_ROOF_BACKSIDE;
+					}
+					else if (row==lastRow) {
+						if (col==firstCol) pic = TILE_ROOF_FRONTLEFT;
+						else pic = TILE_ROOF_FRONT;
+					}
+					else { // not first or last row
+						if (col==firstCol) pic = TILE_ROOF_LEFTSIDE;
+						else pic = TILE_ROOF_CENTER;
+					}
+
+					canvasContext.drawImage(worldPics[pic], col*TILE_H, row*TILE_W);
+				}
+			}
+		}
+	}
+}
+
 function drawRoom() {
 
 	var arrayIndex = 0;
@@ -344,7 +397,8 @@ function drawRoom() {
 		drawTileX = 0;
 	} // end of for each row
 	
-	fadingTitles.begin("COOL MESSAGE","headline","subtitle");
+	// TODO: why is this here?
+	// fadingTitles.begin("COOL MESSAGE","headline","subtitle");
 }
 	
 function drawOnlyTilesOnScreen() {

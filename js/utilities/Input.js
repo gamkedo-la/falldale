@@ -178,6 +178,16 @@ function keyReleased(evt) {
 }
 
 function handleMouseClick(evt) {
+
+    
+    if (true) { // (debugMode) {
+        console.log(
+            "clicked pixel x,y:" + mouseX + "," + mouseY + 
+            " tile col,row: " + Math.floor(mouseX / TILE_W) + 
+            "," + Math.floor(mouseX / TILE_W) + " tile index: " + 
+            rowColToArrayIndex(Math.floor(mouseX / TILE_W), Math.floor(mouseX / TILE_W)));
+    }
+
     if (menuScreen) {
         menuScreen = false;
         characterCreationScreen = true;

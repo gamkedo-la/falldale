@@ -304,6 +304,7 @@ function drawAll() {
         for (var i=0; i<enemyList.length; i++) {
             enemyList[i].draw();
         }
+        drawRooftops();
         canvasContext.restore();
         health();
         messageDraw();

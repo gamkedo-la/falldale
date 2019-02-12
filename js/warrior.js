@@ -201,7 +201,7 @@ function warriorClass() {
 				}
 				break;
 			case TILE_YELLOW_DOOR:
-				if(this.yellowKeysHeld > 0) {
+				if(this.yellowKeysHeld > 0 || debugMode) {
 					this.yellowKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
 					setDialogUICountdown(3);
@@ -213,7 +213,7 @@ function warriorClass() {
 				}
 				break;
 			case TILE_GREEN_DOOR:
-				if(this.greenKeysHeld > 0) {
+				if(this.greenKeysHeld > 0 || debugMode) {
 					this.greenKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
 					setDialogUICountdown(3);
@@ -225,7 +225,7 @@ function warriorClass() {
 				}
 				break;
 			case TILE_RED_DOOR:
-				if(this.redKeysHeld > 0) {
+				if(this.redKeysHeld > 0 || debugMode) {
 					this.redKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
 					setDialogUICountdown(3);
@@ -237,7 +237,7 @@ function warriorClass() {
 				}
 				break;
 			case TILE_BLUE_DOOR:
-				if(this.blueKeysHeld > 0) {
+				if(this.blueKeysHeld > 0 || debugMode) {
 					this.blueKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
 					setDialogUICountdown(3);
