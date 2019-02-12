@@ -182,10 +182,11 @@ function handleMouseClick(evt) {
     
     if (true) { // (debugMode) {
         console.log(
-            "clicked pixel x,y:" + mouseX + "," + mouseY + 
-            " tile col,row: " + Math.floor(mouseX / TILE_W) + 
-            "," + Math.floor(mouseX / TILE_W) + " tile index: " + 
-            rowColToArrayIndex(Math.floor(mouseX / TILE_W), Math.floor(mouseX / TILE_W)));
+            "clicked pixel x,y:" + (mouseX+camPanX) + "," + (mouseY+camPanY) + 
+            " tile col,row: " + Math.floor((mouseX+camPanX) / TILE_W) + 
+            "," + Math.floor((mouseY+camPanY) / TILE_H) + " tile index: " + 
+            rowColToArrayIndex(Math.floor((mouseX+camPanX) / TILE_W), 
+                Math.floor((mouseY+camPanY) / TILE_H)));
     }
 
     if (menuScreen) {

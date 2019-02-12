@@ -317,7 +317,10 @@ function drawTileFX(checkTileType, drawTileX, drawTileY) {
 
 // TODO: add to level editor
 var rooftops = [
-	[8,3,16,8] // x1,y1,x2,y2 of nearby blue door house
+	[8,3,16,8], // x1,y1,x2,y2 of nearby blue door house
+	[0,19,4,22],
+	[11,17,17,22],
+	[21,12,28,18]
 ];
 //{tileType: TILE_ROOF_BACKSIDE,  theFile: "House1/roofbackside.png"},
 //{tileType: TILE_ROOF_BACKLEFT,  theFile: "House1/roofbackleft.png"},
