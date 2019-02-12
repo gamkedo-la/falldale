@@ -1,6 +1,3 @@
-var orcMoveSpeed = 0.5;
-const ORC_TIME_BETWEEN_CHANGE_DIR = 100;
-
 orcClass.prototype = new enemyClass();
 function orcClass(orcName, whichPicture) {
     this.speed = 4;
@@ -20,17 +17,19 @@ function orcClass(orcName, whichPicture) {
     this.height = 69;
     this.ticksPerFrame = 5;
     this.orcMove = true;
+	this.orcMoveSpeed = .75;
 
 	this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
         this.superClassReset(resetX, resetY);
         this.newRandomPic();
         this.health = 12;
+		this.orcTimeBetweenChangeDir = 100;
     }
 
     this.superClassMove = this.move;
     this.move = function() {
-        this.superClassMove(ORC_TIME_BETWEEN_CHANGE_DIR, orcMoveSpeed);
+        this.superClassMove(this.orcTimeBetweenChangeDir, this.orcMoveSpeed);
     
 		if (this.walkNorth) {
             this.sy = 0;

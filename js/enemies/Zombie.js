@@ -1,5 +1,5 @@
-var zombieMoveSpeed = 0.5;
-const ZOMBIE_TIME_BETWEEN_CHANGE_DIR = 700;
+
+
 
 zombieClass.prototype = new enemyClass();
 function zombieClass(zombieName, whichPic) {
@@ -21,18 +21,37 @@ function zombieClass(zombieName, whichPic) {
 	this.height = 50;
 	this.ticksPerFrame = 5;
 	this.zombieMove = true; 
+	this.zombieTimeBetweenChangeDir = 700;
+	this.zombieMoveSpeed = 0.4;
 	
 	this.superClassReset = this.reset;
 	this.reset = function(resetX, resetY) {
 		this.superClassReset(resetX, resetY);
-		this.myZombiePic = whichPic; 
+		this.newRandomPic();
 		this.health = 30;
+		this.zombieTimeBetweenChangeDir = Math.floor(Math.random() * 800) + 1;
 	}
 		
 	this.superClassMove = this.move;
 	this.move = function() {
-		this.superClassMove(ZOMBIE_TIME_BETWEEN_CHANGE_DIR, zombieMoveSpeed);
+		this.superClassMove(this.zombieTimeBetweenChangeDir, this.zombieMoveSpeed);
 	}
+	
+	    this.newRandomPic = function() {
+        var whichPic = Math.round(Math.random() * 3);
+        switch (whichPic) {
+            case 0:
+                this.myZombiePic = zombiePic;
+                break;
+            case 1:
+                this.myZombiePic = zombiePic2;
+                break;
+            case 2:
+                this.myZombiePic = zombiePic3;
+                break;
+        }
+    }
+	
 
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch;
