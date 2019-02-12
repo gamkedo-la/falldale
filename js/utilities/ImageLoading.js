@@ -148,6 +148,7 @@ function loadImages() {
 			{varName: scrollBackgroundPic, theFile: "scrollBackground.jpg"},
 			{varName: titlepagePic, theFile: "background.png"},
 			{varName: shadowPic, theFile: "shadow.png"},
+			{varName: shinyPic, theFile: "shiny.png"},
 			{varName: addyPic, theFile: "NPCs/Addy.png"},
 			{varName: delkonPic, theFile: "NPCs/Delkon.png"},
 			{varName: doddPic, theFile: "NPCs/Dodd.png"},
