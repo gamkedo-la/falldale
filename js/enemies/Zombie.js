@@ -2,10 +2,10 @@ var zombieMoveSpeed = 0.5;
 const ZOMBIE_TIME_BETWEEN_CHANGE_DIR = 700;
 
 zombieClass.prototype = new enemyClass();
-function zombieClass(zombieName) {
+function zombieClass(zombieName, whichPic) {
 	
 	this.speed = 2;
-	this.myZombiePic = zombiePic; 
+	this.myZombiePic = whichPic; 
 	this.myName = zombieName;
 	
 	this.maxhealth = 30;
@@ -16,7 +16,7 @@ function zombieClass(zombieName) {
 		
 	this.tickCount = 0;
 	this.frameIndex = 0;
-	this.width = 25;
+	this.width = 30;
 	this.numberOfFrames = 4;
 	this.height = 50;
 	this.ticksPerFrame = 5;
@@ -25,7 +25,7 @@ function zombieClass(zombieName) {
 	this.superClassReset = this.reset;
 	this.reset = function(resetX, resetY) {
 		this.superClassReset(resetX, resetY);
-		this.myZombiePic = zombiePic; 
+		this.myZombiePic = whichPic; 
 		this.health = 30;
 	}
 		
@@ -91,6 +91,9 @@ function zombieClass(zombieName) {
 			if(gamePaused == false){
 				this.sx = this.frameIndex * this.width;
 			}
+			
+			this.sx = 0;
+			this.sy = 0;
 			
 			canvasContext.drawImage(shadowPic, this.x-20, this.y+32);
 			canvasContext.drawImage(this.myZombiePic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);

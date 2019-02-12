@@ -13,8 +13,8 @@ var levelOne =   [53,53,53,53,53,32,18,32,32,18,18,32,32,32,32,32,18,18,20,04,04
 				  57,57,57,57,57,65,32,18,18,32,32,18,18,32,32,18,32,18,20,04,33,33,33,33,04,18,04,33,33,33,33,04,
 				  51,50,50,52,51,66,18,18,18,18,18,18,18,18,18,18,18,32,20,04,00,31,00,00,04,18,04,00,00,43,00,04,
 				  32,18,18,05,18,18,18,65,04,04,04,04,04,04,04,04,04,18,20,04,00,30,00,34,04,18,04,34,00,44,00,04,
-				  32,18,18,00,18,18,18,66,04,02,60,59,19,46,61,02,04,18,20,04,04,00,04,04,04,18,04,04,04,00,04,04,
-				  32,18,18,62,00,64,18,18,04,12,00,00,00,00,00,02,04,18,20,18,18,00,18,18,18,18,18,18,18,00,18,32,
+				  32,18,18,72,18,18,18,66,04,02,60,59,19,46,61,02,04,18,20,04,04,00,04,04,04,18,04,04,04,00,04,04,
+				  32,18,18,62,73,64,18,18,04,12,00,00,00,00,00,02,04,18,20,18,18,00,18,18,18,18,18,18,18,00,18,32,
 				  32,32,18,18,18,08,18,18,04,02,00,00,00,00,00,02,04,18,20,18,18,00,18,18,18,18,18,18,18,00,32,18,
 				  32,18,18,18,41,63,18,67,04,02,00,00,00,00,00,02,04,18,20,00,00,00,00,00,21,00,00,00,00,37,00,38,
 				  18,32,18,18,18,00,42,68,04,02,00,00,00,00,00,02,04,18,20,00,18,18,18,18,00,18,18,18,18,18,32,18,
@@ -140,26 +140,32 @@ var levelList = [levelOne, graveYard, levelThree, levelFour];
 var levelNow = 0;
 var roomGrid = [];
 
-//need to be organized  ----- Until better organized, 72 is the next available tile.  All numbers will change once tile-editor is finished.
-const TILE_ROAD = 00;
-const TILE_KEY = 01;
-const TILE_SPIKES = 02;
-const TILE_SPIKES_BLOODY = 03;
-const TILE_WALL = 04;
+//These will be renumbered once Tile Editor is complete.  74 is the next available tile.  
 const TILE_PLAYERSTART = 05;
+//terrain tiles
+const TILE_ROAD = 00;
+const TILE_WALL = 04;
 const TILE_DOOR = 06;
 const TILE_FINISH = 07;
-const TILE_YELLOW_KEY = 10;
-const TILE_GREEN_KEY = 11;
-const TILE_BLUE_KEY = 12;
-const TILE_RED_KEY = 13;
 const TILE_YELLOW_DOOR = 14;
 const TILE_GREEN_DOOR = 15;
 const TILE_BLUE_DOOR = 16;
 const TILE_RED_DOOR = 17;
 const TILE_GRASS = 18;
-const TILE_TREASURE = 19;
 const TILE_WATER = 20;
+const TILE_CABINET = 33;
+const TILE_BED = 34;
+const TILE_GRAVE = 35;
+const TILE_FRESH_GRAVE = 40;
+const TILE_ALTER = 44;
+const TILE_FOUNTAIN = 45;
+//portals
+const TILE_GRAVE_YARD_PORTAL = 38;
+const TILE_HOME_VILLAGE_PORTAL = 39;
+//traps
+const TILE_SPIKES = 02;
+const TILE_SPIKES_BLOODY = 03;
+// these can be deleted, but need to clear code related to them first
 const TILE_SHOP_1 = 22;
 const TILE_SHOP_2 = 23;
 const TILE_SHOP_3 = 24;
@@ -169,16 +175,15 @@ const TILE_SHOP_7 = 27;
 const TILE_SHOP_8 = 28;
 const TILE_SHOP_9 = 29;
 const TILE_SHOP_A = 30;
-const TILE_CABINET = 33;
-const TILE_BED = 34;
-const TILE_GRAVE = 35;
-const TILE_GRAVE_YARD_PORTAL = 38;
-const TILE_HOME_VILLAGE_PORTAL = 39;
-const TILE_FRESH_GRAVE = 40;
-const TILE_THROWINGROCKS = 41;
+//findable items
 const TILE_ARROWS = 42;
-const TILE_ALTER = 44;
-const TILE_FOUNTAIN = 45;
+const TILE_THROWINGROCKS = 41;
+const TILE_KEY = 01;
+const TILE_YELLOW_KEY = 10;
+const TILE_GREEN_KEY = 11;
+const TILE_BLUE_KEY = 12;
+const TILE_RED_KEY = 13;
+const TILE_TREASURE = 19;
 //players house
 const TILE_ROOF_FRONTRIGHT = 47;
 const TILE_ROOF_SIDERIGHT = 48;
@@ -196,6 +201,8 @@ const TILE_ROOF_CENTER = 58;
 const TILE_SKELETON = 08;
 const TILE_BAT = 09;
 const TILE_ZOMBIE = 21;
+const TILE_ZOMBIE2 = 72;
+const TILE_ZOMBIE3 = 73;
 const TILE_GREEN_ORC_SWORD = 62;
 const TILE_GREEN_ORC_CLUB = 63;
 const TILE_GREEN_ORC_AX = 64;

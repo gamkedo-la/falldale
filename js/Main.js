@@ -96,8 +96,12 @@ function loadLevel(whichLevel) {
             } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
                 newEnemy = new skeletonClass('Skeleton');
             } else if(roomGrid[arrayIndex] == TILE_ZOMBIE) {
-                newEnemy = new zombieClass('Zombie');
-            } else if(roomGrid[arrayIndex] == TILE_GOBLIN) {
+                newEnemy = new zombieClass('Zombie', zombiePic);
+            } else if(roomGrid[arrayIndex] == TILE_ZOMBIE2) {
+                newEnemy = new zombieClass('Zombie2', zombiePic2);
+			} else if(roomGrid[arrayIndex] == TILE_ZOMBIE3) {
+                newEnemy = new zombieClass('Zombie3', zombiePic3);
+			} else if(roomGrid[arrayIndex] == TILE_GOBLIN) {
                 newEnemy = new goblinClass('Goblin');
             } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_SWORD) {
                 newEnemy = new orcClass('Orc - Sword', orcPic);

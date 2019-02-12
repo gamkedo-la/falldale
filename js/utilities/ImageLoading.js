@@ -11,6 +11,8 @@ var skeletonPic = document.createElement("img");
 var deadSkeletonPic = document.createElement("img");
 
 var zombiePic = document.createElement("img");
+var zombiePic2 = document.createElement("img");
+var zombiePic3 = document.createElement("img");
 var deadZombiePic = document.createElement("img");
  
 var batPic = document.createElement("img");
@@ -129,7 +131,9 @@ function loadImages() {
 			{varName: deadZombiePic, theFile: "Monsters/deadZombie.png"},
 			{varName: batPic, theFile: "Monsters/bat.png"},
 			{varName: deadBatPic, theFile: "Monsters/deadBat.png"},
-			{varName: zombiePic, theFile: "Monsters/zombie.png"},
+			{varName: zombiePic, theFile: "Monsters/zombie1.png"},
+			{varName: zombiePic2, theFile: "Monsters/zombie2.png"},
+			{varName: zombiePic3, theFile: "Monsters/zombie3.png"},
 			{varName: goblinPic, theFile: "Monsters/Goblin.png"},
 			{varName: orcPic, theFile: "Monsters/Orc1.png"},
 			{varName: orcPic2, theFile: "Monsters/Orc2.png"},
