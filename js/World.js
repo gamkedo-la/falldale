@@ -316,8 +316,8 @@ function drawTileFX(checkTileType, drawTileX, drawTileY) {
 }
 
 // TODO: add to level editor
-var rooftops = [
-	[8,3,16,8], // x1,y1,x2,y2 of nearby blue door house
+var rooftops = [ // x1,y1,x2,y2
+	[8,3,16,8], 
 	[0,19,4,22],
 	[11,17,17,22],
 	[21,12,28,18]
@@ -329,8 +329,8 @@ var rooftops = [
 //{tileType: TILE_ROOF_FRONT,  theFile: "House1/rooffront.png"},
 //{tileType: TILE_ROOF_CENTER,  theFile: "House1/roofcenter.png"},	
 function drawRooftops() {
-	var px = redWarrior.x/TILE_W;
-	var py = redWarrior.y/TILE_H;
+	var px = Math.round(redWarrior.x/TILE_W);
+	var py = Math.round(redWarrior.y/TILE_H);
 	
 	for (var roofnum = 0; roofnum < rooftops.length; roofnum++) {
 
@@ -340,13 +340,23 @@ function drawRooftops() {
 		var lastCol = rooftops[roofnum][2];
 		var pic = TILE_ROOF_CENTER;
 		var playerInsideBuilding = false;
+		var mouseInsideBuilding = false;
 
 		// only draw roof if playter is not underneath it
 		if (px>=firstCol && px<=lastCol && py>=firstRow && py<=lastRow) {
 			playerInsideBuilding = true;
 		}
 
+		var mx = Math.round((mouseX+camPanX-TILE_W/2)/TILE_W);
+		var my = Math.round((mouseY+camPanY-TILE_H/2)/TILE_H);
+		if (mx>=firstCol && mx<=lastCol && my>=firstRow && my<=lastRow) {
+			mouseInsideBuilding = true;
+		}
+
 		if (!playerInsideBuilding) {
+
+			if (mouseInsideBuilding) canvasContext.globalAlpha = 0.5;
+
 			for(var row = firstRow; row < lastRow+1; row++) {
 				for(var col = firstCol; col < lastCol+1; col++) {
 					
@@ -367,6 +377,9 @@ function drawRooftops() {
 					canvasContext.drawImage(worldPics[pic], col*TILE_H, row*TILE_W);
 				}
 			}
+			
+			canvasContext.globalAlpha = 1.0;
+
 		}
 	}
 }
