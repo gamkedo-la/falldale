@@ -1,5 +1,3 @@
-var skeletonMoveSpeed = 0.5;
-const SKELETON_TIME_BETWEEN_CHANGE_DIR = 700;
 
 skeletonClass.prototype = new enemyClass();
 function skeletonClass(skeletonName) {
@@ -19,6 +17,8 @@ function skeletonClass(skeletonName) {
 	this.height = 50;
 	this.ticksPerFrame = 5;
 	this.skeletonMove = true;
+	this.skeletonTimeBetweenChangeDir = 700;
+	this.skeletonMoveSpeed = 0.5;
 
 	this.superClassReset = this.reset;
 	this.reset = function(resetX, resetY) {
@@ -31,7 +31,7 @@ function skeletonClass(skeletonName) {
 	
 	this.superClassMove = this.move;
 	this.move = function() {
-		this.superClassMove(SKELETON_TIME_BETWEEN_CHANGE_DIR, skeletonMoveSpeed);
+		this.superClassMove(this.skeletonTimeBetweenChangeDir, this.skeletonMoveSpeed);
 	}
 
 	this.takeDamage = function(howMuch) {

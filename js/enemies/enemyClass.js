@@ -30,18 +30,22 @@ function enemyClass() {
                 this.cyclesTilDirectionChange = timeBetweenDirChange;
                 this.changeDirection();
                 this.addedCyclesTilDirectionChange++;
+				this.timeBetweenChangeDir = Math.floor(Math.random() * 1000) + 1;
             } else if (this.addedCyclesTilDirectionChange == 1) {
                 this.cyclesTilDirectionChange = timeBetweenDirChange;
                 this.changeDirection();
                 this.addedCyclesTilDirectionChange++;
+				this.timeBetweenChangeDir = Math.floor(Math.random() * 1000) + 1;
             } else if (this.addedCyclesTilDirectionChange == 2) {
                 this.cyclesTilDirectionChange = timeBetweenDirChange;
                 this.changeDirection();
                 this.addedCyclesTilDirectionChange++;
+				this.timeBetweenChangeDir = Math.floor(Math.random() * 1000) + 1;
             } else if (this.addedCyclesTilDirectionChange == 3) {
                 this.cyclesTilDirectionChange = timeBetweenDirChange;
                 this.changeDirection();
                 this.addedCyclesTilDirectionChange = 0;
+				this.timeBetweenChangeDir = Math.floor(Math.random() * 1000) + 1;
             }
         }
 

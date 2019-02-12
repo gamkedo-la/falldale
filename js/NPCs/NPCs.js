@@ -1,6 +1,3 @@
-var npcMoveSpeed = 0.5;
-const NPC_TIME_BETWEEN_CHANGE_DIR = 100;
-
 npcClass.prototype = new enemyClass();
 
 function npcClass(npcName, npcPic) {
@@ -16,16 +13,19 @@ function npcClass(npcName, npcPic) {
     this.height = 50;
     this.ticksPerFrame = 5;
     this.npcMove = true;
+	this.npcTimeBetweenChangeDir = 100;
+	this.npcMoveSpeed = 0.5;
 
     this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
         this.superClassReset(resetX, resetY);
         this.myNPCPic = npcPic;
+		this.npcTimeBetweenChangeDir = Math.floor(Math.random() * 1000) + 1;
     }
 
     this.superClassMove = this.move;
     this.move = function() {
-        this.superClassMove(NPC_TIME_BETWEEN_CHANGE_DIR, npcMoveSpeed);
+        this.superClassMove(this.npcTimeBetweenChangeDir, this.npcMoveSpeed);
 
         if (this.walkNorth) {
             this.sy = this.height;

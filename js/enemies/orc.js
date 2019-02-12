@@ -24,7 +24,7 @@ function orcClass(orcName, whichPicture) {
         this.superClassReset(resetX, resetY);
         this.newRandomPic();
         this.health = 12;
-		this.orcTimeBetweenChangeDir = 100;
+		this.orcTimeBetweenChangeDir = Math.floor(Math.random() * 1000) + 1;
     }
 
     this.superClassMove = this.move;
