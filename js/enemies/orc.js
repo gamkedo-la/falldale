@@ -17,7 +17,7 @@ function orcClass(orcName, whichPicture) {
     this.height = 69;
     this.ticksPerFrame = 5;
     this.orcMove = true;
-	this.orcMoveSpeed = .75;
+	this.orcMoveSpeed = .45;
 
 	this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
@@ -115,8 +115,6 @@ function orcClass(orcName, whichPicture) {
 			if(gamePaused == false){
 				this.sx = this.frameIndex * this.width;
 			}
-				
-			this.sx = 0;
 				
 			canvasContext.drawImage(shadowPic, this.x-4, this.y+54);
             canvasContext.drawImage(this.myOrcPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
