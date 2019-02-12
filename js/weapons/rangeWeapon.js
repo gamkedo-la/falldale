@@ -17,7 +17,9 @@ function rangedWeaponClass(){
 			this.damagePoints = Math.floor(Math.random() * damageDice) + 1
 			displayDamagePoints = this.damagePoints;
 			dialog = "Successful hit on "+ thisEnemy.myName+"!";
-			thisEnemy.takeDamage(damagePoints);
+			if (thisEnemy.takeDamage) { // can be undefined
+				thisEnemy.takeDamage(damagePoints);
+			}
 		}
 	}
 	

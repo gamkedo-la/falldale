@@ -118,7 +118,9 @@ function rockClass() {
             this.y < (thisEnemy.y + thisEnemy.height)) { // within bottom 
             dialog = "Successful rock throw hit on " + thisEnemy.myName + " for .25 points of damage!";
             if (this.damage == 0.25) {
-                thisEnemy.takeDamage(this.damage);
+                if (thisEnemy.takeDamage) { // can be undefined
+                    thisEnemy.takeDamage(this.damage);
+                }
                 this.damage = this.damage - 0.25;
             }
         } else {
