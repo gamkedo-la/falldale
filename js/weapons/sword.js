@@ -76,7 +76,9 @@ function swordClass() {
 			
 			if(this.damagePoints > 0){
 				dialog = "Successful hit "+ thisEnemy.myName+" for " + this.damagePoints +" damage point!";
-				thisEnemy.takeDamage(this.damagePoints)
+				if (thisEnemy.takeDamage) { // this can sometimes be undefined
+					thisEnemy.takeDamage(this.damagePoints)
+				}
 				this.damagePoints = 0;
 			}
 
