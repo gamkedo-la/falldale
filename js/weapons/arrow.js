@@ -129,7 +129,9 @@ function arrowClass() {
 			{ // within bottom 
 				dialog = "Successful archery hit on "+ thisEnemy.myName+"!";
 				if (this.damage == 0.5) {
-					thisEnemy.takeDamage(this.damage)
+					if (thisEnemy.takeDamage) { // can be undefined
+						thisEnemy.takeDamage(this.damage)
+					}
 					this.damage -= 0.5;
 				} else {
 					return false;
