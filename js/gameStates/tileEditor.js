@@ -44,12 +44,21 @@ function tileEditorInput(whichKeyCode){
 			roomGrid[tileSelected]--;
 		}		
 		break;
-		case KEY_SPACEBAR:
-			console.log(roomGrid);
+		case KEY_DOWN_ARROW:
+		if(tileSelected != -1){
+			roomGrid[tileSelected]--;
+		}
+		break;
+		case KEY_LEFT_ARROW:
+			console.log("Down Arrow");
+		break;
+		case KEY_RIGHT_ARROW:
+			console.log("Up Arrow");
+		break;
 	}
 	dialog = "Room Grid tile number: "+roomGrid[tileSelected];
 	setDialogUICountdown(5);
-	drawDialog
+	drawDialog();
 }
 
 
