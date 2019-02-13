@@ -3,6 +3,7 @@
 var tileSelected = -1;
 var tileSelectedClicked = false;
 var tiletypeSelected = -1;
+var isDisplayRoomGridOn = false;
 
 function drawEditorMode() {
 	//loadLevel(allGrass);
@@ -17,9 +18,12 @@ function drawEditorMode() {
 		tileSelectedClicked = false;
 		console.log("Tile Selected After clicking: "+tileTypeSelected);
 		console.log("Room Grid Index Number: "+tileSelected);
-		roomGrid[tileUnderMouseIndex] = tileSelected;
+		//roomGrid[tileUnderMouseIndex] = tileSelected;
 	}
-	drawDialog()
+	drawDialog();
+	if(isDisplayRoomGridOn){
+		displayRoomGrid();
+	}
 }
 
 function drawDialog() {
@@ -36,23 +40,20 @@ function drawDialog() {
 
 ///// Use Up and Down to switch between tiles
 function tileEditorInput(whichKeyCode){
-	
-	console.log("Prior to input: "+roomGrid[tileTypeSelected]);
 	switch(whichKeyCode){
 		case KEY_UP_ARROW:
-		if(tileTypeSelected != -1){
-			console.log(roomGrid[tileTypeSelected]);
-			if(roomGrid[tileTypeSelected] < 74){  // need to write code not to have a hard number of 74 for roomGrid's length
-				roomGrid[tileTypeSelected]++;
-			}
-		}		
+			if(tileTypeSelected != -1){
+				if(roomGrid[tileSelected] < 74){  // need to write code not to have a hard number of 74 for roomGrid's length
+					roomGrid[tileSelected]++;
+				}
+			}		
 		break;
 		case KEY_DOWN_ARROW:
-		if(tileTypeSelected != -1){
-			if(roomGrid[tileTypeSelected] > 0){
-				roomGrid[tileTypeSelected]--;
-			}
-		}		
+			if(tileTypeSelected != -1){
+				if(roomGrid[tileSelected] > 0){
+					roomGrid[tileSelected]--;
+				}
+			}		
 		break;
 		case KEY_LEFT_ARROW:
 			console.log("Left Arrow");
@@ -60,12 +61,28 @@ function tileEditorInput(whichKeyCode){
 		case KEY_RIGHT_ARROW:
 			console.log("Right Arrow");
 		break;
+		
+		case KEY_SPACEBAR:
+			downloadString(roomGrid, ".txt", "updatedRoomGrid")
+			
+		break;
 	}
-	console.log("After input: " +roomGrid[tileTypeSelected]);
-	dialog = "Room Grid tile number: "+roomGrid[tileTypeSelected];
-	
 	setDialogUICountdown(5);
 	drawDialog();
+}
+
+function downloadString(text, fileType, fileName) {
+  var blob = new Blob([text], { type: fileType });
+
+  var a = document.createElement('a');
+  a.download = fileName;
+  a.href = URL.createObjectURL(blob);
+  a.dataset.downloadurl = [fileType, a.download, a.href].join(':');
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function() { URL.revokeObjectURL(a.href); }, 1500);
 }
 
 

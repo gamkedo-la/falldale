@@ -43,7 +43,7 @@ var dialogUIVisibilityCountdown = 3;
 
 
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
+	canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     stateScreenOffsetX = canvas.width/2 - 400;
     stateScreenOffsetY = canvas.height/2 - 300;
