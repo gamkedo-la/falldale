@@ -104,6 +104,7 @@ function keyPressed(evt) {
     var debugModeKey = NUM_1;
     var tileEditorModeKey = NUM_2;
     var paused = KEY_P;
+    var mute = KEY_M;
 
     if (evt.keyCode == paused) {
         if (gamePaused) {
@@ -116,6 +117,11 @@ function keyPressed(evt) {
 
     if (gamePaused) {
         return;
+    }
+
+    if(evt.keyCode == mute) {
+        muteInputCycle++;
+        CycleMute();
     }
 
     if (isInShop) {

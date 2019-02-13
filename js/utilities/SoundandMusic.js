@@ -54,3 +54,24 @@ function BackgroundMusicClass() {
         }
     }
 }
+
+function CycleMute() {
+    switch(muteInputCycle) {
+        case 1:
+            // Mute background music
+            backgroundMusic.startOrStopMusic();
+            break;
+        case 2:
+            // Mute SFX
+            break;
+        case 3: 
+            // Mute SFX and background music
+            break;
+        case 4:
+            // Return to normal
+            backgroundMusic.startOrStopMusic();
+            // Reset the counter to zero
+            muteInputCycle = 0;
+            break;
+    }
+}

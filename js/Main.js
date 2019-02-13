@@ -23,6 +23,7 @@ var debugMode = false;
 var displayHealth = true;
 var tileEditor = false;
 var gamePaused = false;
+var muteInputCycle = 0;
 
 // Sounds //
 
