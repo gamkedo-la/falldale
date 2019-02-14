@@ -63,7 +63,9 @@ function tileEditorInput(whichKeyCode){
 		break;
 		
 		case KEY_SPACEBAR:
-			downloadString(roomGrid, ".txt", "updatedRoomGrid")
+		// the 2nd parameter is a MIME type code, not the file extension,
+		// which is set to text not .js to avoid browser warnings	
+		downloadString("var levelOne = ["+roomGrid+"];", "text/plain", "updatedRoomGrid.txt"); 
 			
 		break;
 	}
