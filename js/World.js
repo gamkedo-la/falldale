@@ -406,6 +406,16 @@ function drawRoom() {
 			}
 			drawTileFX(tileKindHere, drawTileX, drawTileY);
 			canvasContext.drawImage(useImg, drawTileX, drawTileY);
+
+			// edit mode highlight
+			if (tileEditor && arrayIndex==tileSelected) {
+				canvasContext.beginPath();
+				canvasContext.lineWidth = "1";
+				canvasContext.strokeStyle = "red";
+				canvasContext.rect(drawTileX, drawTileY, TILE_W, TILE_H); 
+				canvasContext.stroke();
+			}
+
 			drawTileX += TILE_W;
 			arrayIndex++;
 		} // end of for each col
