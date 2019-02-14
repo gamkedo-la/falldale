@@ -412,7 +412,7 @@ function drawRoom() {
 				canvasContext.beginPath();
 				canvasContext.lineWidth = "1";
 				canvasContext.strokeStyle = "red";
-				canvasContext.rect(drawTileX, drawTileY, TILE_W, TILE_H); 
+				canvasContext.rect(drawTileX+1, drawTileY+1, TILE_W-1, TILE_H-1); 
 				canvasContext.stroke();
 			}
 
