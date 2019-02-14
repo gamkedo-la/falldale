@@ -8,6 +8,7 @@ var rooftops = [ // x1,y1,x2,y2
 	[11,17,17,22],
 	[21,12,28,18]
 ];
+
 //TILE_ROOF_SIDERIGHT
 //TILE_ROOF_BACKRIGHT
 //TILE_ROOF_FRONTRIGHT
@@ -52,14 +53,17 @@ function drawRooftops() {
 					pic = TILE_ROOF_CENTER;
 					if (row==firstRow) {
 						if (col==firstCol) pic = TILE_ROOF_BACKLEFT;
+						else if (col==lastCol) pic = TILE_ROOF_BACKRIGHT;
 						else pic = TILE_ROOF_BACKSIDE;
 					}
 					else if (row==lastRow) {
 						if (col==firstCol) pic = TILE_ROOF_FRONTLEFT;
+						else if (col==lastCol) pic = TILE_ROOF_FRONTRIGHT;
 						else pic = TILE_ROOF_FRONT;
 					}
 					else { // not first or last row
 						if (col==firstCol) pic = TILE_ROOF_LEFTSIDE;
+						else if (col==lastCol) pic = TILE_ROOF_SIDERIGHT;
 						else pic = TILE_ROOF_CENTER;
 					}
 
