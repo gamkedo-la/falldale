@@ -1,4 +1,5 @@
 var audioFormat;
+var muteAudio = true;
 
 function setFormat() {
     var audio = new Audio();
@@ -44,6 +45,7 @@ function BackgroundMusicClass() {
         musicSound = new Audio("sound/" + filenameWithPath + audioFormat);
         musicSound.loop = true;
         musicSound.play();
+		muteAudio = false;
     }
 
     this.startOrStopMusic = function() {
@@ -51,6 +53,7 @@ function BackgroundMusicClass() {
             musicSound.play();
         } else {
             musicSound.pause();
+			muteAudio = true;
         }
     }
 }

@@ -310,6 +310,9 @@ function drawAll() {
         health();
         messageDraw();
         damageDraw();
+		if(muteAudio){
+			canvasContext.drawImage(muteAudioPic, 20, 20);
+		}
         if (inventoryScreen) {
             inventoryDraw();
         }

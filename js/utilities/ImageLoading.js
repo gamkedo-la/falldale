@@ -2,6 +2,7 @@ var titlepagePic = document.createElement("img");
 var scrollBackgroundPic = document.createElement("img");
 var storeFrontPic = document.createElement("img");
 var healerStorePic = document.createElement("img");
+var muteAudioPic = document.createElement("img");
 
 
 var warriorPic = document.createElement("img");
@@ -123,7 +124,8 @@ function loadImages() {
 			{tileType: TILE_TREE2BOTTOMHALF,  theFile: "Trees/tree2bottomhalf.png"},		
 			{tileType: TILE_TREE3TOPHALF,  theFile: "Trees/tree3tophalf.png"},
 			{tileType: TILE_TREE3BOTTOMHALF,  theFile: "Trees/tree3bottomhalf.png"},				
-							
+					
+			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
 			{varName: skeletonPic, theFile: "Monsters/skeleton.png"},
