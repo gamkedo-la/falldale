@@ -53,6 +53,9 @@ window.onload = function() {
     canvas = document.getElementById('gameCanvas');
     canvasContext = canvas.getContext('2d');
     window.addEventListener("resize", resizeCanvas);
+    window.addEventListener('focus', function () {gamePaused = false;});
+    window.addEventListener('blur', function() {gamePaused = true;})
+
     resizeCanvas();
 
     colorRect(0, 0, canvas.width, canvas.height, 'orange'); // startup page
