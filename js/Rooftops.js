@@ -3,6 +3,9 @@
 
 // TODO: add to level editor
 var rooftops = [ // x1,y1,x2,y2
+	[0,0,4,2],
+	[19,0,24,3],
+	[26,0,31,3],
 	[8,3,16,8], 
 	[0,19,4,22],
 	[11,17,17,22],
@@ -32,7 +35,7 @@ function drawRooftops() {
 		var playerInsideBuilding = false;
 		var mouseInsideBuilding = false;
 
-		// only draw roof if playter is not underneath it
+		// only draw roof if player is not underneath it
 		if (px>=firstCol && px<=lastCol && py>=firstRow && py<=lastRow) {
 			playerInsideBuilding = true;
 		}

@@ -13,11 +13,11 @@ function orcClass(orcName, whichPicture) {
     this.tickCount = 0;
     this.frameIndex = 0;
     this.width = 51;
-    this.numberOfFrames = 4;
+    this.numberOfFrames = 6;
     this.height = 69;
     this.ticksPerFrame = 5;
     this.orcMove = true;
-	this.orcMoveSpeed = .45;
+	this.orcMoveSpeed = .6;
 
 	this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
