@@ -25,6 +25,7 @@ function skeletonClass(skeletonName) {
 		this.superClassReset(resetX, resetY);
 		this.mySkeletonPic = skeletonPic;
 		this.health = 8;
+		this.newRandomPic();
 	}
 	
 
@@ -70,6 +71,21 @@ function skeletonClass(skeletonName) {
 		}
 		// add result if true
 	}
+	
+	this.newRandomPic = function() {
+        var whichPic = Math.round(Math.random() * 3);
+        switch (whichPic) {
+            case 0:
+                this.mySkeletonPic = skeletonPic;
+                break;
+            case 1:
+                this.mySkeletonPic = skeletonPic2;
+                break;
+            case 2:
+                this.mySkeletonPic = skeletonPic3;
+                break;
+        }
+    }
 		
 	this.draw = function() { 
 
@@ -85,11 +101,16 @@ function skeletonClass(skeletonName) {
 				this.frameIndex = 0;
 			}
 		}	
+		
+		
 		if(this.health > 0){
 			
 			if(gamePaused == false){
 				this.sx = this.frameIndex * this.width;
 			}
+			
+			this.sy = 0;
+			this.sx = 0;
 			
 			canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 			canvasContext.drawImage(this.mySkeletonPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
