@@ -15,7 +15,7 @@ function arrowClass() {
 	this.damage = 0.5;
 	this.arrowLife = ARROW_LIFE;
 	this.arrowQuantity = 5;
-	this.direction;
+	this.direction = direction; //  arrow's direction is initialized to the direction global variable instead of blank
 	//this.myArrowPic = arrowPic;
 
 	this.reset = function() {
@@ -28,23 +28,11 @@ function arrowClass() {
 		this.damagePoints = Math.floor(Math.random() * this.damageDice) + 1
 	}
 	
-	this.move = function() {  /////// Need to Fix arrow from moving in player's direction after shot
+	this.move = function() {
 		if(this.arrowLife > 0) {
 			this.arrowLife--;
-		}
-		
-		if(this.arrowLife == 1){
-		if(direction == "north") {
-				this.direction = "north";
-			} else if(direction == "south") {
-				this.direction = "south";
-			} else if(direction == "west") {
-				this.direction = "west";
-			} else if(direction == "east") {
-				this.direction = "east";
-			}
-		}
-
+		}			
+			
 		if(this.direction == "north") {
 			this.xv = 0;
 			this.yv = -this.speed;
@@ -72,15 +60,14 @@ function arrowClass() {
 
 		this.x += this.xv;
 		this.y += this.yv;
-
 	}
 
-	this.isArrowReadyToShot = function() {
+	this.isArrowReadyToShoot = function() {
 		this.damage = 0.5
         return(this.arrowLife <= 0);
     }
 	
-	this.shootFrom = function(warriorAttack) {
+	this.shootFrom = function(warriorAttack, dir = direction) {
 		
 		if(this.arrowQuantity > 0){
 			this.arrowQuantity--;
@@ -92,21 +79,22 @@ function arrowClass() {
 			} else {
 				dialog = "That was my last arrow.  I need to find more!";
 			}
+						
+			this.direction = dir;		
 
-			
-			if(direction == "north") {
+			if(dir == "north") {
 				this.x = warriorAttack.x+25;
 				this.y = warriorAttack.y+25;
 			}
-			else if(direction == "south") {
+			else if(dir == "south") {
 				this.x = warriorAttack.x+5;
 				this.y = warriorAttack.y+25 ;
 			}
-			else if(direction == "west") {
+			else if(dir == "west") {
 				this.x = warriorAttack.x;
 				this.y = warriorAttack.y+30;
 			}
-			else if(direction == "east") {
+			else if(dir == "east") {
 				this.x = warriorAttack.x+15;
 				this.y = warriorAttack.y+30;
 			}
