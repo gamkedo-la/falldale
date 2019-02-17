@@ -1,5 +1,8 @@
 var playerMoveSpeed = 3.0;
-var direction = "south";
+
+// TODO: Probably want to set direction per object instead of 
+//       putting it in a global variable
+var direction = "south"; 
 
 level02Experience = 500;
 level03Experience = 2,000;
@@ -415,14 +418,14 @@ function warriorClass() {
 	}
 	
 	this.shotArrow = function() {
-		if( this.myArrow.isArrowReadyToShot() ) {	
-			this.myArrow.shootFrom(this);
+		if( this.myArrow.isArrowReadyToShoot() ) {	
+			this.myArrow.shootFrom(this, direction);
 		}
 	}
 	
 	this.shotRock = function() {
-		if( this.myRock.isRockReadyToShot() ) {	
-			this.myRock.shootFrom(this);
+		if( this.myRock.isRockReadyToShoot() ) {	
+			this.myRock.shootFrom(this, direction);
 		}
 	}
 	
