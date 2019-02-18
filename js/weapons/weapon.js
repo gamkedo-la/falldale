@@ -43,31 +43,33 @@ function weaponClass() {
         return false;
     }
 
-    this.hitTest = function(thisEnemy) {
+    this.rangeTest = function(adversary) {
+        if (this.x > adversary.x && // within left side
+            this.x < (adversary.x + adversary.width) && //within right side
+            this.y > adversary.y && // within top side
+            this.y < (adversary.y + adversary.height)) {
+                return true;
+        } else {
+            return false;
+        }
+    }
+
+    this.hitTest = function(weilder, adversary) {
         if (this.life <= 0) {
             return false;
         }
 
-        if (this.x > thisEnemy.x && // within left side
-            this.x < (thisEnemy.x + thisEnemy.width) && //within right side
-            this.y > thisEnemy.y && // within top side
-            this.y < (thisEnemy.y + thisEnemy.height)) { // within bottom
-
-                //Close enough to the enemy to determine if this is a hit or not
-                this.rollToDetermineIfHit();
-                if(this.toHitPoints > 10){
-                    //this is a hit
-                    this.rollForDamage();
-                    this.life = 0;//assumes weapons are only good for one hit
-                    thisEnemy.takeDamage(this.damagePoints);
-                    return true;
-                } else {
-                    //this is a miss
-                    this.life = 0;//assumes weapons are only good for one try
-                    return false;
-                }
+        //Close enough to the enemy to determine if this is a hit or not
+        this.rollToDetermineIfHit();
+        if(this.toHitPoints > 10){
+            //this is a hit
+            this.rollForDamage();
+            this.life = 0;//assumes weapons are only good for one hit
+            adversary.takeDamage(this.damagePoints);
+            return true;
         } else {
-            //this means the weapon isn't even close to the enemy
+            //this is a miss
+            this.life = 0;//assumes weapons are only good for one try
             return false;
         }
     }

@@ -74,9 +74,9 @@ function rockClass() {
     }
 
     this.superClassHitTest = this.hitTest;
-    this.hitTest = function(thisEnemy) {
-        if(this.superClassHitTest(thisEnemy)) {
-			dialog = "Successful rock hit on "+ thisEnemy.myName+"!";
+    this.hitTest = function(weilder, adversary) {
+        if(this.superClassHitTest(weilder, adversary)) {
+			dialog = "Successful rock hit on "+ adversary.myName+"!";
         }
 	}
 

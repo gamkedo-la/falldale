@@ -402,14 +402,17 @@ function warriorClass() {
 			//empty
 		}
 		
-		if( this.myArrow.hitTest(thisEnemy) ) {
-			//empty
+		if(this.myArrow.rangeTest(thisEnemy)) {
+			if( this.myArrow.hitTest(this, thisEnemy) ) {
+				//empty
+			}
 		}
-		if( this.myRock.hitTest(thisEnemy) ) {
-			//empty
-		}
-		
-		
+
+		if(this.myRock.rangeTest(thisEnemy)) {
+			if( this.myRock.hitTest(this, thisEnemy) ) {
+				//empty
+			}
+		}		
 	}
 	
 	this.swordSwing = function() {

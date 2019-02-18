@@ -10,6 +10,7 @@ function goblinClass(goblinName) {
     this.alive = true;
     this.myName = goblinName;
     this.myBite = new biteClass();
+    this.myMelee = new clubClass();
 
     this.tickCount = 0;
     this.frameIndex = 0;
@@ -47,6 +48,10 @@ function goblinClass(goblinName) {
         this.myBite.move();
         this.myBite.x = this.x;
         this.myBite.y = this.y;
+
+        this.myMelee.move();
+        this.myMelee.x = this.x;
+        this.myMelee.y = this.y;
     }
     
     this.takeDamage = function(howMuch) {
@@ -62,7 +67,6 @@ function goblinClass(goblinName) {
     }
 
     this.draw = function() {
-
         if (this.goblinMove) {
             this.tickCount++;
 			

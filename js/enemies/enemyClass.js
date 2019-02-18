@@ -16,6 +16,9 @@ function enemyClass() {
     this.walkEast = true;
     this.walkSouth = false;
     this.walkWest = false;
+    this.myBite = null;
+    this.myMelee = null;
+    this.myRanged = null;
 
     this.move = function(timeBetweenDirChange, moveSpeed) {
         if (this.health <= 0) {
@@ -181,10 +184,26 @@ function enemyClass() {
     }
 
     this.isOverlappingPoint = function() { // textX is redWarrior.x and testY is redWarrior.y
-        if(this.myBite.isReady()) {
-            this.myBite.shootFrom(this);
-            if(this.myBite.hitTest(redWarrior)) {
-                return true;
+        if(this.myBite.rangeTest(redWarrior)) {
+            if(this.myBite.isReady()) {
+                this.myBite.shootFrom(this);
+                if(this.myBite.hitTest(this, redWarrior)) {
+                    return true;
+                }
+            }
+        } else if((this.myMelee != null) && (this.myMelee.rangeTest(this, redWarrior))) {
+            if(this.myMelee.isReady()) {
+                this.myMelee.shootFrom(this);
+                if(this.myMelee.hitTest(this, redWarrior)) {
+                    return true;
+                }
+            }
+        } else if((this.myRanged != null) && (this.myRanged.rangeTest(redWarrior))) {
+            if(this.myRanged.isReady()) {
+                this.myRanged.shootFrom(this);
+                if(this.myRanged.hitTest(this, redWarrior)) {
+                    return true;
+                }
             }
         }
     }
