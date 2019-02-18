@@ -1,33 +1,23 @@
 const ROCK_LIFE = 30;
 const ROCK_SPEED = 2.0;
-var rockDead = false;
+const ROCK_DAMAGE = 0.25;
 
-
+rockClass.prototype = new weaponClass();
 function rockClass() {
-    this.sx = 0;
-    this.sy = 0;
-    this.speed = 5;
-    this.ang = 01;
-    this.xv = 1;
-    this.yv = 1;
-    this.length = 10;
-    this.width = 5;
-    this.damage = 0.25;
-    this.rockLife = ROCK_LIFE;
     this.rockQuantity = 5;
     this.direction = direction;
-    //this.myRockPic = rockPic;
+    this.baseDamage = ROCK_DAMAGE;
+    this.damageDice = 4;//4 sided die, overrides default 6
+    this.damagePoints = 4;//overrides default 6
 
     this.reset = function() {
-        this.rockLife = 0;
-        this.damage = 0.25
-        rockDead = true;
+        this.life = 0;
+        this.damage = ROCK_DAMAGE;
     }
 
+    this.superClassMove = this.move;
     this.move = function() {
-        if (this.rockLife > 0) {
-            this.rockLife--;
-        }
+        this.superClassMove();
 
         if (this.direction == "north") {
             this.xv = 0;
@@ -53,11 +43,6 @@ function rockClass() {
 
         this.x += this.xv;
         this.y += this.yv;
-    }
-
-    this.isRockReadyToShoot = function() {
-        this.damage = 0.25;
-        return (this.rockLife <= 0);
     }
 
     this.shootFrom = function(warriorAttack, dir = direction) {
@@ -89,40 +74,27 @@ function rockClass() {
                 this.y = warriorAttack.y + 30;
             }
 
+            this.rollToDetermineIfHit();
+            if(this.toHitPoints > 0){
+                this.rollForDamage();
+            }
 
-            this.rockLife = ROCK_LIFE;
+            this.life = ROCK_LIFE;
         }
     }
 
+    this.superClassHitTest = this.hitTest;
     this.hitTest = function(thisEnemy) {
-
-        if (this.rockLife <= 0) {
-            return false;
-        }
-
-        if (this.x > thisEnemy.x && // within left side
-            this.x < (thisEnemy.x + thisEnemy.width) && //within right side
-            this.y > thisEnemy.y && // within top side
-            this.y < (thisEnemy.y + thisEnemy.height)) { // within bottom 
-            dialog = "Successful rock throw hit on " + thisEnemy.myName + " for .25 points of damage!";
-            if (this.damage == 0.25) {
-                if (thisEnemy.takeDamage) { // can be undefined
-                    thisEnemy.takeDamage(this.damage);
-                }
-                this.damage = this.damage - 0.25;
+        if(this.superClassHitTest(thisEnemy)) {
+            if (this.damage == ROCK_DAMAGE) {//What about checking for (this.damage > 0)?
+                thisEnemy.takeDamage(this.damage);
+                this.damage = this.damage - ROCK_DAMAGE;//Can we just set this to zero?
             }
-        } else {
-            return false;
         }
     }
 
     this.draw = function() {
-
-        var rockXLocation = redWarrior.x;
-        var rockYLocation = redWarrior.y;
-
-        if (this.rockLife > 0) {
-            rockDead = false;
+        if (this.life > 0) {
             colorCircle(this.x, this.y, 5, "grey");
         }
     }

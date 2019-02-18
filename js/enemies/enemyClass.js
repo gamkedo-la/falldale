@@ -179,6 +179,11 @@ function enemyClass() {
             this.walkWest = true;
         }
     }
+
+    this.takeDamage = function(howMuch) {
+        console.log("Did not override enemyClass.takeDamage(howMuch) => INVINCIBLE!");
+		return;//failure to override results in invincible enemies
+	}
 	
 	this.reset = function(resetX, resetY){
         this.x = resetX;

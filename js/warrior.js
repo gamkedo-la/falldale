@@ -18,6 +18,7 @@ function warriorClass() {
 	this.mySword = new swordClass();
 	this.myArrow = new arrowClass(); 
 	this.myRock = new rockClass();
+	this.recentWeapon = this.mySword;
 	this.arrowList = [];
 	this.x = 65;
 	this.centerX = 40;
@@ -346,7 +347,7 @@ function warriorClass() {
 		} // end of switch
 		
 		this.previousTileType = walkIntoTileType;
-		this.mySword.move(this);
+		this.mySword.move();
 		this.myArrow.move();
 		this.myRock.move();
 		
@@ -412,19 +413,22 @@ function warriorClass() {
 	}
 	
 	this.swordSwing = function() {
-		if( this.mySword.isSwordReadyToSwing() ) {	
+		if( this.mySword.isReady() ) {	
+			this.recentWeapon = this.mySword;
 			this.mySword.shootFrom(this);
 		}
 	}
 	
 	this.shotArrow = function() {
-		if( this.myArrow.isArrowReadyToShoot() ) {	
+		if( this.myArrow.isReady() ) {
+			this.recentWeapon = this.myArrow;
 			this.myArrow.shootFrom(this, direction);
 		}
 	}
 	
 	this.shotRock = function() {
-		if( this.myRock.isRockReadyToShoot() ) {	
+		if( this.myRock.isReady() ) {	
+			this.recentWeapon = this.myRock;
 			this.myRock.shootFrom(this, direction);
 		}
 	}

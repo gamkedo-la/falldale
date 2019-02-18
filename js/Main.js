@@ -3,6 +3,10 @@ var debugSkipToGame = true;
 // Characters //
 
 var canvas, canvasContext;
+var framesPerSecond = 30;
+var damageUICountdown = 3;//in seconds
+var diceWidth = 40;
+var diceHeight = 40;
 var stateScreenOffsetX, stateScreenOffsetY;
 var redWarrior = new warriorClass();
 var enemyList = [];
@@ -66,7 +70,6 @@ window.onload = function() {
 }
 
 function imageLoadingDoneSoStartGame() {
-    var framesPerSecond = 30;
     setInterval(updateAll, 1000 / framesPerSecond);
 
     setupInput();
@@ -203,24 +206,28 @@ function displayMessage() {
 
 function damageDraw() {
     var sx = 0;
+    var sy = 0;
     damageUIVisibilityCountdown--;
 
     if (damageUIVisibilityCountdown <= 0) {
         return;
     } else {
-        sx = (displayDamagePoints-1) * 40;
+        sx = (displayDamagePoints-1) * diceWidth;
+        if(redWarrior.recentWeapon == redWarrior.myRock) {
+            sy = diceHeight;
+        }
     }
 
-    if (redWarrior.mySword.toHitPoints > 0) {
+    if(redWarrior.recentWeapon.toHitPoints > 0) {
         colorText("Attack", canvas.width - 230, canvas.height - 32, "Black");
         colorText("Roll", canvas.width - 230, canvas.height - 12, "Black");
         canvasContext.drawImage(twentySidedDicePic , canvas.width-170,canvas.height-40, 30, 30);
-        colorText(redWarrior.mySword.toHitPoints, canvas.width - 162, canvas.height - 20, "Black");
+        colorText(redWarrior.recentWeapon.toHitPoints, canvas.width - 162, canvas.height - 20, "Black");
 
-        if (redWarrior.mySword.toHitPoints > 10) { /////////  eventually would like to incorporate armor and weapon to determine if a hit is done.... for now, greater than 10. //////
+        if (redWarrior.recentWeapon.toHitPoints > 10) { /////////  eventually would like to incorporate armor and weapon to determine if a hit is done.... for now, greater than 10. //////
             colorText("Damage", canvas.width - 120, canvas.height - 32, "Black");
             colorText("Roll", canvas.width - 120, canvas.height - 12, "Black");
-            canvasContext.drawImage(dicePic, sx, 0, 40, 40, canvas.width - 50, canvas.height - 40, 30, 30);
+            canvasContext.drawImage(dicePic, sx, sy, diceWidth, diceHeight, canvas.width - 50, canvas.height - 40, 30, 30);
         }
     }
 }

@@ -1,60 +1,24 @@
 const SWORD_LIFE = 5;
 const SWORD_SPEED = 1.0;
-var swordAlive = false;
+const SWORD_COOLDOWN = 2;
+//var swordAlive = false;
 var displayDamagePoints = 0;
 var damageUIVisibilityCountdown = 0;
 
-
+swordClass.prototype = new weaponClass();
 function swordClass() {
-	this.sx = 0;
-	this.sy = 0;
-	this.ang = 01;
 	this.xv = 5;
 	this.yv = 5;
-	this.swordLife = SWORD_LIFE;
-	this.coolDownTime = 2;
+	this.life = SWORD_LIFE;
+	this.coolDownTime = 0;
 	this.mySwordPic = swordPic;
-	this.damagePoints = 6;
-	this.damageDice = 6; // 6 Sided Dice
 	this.immunity = false;
 	this.attackHitBonus = 10;
-	this.toHitPoint = 0;
-	this.attackDice = 20;
-
 
 	this.reset = function() {
-		this.swordLife = 0;
-		swordAlive = true;
+		this.life = 0;
 	} 
-	
-	this.rollToDetermineIfHit = function() {
-		this.setDamageUICountdown(3);
-		this.toHitPoints = Math.floor(Math.random() * this.attackDice) + 1
-	}
-	
-	this.rollForDamage = function() {
-		if(this.toHitPoints >= 10){
-			this.damagePoints = Math.floor(Math.random() * this.damageDice) + 1
-			displayDamagePoints = this.damagePoints;
-		}
-	}
-	
-	this.setDamageUICountdown = function (seconds) {
-		damageUIVisibilityCountdown = seconds * 30; // 30fps
-	}
-
-	this.move = function(weilder) {
-		if(this.swordLife > 0) {
-			this.swordLife--;
-		this.swX = weilder.x;
-		this.swY = weilder.y;	  
-		}
-	}
-
-	this.isSwordReadyToSwing = function() {
-        return(this.swordLife <= 0);
-    }
-	
+		
 	this.shootFrom = function(weilder) {
 		this.x = weilder.x;
 		this.y = weilder.y;
@@ -63,11 +27,13 @@ function swordClass() {
 		if(this.toHitPoints > 0){
 			this.rollForDamage();
 		}
-		this.swordLife = SWORD_LIFE;
+		this.life = SWORD_LIFE;
+		this.coolDownTime = SWORD_COOLDOWN;
 	}
 	
+	//override weaponClass.hitTest
 	this.hitTest = function(weilder, adversary) {
-		if(this.swordLife <= 0) {
+		if(this.life <= 0) {
 			return false;
 		}
 
@@ -162,8 +128,7 @@ function swordClass() {
 			swordYLocation = weilder.centerY;
 		} 
 		
-		if(this.swordLife > 0) {
-			swordAlive = false;
+		if(this.life > 0) {
 			colorRect(swordXLocation, swordYLocation, swordWidth, swordLength, "gray" );
 		}
 	}	

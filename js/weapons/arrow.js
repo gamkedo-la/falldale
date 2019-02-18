@@ -1,38 +1,22 @@
 const ARROW_LIFE = 100;
 const ARROW_SPEED = 1.0;
-var arrowDead = false;
+const ARROW_DAMAGE = 0.5;
+//var arrowDead = false;
 
-
+arrowClass.prototype = new weaponClass();
 function arrowClass() {
-	this.sx = 0;
-	this.sy = 0;
-	this.speed = 5;
-	this.ang = 01;
-	this.xv = 1;
-	this.yv = 1;
-	this.length = 10;
-	this.width = 5;
-	this.damage = 0.5;
-	this.arrowLife = ARROW_LIFE;
+	this.baseDamage = ARROW_DAMAGE;
 	this.arrowQuantity = 5;
 	this.direction = direction; //  arrow's direction is initialized to the direction global variable instead of blank
-	//this.myArrowPic = arrowPic;
 
 	this.reset = function() {
-		this.arrowLife = 0;
-		this.damage = 0.5
-		arrowDead = true;
+		this.life = 0;
+		this.damage = ARROW_DAMAGE;
 	} 
 	
-	this.rollForDamage = function() {
-		this.damagePoints = Math.floor(Math.random() * this.damageDice) + 1
-	}
-	
+	this.superClassMove = this.move;
 	this.move = function() {
-		if(this.arrowLife > 0) {
-			this.arrowLife--;
-		}			
-			
+		this.superClassMove();
 		if(this.direction == "north") {
 			this.xv = 0;
 			this.yv = -this.speed;
@@ -61,11 +45,6 @@ function arrowClass() {
 		this.x += this.xv;
 		this.y += this.yv;
 	}
-
-	this.isArrowReadyToShoot = function() {
-		this.damage = 0.5
-        return(this.arrowLife <= 0);
-    }
 	
 	this.shootFrom = function(warriorAttack, dir = direction) {
 		
@@ -99,48 +78,28 @@ function arrowClass() {
 				this.y = warriorAttack.y+30;
 			}
 			
-			
-			this.arrowLife = ARROW_LIFE;
-		}
-	}
-	
-	this.hitTest = function(thisEnemy) {
-		
-		if(this.arrowLife <= 0) {
-			return false;
-		} 
-		
-		if(	this.x > thisEnemy.x &&    // within left side
-			this.x < (thisEnemy.x + thisEnemy.width) && //within right side
-			this.y > thisEnemy.y && // within top side
-			this.y < (thisEnemy.y + thisEnemy.height)) 
-			{ // within bottom 
-				dialog = "Successful archery hit on "+ thisEnemy.myName+"!";
-				if (this.damage == 0.5) {
-					if (thisEnemy.takeDamage) { // can be undefined
-						thisEnemy.takeDamage(this.damage)
-					}
-					this.damage -= 0.5;
-				} else {
-					return false;
+			this.rollToDetermineIfHit();
+			if(this.toHitPoints > 0){
+				this.rollForDamage();
 			}
+			
+			this.life = ARROW_LIFE;
 		}
 	}
 	
-	this.checkhit = function() {
-		if(this.damage == 1.0) {
-			dialog = "Successful hit "+ thisEnemy.myName+" for 1 damage point!";
-			this.damage = this.damage - 1;
-			thisEnemy.takeDamage(this.damage);
-		}
-	}	
+	this.superClassHitTest = this.hitTest;
+    this.hitTest = function(thisEnemy) {
+        if(this.superClassHitTest(thisEnemy)) {
+			if (this.damage == ARROW_DAMAGE) {//What about checking for (this.damage > 0)?
+				dialog = "Successful archery hit on "+ thisEnemy.myName+"!";
+                thisEnemy.takeDamage(this.damage);
+				this.damage = this.damage - ARROW_DAMAGE;//Can we just set this to zero?
+            }
+        }
+	}
 	
 	this.draw = function() {
-
-		var arrowXLocation = redWarrior.x;
-		var arrowYLocation = redWarrior.y;
-		
-		if(direction == "north") {
+/*		if(direction == "north") {
 
 		}
 		else if(direction == "south") {
@@ -151,10 +110,9 @@ function arrowClass() {
 		}
 		else if(direction == "east") {
 			
-		} 
+		} */
 		
-		if(this.arrowLife > 0) {
-			arrowDead = false;
+		if(this.life > 0) {
 			colorRect(this.x, this.y, this.width, this.length, "orange" );
 		}
 	}
