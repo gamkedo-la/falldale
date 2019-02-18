@@ -48,6 +48,7 @@ function skeletonClass(skeletonName) {
 	this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
+			setDialogUICountdown(5);
             dialog = "Ouch! I've been bite by a Skeleton! Who knew they could do that?!?";
         }
     }

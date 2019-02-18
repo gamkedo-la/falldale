@@ -95,6 +95,7 @@ function batClass() {
     this.isOverlappingPoint = function() {
         if(!this.batResting) {//Bats don't bite when they're resting
             if(this.superClassIsOverlappingPoint()) {
+				setDialogUICountdown(5);
                 dialog = "Ouch! I've been bite by a bat.  Quick! I need some garlic.";
             }
         }

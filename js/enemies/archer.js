@@ -45,6 +45,7 @@ function archerClass(archerName) {
 	this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
+			setDialogUICountdown(5);
             dialog = "Ouch! I've been bite by an Archer! An Archer!";
         }
     }
