@@ -43,11 +43,11 @@ function swordClass() {
 		damageUIVisibilityCountdown = seconds * 30; // 30fps
 	}
 
-	this.move = function() {
+	this.move = function(weilder) {
 		if(this.swordLife > 0) {
 			this.swordLife--;
-		this.swX = redWarrior.x;
-		this.swY = redWarrior.y;	  
+		this.swX = weilder.x;
+		this.swY = weilder.y;	  
 		}
 	}
 
@@ -55,9 +55,9 @@ function swordClass() {
         return(this.swordLife <= 0);
     }
 	
-	this.shootFrom = function(warriorAttack) {
-		this.x = warriorAttack.x;
-		this.y = warriorAttack.y;
+	this.shootFrom = function(weilder) {
+		this.x = weilder.x;
+		this.y = weilder.y;
 		
 		this.rollToDetermineIfHit();
 		if(this.toHitPoints > 0){
@@ -66,7 +66,7 @@ function swordClass() {
 		this.swordLife = SWORD_LIFE;
 	}
 	
-	this.hitTest = function(thisEnemy) {
+	this.hitTest = function(weilder, adversary) {
 		if(this.swordLife <= 0) {
 			return false;
 		}
@@ -75,56 +75,56 @@ function swordClass() {
 		if(this.toHitPoints >= 10){
 			
 			if(this.damagePoints > 0){
-				dialog = "Successful hit "+ thisEnemy.myName+" for " + this.damagePoints +" damage point!";
-				if (thisEnemy.takeDamage) { // this can sometimes be undefined
-					thisEnemy.takeDamage(this.damagePoints)
+				dialog = "Successful hit "+ adversary.myName+" for " + this.damagePoints +" damage point!";
+				if (adversary.takeDamage) { // this can sometimes be undefined
+					adversary.takeDamage(this.damagePoints)
 				}
 				this.damagePoints = 0;
 			}
 
-			if(thisEnemy.health < 0){
-				redWarrior.experience = redWarrior.experience + 100;
-				redWarrior.checkForLevelUp();
+			if(adversary.health < 0){
+				weilder.experience = weilder.experience + 100;
+				weilder.checkForLevelUp();
 			}
 		} else {
-			dialog = thisEnemy.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints;
+			dialog = adversary.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints;
 		}
 	}
 	
 		if(direction == "north") {// warrior facing North
 			
 						
-			if(	this.x+25 > thisEnemy.x &&    // within left side
-				this.x+25 < (thisEnemy.x + thisEnemy.width) && //within right side
-				this.y-20 > thisEnemy.y && // within top side
-				this.y-20 < (thisEnemy.y + thisEnemy.height)) // within bottom 
+			if(	this.x+25 > adversary.x &&    // within left side
+				this.x+25 < (adversary.x + adversary.width) && //within right side
+				this.y-20 > adversary.y && // within top side
+				this.y-20 < (adversary.y + adversary.height)) // within bottom 
 					{ 
 						this.checkhit();
 					}
 		} else if(direction == "south") {// warrior facing South
 			
-			if(	this.x + 10 > thisEnemy.x &&    // within left side
-				this.x + 10 < (thisEnemy.x + thisEnemy.width) && //within right side
-				this.y + 70 > thisEnemy.y && // within top side
-				this.y + 70 < (thisEnemy.y + thisEnemy.height)) // within bottom 
+			if(	this.x + 10 > adversary.x &&    // within left side
+				this.x + 10 < (adversary.x + adversary.width) && //within right side
+				this.y + 70 > adversary.y && // within top side
+				this.y + 70 < (adversary.y + adversary.height)) // within bottom 
 					{ 
 						this.checkhit();
 					}			
 		} else if(direction == "west") {// warrior facing West
 						
-			if(	this.x -30 > thisEnemy.x &&    // within left side
-				this.x -30 < (thisEnemy.x + thisEnemy.width) && //within right side
-				this.y + 25 > thisEnemy.y && // within top side
-				this.y + 25 < (thisEnemy.y + thisEnemy.height)) 
+			if(	this.x -30 > adversary.x &&    // within left side
+				this.x -30 < (adversary.x + adversary.width) && //within right side
+				this.y + 25 > adversary.y && // within top side
+				this.y + 25 < (adversary.y + adversary.height)) 
 					{
 						this.checkhit();
 					}			
 		} else if(direction == "east") {// warrior facing East
 						
-			if(	this.x + 60 > thisEnemy.x &&    // within left side
-				this.x + 60 < (thisEnemy.x + thisEnemy.width) && //within right side
-				this.y + 25 > thisEnemy.y && // within top side
-				this.y + 25 < (thisEnemy.y + thisEnemy.height)) // within bottom 
+			if(	this.x + 60 > adversary.x &&    // within left side
+				this.x + 60 < (adversary.x + adversary.width) && //within right side
+				this.y + 25 > adversary.y && // within top side
+				this.y + 25 < (adversary.y + adversary.height)) // within bottom 
 					{ 
 						this.checkhit();
 					}			    
@@ -133,40 +133,39 @@ function swordClass() {
 		}
 	}
 	
-	this.draw = function() {
+	this.draw = function(weilder) {
 
 		var swordWidth = 10;
 		var swordLength = 40;
-		var swordXLocation = redWarrior.x;
-		var swordYLocation = redWarrior.y;
+		var swordXLocation = weilder.x;
+		var swordYLocation = weilder.y;
 		
 		if(direction == "north") {
 			swordWidth = 10;
 			swordLength = 20;
-			swordXLocation = redWarrior.centerX+5;
-			swordYLocation = redWarrior.y - swordLength;
+			swordXLocation = weilder.centerX+5;
+			swordYLocation = weilder.y - swordLength;
 		} else if(direction == "south") {
 			swordWidth = 10;
 			swordLength = 40;
-			swordXLocation = redWarrior.centerX-10;
-			swordYLocation = redWarrior.centerY+10;
+			swordXLocation = weilder.centerX-10;
+			swordYLocation = weilder.centerY+10;
 		} else if(direction == "west") {
 			swordWidth = 40;
 			swordLength = 10;
-			swordXLocation = redWarrior.x - swordWidth + 10;
-			swordYLocation = redWarrior.centerY;
+			swordXLocation = weilder.x - swordWidth + 10;
+			swordYLocation = weilder.centerY;
 		} else if(direction == "east") {
 			swordWidth = 40;
 			swordLength = 10;
-			swordXLocation = redWarrior.x + 20;
-			swordYLocation = redWarrior.centerY;
+			swordXLocation = weilder.x + 20;
+			swordYLocation = weilder.centerY;
 		} 
 		
 		if(this.swordLife > 0) {
 			swordAlive = false;
 			colorRect(swordXLocation, swordYLocation, swordWidth, swordLength, "gray" );
 		}
-	}
-	
+	}	
 }
 

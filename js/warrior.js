@@ -346,7 +346,7 @@ function warriorClass() {
 		} // end of switch
 		
 		this.previousTileType = walkIntoTileType;
-		this.mySword.move();
+		this.mySword.move(this);
 		this.myArrow.move();
 		this.myRock.move();
 		
@@ -397,7 +397,7 @@ function warriorClass() {
 			//empty
 		}
 		
-		if( this.mySword.hitTest(thisEnemy) ) {
+		if( this.mySword.hitTest(this, thisEnemy) ) {
 			//empty
 		}
 		
@@ -464,7 +464,7 @@ function warriorClass() {
 				colorRect(this.centerX,this.centerY, 5, 5, 'white'); 
 			}
 	
-		this.mySword.draw();
+		this.mySword.draw(this);
 			
 		this.myArrow.draw();
 		
