@@ -8,11 +8,6 @@ function arrowClass() {
 	this.baseDamage = ARROW_DAMAGE;
 	this.arrowQuantity = 5;
 	this.direction = direction; //  arrow's direction is initialized to the direction global variable instead of blank
-
-	this.reset = function() {
-		this.life = 0;
-		this.damage = ARROW_DAMAGE;
-	} 
 	
 	this.superClassMove = this.move;
 	this.move = function() {
@@ -78,11 +73,6 @@ function arrowClass() {
 				this.y = warriorAttack.y+30;
 			}
 			
-			this.rollToDetermineIfHit();
-			if(this.toHitPoints > 0){
-				this.rollForDamage();
-			}
-			
 			this.life = ARROW_LIFE;
 		}
 	}
@@ -90,11 +80,7 @@ function arrowClass() {
 	this.superClassHitTest = this.hitTest;
     this.hitTest = function(thisEnemy) {
         if(this.superClassHitTest(thisEnemy)) {
-			if (this.damage == ARROW_DAMAGE) {//What about checking for (this.damage > 0)?
-				dialog = "Successful archery hit on "+ thisEnemy.myName+"!";
-                thisEnemy.takeDamage(this.damage);
-				this.damage = this.damage - ARROW_DAMAGE;//Can we just set this to zero?
-            }
+			dialog = "Successful archery hit on "+ thisEnemy.myName+"!";
         }
 	}
 	

@@ -13,11 +13,7 @@ function swordClass() {
 	this.coolDownTime = 0;
 	this.mySwordPic = swordPic;
 	this.immunity = false;
-	this.attackHitBonus = 10;
-
-	this.reset = function() {
-		this.life = 0;
-	} 
+	this.attackHitBonus = 10; 
 		
 	this.shootFrom = function(weilder) {
 		this.x = weilder.x;
@@ -27,6 +23,7 @@ function swordClass() {
 		if(this.toHitPoints > 0){
 			this.rollForDamage();
 		}
+		
 		this.life = SWORD_LIFE;
 		this.coolDownTime = SWORD_COOLDOWN;
 	}

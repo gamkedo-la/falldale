@@ -21,6 +21,9 @@ function batClass() {
     this.cyclesofBatResting = 200;
     this.batResting = false;
     this.alive = true;
+    this.myBite = new biteClass();	    //
+	this.myBite.baseBiteLife = 3;		//Bats bite, but only when they're not resting
+	this.myBite.baseBiteCooldown = 3;	//
 
     this.frameIndex = 0;
     this.tickCount = 0;
@@ -71,6 +74,10 @@ function batClass() {
                 }
             }
         }
+
+        this.myBite.move();
+        this.myBite.x = this.x;
+        this.myBite.y = this.y;
     }
 
     this.takeDamage = function(howMuch) {
@@ -78,11 +85,19 @@ function batClass() {
         batHurtSound.play();
 	}
 
-    this.isOverlappingPoint = function(testX, testY) {
+/*    this.isOverlappingPoint = function(testX, testY) {
         var deltaX = testX - this.x;
         var deltaY = testY - this.y;
         var dist = Math.sqrt((deltaX * deltaY) + (deltaX * deltaY));
         return (dist <= BAT_COLLISION_RADIUS);
+    }*/
+    this.superClassIsOverlappingPoint = this.isOverlappingPoint;
+    this.isOverlappingPoint = function() {
+        if(!this.batResting) {//Bats don't bite when they're resting
+            if(this.superClassIsOverlappingPoint()) {
+                dialog = "Ouch! I've been bite by a bat.  Quick! I need some garlic.";
+            }
+        }
     }
 
     this.draw = function() {

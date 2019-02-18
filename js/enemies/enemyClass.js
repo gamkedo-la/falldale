@@ -180,6 +180,15 @@ function enemyClass() {
         }
     }
 
+    this.isOverlappingPoint = function() { // textX is redWarrior.x and testY is redWarrior.y
+        if(this.myBite.isReady()) {
+            this.myBite.shootFrom(this);
+            if(this.myBite.hitTest(redWarrior)) {
+                return true;
+            }
+        }
+    }
+
     this.takeDamage = function(howMuch) {
         console.log("Did not override enemyClass.takeDamage(howMuch) => INVINCIBLE!");
 		return;//failure to override results in invincible enemies

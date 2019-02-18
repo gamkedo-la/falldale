@@ -9,7 +9,6 @@ function weaponClass() {
     this.yv = 1;
     this.length = 10;
     this.width = 5;
-    this.damage = 0;
     this.life = 0;
     this.coolDownTime = 0;
     this.damageDice = 6; // 6 Sided Dice
@@ -31,33 +30,49 @@ function weaponClass() {
 	
 	this.setDamageUICountdown = function () {
 		damageUIVisibilityCountdown = damageUICountdown * framesPerSecond;
+    }
+    
+    this.reset = function() {
+		this.life = 0;
 	}
 
     this.isReady = function() {
 		if((this.life <= 0) && (this.coolDownTime <= 0)) {
-			this.damage = this.baseDamage;
 			return true;
 		}
         return false;
     }
 
     this.hitTest = function(thisEnemy) {
-        if ((this.life <= 0) || (this.damage <= 0)) {
+        if (this.life <= 0) {
             return false;
         }
 
         if (this.x > thisEnemy.x && // within left side
             this.x < (thisEnemy.x + thisEnemy.width) && //within right side
             this.y > thisEnemy.y && // within top side
-            this.y < (thisEnemy.y + thisEnemy.height)) { // within bottom 
-                this.life = 0;//assumes weapons are only good for one hit
-                return true;
+            this.y < (thisEnemy.y + thisEnemy.height)) { // within bottom
+
+                //Close enough to the enemy to determine if this is a hit or not
+                this.rollToDetermineIfHit();
+                if(this.toHitPoints > 10){
+                    //this is a hit
+                    this.rollForDamage();
+                    this.life = 0;//assumes weapons are only good for one hit
+                    thisEnemy.takeDamage(this.damagePoints);
+                    return true;
+                } else {
+                    //this is a miss
+                    this.life = 0;//assumes weapons are only good for one try
+                    return false;
+                }
         } else {
+            //this means the weapon isn't even close to the enemy
             return false;
         }
     }
 
-    this.move = function() {
+    this.move = function(weilder = null) {
 		if(this.life > 0) {
 			this.life--;  
         }

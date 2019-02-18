@@ -10,8 +10,9 @@ function zombieClass(zombieName, whichPic) {
 	
 	this.maxhealth = 30;
 	this.alive = true;
-	this.biteReadyTicker = 30;
-	this.biteReady = true;
+	this.myBite = new biteClass();		//
+	this.myBite.baseBiteLife = 2;		//Zombies bite, all the time
+	this.myBite.baseBiteCooldown = 2;	//
 	
 		
 	this.tickCount = 0;
@@ -35,6 +36,10 @@ function zombieClass(zombieName, whichPic) {
 	this.superClassMove = this.move;
 	this.move = function() {
 		this.superClassMove(this.zombieTimeBetweenChangeDir, this.zombieMoveSpeed);
+
+		this.myBite.move();
+        this.myBite.x = this.x;
+        this.myBite.y = this.y;
 	}
 	
 	    this.newRandomPic = function() {
@@ -58,38 +63,12 @@ function zombieClass(zombieName, whichPic) {
 		zombieHurtSound.play();
 	}
 	
-	this.zombieBite = function() {
-		if(this.biteReady == true){
-			redWarrior.health = redWarrior.health -1;	
-			playerHurtSound.play();
-			dialog = "Ouch! I've been bite by a zombie for 1 point of damage.";	
-			this.biteReady = false;
-		}
-		else if(this.biteReady == false) {	
-			this.biteReadyCounter();
-		}
-	}
-	
-	this.biteReadyCounter = function() {
-		if(this.biteReadyTicker > 0){ 
-			this.biteReadyTicker--;
-		} else if(this.biteReadyTicker <= 0){
-			this.biteReadyTicker = 60; //amount of time between bites
-			this.biteReady = true;
-		}
-	}
-
-	this.isOverlappingPoint = function(testX, testY) {  // textX is redWarrior.x and testY is redWarrior.y
-		
-		//test if redWarrior is inside box of Monster
-		
-		if(this.x < testX && (this.x + this.width) > testX && this.y < testY && (this.y + this.height) > testY){
-			this.zombieBite();
-		}
-		
-		// add result if true
-		
-	}
+	this.superClassIsOverlappingPoint = this.isOverlappingPoint;
+    this.isOverlappingPoint = function() {
+        if(this.superClassIsOverlappingPoint()) {
+            dialog = "Ouch! I've been bite by a zombie.  I hope it isn't contagious.";
+        }
+    }
 		
 	this.draw = function() { 
 

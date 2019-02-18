@@ -432,6 +432,11 @@ function warriorClass() {
 			this.myRock.shootFrom(this, direction);
 		}
 	}
+
+	this.takeDamage = function(howMuch) {
+		this.health -= howMuch / 10;
+		playerHurtSound.play();
+	}
 	
 	this.draw = function() { 
 		if(this.playerMove) {

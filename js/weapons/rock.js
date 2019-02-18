@@ -10,11 +10,6 @@ function rockClass() {
     this.damageDice = 4;//4 sided die, overrides default 6
     this.damagePoints = 4;//overrides default 6
 
-    this.reset = function() {
-        this.life = 0;
-        this.damage = ROCK_DAMAGE;
-    }
-
     this.superClassMove = this.move;
     this.move = function() {
         this.superClassMove();
@@ -74,11 +69,6 @@ function rockClass() {
                 this.y = warriorAttack.y + 30;
             }
 
-            this.rollToDetermineIfHit();
-            if(this.toHitPoints > 0){
-                this.rollForDamage();
-            }
-
             this.life = ROCK_LIFE;
         }
     }
@@ -86,12 +76,9 @@ function rockClass() {
     this.superClassHitTest = this.hitTest;
     this.hitTest = function(thisEnemy) {
         if(this.superClassHitTest(thisEnemy)) {
-            if (this.damage == ROCK_DAMAGE) {//What about checking for (this.damage > 0)?
-                thisEnemy.takeDamage(this.damage);
-                this.damage = this.damage - ROCK_DAMAGE;//Can we just set this to zero?
-            }
+			dialog = "Successful rock hit on "+ thisEnemy.myName+"!";
         }
-    }
+	}
 
     this.draw = function() {
         if (this.life > 0) {

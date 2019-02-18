@@ -5,13 +5,11 @@ goblinClass.prototype = new enemyClass();
 function goblinClass(goblinName) {
     this.speed = 4;
     this.myGoblinPic = goblinPic; // which picture to use
-    this.myName = "Untitled goblin";
     this.health = 12;
     this.maxhealth = 12;
     this.alive = true;
-    this.biteReadyTicker = 30;
-    this.biteReady = true;
     this.myName = goblinName;
+    this.myBite = new biteClass();
 
     this.tickCount = 0;
     this.frameIndex = 0;
@@ -45,42 +43,22 @@ function goblinClass(goblinName) {
         if (this.walkEast) {
             this.sy = this.height*2;
         }
-	
+        
+        this.myBite.move();
+        this.myBite.x = this.x;
+        this.myBite.y = this.y;
     }
     
     this.takeDamage = function(howMuch) {
         this.health -= howMuch;
         goblinHurtSound.play();
-	}
-
-    this.goblinBite = function() {
-
-        if (this.biteReady == true) {
-            redWarrior.health = redWarrior.health - 1;
+    }
+    
+    this.superClassIsOverlappingPoint = this.isOverlappingPoint;
+    this.isOverlappingPoint = function() {
+        if(this.superClassIsOverlappingPoint()) {
             dialog = "Ouch! I've been bite by a goblin.";
-            this.biteReady = false;
-        } else if (this.biteReady == false) {
-            this.biteReadyCounter();
         }
-    }
-
-    this.biteReadyCounter = function() {
-        if (this.biteReadyTicker > 0) {
-            this.biteReadyTicker--;
-        } else if (this.biteReadyTicker <= 0) {
-            this.biteReadyTicker = 30;
-            this.biteReady = true;
-        }
-    }
-
-    this.isOverlappingPoint = function(testX, testY) { // textX is redWarrior.x and testY is redWarrior.y
-
-        //test if redWarrior is inside box of Monster
-
-        if (this.x < testX && (this.x + this.width) > testX && this.y < testY && (this.y + this.height) > testY) {
-            this.goblinBite();
-        }
-        // add result if true
     }
 
     this.draw = function() {

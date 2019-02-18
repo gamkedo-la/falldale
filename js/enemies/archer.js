@@ -10,8 +10,9 @@ function archerClass(archerName) {
 	
 	this.maxhealth = 6;
 	this.alive = true;
-	this.biteReadyTicker = 30;
-	this.biteReady = true;
+	this.myBite = new biteClass();	//
+	this.myBite.baseBiteLife = 30;			//Archers bite, but they're not very good at it
+	this.myBite.baseBiteCooldown = 10;		//
 	
 	this.tickCount = 0;
 	this.frameIndex = 0;
@@ -31,42 +32,22 @@ function archerClass(archerName) {
 	this.superClassMove = this.move;
 	this.move = function() {
 		this.superClassMove(ARCHER_TIME_BETWEEN_CHANGE_DIR, archerMoveSpeed);
+
+		this.myBite.move();
+        this.myBite.x = this.x;
+        this.myBite.y = this.y;
 	}
 
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch;
 	}
-	
-	this.archerBite = function() {
 
-		if(this.biteReady == true){
-			redWarrior.health = redWarrior.health -1;	
-			dialog = "Ouch! I've been bite by a archer.";	
-			this.biteReady = false;
-		}
-		else if(this.biteReady == false) {	
-			this.biteReadyCounter();
-		}
-	}
-	
-	this.biteReadyCounter = function() {
-		if(this.biteReadyTicker > 0){ 
-			this.biteReadyTicker--;
-		} else if(this.biteReadyTicker <= 0){
-			this.biteReadyTicker = 30;
-			this.biteReady = true;
-		}
-	}
-
-	this.isOverlappingPoint = function(testX, testY) {  // textX is redWarrior.x and testY is redWarrior.y
-		
-		//test if redWarrior is inside box of Monster
-				
-		if(this.x < testX && (this.x + this.width) > testX && this.y < testY && (this.y + this.height) > testY){
-			this.archerBite();
-		}
-		// add result if true
-	}
+	this.superClassIsOverlappingPoint = this.isOverlappingPoint;
+    this.isOverlappingPoint = function() {
+        if(this.superClassIsOverlappingPoint()) {
+            dialog = "Ouch! I've been bite by an Archer! An Archer!";
+        }
+    }
 		
 	this.draw = function() { 
 						
