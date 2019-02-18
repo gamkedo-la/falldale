@@ -393,3 +393,6 @@ function drawOnlyTilesOnScreen() {
 function resetLevel() {
 	loadLevel(levelList[levelNow])
 }
+
+pather = new Pathfinder();
+pather.calculateDistancesFromIndex(400);

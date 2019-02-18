@@ -30,7 +30,7 @@ function zombieClass(zombieName, whichPic) {
 		this.superClassReset(resetX, resetY);
 		this.newRandomPic();
 		this.health = 30;
-		this.zombieTimeBetweenChangeDir = Math.floor(Math.random() * 800) + 1;
+		this.zombieTimeBetweenChangeDir = Math.floor(Math.random() * 700) + 101;//set minimum time to 101 => avoid tazmanian zombie
 	}
 		
 	this.superClassMove = this.move;
