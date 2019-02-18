@@ -47,8 +47,36 @@ function npcClass(npcName, npcPic) {
         //test if redWarrior is inside box of NPC
 
         if (this.x < testX && (this.x + this.width) > testX && this.y < testY && (this.y + this.height) > testY) {
-
-        }
+			setDialogUICountdown(5);
+			if(this.myName == "Addy"){  
+				dialog = "Hi, I'm Addy.  Eventually, I'll have more to say."
+			} 
+			if(this.myName == "Dodd"){
+				dialog = "Hi, I'm Dodd.  Eventually, I'll have more to say."
+			}
+			if(this.myName == "Taran"){
+				dialog = "Hi, I'm Taran.  Eventually, I'll have more to say."
+			}
+			if(this.myName == "Delkon"){
+				dialog = "Hi, I'm Delkon.  Eventually, I'll have more to say."
+			}
+			if(this.myName == "Princess"){
+				dialog = "Hi, I'm the Princess.  Eventually, I'll have more to say."
+			}
+			if(this.myName == "Gabriel"){
+				dialog = "Hi, I'm Gabriel.  Eventually, I'll have more to say."
+			}
+			if(this.myName == "Fenton"){
+				dialog = "Hi, I'm Fenton.  Eventually, I'll have more to say."
+			}
+			if(this.myName == "Healer"){
+				dialog = "Hi, I'm the Healer.  I could use a better name."
+			}
+			if(this.myName == "Shop Keeper"){
+				dialog = "Hi, I'm the Shop Keeper.  I could use a better name."
+			}
+			
+		}
     }
 
     this.draw = function() {
