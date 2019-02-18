@@ -54,7 +54,7 @@ function enemyClass() {
         if (this.walkNorth) {
             nextY -= moveSpeed * this.speedMult;
             this.sx = 0;
-            this.sy = 50;
+            this.sy = (this.height)+1;
             this.direction = "north";
         }
 
@@ -67,13 +67,13 @@ function enemyClass() {
         if (this.walkWest) {
             nextX -= moveSpeed * this.speedMult;
             this.sx = 0;
-            this.sy = 100;
+            this.sy = (this.height*2)+1;
             this.direction = "west";
         }
         if (this.walkEast) {
             nextX += moveSpeed * this.speedMult;
             this.sx = 0;
-            this.sy = 150;
+            this.sy = (this.height*3)+1;
             this.direction = "east";
         }
 

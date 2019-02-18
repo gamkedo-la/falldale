@@ -49,10 +49,10 @@ function zombieClass(zombieName, whichPic) {
                 this.myZombiePic = zombiePic;
                 break;
             case 1:
-                this.myZombiePic = zombiePic2;
+                this.myZombiePic = zombiePic; //2
                 break;
             case 2:
-                this.myZombiePic = zombiePic3;
+                this.myZombiePic = zombiePic; //3
                 break;
         }
     }
@@ -71,8 +71,6 @@ function zombieClass(zombieName, whichPic) {
     }
 		
 	this.draw = function() { 
-
-			
 		if(this.zombieMove) {
 			this.tickCount++;
 		}
@@ -85,13 +83,10 @@ function zombieClass(zombieName, whichPic) {
 			}
 		}	
 		if(this.health > 0){
-				
 			if(gamePaused == false){
 				this.sx = this.frameIndex * this.width;
 			}
-			
-			this.sx = 0;
-			
+						
 			canvasContext.drawImage(shadowPic, this.x-20, this.y+32);
 			canvasContext.drawImage(this.myZombiePic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 
