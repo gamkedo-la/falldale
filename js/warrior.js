@@ -172,6 +172,7 @@ function warriorClass() {
 		}
 
 		switch(walkIntoTileType) {
+			case TILE_BRIDGE_LOWER:
 			case TILE_ROAD:
 				playerMoveSpeed = 3.0;
 				this.x = nextX;

@@ -101,6 +101,7 @@ function enemyClass() {
         }
 
         switch (walkIntoTileType) {
+            case TILE_BRIDGE_LOWER:
             case TILE_ROAD:
                 this.x = nextX;
                 this.y = nextY;
