@@ -242,7 +242,9 @@ function returnTileTypeAtColRow(col, row) {
 
 function getTileIndexAtPixelCoord(atX, atY) {
 	var warriorWorldCol = Math.floor(atX / TILE_W);
-	var warriorWorldRow = Math.floor(atY / TILE_H);
+	// FIX: row was .floor but this would return the tile
+	// NORTH of the player for 50% of the tile height
+	var warriorWorldRow = Math.round(atY / TILE_H); 
 	var worldIndexUnderWarrior = rowColToArrayIndex(warriorWorldCol, warriorWorldRow);
 
 	if(warriorWorldCol >= 0 && warriorWorldCol < ROOM_COLS &&
