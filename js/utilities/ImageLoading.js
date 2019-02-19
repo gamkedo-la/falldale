@@ -126,6 +126,8 @@ function loadImages() {
 			{tileType: TILE_TREE2BOTTOMHALF,  theFile: "Trees/tree2bottomhalf.png"},		
 			{tileType: TILE_TREE3TOPHALF,  theFile: "Trees/tree3tophalf.png"},
 			{tileType: TILE_TREE3BOTTOMHALF,  theFile: "Trees/tree3bottomhalf.png"},				
+			{tileType: TILE_BRIDGE_UPPER,  theFile: "bridge-upper.png"},				
+			{tileType: TILE_BRIDGE_LOWER,  theFile: "bridge-lower.png"},				
 					
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
