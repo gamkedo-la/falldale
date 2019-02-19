@@ -2,17 +2,18 @@ var playerMoveSpeed = 3.0;
 
 // TODO: Probably want to set direction per object instead of 
 //       putting it in a global variable
+// this also doesn't allow diagonal movement
 var direction = "south"; 
 
 level02Experience = 500;
-level03Experience = 2,000;
-level04Experience = 4,000;
-level05Experience = 6,000;
-level06Experience = 10,000;
-level07Experience = 16,000;
-level08Experience = 26,000;
-level09Experience = 42,000;
-level10Experience = 68,000;
+level03Experience = 2000;
+level04Experience = 4000;
+level05Experience = 6000;
+level06Experience = 10000;
+level07Experience = 16000;
+level08Experience = 26000;
+level09Experience = 42000;
+level10Experience = 68000;
 
 function warriorClass() {
 	this.mySword = new swordClass();
@@ -151,9 +152,8 @@ function warriorClass() {
 			this.playerMove = false;
 		}
 		
-		
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-        var walkIntoTileType = TILE_WALL;
+    var walkIntoTileType = TILE_WALL;
 
 		if(direction == "north") {
 			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+(this.width/2),nextY);
@@ -166,7 +166,8 @@ function warriorClass() {
 		}
 		if(direction == "east") {
 			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+this.width, nextY+(this.height/2));
-		}		
+		}	
+
 		if(walkIntoTileIndex != undefined) {
 			walkIntoTileType = roomGrid[walkIntoTileIndex];
 		}
