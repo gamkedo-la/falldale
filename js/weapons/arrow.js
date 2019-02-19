@@ -2,7 +2,7 @@ const ARROW_LIFE = 100;
 const ARROW_SPEED = 1.0;
 const ARROW_DAMAGE = 0.5;
 //var arrowDead = false;
-//just a test commit.  Will remove.
+
 arrowClass.prototype = new weaponClass();
 function arrowClass() {
 	this.baseDamage = ARROW_DAMAGE;
