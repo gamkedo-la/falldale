@@ -9,11 +9,11 @@ const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X = 150;
 const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y = 100;
 
 
-var levelOne =   [04,04,04,04,04,32,18,32,32,18,18,32,32,32,32,32,18,18,20,04,04,04,04,04,04,32,04,04,04,04,04,04,
-				  04,05,00,00,04,65,32,18,18,32,32,18,18,32,32,18,32,18,20,04,33,33,33,33,04,18,04,33,33,33,33,04,
-				  04,10,00,00,04,66,18,18,18,18,18,18,18,18,18,18,18,32,20,04,00,30,31,00,04,18,04,00,00,44,00,04,
-				  04,04,04,14,04,18,18,65,04,04,04,04,04,04,04,04,04,18,20,04,00,00,00,34,04,18,04,34,43,00,00,04,
-				  32,18,18,00,18,18,18,66,04,02,00,00,19,46,00,02,04,18,20,04,04,00,04,04,04,18,04,04,04,00,04,04,
+var levelOne =   [04,04,04,04,04,32,18,32,32,18,18,32,32,32,32,32,18,18,20,04,04,04,04,04,04,32,86,82,83,85,83,87,
+				  04,05,00,00,04,65,32,18,18,32,32,18,18,32,32,18,32,18,20,04,33,33,33,33,04,18,92,00,84,84,84,93,
+				  04,10,00,00,04,66,18,18,18,18,18,18,18,18,18,18,18,32,20,04,00,30,31,00,04,18,92,00,00,43,00,93,
+				  04,04,04,14,04,18,18,65,04,04,04,04,04,04,04,04,04,18,20,04,00,00,00,34,04,18,92,00,88,00,00,93,
+				  32,18,18,00,18,18,18,66,04,02,00,00,19,46,00,02,04,18,20,04,04,00,04,04,04,18,90,91,91,89,91,91,
 				  32,18,18,00,08,00,18,18,04,12,00,00,00,00,00,02,04,18,20,18,18,00,18,18,18,18,18,18,18,00,18,32,
 				  32,32,18,18,18,00,18,18,04,02,00,00,00,00,00,02,04,18,20,18,18,00,18,18,18,18,18,18,18,00,32,18,
 				  32,18,18,18,41,00,18,67,04,02,00,00,00,00,00,02,04,18,20,59,00,00,00,00,21,00,00,00,00,37,00,38,
@@ -140,7 +140,7 @@ var levelList = [levelOne, graveYard, levelThree, levelFour];
 var levelNow = 0;
 var roomGrid = [];
 
-//These will be renumbered once Tile Editor is complete.  74 is the next available tile.  
+//These will be renumbered once Tile Editor is complete.  82 is the next available tile.  
 const TILE_PLAYERSTART = 05;
 //terrain tiles
 const TILE_ROAD = 00;
@@ -197,6 +197,19 @@ const TILE_ROOF_LEFTSIDE = 55;
 const TILE_ROOF_FRONTLEFT = 56;
 const TILE_ROOF_FRONT = 57;
 const TILE_ROOF_CENTER = 58;
+//healer's shop
+const TILE_HEALER_BW = 82;
+const TILE_HEALER_BW_CABINET_POTIONS = 83;
+const TILE_HEALER_BW_CABINET_LH = 84;
+const TILE_HEALER_BW_CABINET_EMPTY = 85;
+const TILE_HEALER_BW_LS = 86;
+const TILE_HEALER_BW_RS = 87;
+const TILE_HEALER_DESK = 88;
+const TILE_HEALER_FRONTDOOR = 89;
+const TILE_HEALER_FW_LS = 90;
+const TILE_HEALER_FW_WINDOW = 91;
+const TILE_HEALER_LW = 92;	
+const TILE_HEALER_RW = 93;
 //monsters
 const TILE_SKELETON = 08;
 const TILE_GOBLIN = 36;
@@ -280,6 +293,10 @@ function tileTypeHasTransparency(checkTileType) {
 			checkTileType == TILE_SHOP_8 ||
 			checkTileType == TILE_SHOP_9 ||
 			checkTileType == TILE_SHOP_A ||
+			checkTileType == TILE_HEALER_LW ||
+			checkTileType == TILE_HEALER_RW ||
+			checkTileType == TILE_HEALER_BW_CABINET_LH ||
+			checkTileType == TILE_HEALER_DESK ||
 			checkTileType == TILE_CABINET ||
 			checkTileType == TILE_BED ||
 			checkTileType == TILE_FOUNTAIN ||

@@ -206,6 +206,11 @@ function warriorClass() {
 					isAtHealer = true;
 				}
 				break;
+			case TILE_HEALER_FRONTDOOR:
+				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				setDialogUICountdown(3);
+				dialog = "This place smells nice.  Is that lavender?";
+				doorSound.play();
 			case TILE_YELLOW_DOOR:
 				if(this.yellowKeysHeld > 0 || debugMode) {
 					this.yellowKeysHeld--; // one less key
