@@ -235,6 +235,9 @@ function warriorClass() {
 					dialog = "I need a green key to open this door.";
 				}
 				break;
+			case TILE_FRONTDOOR_YELLOW:
+					roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				break;				
 			case TILE_RED_DOOR:
 				if(this.redKeysHeld > 0 || debugMode) {
 					this.redKeysHeld--; // one less key
