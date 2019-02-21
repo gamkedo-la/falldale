@@ -4,7 +4,6 @@ var storeFrontPic = document.createElement("img");
 var healerStorePic = document.createElement("img");
 var muteAudioPic = document.createElement("img");
 
-
 var warriorPic = document.createElement("img");
 var swordPic = document.createElement("img");
 
@@ -156,6 +155,16 @@ function loadImages() {
 			{tileType: TILE_HOUSE_FRONT_WALL_BROKEN, theFile: "House1/brokenwall.png"},
 			{tileType: TILE_HOUSE_FRONT_WINDOW, theFile: "House1/window.png"},
 			{tileType: TILE_HOUSE_FRONT_WINDOW_BROKEN, theFile: "House1/broken-window.png"},
+			{tileType: TILE_HOUSE_FW_RS, theFile: "House1/frontrightwall.png"},
+			{tileType: TILE_HOUSE_FW_LS, theFile: "House1/frontleftwall.png"},
+			{tileType: TILE_HOUSE_BW, theFile: "House1/backwall.png"},
+			{tileType: TILE_HOUSE_BW_LS, theFile: "House1/backwallleftside.png"},
+			{tileType: TILE_HOUSE_BW_RS, theFile: "House1/backwallrightside.png"},
+			{tileType: TILE_HOUSE_BW_WINDOW, theFile: "House1/backwallwindow.png"},
+			{tileType: TILE_HOUSE_LS_BED_TOP, theFile: "House1/bedleftside.png"},
+			{tileType: TILE_HOUSE_LS_BED_BOTTOM, theFile: "House1/bedleftsidets.png"},
+			{tileType: TILE_HOUSE_DRESSER_TOP, theFile: "House1/dressertop.png"},
+			{tileType: TILE_HOUSE_DRESSER_BOTTOM, theFile: "House1/dresserbottom.png"},
 			
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},

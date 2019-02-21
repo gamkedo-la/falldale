@@ -235,6 +235,9 @@ function warriorClass() {
 					dialog = "I need a green key to open this door.";
 				}
 				break;
+			case TILE_FRONTDOOR_YELLOW:
+					roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				break;				
 			case TILE_RED_DOOR:
 				if(this.redKeysHeld > 0 || debugMode) {
 					this.redKeysHeld--; // one less key
@@ -347,6 +350,18 @@ function warriorClass() {
 				setDialogUICountdown(3);
 				dialog = "OUCH! Bloody Spikes!";
 				break;
+			case TILE_HOUSE_DRESSER_BOTTOM:
+				setDialogUICountdown(3);
+				dialog = "I really need to get some new clothes.";
+				break;
+			case TILE_HOUSE_LS_BED_BOTTOM:
+				setDialogUICountdown(3);
+				dialog = "No time to sleep!.";
+				break;		
+			case TILE_BS_BW_WEAPONSRACKBOTTOM:
+				setDialogUICountdown(3);
+				dialog = "No swords?!  Isn't this a blacksmith's shop?";
+				break;	
 			case TILE_WALL:
 			default:
 				break;
