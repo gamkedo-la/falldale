@@ -6,6 +6,7 @@ var muteAudioPic = document.createElement("img");
 
 var warriorPic = document.createElement("img");
 var swordPic = document.createElement("img");
+var biggyPic = document.createElement("img");
 
 var skeletonPic = document.createElement("img");
 var skeletonPic2 = document.createElement("img");
@@ -169,6 +170,7 @@ function loadImages() {
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
+			{varName: biggyPic, theFile: "Sprites/player/biggy.png"},
 			{varName: skeletonPic, theFile: "Monsters/skeleton1.png"},
 			{varName: skeletonPic2, theFile: "Monsters/skeleton2.png"},
 			{varName: skeletonPic3, theFile: "Monsters/skeleton3.png"},

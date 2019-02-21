@@ -30,7 +30,7 @@ function warriorClass() {
 	this.leftArm = this.x + 25;
 	this.rightArm = this.x - 25;
 	this.speed = 0;
-	this.myWarriorPic = warriorPic; // which picture to use
+	this.myWarriorPic = biggyPic; // which picture to use
 	this.name = "Untitled warrior";
 	this.keysHeld = 0;
 	this.goldpieces = 10;
@@ -43,8 +43,8 @@ function warriorClass() {
 	this.sy = 0;
 	this.tickCount = 0;
 	this.frameIndex = 0;
-	this.width = 40;
-	this.numberOfFrames = 4;
+	this.width = 50;
+	this.numberOfFrames = 6;
 	this.height = 50;
 	this.ticksPerFrame = 5;
 	this.playerMove = false;
@@ -477,6 +477,7 @@ function warriorClass() {
 		}
 			
 		this.sx = this.frameIndex * this.width;
+		this.sy = 0; // temp - until all 4 directions are done
 		
 		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
