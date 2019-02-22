@@ -289,7 +289,7 @@ function getTileIndexAtPixelCoord(atX, atY) {
 	var warriorWorldCol = Math.floor(atX / TILE_W);
 	// FIX: row was .floor but this would return the tile
 	// NORTH of the player for 50% of the tile height
-	var warriorWorldRow = Math.round(atY / TILE_H); 
+	var warriorWorldRow = Math.floor(atY / TILE_H); 
 	var worldIndexUnderWarrior = rowColToArrayIndex(warriorWorldCol, warriorWorldRow);
 
 	if(warriorWorldCol >= 0 && warriorWorldCol < ROOM_COLS &&
@@ -299,6 +299,13 @@ function getTileIndexAtPixelCoord(atX, atY) {
 
 	return undefined;
 } // end of warriorWorldHandling func
+
+function getCenterPixelCoordForArrayIndex(index) {
+	const col = index % ROOM_COLS;
+	const row = Math.floor(index / ROOM_COLS);
+
+	return {x: (col * TILE_W + TILE_W / 2), y: (row * TILE_H + TILE_H / 2)};
+}
 
 function rowColToArrayIndex(col, row) {
 	return col + ROOM_COLS * row;
@@ -452,4 +459,5 @@ function resetLevel() {
 }
 
 pather = new Pathfinder3();
-pather.calculateDistancesFromIndex(400);
+//pather.calculateDistancesFromIndex(400);
+//pather.pathFrom_To_(164, 384);

@@ -4,6 +4,77 @@
 //Columns = 32
 //Rows = 24
 function Pathfinder3() {
+    this.pathFrom_To_ = function(start, target) {
+        const frontier = [];
+        frontier.push(start);
+        const cameFrom = {};
+        cameFrom[start] = "S";
+                
+        while(frontier.length > 0) {
+            const current = frontier.shift();
+            const neighbors = neighborsForIndex(current);
+
+            for(let i = 0; i < neighbors.length; i++) {
+                const next = neighbors[i];
+                if(cameFrom[next] == undefined) {
+                    frontier.push(next);
+/*
+                    if(next == start) {
+                        //do nothing
+                    } else if(next - current == ROOM_COLS) {
+                        cameFrom[next] = "^";
+                    } else if(next - current == 1) {
+                        cameFrom[next] = "<";
+                    } else if(next - current == -ROOM_COLS) {
+                        cameFrom[next] = "v";
+                    } else if(next - current == -1) {
+                        cameFrom[next] = ">";
+                    } else {
+                        cameFrom[next] = "B";
+                    }*/
+
+                    cameFrom[next] = current;
+                }
+
+                if(next == target) {break;}
+            }
+        }
+
+        const path = [];
+
+        let current = target;
+
+//        console.log("Current: " + current);
+
+        while(current != start) {
+            path.splice(0, 0, current);
+            current = cameFrom[current];
+            if(current == undefined) {return null;}
+        }
+
+        path.splice(0, 0, start);
+
+/*        for(let n = 0; n < path.length; n++) {
+            console.log("Path Segment " + (n + 1) + " is: " + path[n]);
+        }*/
+
+        let string = "";
+        for(let j = 0; j < levelList[levelNow].length; j++) {
+            let distString = cameFrom[j];
+
+            if(distString == undefined) {distString = "B";}
+
+            distString += ", "
+            string += distString;
+            if((j + 1) % ROOM_COLS == 0) {
+                string += "\n";
+            }
+        }
+//        console.log(string);//Temporary
+
+        return path;
+    }
+
     this.calculateDistancesFromIndex = function(start) {
         const frontier = [];
         frontier.push(start);
