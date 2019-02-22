@@ -44,14 +44,18 @@ function tileEditorInput(whichKeyCode){
 		case KEY_UP_ARROW:
 			if(tileTypeSelected != -1){
 				if(roomGrid[tileSelected] < 128){  // need to write code not to have a hard number of 74 for roomGrid's length
-					roomGrid[tileSelected]++;
+					do {
+						roomGrid[tileSelected]++;						
+					} while(typeof(worldPics[roomGrid[tileSelected]]) == "undefined");
 				}
 			}		
 		break;
 		case KEY_DOWN_ARROW:
 			if(tileTypeSelected != -1){
 				if(roomGrid[tileSelected] > 0){
-					roomGrid[tileSelected]--;
+					do {
+						roomGrid[tileSelected]--;
+					} while(typeof(worldPics[roomGrid[tileSelected]]) == "undefined");
 				}
 			}		
 		break;
