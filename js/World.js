@@ -451,5 +451,5 @@ function resetLevel() {
 	loadLevel(levelList[levelNow])
 }
 
-pather = new Pathfinder();
+pather = new Pathfinder3();
 pather.calculateDistancesFromIndex(400);
