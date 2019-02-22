@@ -128,25 +128,25 @@ function warriorClass() {
 			nextY -= playerMoveSpeed;
 			direction = "north";
 			this.sx = 0;
-			this.sy = 50;
+			this.sy = 0;
 		}
 		if(this.keyHeld_WalkSouth) {
 			nextY += playerMoveSpeed;
 			direction = "south";
 			this.sx = 0;
-			this.sy = 0;
+			this.sy = 50;
 		}
 		if(this.keyHeld_WalkWest) {
 			nextX -= playerMoveSpeed;
 			direction = "west";
 			this.sx = 0;
-			this.sy = 100;
+			this.sy = 50; // 100
 		}
 		if(this.keyHeld_WalkEast) {
 			nextX += playerMoveSpeed;
 			direction = "east";
 			this.sx = 0;
-			this.sy = 150;
+			this.sy = 50; //150
 		}
 
 		if(this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast) {
@@ -489,7 +489,6 @@ function warriorClass() {
 		}
 			
 		this.sx = this.frameIndex * this.width;
-		this.sy = 0; // temp - until all 4 directions are done
 		
 		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
