@@ -5,6 +5,9 @@ var playerMoveSpeed = 3.0;
 // this also doesn't allow diagonal movement
 var direction = "south"; 
 
+var healthCountDownSeconds = 5;
+var displayHealthCountdown = healthCountDownSeconds * 30;
+
 level02Experience = 500;
 level03Experience = 2000;
 level04Experience = 4000;
@@ -469,6 +472,7 @@ function warriorClass() {
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch / 10;
 		playerHurtSound.play();
+		displayHealth = true;
 	}
 	
 	this.draw = function() { 
@@ -490,10 +494,18 @@ function warriorClass() {
 		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			
+		
 			if(displayHealth){
+
 				colorRect(this.x,this.y-16, 40,12, "black"); 
 				colorRect(this.x+2,this.y-14, 35, 8, "red");
 				colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
+
+				displayHealthCountdown--;
+				if(displayHealthCountdown <= 0){
+					displayHealth = false;
+					displayHealthCountdown = 5 * 30;
+				}
 			}
 			
 			if(debugMode){
