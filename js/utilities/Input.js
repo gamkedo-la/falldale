@@ -103,6 +103,7 @@ function keySet(keyEvent, redWarrior, setTo) {
 function keyPressed(evt) {
     var debugModeKey = NUM_1;
     var tileEditorModeKey = NUM_2;
+    var mapToggle = NUM_3;
     var paused = KEY_P;
     var mute = KEY_M;
 
@@ -168,12 +169,10 @@ function keyPressed(evt) {
             } else {
                 tileEditor = true;
             }
+        } else if (evt.keyCode == mapToggle) {
+            mapShow = !mapShow
         } else if (evt.keyCode == redWarrior.controlKeyDisplayHealth) {
-            if (displayHealth) {
-                displayHealth = false;
-            } else {
-                displayHealth = true;
-            }
+            displayHealth = !displayHealth
         }
     }
     evt.preventDefault(); // without this, arrow keys scroll the browser!

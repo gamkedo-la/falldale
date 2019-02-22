@@ -48,6 +48,8 @@ var twentySidedDicePic = document.createElement("img");
 var shadowPic = document.createElement("img");
 var shinyPic = document.createElement("img");
 
+var falldaleMap = document.createElement("img");
+
 var worldPics = [];
 
 var picsToLoad = 0;
@@ -157,6 +159,7 @@ function loadImages() {
 			{varName: titlepagePic, theFile: "background.png"},
 			{varName: shadowPic, theFile: "shadow.png"},
 			{varName: shinyPic, theFile: "shiny.png"},
+			{varName: falldaleMap, theFile: "falldaleMap.png"},
 			{varName: addyPic, theFile: "NPCs/Addy.png"},
 			{varName: delkonPic, theFile: "NPCs/Delkon.png"},
 			{varName: doddPic, theFile: "NPCs/Dodd.png"},

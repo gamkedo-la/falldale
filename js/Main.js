@@ -13,6 +13,7 @@ var enemyList = [];
 var dialog = "H: Hides health, I: Inventory, O: Stats";
 var inventory = " ";
 var inventoryScreen = false;
+var mapShow = true;
 var statsScreen = false;
 var scrollBackgroundScreen = true;
 
@@ -244,6 +245,15 @@ function inventoryDraw() {
     colorText("Green Keys: " + redWarrior.greenKeysHeld, canvas.width - 170, canvas.height - 60, "Black");
 }
 
+function mapDraw() {
+    let maxScreenLength = canvas.width < canvas.height ? canvas.width : canvas.height;
+    let mapLength = maxScreenLength * 0.8;
+    let mapPosX = (canvas.width - mapLength) / 2;
+    let mapPosY = (canvas.height - mapLength) / 2;
+    colorRect(0,0, canvas.width,canvas.height, "rgba(0,0,0,0.7)");
+    canvasContext.drawImage(falldaleMap, mapPosX, mapPosY, mapLength, mapLength); // temp map
+}
+
 function statsDraw() {
     colorRect(canvas.width - 210, canvas.height - 320, 210, 270, "black");
     colorRect(canvas.width - 205, canvas.height - 315, 200, 265, "white");
@@ -333,12 +343,15 @@ function drawAll() {
         if (statsScreen) {
             statsDraw();
         }
+        if (mapShow) {
+            mapDraw();
+        }
 		if (gamePaused) {
             colorRect(0,0, canvas.width, canvas.height, "rgba(0,0,0,0.8");
             colorRect(canvas.width/2-150, canvas.height/2-75, 300, 4, "rgba(255,255,255,0.7)");
             colorRect(canvas.width/2-150, canvas.height/2+50, 300, 4, "rgba(255,255,255,0.7 )");
             drawTextWithShadowCentered("Game Paused", canvas.width/2, canvas.height/2-20, "white", "20px endorregular");
             drawTextWithShadowCentered("Press 'P' to resume", canvas.width/2, canvas.height/2+15, "white", "12px endorregular");
-		}
+        }
     }
 }
