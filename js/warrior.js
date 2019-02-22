@@ -5,6 +5,9 @@ var playerMoveSpeed = 3.0;
 // this also doesn't allow diagonal movement
 var direction = "south"; 
 
+var healthCountDownSeconds = 5;
+var displayHealthCountdown = healthCountDownSeconds * 30;
+
 level02Experience = 500;
 level03Experience = 2000;
 level04Experience = 4000;
@@ -30,7 +33,7 @@ function warriorClass() {
 	this.leftArm = this.x + 25;
 	this.rightArm = this.x - 25;
 	this.speed = 0;
-	this.myWarriorPic = warriorPic; // which picture to use
+	this.myWarriorPic = biggyPic; // which picture to use
 	this.name = "Untitled warrior";
 	this.keysHeld = 0;
 	this.goldpieces = 10;
@@ -43,8 +46,8 @@ function warriorClass() {
 	this.sy = 0;
 	this.tickCount = 0;
 	this.frameIndex = 0;
-	this.width = 40;
-	this.numberOfFrames = 4;
+	this.width = 50;
+	this.numberOfFrames = 6;
 	this.height = 50;
 	this.ticksPerFrame = 5;
 	this.playerMove = false;
@@ -125,25 +128,25 @@ function warriorClass() {
 			nextY -= playerMoveSpeed;
 			direction = "north";
 			this.sx = 0;
-			this.sy = 50;
+			this.sy = 0;
 		}
 		if(this.keyHeld_WalkSouth) {
 			nextY += playerMoveSpeed;
 			direction = "south";
 			this.sx = 0;
-			this.sy = 0;
+			this.sy = 50;
 		}
 		if(this.keyHeld_WalkWest) {
 			nextX -= playerMoveSpeed;
 			direction = "west";
 			this.sx = 0;
-			this.sy = 100;
+			this.sy = 50; // 100
 		}
 		if(this.keyHeld_WalkEast) {
 			nextX += playerMoveSpeed;
 			direction = "east";
 			this.sx = 0;
-			this.sy = 150;
+			this.sy = 50; //150
 		}
 
 		if(this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast) {
@@ -206,6 +209,11 @@ function warriorClass() {
 					isAtHealer = true;
 				}
 				break;
+			case TILE_HEALER_FRONTDOOR:
+				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				setDialogUICountdown(3);
+				dialog = "This place smells nice.  Is that lavender?";
+				doorSound.play();
 			case TILE_YELLOW_DOOR:
 				if(this.yellowKeysHeld > 0 || debugMode) {
 					this.yellowKeysHeld--; // one less key
@@ -230,6 +238,9 @@ function warriorClass() {
 					dialog = "I need a green key to open this door.";
 				}
 				break;
+			case TILE_FRONTDOOR_YELLOW:
+					roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				break;				
 			case TILE_RED_DOOR:
 				if(this.redKeysHeld > 0 || debugMode) {
 					this.redKeysHeld--; // one less key
@@ -342,6 +353,26 @@ function warriorClass() {
 				setDialogUICountdown(3);
 				dialog = "OUCH! Bloody Spikes!";
 				break;
+			case TILE_HOUSE_DRESSER_BOTTOM:
+				setDialogUICountdown(3);
+				dialog = "I really need to get some new clothes.";
+				break;
+			case TILE_HOUSE_LS_BED_BOTTOM:
+				setDialogUICountdown(3);
+				dialog = "No time to sleep!.";
+				break;		
+			case TILE_BS_BW_WEAPONSRACKBOTTOM:
+				setDialogUICountdown(3);
+				dialog = "No swords?!  Isn't this a blacksmith's shop?";
+				break;
+			case TILE_CHAIR:
+				setDialogUICountdown(3);
+				dialog = "I really need a drink!";
+				break;
+			case TILE_CHAIR:
+				this.x = nextX;
+				this.y = nextY;
+				break;				
 			case TILE_WALL:
 			default:
 				break;
@@ -441,6 +472,7 @@ function warriorClass() {
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch / 10;
 		playerHurtSound.play();
+		displayHealth = true;
 	}
 	
 	this.draw = function() { 
@@ -461,10 +493,18 @@ function warriorClass() {
 		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			
+		
 			if(displayHealth){
+
 				colorRect(this.x,this.y-16, 40,12, "black"); 
 				colorRect(this.x+2,this.y-14, 35, 8, "red");
 				colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
+
+				displayHealthCountdown--;
+				if(displayHealthCountdown <= 0){
+					displayHealth = false;
+					displayHealthCountdown = 5 * 30;
+				}
 			}
 			
 			if(debugMode){

@@ -14,19 +14,31 @@ function goblinClass(goblinName) {
 
     this.tickCount = 0;
     this.frameIndex = 0;
-    this.width = 39;
+    this.width = 50;
     this.numberOfFrames = 4;
-    this.height = 37;
+    this.height = 50;
     this.ticksPerFrame = 5;
     this.goblinMove = true;
 
 	this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
 		this.superClassReset(resetX, resetY);
-        this.myGoblinPic = goblinPic;
+        this.newRandomPic();
         this.health = 12;
     } 
-
+	
+	this.newRandomPic = function() {
+		var whichPic = Math.round(Math.random() * 2);
+		switch (whichPic) {
+		case 0:
+			this.myGoblinPic = goblinPic;
+			break;
+		case 1:
+			this.myGoblinPic = goblinPic2;
+			break;
+		}
+	}
+    
     this.superClassMove = this.move;
     this.move = function() {
         this.superClassMove(GOBLIN_TIME_BETWEEN_CHANGE_DIR, goblinMoveSpeed);
@@ -85,7 +97,10 @@ function goblinClass(goblinName) {
 			if(gamePaused == false){
 				this.sx = this.frameIndex * this.width;
 			}
-				
+			
+			this.sx = 0;
+			this.sy = 0;
+			
             canvasContext.drawImage(shadowPic, this.x-16, this.y+20);
             canvasContext.drawImage(this.myGoblinPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
             if (debugMode) {

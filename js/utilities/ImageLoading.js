@@ -4,9 +4,9 @@ var storeFrontPic = document.createElement("img");
 var healerStorePic = document.createElement("img");
 var muteAudioPic = document.createElement("img");
 
-
 var warriorPic = document.createElement("img");
 var swordPic = document.createElement("img");
+var biggyPic = document.createElement("img");
 
 var skeletonPic = document.createElement("img");
 var skeletonPic2 = document.createElement("img");
@@ -22,6 +22,7 @@ var batPic = document.createElement("img");
 var deadBatPic = document.createElement("img");
 
 var goblinPic = document.createElement("img");
+var goblinPic2 = document.createElement("img");
 var deadGoblinPic = document.createElement("img");
 
 var orcPic = document.createElement("img");
@@ -129,12 +130,55 @@ function loadImages() {
 			{tileType: TILE_TREE3TOPHALF,  theFile: "Trees/tree3tophalf.png"},
 			{tileType: TILE_TREE3BOTTOMHALF,  theFile: "Trees/tree3bottomhalf.png"},				
 			{tileType: TILE_BRIDGE_UPPER,  theFile: "bridge-upper.png"},				
-			{tileType: TILE_BRIDGE_LOWER,  theFile: "bridge-lower.png"},				
-					
+			{tileType: TILE_BRIDGE_LOWER,  theFile: "bridge-lower.png"},		
+			{tileType: TILE_HEALER_BW,  theFile: "shopHealer/backwall.png"},
+			{tileType: TILE_HEALER_BW_CABINET_POTIONS,  theFile: "shopHealer/backwallcabinettophalf.png"},
+			{tileType: TILE_HEALER_BW_CABINET_LH,  theFile: "shopHealer/backwallcabinetlowerhalf.png"},
+			{tileType: TILE_HEALER_BW_CABINET_EMPTY,  theFile: "shopHealer/backwallemptycabinet.png"},
+			{tileType: TILE_HEALER_BW_LS,  theFile: "shopHealer/backwallleftside.png"},
+			{tileType: TILE_HEALER_BW_RS,  theFile: "shopHealer/backwallrightside.png"},
+			{tileType: TILE_HEALER_DESK,  theFile: "shopHealer/desk.png"},
+			{tileType: TILE_HEALER_FRONTDOOR,  theFile: "shopHealer/frontdoor.png"},
+			{tileType: TILE_HEALER_FW_LS,  theFile: "shopHealer/frontwallleftside.png"},
+			{tileType: TILE_HEALER_FW_RS,  theFile: "shopHealer/frontwallrightside.png"},	
+			{tileType: TILE_HEALER_FW_WINDOW,  theFile: "shopHealer/frontwallwindow.png"},
+			{tileType: TILE_HEALER_LW,  theFile: "shopHealer/leftwall.png"},		
+			{tileType: TILE_HEALER_RW,  theFile: "shopHealer/rightwall.png"},
+			{tileType: TILE_BS_BW,  theFile: "shopBlacksmith/backwall.png"},
+			{tileType: TILE_BS_BW_CABINET_EMPTY,  theFile: "shopBlacksmith/backwallemptycabinet.png"},
+			{tileType: TILE_BS_BW_CABINET_POTIONS,  theFile: "shopBlacksmith/backwallcabinettophalf.png"},
+			{tileType: TILE_BS_BW_WEAPONSRACK,  theFile: "shopBlacksmith/weaponsrack.png"},
+			{tileType: TILE_BS_BW_WEAPONSRACKBOTTOM,  theFile: "shopBlacksmith/weaponsracklh.png"},
+			{tileType: TILE_BS_BW_LS,  theFile: "shopBlacksmith/backwallleftside.png"},
+			{tileType: TILE_BS_BW_RS,  theFile: "shopBlacksmith/backwallrightside.png"},
+			{tileType: TILE_BS_DESK,  theFile: "shopBlacksmith/desk.png"},
+			{tileType: TILE_BS_FW_LS,  theFile: "shopBlacksmith/frontwallleftside.png"},
+			{tileType: TILE_BS_LW,  theFile: "shopBlacksmith/leftwall.png"},
+			{tileType: TILE_HOUSE_FRONT_WALL, theFile: "House1/solidwall.png"},
+			{tileType: TILE_HOUSE_FRONT_WALL_DAMAGED, theFile: "House1/solidwall2.png"},
+			{tileType: TILE_HOUSE_FRONT_WALL_BROKEN, theFile: "House1/brokenwall.png"},
+			{tileType: TILE_HOUSE_FRONT_WINDOW, theFile: "House1/window.png"},
+			{tileType: TILE_HOUSE_FRONT_WINDOW_BROKEN, theFile: "House1/broken-window.png"},
+			{tileType: TILE_HOUSE_FW_RS, theFile: "House1/frontrightwall.png"},
+			{tileType: TILE_HOUSE_FW_LS, theFile: "House1/frontleftwall.png"},
+			{tileType: TILE_HOUSE_BW, theFile: "House1/backwall.png"},
+			{tileType: TILE_HOUSE_BW_LS, theFile: "House1/backwallleftside.png"},
+			{tileType: TILE_HOUSE_BW_RS, theFile: "House1/backwallrightside.png"},
+			{tileType: TILE_HOUSE_BW_WINDOW, theFile: "House1/backwallwindow.png"},
+			{tileType: TILE_HOUSE_LS_BED_TOP, theFile: "House1/bedleftside.png"},
+			{tileType: TILE_HOUSE_LS_BED_BOTTOM, theFile: "House1/bedleftsidets.png"},
+			{tileType: TILE_HOUSE_DRESSER_TOP, theFile: "House1/dressertop.png"},
+			{tileType: TILE_HOUSE_DRESSER_BOTTOM, theFile: "House1/dresserbottom.png"},
+			{tileType: TILE_BAR_CABINET, theFile: "bar/cabinet.png"},
+			{tileType: TILE_BAR, theFile: "bar/bar.png"},
+			{tileType: TILE_BAR_TOP, theFile: "bar/barTopEnd.png"},
+			{tileType: TILE_CHAIR, theFile: "bar/chair.png"},
+			
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
-			{varName: skeletonPic, theFile: "Monsters/Skeleton1.png"},
+			{varName: biggyPic, theFile: "Sprites/player/biggy.png"},
+			{varName: skeletonPic, theFile: "Monsters/skeleton1.png"},
 			{varName: skeletonPic2, theFile: "Monsters/skeleton2.png"},
 			{varName: skeletonPic3, theFile: "Monsters/skeleton3.png"},
 			{varName: deadSkeletonPic, theFile: "Monsters/deadSkeleton.png"},
@@ -144,7 +188,8 @@ function loadImages() {
 			{varName: zombiePic, theFile: "Monsters/zombie1.png"},
 			{varName: zombiePic2, theFile: "Monsters/zombie2.png"},
 			{varName: zombiePic3, theFile: "Monsters/zombie3.png"},
-			{varName: goblinPic, theFile: "Monsters/Goblin.png"},
+			{varName: goblinPic, theFile: "Sprites/goblin/Goblin.png"},
+			{varName: goblinPic2, theFile: "Sprites/goblin/Goblin2.png"},
 			{varName: orcPic, theFile: "Monsters/Orc1.png"},
 			{varName: orcPic2, theFile: "Monsters/Orc2.png"},
 			{varName: orcPic3, theFile: "Monsters/Orc3.png"},
