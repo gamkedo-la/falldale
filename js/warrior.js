@@ -361,7 +361,15 @@ function warriorClass() {
 			case TILE_BS_BW_WEAPONSRACKBOTTOM:
 				setDialogUICountdown(3);
 				dialog = "No swords?!  Isn't this a blacksmith's shop?";
-				break;	
+				break;
+			case TILE_CHAIR:
+				setDialogUICountdown(3);
+				dialog = "I really need a drink!";
+				break;
+			case TILE_CHAIR:
+				this.x = nextX;
+				this.y = nextY;
+				break;				
 			case TILE_WALL:
 			default:
 				break;

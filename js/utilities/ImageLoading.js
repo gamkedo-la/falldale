@@ -166,6 +166,10 @@ function loadImages() {
 			{tileType: TILE_HOUSE_LS_BED_BOTTOM, theFile: "House1/bedleftsidets.png"},
 			{tileType: TILE_HOUSE_DRESSER_TOP, theFile: "House1/dressertop.png"},
 			{tileType: TILE_HOUSE_DRESSER_BOTTOM, theFile: "House1/dresserbottom.png"},
+			{tileType: TILE_BAR_CABINET, theFile: "bar/cabinet.png"},
+			{tileType: TILE_BAR, theFile: "bar/bar.png"},
+			{tileType: TILE_BAR_TOP, theFile: "bar/barTopEnd.png"},
+			{tileType: TILE_CHAIR, theFile: "bar/chair.png"},
 			
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},

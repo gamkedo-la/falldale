@@ -43,7 +43,7 @@ function tileEditorInput(whichKeyCode){
 	switch(whichKeyCode){
 		case KEY_UP_ARROW:
 			if(tileTypeSelected != -1){
-				if(roomGrid[tileSelected] < 74){  // need to write code not to have a hard number of 74 for roomGrid's length
+				if(roomGrid[tileSelected] < 128){  // need to write code not to have a hard number of 74 for roomGrid's length
 					roomGrid[tileSelected]++;
 				}
 			}		
