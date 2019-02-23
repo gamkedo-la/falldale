@@ -304,7 +304,7 @@ function getCenterPixelCoordForArrayIndex(index) {
 	const col = index % ROOM_COLS;
 	const row = Math.floor(index / ROOM_COLS);
 
-	return {x: (col * TILE_W + TILE_W / 2), y: (row * TILE_H + TILE_H / 2)};
+	return {x: (col * TILE_W + TILE_W / 2), y: (row * TILE_H + TILE_H)};
 }
 
 function rowColToArrayIndex(col, row) {

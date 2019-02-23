@@ -7,6 +7,7 @@ batClass.prototype = new enemyClass();
 
 
 function batClass() {
+    this.myName = "Bat";
     this.x = Math.random() * 600;
     this.y = Math.random() * 800;
     this.xv = 0;
@@ -45,21 +46,15 @@ function batClass() {
     this.superclassMove = this.move;
     this.move = function() {
         if (this.alive) {
-            this.superclassMove(BAT_TIME_BETWEEN_CHANGE_DIR, BAT_SPEED);
             if (this.batResting == false) {
+                this.superclassMove(BAT_TIME_BETWEEN_CHANGE_DIR, BAT_SPEED);
                 this.cyclesOfBatActive++;		
                 this.cyclesOfBatResting = 0;
+
                 this.sx = 0;
                 this.sy = 0;
-                this.cyclesTilDirectionChange--;
-                if (this.cyclesTilDirectionChange <= 0) {
-                    var randAng = Math.random() * Math.PI * 2.0;
-                    this.xv = Math.cos(randAng) * BAT_SPEED;
-                    this.yv = Math.sin(randAng) * BAT_SPEED;
-                    this.cyclesTilDirectionChange = BAT_TIME_BETWEEN_CHANGE_DIR;
-                    if (this.cyclesOfBatActive >= 300) {
-                        this.batResting = true;
-                    }
+                if (this.cyclesOfBatActive >= 300) {
+                    this.batResting = true;
                 }
             } else if (this.batResting == true) {
                 this.cyclesOfBatActive = 0;
@@ -74,10 +69,6 @@ function batClass() {
                 }
             }
         }
-
-        this.myBite.move();
-        this.myBite.x = this.x;
-        this.myBite.y = this.y;
     }
 
     this.takeDamage = function(howMuch) {
@@ -85,12 +76,6 @@ function batClass() {
         batHurtSound.play();
 	}
 
-/*    this.isOverlappingPoint = function(testX, testY) {
-        var deltaX = testX - this.x;
-        var deltaY = testY - this.y;
-        var dist = Math.sqrt((deltaX * deltaY) + (deltaX * deltaY));
-        return (dist <= BAT_COLLISION_RADIUS);
-    }*/
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(!this.batResting) {//Bats don't bite when they're resting
