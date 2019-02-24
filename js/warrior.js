@@ -488,24 +488,27 @@ function warriorClass() {
 			}
 		}
 			
-		this.sx = this.frameIndex * this.width;
+		this.sx = this.frameIndex * this.width;		
 		
-		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
-		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
-			
-		
-			if(this.displayHealth){
-
-				colorRect(this.x,this.y-16, 40,12, "black"); 
-				colorRect(this.x+2,this.y-14, 35, 8, "red");
-				colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
-
-				displayHealthCountdown--;
-				if(displayHealthCountdown <= 0){
-					this.displayHealth = false;
-					displayHealthCountdown = 5 * 30;
-				}
+		if(this.displayHealth){		
+			if (displayHealthCountdown % 10 >= 4) {		
+				canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
+				canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			}
+			colorRect(this.x,this.y-16, 40,12, "black"); 
+			colorRect(this.x+2,this.y-14, 35, 8, "red");
+			colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
+		
+			displayHealthCountdown--;
+			if(displayHealthCountdown <= 0){
+				this.displayHealth = false;
+				displayHealthCountdown = 5 * 30;
+			}
+		}
+		else {
+			canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
+			canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+		}			
 			
 			if(debugMode){
 				

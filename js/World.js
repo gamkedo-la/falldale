@@ -135,7 +135,7 @@ var allGrass =   [18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18
 				  18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
 				  18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
 				  18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18];
-  
+
 var levelList = [levelOne, graveYard, levelThree, levelFour];
 var levelNow = 0;
 var roomGrid = [];
@@ -274,6 +274,15 @@ const TILE_BAR_CABINET = 125;
 const TILE_BAR = 126;
 const TILE_BAR_TOP = 127;
 const TILE_CHAIR = 128;
+
+// List of tiles with no collision interaction for ranged weapons
+// (Created because it would be a shorter list than for tiles with collision [I think])
+// Add/subtract to the list if there's a tile that needs/does not need collision
+var RANGED_NO_COLLIDE = [TILE_SKELETON, TILE_GOBLIN, TILE_BAT, TILE_ZOMBIE, TILE_ZOMBIE2, TILE_ZOMBIE3, TILE_GREEN_ORC_SWORD, TILE_GREEN_ORC_CLUB, TILE_GREEN_ORC_AX, TILE_ARCHER,
+ TILE_SHOPKEEPER, TILE_HEALER, TILE_PRINCESS, TILE_DODD, TILE_TARAN, TILE_DELKON, TILE_ADDY, TILE_GABRIEL, TILE_FENTON,
+ TILE_BRIDGE_LOWER, TILE_BRIDGE_UPPER,
+ TILE_ARROWS, TILE_THROWINGROCKS, TILE_KEY, TILE_YELLOW_KEY, TILE_GREEN_KEY, TILE_BLUE_KEY, TILE_RED_KEY, TILE_TREASURE,
+ TILE_WATER, TILE_ROAD, TILE_GRASS]
 
 function returnTileTypeAtColRow(col, row) {
 	if(col >= 0 && col < ROOM_COLS &&
