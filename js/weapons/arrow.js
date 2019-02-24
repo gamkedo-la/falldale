@@ -17,24 +17,32 @@ function arrowClass() {
 			this.yv = -this.speed;
 			this.length = 20;
 			this.width = 4;
+
+			this.checkCollision();
 		}
 		else if(this.direction == "south") {
 			this.xv = 0;
 			this.yv = this.speed;
 			this.length = 20;
 			this.width = 4;
+
+			this.checkCollision();
 		}
 		else if(this.direction == "west") {
 			this.xv = -this.speed;
 			this.yv = 0;
 			this.length = 4;
 			this.width = 20;
+
+			this.checkCollision();
 		}
 		else if(this.direction == "east") {
 			this.xv = this.speed;
 			this.yv = 0;
 			this.length = 4;
 			this.width = 20;
+
+			this.checkCollision();
 		}
 
 		this.x += this.xv;
@@ -100,6 +108,29 @@ function arrowClass() {
 		
 		if(this.life > 0) {
 			colorRect(this.x, this.y, this.width, this.length, "orange" );
+		}
+	}
+
+	// Check to see if arrow is inside collide-able tile
+	this.checkCollision = function()
+	{
+		// Get the tile number in world
+		let worldTileCheck = getTileIndexAtPixelCoord(this.x, this.y);
+
+		// If not out of bounds
+		if (worldTileCheck != undefined)
+		{
+			// Get the tile number in the index
+			let tileIndexNum = roomGrid[worldTileCheck];
+			// If the tile detected is NOT inside of the NO_COLLIDE list, reset
+			if (!RANGED_NO_COLLIDE.includes(tileIndexNum))
+			{
+				this.reset();
+			}
+		}
+		else // reset if out of bounds
+		{
+			this.reset();
 		}
 	}
 	
