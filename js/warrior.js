@@ -472,7 +472,7 @@ function warriorClass() {
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch / 10;
 		playerHurtSound.play();
-		displayHealth = true;
+		this.displayHealth = true;
 	}
 	
 	this.draw = function() { 
@@ -494,7 +494,7 @@ function warriorClass() {
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			
 		
-			if(displayHealth){
+			if(this.displayHealth){
 
 				colorRect(this.x,this.y-16, 40,12, "black"); 
 				colorRect(this.x+2,this.y-14, 35, 8, "red");
@@ -502,7 +502,7 @@ function warriorClass() {
 
 				displayHealthCountdown--;
 				if(displayHealthCountdown <= 0){
-					displayHealth = false;
+					this.displayHealth = false;
 					displayHealthCountdown = 5 * 30;
 				}
 			}
