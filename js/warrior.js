@@ -134,19 +134,19 @@ function warriorClass() {
 			nextY += playerMoveSpeed;
 			direction = "south";
 			this.sx = 0;
-			this.sy = 50;
+			this.sy = this.height;
 		}
 		if(this.keyHeld_WalkWest) {
 			nextX -= playerMoveSpeed;
 			direction = "west";
 			this.sx = 0;
-			this.sy = 50; // 100
+			this.sy = this.height*2; 
 		}
 		if(this.keyHeld_WalkEast) {
 			nextX += playerMoveSpeed;
 			direction = "east";
 			this.sx = 0;
-			this.sy = 50; //150
+			this.sy = this.height*3;
 		}
 
 		if(this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast) {
