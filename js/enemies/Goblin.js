@@ -15,7 +15,7 @@ function goblinClass(goblinName) {
     this.tickCount = 0;
     this.frameIndex = 0;
     this.width = 50;
-    this.numberOfFrames = 4;
+    this.numberOfFrames = 6;
     this.height = 50;
     this.ticksPerFrame = 5;
     this.goblinMove = true;
@@ -51,10 +51,12 @@ function goblinClass(goblinName) {
             this.sy = 0;
         }
         if (this.walkWest) {
-            this.sy = this.height*3;
+            //this.sy = this.height*3;
+			this.sy = this.height;
         }
         if (this.walkEast) {
-            this.sy = this.height*2;
+            //this.sy = this.height*2;
+			this.sy = this.health;
         }
         
         this.myBite.move();
@@ -97,10 +99,7 @@ function goblinClass(goblinName) {
 			if(gamePaused == false){
 				this.sx = this.frameIndex * this.width;
 			}
-			
-			this.sx = 0;
-			this.sy = 0;
-			
+				
             canvasContext.drawImage(shadowPic, this.x-16, this.y+20);
             canvasContext.drawImage(this.myGoblinPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
             if (debugMode) {

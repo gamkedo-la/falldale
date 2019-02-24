@@ -1,6 +1,7 @@
 function enemyClass() {
     this.x = 0;
     this.y = 0;
+    this.myName = "anEnemy";
     this.speedMult = 1.0;
     this.cyclesTilDirectionChange = 0;
     this.addedCyclesTilDirectionChange = 0;
@@ -19,12 +20,89 @@ function enemyClass() {
     this.myBite = null;
     this.myMelee = null;
     this.myRanged = null;
+    this.pather = null;
+	this.currentPath = [];
+	this.currentPathIndex = 0;
 
-    this.move = function(timeBetweenDirChange, moveSpeed) {
+    this.move = function(timeBetweenChangeDir, moveSpeed) {
         if (this.health <= 0) {
-            return;
+			return;
+		}
+        let nextPos = this.pathFindingMove(timeBetweenChangeDir, moveSpeed);
+		if(this.currentPath == null) {
+            nextPos = this.randomMove(timeBetweenChangeDir, moveSpeed);
+		} else {
+            if(nextPos == null) {
+                nextPos = this.randomMove(timeBetweenChangeDir, moveSpeed);
+            } else {
+                this.x = nextPos.x;
+                this.y = nextPos.y;
+            }
         }
+
+        if(this.myBite != null) {
+            this.myBite.move();
+            this.myBite.x = this.x;
+            this.myBite.y = this.y;    
+        }
+
+        var hasRanged = this.myRanged != null;
+		var canRangeNow = hasRanged && this.myRanged.rangeTest(redWarrior);	
 		
+		if(canRangeNow) {
+            if(this.myRanged.isReady()) {
+                this.myRanged.shootFrom(this);
+                if(this.myRanged.hitTest(this, redWarrior)) {
+                    console.log("Ranged Damage Done");
+                }
+            }
+        }
+    }
+
+    this.pathFindingMove = function(timeBetweenDirChange, moveSpeed) {
+        if(this.pather == null) {return null;} //this enemy is not fully initialized yet
+
+        var nextX = this.x;
+        var nextY = this.y;
+        
+		this.cyclesTilDirectionChange--;
+		if ((this.cyclesTilDirectionChange <= 0) || (this.currentPath == null)) {
+			this.cyclesTilDirectionChange = timeBetweenDirChange;
+			const thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
+			const warriorTileIndex = getTileIndexAtPixelCoord(redWarrior.x, redWarrior.y);
+
+			this.currentPath = this.pather.pathFrom_To_(thisTileIndex, warriorTileIndex);
+            this.currentPathIndex = 0;
+
+            if(this.currentPath == null) {return null;}
+        }
+        
+        const currentTile = getTileIndexAtPixelCoord(this.x, this.y);
+        const nextTile = this.currentPath[this.currentPathIndex];
+
+        if(currentTile == nextTile) {
+            this.currentPathIndex++;
+            if(this.currentPathIndex == this.currentPath.length) {
+                return null;
+            }
+        }
+
+        if(nextTile - currentTile > 1) {
+            this.changeDirection("south");
+        } else if(nextTile - currentTile < -1) {
+            this.changeDirection("north");
+        } else if(nextTile - currentTile == -1) {
+            this.changeDirection("west");
+        } else if(nextTile - currentTile == 1) {
+            this.changeDirection("east");
+        }
+
+        let newPos = this.changePosition(nextX, nextY, moveSpeed);
+
+        return {x:newPos.x, y:newPos.y};
+    }
+
+    this.randomMove = function(timeBetweenDirChange, moveSpeed) {
         var nextX = this.x;
         var nextY = this.y;
         this.cyclesTilDirectionChange--;
@@ -52,34 +130,46 @@ function enemyClass() {
             }
         }
 
+        let newPos = this.changePosition(nextX, nextY, moveSpeed);
+        this.walkAdjustment(newPos.x, newPos.y);
+
+        return {x:newPos.x, y:newPos.y};
+    }
+
+    this.changePosition = function(nextX, nextY, moveSpeed) {
         // which directional image to use
+        let newPos = {x:nextX, y:nextY};
 
         if (this.walkNorth) {
-            nextY -= moveSpeed * this.speedMult;
+            newPos.y -= moveSpeed * this.speedMult;
             this.sx = 0;
             this.sy = (this.height)+1;
             this.direction = "north";
         }
 
         if (this.walkSouth) {
-            nextY += moveSpeed * this.speedMult;
+            newPos.y += moveSpeed * this.speedMult;
             this.sx = 0;
             this.sy = 0;
             this.direction = "south";
         }
         if (this.walkWest) {
-            nextX -= moveSpeed * this.speedMult;
+            newPos.x -= moveSpeed * this.speedMult;
             this.sx = 0;
             this.sy = (this.height*2)+1;
             this.direction = "west";
         }
         if (this.walkEast) {
-            nextX += moveSpeed * this.speedMult;
+            newPos.x += moveSpeed * this.speedMult;
             this.sx = 0;
             this.sy = (this.height*3)+1;
             this.direction = "east";
         }
 
+        return newPos;
+    }
+
+    this.walkAdjustment = function(nextX, nextY) {
         var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL;
 
@@ -165,33 +255,110 @@ function enemyClass() {
                 this.x = nextX;
                 this.y = nextY;
                 break;
-        }
+        }    
     }
 
-    this.changeDirection = function() {
-        if (this.walkNorth == true) {
-            this.walkNorth = false;
-            this.walkEast = true;
-        } else if (this.walkWest == true) {
-            this.walkWest = false;
-            this.walkNorth = true;
-        } else if (this.walkEast == true) {
-            this.walkEast = false;
-            this.walkSouth = true;
-        } else if (this.walkSouth == true) {
-            this.walkSouth = false;
-            this.walkWest = true;
-        }
-		
-		var hasRanged = this.myRanged != null;
-		var canRangeNow = hasRanged && this.myRanged.rangeTest(redWarrior);	
-		
-		if(canRangeNow) {
-            if(this.myRanged.isReady()) {
-                this.myRanged.shootFrom(this);
-                if(this.myRanged.hitTest(this, redWarrior)) {
-                    console.log("Ranged Damage Done");
+    this.changeDirection = function(newDirection) {
+        if(newDirection == undefined) {
+            const newDir = Math.floor(3 * Math.random());
+            if (this.walkNorth == true) {
+                this.walkNorth = false;
+                switch(newDir) {
+                    case 0:
+                        this.walkSouth = true;
+                        this.walkEast = false;
+                        this.walkWest = false;
+                    break;
+                    case 1:
+                        this.walkSouth = false;
+                        this.walkEast = true;
+                        this.walkWest = false;
+                    break;
+                    case 2:
+                        this.walkSouth = false;
+                        this.walkEast = false;
+                        this.walkWest = true;
+                    break;
                 }
+            } else if (this.walkWest == true) {
+                this.walkWest = false;
+                switch(newDir) {
+                    case 0:
+                        this.walkSouth = true;
+                        this.walkEast = false;
+                        this.walkNorth = false;
+                    break;
+                    case 1:
+                        this.walkSouth = false;
+                        this.walkEast = true;
+                        this.walkNorth = false;
+                    break;
+                    case 2:
+                        this.walkSouth = false;
+                        this.walkEast = false;
+                        this.walkNorth = true;
+                    break;
+                }
+            } else if (this.walkEast == true) {
+                this.walkEast = false;
+                switch(newDir) {
+                    case 0:
+                        this.walkSouth = true;
+                        this.walkNorth = false;
+                        this.walkWest = false;
+                    break;
+                    case 1:
+                        this.walkSouth = false;
+                        this.walkNorth = true;
+                        this.walkWest = false;
+                    break;
+                    case 2:
+                        this.walkSouth = false;
+                        this.walkNorth = false;
+                        this.walkWest = true;
+                    break;
+                }
+            } else if (this.walkSouth == true) {
+                this.walkSouth = false;
+                switch(newDir) {
+                    case 0:
+                        this.walkNorth = true;
+                        this.walkEast = false;
+                        this.walkWest = false;
+                    break;
+                    case 1:
+                        this.walkNorth = false;
+                        this.walkEast = true;
+                        this.walkWest = false;
+                    break;
+                    case 2:
+                        this.walkNorth = false;
+                        this.walkEast = false;
+                        this.walkWest = true;
+                    break;
+                }
+            }
+        } else {
+            if(newDirection == "east") {
+                this.walkNorth = false;
+                this.walkEast = true;
+                this.walkWest = false;
+                this.walkSouth = false;
+            } else if(newDirection == "west") {
+                this.walkNorth = false;
+                this.walkEast = false;
+                this.walkWest = true;
+                this.walkSouth = false;
+            } else if(newDirection == "south") {
+                this.walkNorth = false;
+                this.walkEast = false;
+                this.walkWest = false;
+                this.walkSouth = true;
+            } else if(newDirection == "north") {
+                this.walkNorth = true;
+                this.walkEast = false;
+                this.walkWest = false;
+                this.walkSouth = false;
             }
         }
     }
@@ -224,7 +391,9 @@ function enemyClass() {
 		return;//failure to override results in invincible enemies
 	}
 	
-	this.reset = function(resetX, resetY){
+	this.reset = function(resetX, resetY) {
+        this.pather = new Pathfinder3();
+        this.changeDirection();
         this.x = resetX;
         this.y = resetY;
 	}

@@ -13,7 +13,7 @@ var enemyList = [];
 var dialog = "H: Hides health, I: Inventory, O: Stats";
 var inventory = " ";
 var inventoryScreen = false;
-var mapShow = true;
+var mapShow = false;
 var statsScreen = false;
 var scrollBackgroundScreen = true;
 

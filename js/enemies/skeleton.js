@@ -20,6 +20,7 @@ function skeletonClass(skeletonName) {
 	this.skeletonMove = true;
 	this.skeletonTimeBetweenChangeDir = 700;
 	this.skeletonMoveSpeed = 0.5;
+	this.pather = new Pathfinder3();
 
 	this.superClassReset = this.reset;
 	this.reset = function(resetX, resetY) {
@@ -29,15 +30,9 @@ function skeletonClass(skeletonName) {
 		this.newRandomPic();
 	}
 	
-
-	
 	this.superClassMove = this.move;
 	this.move = function() {
 		this.superClassMove(this.skeletonTimeBetweenChangeDir, this.skeletonMoveSpeed);
-
-		this.myBite.move();
-        this.myBite.x = this.x;
-        this.myBite.y = this.y;
 	}
 
 	this.takeDamage = function(howMuch) {
@@ -69,8 +64,6 @@ function skeletonClass(skeletonName) {
     }
 		
 	this.draw = function() { 
-
-			
 		if(this.skeletonMove) {
 			this.tickCount++;
 		}
@@ -81,8 +74,7 @@ function skeletonClass(skeletonName) {
 			} else {
 				this.frameIndex = 0;
 			}
-		}	
-		
+		}
 		
 		if(this.health > 0){
 			
