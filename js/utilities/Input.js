@@ -170,7 +170,9 @@ function keyPressed(evt) {
                 tileEditor = true;
             }
         } else if (evt.keyCode == mapToggle) {
-            mapShow = !mapShow
+            if(redWarrior.haveMap){
+				mapShow = !mapShow;
+			}
         } else if (evt.keyCode == redWarrior.controlKeyDisplayHealth) {
             displayHealth = !displayHealth
         }

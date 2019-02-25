@@ -173,6 +173,7 @@ function loadImages() {
 			{tileType: TILE_BAR, theFile: "bar/bar.png"},
 			{tileType: TILE_BAR_TOP, theFile: "bar/barTopEnd.png"},
 			{tileType: TILE_CHAIR, theFile: "bar/chair.png"},
+			{tileType: TILE_MAP, theFile: "map.png"},
 			
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},

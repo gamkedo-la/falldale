@@ -60,6 +60,7 @@ function warriorClass() {
 	this.experienceLevel = 1;
 	this.armor = 10;
 	this.healingPotion = 0;
+	this.haveMap = false;
 	
 	this.keyHeld_WalkNorth = false;
 	this.keyHeld_WalkSouth = false;
@@ -292,6 +293,13 @@ function warriorClass() {
 				setDialogUICountdown(3);
 				dialog = "I've found a green key.";
 				keySound.play();
+				break;
+			case TILE_MAP:	
+				this.haveMap = true; // treasure map found
+				roomGrid[walkIntoTileIndex] = TILE_GRASS;
+				setDialogUICountdown(3);
+				dialog = "So this is what this place looks like.  [PRESS 3] for map";
+	
 				break;
 			case TILE_TREASURE:
 				if(this.yellowKeysHeld > 0) {
