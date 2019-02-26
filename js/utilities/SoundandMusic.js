@@ -66,13 +66,27 @@ function CycleMute() {
             break;
         case 2:
             // Mute SFX
+            doorSound.startOrStopSFX();
+            keySound.startOrStopSFX();
+            spikeSound.startOrStopSFX();
+            zombieHurtSound.startOrStopSFX();
+            goblinHurtSound.startOrStopSFX();
+            skeletonHurtSound.startOrStopSFX();
+            batHurtSound.startOrStopSFX();
+            playerHurtSound.startOrStopSFX();
             break;
-        case 3: 
-            // Mute SFX and background music
-            break;
-        case 4:
-            // Return to normal
+        case 3:
+            // Return music and SFX to normal
             backgroundMusic.startOrStopMusic();
+            doorSound.startOrStopSFX();
+            keySound.startOrStopSFX();
+            spikeSound.startOrStopSFX();
+            zombieHurtSound.startOrStopSFX();
+            goblinHurtSound.startOrStopSFX();
+            skeletonHurtSound.startOrStopSFX();
+            batHurtSound.startOrStopSFX();
+            playerHurtSound.startOrStopSFX();
+
             // Reset the counter to zero
             muteInputCycle = 0;
             break;
