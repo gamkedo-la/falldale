@@ -13,7 +13,9 @@ function zombieClass(zombieName, whichPic) {
 	this.myBite = new biteClass();		//
 	this.myBite.baseBiteLife = 2;		//Zombies bite, all the time
 	this.myBite.baseBiteCooldown = 2;	//
-	
+	this.displayHealth = false;
+	this.zombieHealthCountdownSeconds = 5;
+	this.zombieDisplayHealthCountdown = this.zombieHealthCountdownSeconds * 30;
 		
 	this.tickCount = 0;
 	this.frameIndex = 0;
@@ -61,6 +63,7 @@ function zombieClass(zombieName, whichPic) {
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch;
 		zombieHurtSound.play();
+		this.displayHealth = true;
 	}
 	
 	this.superClassIsOverlappingPoint = this.isOverlappingPoint;
@@ -91,10 +94,16 @@ function zombieClass(zombieName, whichPic) {
 			canvasContext.drawImage(shadowPic, this.x-20, this.y+32);
 			canvasContext.drawImage(this.myZombiePic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 
-			if(displayHealth){
-				colorRect(this.x,this.y-16, 40,12, "black"); 
-				colorRect(this.x+2,this.y-14, 35, 8, "red");
-				colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+			if(this.displayHealth){
+				if(this.zombieDisplayHealthCountdown >=0){
+					colorRect(this.x,this.y-16, 40,12, "black"); 
+					colorRect(this.x+2,this.y-14, 35, 8, "red");
+					colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+					this.zombieDisplayHealthCountdown--;
+				} else {
+					this.zombieDisplayHealthCountdown = this.zombieHealthCountdownSeconds * 30;
+					this.displayHealth = false;
+				}
 			}
 			if(debugMode){
 				colorText(this.myName, this.x, this.y-20, "red");

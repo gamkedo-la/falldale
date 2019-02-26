@@ -5,8 +5,8 @@ var playerMoveSpeed = 3.0;
 // this also doesn't allow diagonal movement
 var direction = "south"; 
 
-var healthCountDownSeconds = 5;
-var displayHealthCountdown = healthCountDownSeconds * 30;
+var healthCountdownSeconds = 5;
+var displayHealthCountdown = healthCountdownSeconds * 30;
 
 level02Experience = 500;
 level03Experience = 2000;
@@ -510,7 +510,7 @@ function warriorClass() {
 			displayHealthCountdown--;
 			if(displayHealthCountdown <= 0){
 				this.displayHealth = false;
-				displayHealthCountdown = 5 * 30;
+				displayHealthCountdown = healthCountdownSeconds * 30;
 			}
 		}
 		else {
