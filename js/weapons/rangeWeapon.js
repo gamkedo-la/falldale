@@ -1,30 +1,134 @@
+// ranged weapon superclass
 
-function rangedWeaponClass(){
-	this.rangedWeaponLife = 0;
-	
-	this.reset = function(weaponLifeTime) {
-		this.rangedWeaponLife = weaponLifeTime;
-	} 
-	
-	this.rollToDetermineIfHit = function() {
-		this.setDamageUICountdown(3);
-		this.toHitPoints = Math.floor(Math.random() * this.attackDice) + 1
-	}
-	
-	this.rollForDamage = function(damageDice) {
-		if(this.toHitPoints >= 10){
-			this.toHitPoints = 0;
-			this.damagePoints = Math.floor(Math.random() * damageDice) + 1
-			displayDamagePoints = this.damagePoints;
-			dialog = "Successful hit on "+ thisEnemy.myName+"!";
-			if (thisEnemy.takeDamage) { // can be undefined
-				thisEnemy.takeDamage(damagePoints);
+rangedWeaponClass.prototype = new weaponClass();
+function rangedWeaponClass() {
+	this.name = "projectile";
+	this.indefiniteArticle = "a";
+	this.pluralName = this.name + "s";
+	this.baseDamage = 0.5;
+	this.baseLife = 100;
+	this.quantity = 5;
+	this.direction = direction; // take initial direction from global direction var
+	this.superClassMove = this.move;
+	this.move = function() {
+		this.superClassMove();
+		if(this.direction == "north") {
+			this.xv = 0;
+			this.yv = -this.speed;
+			this.length = 20;
+			this.width = 4;
+
+			this.checkCollision();
+		}
+		else if(this.direction == "south") {
+			this.xv = 0;
+			this.yv = this.speed;
+			this.length = 20;
+			this.width = 4;
+
+			this.checkCollision();
+		}
+		else if(this.direction == "west") {
+			this.xv = -this.speed;
+			this.yv = 0;
+			this.length = 4;
+			this.width = 20;
+
+			this.checkCollision();
+		}
+		else if(this.direction == "east") {
+			this.xv = this.speed;
+			this.yv = 0;
+			this.length = 4;
+			this.width = 20;
+
+			this.checkCollision();
+		}
+
+		this.x += this.xv;
+		this.y += this.yv;
+	};
+
+	this.shootFrom = function(warriorAttack, dir = direction) {
+		if (this.quantity > 0) {
+			this.quantity--;
+			// FIXME: use "an" for "arrows"
+			if (this.quantity > 1) {
+				dialog = "I used " + this.indefiniteArticle + " " + this.name + ". I now have " + this.quantity + " " + this.pluralName + "!";
+			} else if (this.quantity == 1) {
+				dialog = "I used " + this.indefiniteArticle + " " + this.name + ". I now have only 1 " + this.name + " left";
+			} else {
+				dialog = "That was my last " + this.name + ". I need to find more!";
 			}
 		}
+		this.direction = dir;
+
+		if(dir == "north") {
+			this.x = warriorAttack.x+25;
+			this.y = warriorAttack.y+25;
+		}
+		else if(dir == "south") {
+			this.x = warriorAttack.x+5;
+			this.y = warriorAttack.y+25 ;
+		}
+		else if(dir == "west") {
+			this.x = warriorAttack.x;
+			this.y = warriorAttack.y+30;
+		}
+		else if(dir == "east") {
+			this.x = warriorAttack.x+15;
+			this.y = warriorAttack.y+30;
+		}
+		
+		this.life = this.baseLife;
 	}
 	
-	this.setDamageUICountdown = function (seconds) {
-		damageUIVisibilityCountdown = seconds * 30; // 30fps
+	this.superClassHitTest = this.hitTest;
+    this.hitTest = function(wielder, adversary) {
+        if(this.superClassHitTest(wielder, adversary)) {
+			dialog = "Successful " + this.name + " hit on " + adversary.myName + "!";
+        }
 	}
-	
+
+	this.draw = function() {
+		/*		if(direction == "north") {
+
+				}
+				else if(direction == "south") {
+				0;
+				}
+				else if(direction == "west") {
+				
+				}
+				else if(direction == "east") {
+				
+				} */
+		
+		if(this.life > 0) {
+			colorRect(this.x, this.y, this.width, this.length, this.color);
+		}
+	}
+
+	// Check to see if projectile is inside collide-able tile
+	this.checkCollision = function()
+	{
+		// Get the tile number in world
+		let worldTileCheck = getTileIndexAtPixelCoord(this.x, this.y);
+
+		// If not out of bounds
+		if (worldTileCheck != undefined)
+		{
+			// Get the tile number in the index
+			let tileIndexNum = roomGrid[worldTileCheck];
+			// If the tile detected is NOT inside of the NO_COLLIDE list, reset
+			if (!RANGED_NO_COLLIDE.includes(tileIndexNum))
+			{
+				this.reset();
+			}
+		}
+		else // reset if out of bounds
+		{
+			this.reset();
+		}
+	}
 }
