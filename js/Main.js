@@ -75,7 +75,7 @@ function imageLoadingDoneSoStartGame() {
 
     setupInput();
 	console.log("setupInput should run - Main.js");
-    loadLevel(levelOne);
+    loadLevel(graveYard);
 	if(debugSkipToGame){
 		console.log("Debug Mode is on, skip directly to game");
 	}

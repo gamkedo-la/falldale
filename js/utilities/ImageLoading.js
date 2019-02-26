@@ -183,6 +183,14 @@ function loadImages() {
 			{tileType: TILE_MAUSOLEUM_BL, theFile: "graves/mausoleumBL.png"},
 			{tileType: TILE_MAUSOLEUM_BM, theFile: "graves/mausoleumBM.png"},
 			{tileType: TILE_MAUSOLEUM_BR, theFile: "graves/mausoleumBR.png"},
+			{tileType: TILE_GRAVEYARD_FENCE_LEFT, theFile: "graves/fenceleftpost.png"},
+			{tileType: TILE_GRAVEYARD_FENCE_RIGHT, theFile: "graves/fencerightpost.png"},
+			{tileType: TILE_GRAVEYARD_FENCE, theFile: "graves/fence.png"},
+			{tileType: TILE_GRAVE_1, theFile: "graves/1 grave.png"},
+			{tileType: TILE_GRAVE_2, theFile: "graves/2 graves.png"},
+			{tileType: TILE_GRAVE_3, theFile: "graves/large grave.png"},
+			{tileType: TILE_GRAVE_4, theFile: "graves/oblisk grave.png"},
+			
 			
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},

@@ -3,13 +3,15 @@
 
 // TODO: add to level editor
 var rooftops = [ // x1,y1,x2,y2
-	[0,0,4,2],
+	//rooftops for the town area
+	/*
+	[0,0,4,2],    
 	[19,0,24,3],
 	[26,0,31,3],
 	[8,3,16,8], 
 	[0,18,4,22],
 	[11,16,17,22],
-	[21,12,28,17]
+	[21,12,28,17] */
 ];
 
 //TILE_ROOF_SIDERIGHT
