@@ -172,6 +172,7 @@ function moveAll() {
                 redWarrior.checkWarriorandSwordCollisionAgainst(enemyList[i]);
             }
         }
+		//redWarrior.checkWarriorCollisionAgainst(heartsList[i]);   //// need to create collision for objects
         cameraFollow();
     };
 };
@@ -328,6 +329,9 @@ function drawAll() {
         redWarrior.draw();
         for (var i=0; i<enemyList.length; i++) {
             enemyList[i].draw();
+        }
+		for (var i=0; i<heartsList.length; i++) {
+            heartsList[i].draw();
         }
         drawRooftops();
         canvasContext.restore();

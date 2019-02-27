@@ -1,6 +1,8 @@
 var goldList = [];
 
-function goldClass(gold) {
+function goldClass(gold, xPosition, yPosition) {
 	this.goldValue = gold;
-	console.log(this.goldValue);
+	this.x = xPosition;
+	this.y = yPosition
+	console.log(this.heartValue, this.x, this.y);
 }

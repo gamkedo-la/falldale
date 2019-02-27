@@ -50,6 +50,7 @@ var shadowPic = document.createElement("img");
 var shinyPic = document.createElement("img");
 
 var falldaleMap = document.createElement("img");
+var heartPic = document.createElement("img");
 
 var worldPics = [];
 
@@ -231,7 +232,8 @@ function loadImages() {
 			{varName: healerPic, theFile: "NPCs/healer.png"},
 			{varName: princessPic, theFile: "NPCs/princess.png"},
 			{varName: shopkeeperPic, theFile: "NPCs/shopkeeper.png"},
-			{varName: taranPic, theFile: "NPCs/Taran.png"}
+			{varName: taranPic, theFile: "NPCs/Taran.png"},
+			{varName: heartPic, theFile: "heart.png"}
 		];
 			
 	picsToLoad = imageList.length;
