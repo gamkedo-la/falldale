@@ -21,6 +21,7 @@ function skeletonClass(skeletonName) {
 	this.skeletonTimeBetweenChangeDir = 700;
 	this.skeletonMoveSpeed = 0.5;
 	this.pather = new Pathfinder3();
+	this.treasureAvailable = true;
 
 	this.superClassReset = this.reset;
 	this.reset = function(resetX, resetY) {
@@ -35,9 +36,38 @@ function skeletonClass(skeletonName) {
 		this.superClassMove(this.skeletonTimeBetweenChangeDir, this.skeletonMoveSpeed);
 	}
 
+	this.distributeTreasure = function(){
+		var chanceOnTreasure = Math.round(Math.random() * 10);
+		if(chanceOnTreasure >= 7){	
+			console.log("Treasure Provided")		
+			var randomTreasure = Math.round(Math.random() * 3);
+			switch (randomTreasure) {
+				case 0:
+					heartsList.push(new heartClass('2'));
+					console.log("hearts");
+				break;
+				case 1:
+					goldList.push(new goldClass('2'));
+					console.log("gold");
+				break;
+				case 2:
+					healingPotionList.push(new healingPotionClass('2'));
+					console.log("healing potion");
+				break;
+			}
+		}
+	}
+	
+	
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch;
 		skeletonHurtSound.play();
+		if(this.health <= 0){
+			if(this.treasureAvailable){
+				this.distributeTreasure();
+				this.treasureAvailable = false;
+			}
+		}
 	}
 	
 	this.superClassIsOverlappingPoint = this.isOverlappingPoint;

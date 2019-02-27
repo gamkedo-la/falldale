@@ -51,6 +51,28 @@ function orcClass(orcName, whichPicture) {
         this.myBite.y = this.y;
     }
     
+	this.distributeTreasure = function(){
+		var chanceOnTreasure = Math.round(Math.random() * 10);
+		if(chanceOnTreasure >= 7){	
+			console.log("Treasure Provided")		
+			var randomTreasure = Math.round(Math.random() * 3);
+			switch (randomTreasure) {
+				case 0:
+				// heart
+				console.log("heart");
+				break;
+				case 1:
+				// gold
+				console.log("gold");
+				break;
+				case 2:
+				// healing potion
+				console.log("healing potion");
+				break;
+			}
+		}
+	}
+	
     this.takeDamage = function(howMuch) {
 		this.health -= howMuch;
 	}
