@@ -51,6 +51,8 @@ var shinyPic = document.createElement("img");
 
 var falldaleMap = document.createElement("img");
 var heartPic = document.createElement("img");
+var healingPotionPic = document.createElement("img");
+var goldPic = document.createElement("img");
 
 var worldPics = [];
 
@@ -192,7 +194,6 @@ function loadImages() {
 			{tileType: TILE_GRAVE_3, theFile: "graves/large grave.png"},
 			{tileType: TILE_GRAVE_4, theFile: "graves/oblisk grave.png"},
 			
-			
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
@@ -233,6 +234,8 @@ function loadImages() {
 			{varName: princessPic, theFile: "NPCs/princess.png"},
 			{varName: shopkeeperPic, theFile: "NPCs/shopkeeper.png"},
 			{varName: taranPic, theFile: "NPCs/Taran.png"},
+			{varName: goldPic, theFile: "gold.png"},
+			{varName: healingPotionPic, theFile: "healingPotion.png"},
 			{varName: heartPic, theFile: "heart.png"}
 		];
 			

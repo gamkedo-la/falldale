@@ -173,7 +173,8 @@ function moveAll() {
             }
         }
 		//redWarrior.checkWarriorCollisionAgainst(heartsList[i]);   //// need to create collision for objects
-        cameraFollow();
+		//redWarrior.checkWarriorCollisionAgainst(healingPotionList[i]);   //// need to create collision for objects       
+	   cameraFollow();
     };
 };
 
@@ -332,6 +333,12 @@ function drawAll() {
         }
 		for (var i=0; i<heartsList.length; i++) {
             heartsList[i].draw();
+        }
+		for (var i=0; i<healingPotionList.length; i++) {
+            healingPotionList[i].draw();
+        }
+		for (var i=0; i<goldList.length; i++) {
+            goldList[i].draw();
         }
         drawRooftops();
         canvasContext.restore();

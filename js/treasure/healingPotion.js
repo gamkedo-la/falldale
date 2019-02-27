@@ -4,5 +4,9 @@ function healingPotionClass(healingPotion, xPosition, yPosition) {
 	this.healingPotionValue = healingPotion;
 	this.x = xPosition;
 	this.y = yPosition;
-	console.log(this.heartValue, this.x, this.y);
+	
+	this.draw = function() { 
+		canvasContext.drawImage(healingPotionPic, this.x, this.y);
+	}
 }
+

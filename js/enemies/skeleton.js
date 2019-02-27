@@ -40,19 +40,16 @@ function skeletonClass(skeletonName) {
 		var chanceOnTreasure = Math.round(Math.random() * 10);
 		if(chanceOnTreasure >= 7){	
 			console.log("Treasure Provided")		
-			var randomTreasure =  Math.round(Math.random() * 3);
+			var randomTreasure =  Math.round(Math.random() * 2);
 			switch (randomTreasure) {
 				case 0:
 					heartsList.push(new heartClass('2', this.x, this.y));
-					console.log("hearts");
 				break;
 				case 1:
 					goldList.push(new goldClass('2', this.x, this.y));
-					console.log("gold");
 				break;
 				case 2:
 					healingPotionList.push(new healingPotionClass('2', this.x, this.y));
-					console.log("healing potion");
 				break;
 			}
 		}
