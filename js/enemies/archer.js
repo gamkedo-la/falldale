@@ -13,7 +13,10 @@ function archerClass(archerName) {
 	this.myBite = new biteClass();	//
 	this.myBite.baseBiteLife = 30;			//Archers bite, but they're not very good at it
 	this.myBite.baseBiteCooldown = 10;		//
-	
+	this.displayHealth = false;
+	this.archerHealthCountdownSeconds = 5;
+	this.archerDisplayHealthCountdown = this.archerHealthCountdownSeconds * 30;
+
 	this.tickCount = 0;
 	this.frameIndex = 0;
 	this.width = 44;
@@ -62,6 +65,7 @@ function archerClass(archerName) {
 
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch;
+		this.displayHealth = true;
 	}
 
 	this.superClassIsOverlappingPoint = this.isOverlappingPoint;
@@ -94,10 +98,17 @@ function archerClass(archerName) {
 			canvasContext.drawImage(shadowPic, this.x-8, this.y+32);
 			canvasContext.drawImage(this.myArcherPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 
-				if(displayHealth){
-				colorRect(this.x,this.y-16, 40,12, "black"); 
-				colorRect(this.x+2,this.y-14, 35, 8, "red");
-				colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+				if(this.displayHealth){
+					if(this.archerDisplayHealthCountdown >= 0) {
+						colorRect(this.x,this.y-16, 40,12, "black"); 
+						colorRect(this.x+2,this.y-14, 35, 8, "red");
+						colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+						this.archerDisplayHealthCountdown--;	
+					} else {
+						this.archerDisplayHealthCountdown = this.archerHealthCountdownSeconds * 30;
+						this.displayHealth = false;
+					}
+
 				}
 				if(debugMode){
 					colorText(this.myName, this.x, this.y-20, "red");

@@ -7,6 +7,9 @@ function orcClass(orcName, whichPicture) {
     this.alive = true;
     this.myBite = new biteClass();
     this.myName = orcName;
+    this.displayHealth = false;
+    this.orcHealthCountdownSeconds = 5;
+    this.orcDisplayHealthCountdown = this.orcHealthCountdownSeconds * 30;
 
     this.tickCount = 0;
     this.frameIndex = 0;
@@ -75,6 +78,7 @@ function orcClass(orcName, whichPicture) {
 	
     this.takeDamage = function(howMuch) {
 		this.health -= howMuch;
+        this.displayHealth = true;
 	}
 
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
@@ -131,10 +135,16 @@ function orcClass(orcName, whichPicture) {
                 colorRect(this.x + this.width, this.y + this.height, 5, 5, "red")
             }
 
-            if (displayHealth) {
-                colorRect(this.x, this.y - 16, 40, 12, "black");
-                colorRect(this.x + 2, this.y - 14, 35, 8, "red");
-                colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
+            if (this.displayHealth) {
+                if (this.orcDisplayHealthCountdown >=0) {
+                    colorRect(this.x, this.y - 16, 40, 12, "black");
+                    colorRect(this.x + 2, this.y - 14, 35, 8, "red");
+                    colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
+                    this.orcDisplayHealthCountdown--;
+                } else {
+                    this.orcDisplayHealthCountdown = orcHealthCountdownSeconds * 30;
+                    this.displayHealth = false;
+                }
             }
         } else {
             canvasContext.drawImage(deadOrcPic, this.x, this.y);

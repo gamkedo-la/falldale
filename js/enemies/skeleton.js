@@ -10,6 +10,9 @@ function skeletonClass(skeletonName) {
 	this.myBite = new biteClass();	//
 	this.myBite.baseBiteLife = 30;			//Archers bite, but they're not very good at it
 	this.myBite.baseBiteCooldown = 10;		//
+	this.displayHealth = false;
+	this.skeletonHealthCountdownSeconds = 5;
+	this.skeletonDisplayHealthCountdown = this.skeletonHealthCountdownSeconds * 30;
 
 	this.tickCount = 0;
 	this.frameIndex = 0;
@@ -59,6 +62,7 @@ function skeletonClass(skeletonName) {
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch;
 		skeletonHurtSound.play();
+		this.displayHealth = true;
 		if(this.health <= 0){
 			if(this.treasureAvailable){
 				this.distributeTreasure();
@@ -115,10 +119,16 @@ function skeletonClass(skeletonName) {
 			canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 			canvasContext.drawImage(this.mySkeletonPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			
-			if(displayHealth){
-				colorRect(this.x,this.y-16, 40,12, "black"); 
-				colorRect(this.x+2,this.y-14, 35, 8, "red");
-				colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+			if(this.displayHealth){
+				if(this.skeletonDisplayHealthCountdown >= 0) {
+					colorRect(this.x,this.y-16, 40,12, "black"); 
+					colorRect(this.x+2,this.y-14, 35, 8, "red");
+					colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
+					this.skeletonDisplayHealthCountdown--;
+				} else {
+					this.skeletonDisplayHealthCountdown = this.skeletonHealthCountdownSeconds * 30;
+					this.displayHealth = false;
+				}
 			}
 			
 			

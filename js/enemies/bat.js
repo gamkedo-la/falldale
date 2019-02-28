@@ -25,6 +25,9 @@ function batClass() {
     this.myBite = new biteClass();	    //
 	this.myBite.baseBiteLife = 3;		//Bats bite, but only when they're not resting
 	this.myBite.baseBiteCooldown = 3;	//
+    this.displayHealth = false;
+    this.batHealthCountdownSeconds = 5;
+    this.batDisplayHealthCountdown = this.batHealthCountdownSeconds * 30;
 
     this.frameIndex = 0;
     this.tickCount = 0;
@@ -97,6 +100,7 @@ function batClass() {
     this.takeDamage = function(howMuch) {
         this.health -= howMuch;
         batHurtSound.play();
+        this.displayHealth = true;
 	}
 
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
@@ -117,10 +121,16 @@ function batClass() {
             this.alive = false;
         }
 
-        if (displayHealth && this.alive) {
-            colorRect(this.x, this.y - 16, 40, 12, "black");
-            colorRect(this.x + 2, this.y - 14, 35, 8, "red");
-            colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
+        if (this.displayHealth && this.alive) {
+            if (this.batDisplayHealthCountdown >=0) {
+                colorRect(this.x, this.y - 16, 40, 12, "black");
+                colorRect(this.x + 2, this.y - 14, 35, 8, "red");
+                colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
+                this.batDisplayHealthCountdown--;
+            } else {
+                this.batDisplayHealthCountdown = this.batHealthCountdownSeconds * 30;
+                this.displayHealth = false;
+            }
         }
         if (debugMode && this.alive) {
             colorText(this.myName, this.x, this.y - 20, "red");

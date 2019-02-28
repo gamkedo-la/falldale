@@ -11,6 +11,9 @@ function goblinClass(goblinName) {
     this.myName = goblinName;
     this.myBite = new biteClass();
     this.myMelee = new clubClass();
+    this.displayHealth = false;
+    this.goblinHealthCountdownSeconds = 5;
+    this.goblinDisplayHealthCountdown = this.goblinHealthCountdownSeconds * 30;
 
     this.tickCount = 0;
     this.frameIndex = 0;
@@ -93,6 +96,7 @@ function goblinClass(goblinName) {
     this.takeDamage = function(howMuch) {
         this.health -= howMuch;
         goblinHurtSound.play();
+        this.displayHealth = true;
     }
     
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
@@ -134,10 +138,16 @@ function goblinClass(goblinName) {
                 colorRect(this.x + this.width, this.y + this.height, 5, 5, "red")
             }
 
-            if (displayHealth) {
-                colorRect(this.x, this.y - 16, 40, 12, "black");
-                colorRect(this.x + 2, this.y - 14, 35, 8, "red");
-                colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
+            if (this.displayHealth) {
+                if (this.goblinDisplayHealthCountdown >=0) {
+                    colorRect(this.x, this.y - 16, 40, 12, "black");
+                    colorRect(this.x + 2, this.y - 14, 35, 8, "red");
+                    colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
+                    this.goblinDisplayHealthCountdown--;
+                } else {
+                    this.goblinDisplayHealthCountdown = this.goblinHealthCountdownSeconds * 30;
+                    this.displayHealth = false;
+                }
             }
         } else {
             canvasContext.drawImage(deadGoblinPic, this.x, this.y);
