@@ -430,7 +430,7 @@ function warriorClass() {
 		dialog = "I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points";
 	}
 	
-	this.checkWarriorandSwordCollisionAgainst = function(thisEnemy) {
+	this.checkWarriorandWeaponCollisionAgainst = function(thisEnemy) {
 		
 		this.centerX = this.x + this.width/2;
 		this.centerY = this.y + this.height/2;

@@ -157,11 +157,13 @@ function loadLevel(whichLevel) {
 }
 
 function updateAll() {
-    moveAll();
+	moveAll();
+	updateItems();
     drawAll();
 }
 
 function moveAll() {
+	
     if (menuScreen || isAtHealer || tileEditor || gamePaused) {
         // no movement
     } else if (gamePaused == false) {
@@ -169,14 +171,19 @@ function moveAll() {
         for (var i=0; i< enemyList.length; i++) {
             enemyList[i].move();
             if (enemyList[i].health > 0) {
-                redWarrior.checkWarriorandSwordCollisionAgainst(enemyList[i]);
+                redWarrior.checkWarriorandWeaponCollisionAgainst(enemyList[i]);
             }
         }
-		//redWarrior.checkWarriorCollisionAgainst(heartsList[i]);   //// need to create collision for objects
-		//redWarrior.checkWarriorCollisionAgainst(healingPotionList[i]);   //// need to create collision for objects       
-	   cameraFollow();
+		cameraFollow();
     };
 };
+
+function updateItems(){
+	heartsReadyToRemove();
+	removeHearts();
+}
+
+
 
 function health() {
 

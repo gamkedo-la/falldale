@@ -41,12 +41,13 @@ function skeletonClass(skeletonName) {
 
 	this.distributeTreasure = function(){
 		var chanceOnTreasure = Math.round(Math.random() * 10);
-		if(chanceOnTreasure >= 7){	
+		if(chanceOnTreasure >= 1){	
 			console.log("Treasure Provided")		
 			var randomTreasure =  Math.round(Math.random() * 2);
 			switch (randomTreasure) {
 				case 0:
 					heartsList.push(new heartClass('2', this.x, this.y));
+					console.log(heartsList);
 				break;
 				case 1:
 					goldList.push(new goldClass('2', this.x, this.y));
