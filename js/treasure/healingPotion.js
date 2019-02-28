@@ -1,9 +1,32 @@
 var healingPotionList = [];
 
+function healingPotionReadyToRemove() {
+    for(var i=0;i<healingPotionList.length;i++) {
+        if(healingPotionList[i].x < redWarrior.centerX &&
+            (healingPotionList[i].x + healingPotionList[i].width) > redWarrior.centerX &&
+            healingPotionList[i].y < redWarrior.centerY &&
+            (healingPotionList[i].y + healingPotionList[i].height) > redWarrior.centerY) {
+				healingPotionList[i].readyToRemove = true;
+		}
+    }
+}
+
+function removeHealingPotion(){
+    for(var i=healingPotionList.length-1;i>=0;i--) {
+        if(healingPotionList[i].readyToRemove) {
+			if(healingPotionList[i].available){
+				healingPotionList[i].available = false;
+			}
+			healingPotionList.splice(i,1);
+        }
+    }
+}
+
 function healingPotionClass(healingPotion, xPosition, yPosition) {
 	this.healingPotionValue = healingPotion;
 	this.x = xPosition;
 	this.y = yPosition;
+	this.available = true;
 	
 	this.isOverlappingPoint = function(redWarriorCenterX,redWarriorCenterY) { 
 		var playerCenterXPosition = redWarriorCenterX;

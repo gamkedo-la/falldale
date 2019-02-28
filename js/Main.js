@@ -181,6 +181,10 @@ function moveAll() {
 function updateItems(){
 	heartsReadyToRemove();
 	removeHearts();
+	goldReadyToRemove();
+	removegold();
+	healingPotionReadyToRemove();
+	removeHealingPotion();	
 }
 
 

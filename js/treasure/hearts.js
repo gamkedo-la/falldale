@@ -2,10 +2,8 @@ var heartsList = [];
 
 function heartsReadyToRemove() {
     for(var i=0;i<heartsList.length;i++) {
-        if(heartsList[i].x > redWarrior.centerX &&
-            heartsList[i].x < redWarrior.centerY &&
-            heartsList[i].y > redWarrior.centerY &&
-            heartsList[i].y < redWarrior.centerY) {
+        if (heartsList[i].x < redWarrior.centerX && (heartsList[i].x + heartsList[i].width) > redWarrior.centerX && 
+			heartsList[i].y < redWarrior.centerY && (heartsList[i].y + heartsList[i].height) > redWarrior.centerY) {
 				heartsList[i].readyToRemove = true;
         }
     }
@@ -25,9 +23,9 @@ function heartClass(hearts, xPosition, yPosition) {
 	this.y = yPosition;
 	this.height = 50; 
 	this.width = 50;
+	this.available = true;
 
 	this.draw = function() { 
 		canvasContext.drawImage(heartPic, this.x, this.y);
-		
 	}
 }
