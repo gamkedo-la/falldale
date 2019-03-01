@@ -4,7 +4,7 @@
 //Columns = 32
 //Rows = 24
 function Pathfinder3() {
-    this.pathFrom_To_ = function(start, target) {
+    this.pathFrom_To_ = function(start, target, isPassableFunction) {
         const frontier = [];
         frontier.push(start);
         const cameFrom = {};
@@ -12,7 +12,7 @@ function Pathfinder3() {
                 
         while(frontier.length > 0) {
             const current = frontier.shift();
-            const neighbors = neighborsForIndex(current);
+            const neighbors = neighborsForIndex(current, isPassableFunction);
 
             for(let i = 0; i < neighbors.length; i++) {
                 const next = neighbors[i];
@@ -43,6 +43,13 @@ function Pathfinder3() {
 
             if(distString == undefined) {distString = "B";}
 
+            distString = distString.toString();
+            if(distString.length < 2) {
+                distString = ("00" + distString);
+            } else if(distString.length < 3) {
+                distString = ("0" + distString);
+            }
+
             distString += ", "
             string += distString;
             if((j + 1) % ROOM_COLS == 0) {
@@ -50,23 +57,66 @@ function Pathfinder3() {
             }
         }
 
+//        console.log(string); 
+
         return path;
     }
 
-    const neighborsForIndex = function(index) {
+    const neighborsForIndex = function(index, isPassable) {
         const result = [];
+
         let above = indexAboveIndex(index);
-        if(!isPassableTile(levelOne[above])) {above = null;}
-        if(above != null) {result.push(above);}
+        if(above != null) {
+            if(isPassable(levelList[levelNow][above])) {
+                result.push(above);
+
+                if(levelList[levelNow][above] == 93) {
+                    console.log("That shouldn't happen!!!!");
+                }
+            }
+        }
+
         let below = indexBelowIndex(index);
-        if(!isPassableTile(levelOne[below])) {below = null;}
-        if(below != null) {result.push(below);}
+        if(below != null) {
+            if(isPassable(levelList[levelNow][below])) {
+                result.push(below);
+
+                if(levelList[levelNow][below] == 93) {
+                    console.log("That shouldn't happen!!!!");
+                }
+            }
+        }
+
         let left = indexLeftofIndex(index);
-        if(!isPassableTile(levelOne[left])) {left = null;}
-        if(left != null) {result.push(left);}
+        if(left != null) {
+            if(isPassable(levelList[levelNow][left])) {
+                result.push(left);
+                
+
+
+                if(levelList[levelNow][left] == 93) {
+                    console.log("That shouldn't happen!!!!");
+                }
+/*                if(index == 643) {
+                    console.log("643: " + left);
+                } else if(index == 644) {
+                    console.log("644: " + left);
+                } else if(index == 645) {
+                    console.log("645: " + left);
+                }*/
+            }
+        }
+
         let right = indexRightOfIndex(index);
-        if(!isPassableTile(levelOne[right])) {right = null;}
-        if(right != null) {result.push(right);}
+        if(right != null) {
+            if(isPassable(levelList[levelNow][right])) {
+                result.push(right);
+
+                if(levelList[levelNow][right] == 93) {
+                    console.log("That shouldn't happen!!!!");
+                }
+            }
+        }
 
         return result;
     }
@@ -82,7 +132,7 @@ function Pathfinder3() {
 
     const indexBelowIndex = function(index) {
         const result = index + ROOM_COLS;
-        if(result > levelList[levelNow].length) {
+        if(result >= levelList[levelNow].length) {
             return null;
         } else {
             return result;
@@ -100,56 +150,10 @@ function Pathfinder3() {
 
     const indexRightOfIndex = function(index) {
         const result = index + 1;
-        if((result > levelList[levelNow].length) || (result % ROOM_COLS == 0)) {
+        if((result >= levelList[levelNow].length) || (result % ROOM_COLS == 0)) {
             return null;
         } else {
             return result;
         }
-    }
-
-    const isPassableTile = function(tileType) {
-        switch(tileType) {
-            case TILE_ROAD:
-//            case TILE_FINISH:
-            case TILE_GRASS:
-            case TILE_BRIDGE_UPPER:
-            case TILE_BRIDGE_LOWER:
-//            case TILE_YELLOW_DOOR:
-//            case TILE_GREEN_DOOR:
-//            case TILE_BLUE_DOOR:
-//            case TILE_RED_DOOR:
-            case TILE_GRAVE_YARD_PORTAL:
-            case TILE_HOME_VILLAGE_PORTAL:
-            case TILE_ARROWS:
-            case TILE_THROWINGROCKS:
-            case TILE_KEY:
-            case TILE_YELLOW_KEY:
-            case TILE_GREEN_KEY:
-            case TILE_BLUE_KEY:
-            case TILE_RED_KEY:
-            case TILE_TREASURE:
-//            case TILE_SKELETON:
-//            case TILE_GOBLIN:
-//            case TILE_BAT:
-//            case TILE_ZOMBIE:
-//            case TILE_ZOMBIE2:
-//            case TILE_ZOMBIE3:
-            case TILE_GREEN_ORC_SWORD:
-            case TILE_GREEN_ORC_CLUB:
-            case TILE_GREEN_ORC_AX:
-//            case TILE_ARCHER:
-//            case TILE_SHOPKEEPER:
-//            case TILE_HEALER:
-//            case TILE_PRINCESS:
-//            case TILE_DODD:
-//            case TILE_TARAN:
-//            case TILE_DELKON:
-//            case TILE_ADDY:
-//            case TILE_GABRIEL:
-//            case TILE_FENTON:
-            return true;
-        }
-
-        return false;
     }
 }

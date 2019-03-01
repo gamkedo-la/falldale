@@ -1,10 +1,10 @@
 var archerMoveSpeed = 0.5;
-const ARCHER_TIME_BETWEEN_CHANGE_DIR = 300;
+const ARCHER_TIME_BETWEEN_CHANGE_DIR = 20;
 const ARCHER_PATROL_RADIUS = 200;
 
 archerClass.prototype = new enemyClass();
 function archerClass(archerName) {
-	this.speed = 4;
+	this.speed = archerMoveSpeed;
 	this.myArcherPic = archerPic; // which picture to use
 	this.myName = archerName;
 	
@@ -34,7 +34,7 @@ function archerClass(archerName) {
 			
 	this.superClassMove = this.move;
 	this.move = function() {
-		this.superClassMove(ARCHER_TIME_BETWEEN_CHANGE_DIR, archerMoveSpeed);
+		this.superClassMove(ARCHER_TIME_BETWEEN_CHANGE_DIR);
 
 		this.myBite.move();
         this.myBite.x = this.x;
@@ -126,6 +126,5 @@ function archerClass(archerName) {
 		if (this.health <= 0) {
 			this.alive = false;
 		}
-		
 	}
 }

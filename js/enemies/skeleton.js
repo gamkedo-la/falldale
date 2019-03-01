@@ -1,7 +1,8 @@
+const SKELETON_SPEED = 0.5;
 
 skeletonClass.prototype = new enemyClass();
 function skeletonClass(skeletonName) {
-	this.speed = 2;
+	this.speed = SKELETON_SPEED;
 	this.mySkeletonPic = skeletonPic; // which picture to use
 	this.myName = skeletonName;
 
@@ -22,7 +23,6 @@ function skeletonClass(skeletonName) {
 	this.ticksPerFrame = 5;
 	this.skeletonMove = true;
 	this.skeletonTimeBetweenChangeDir = 700;
-	this.skeletonMoveSpeed = 0.5;
 	this.pather = new Pathfinder3();
 	this.treasureAvailable = true;
 
@@ -36,7 +36,7 @@ function skeletonClass(skeletonName) {
 	
 	this.superClassMove = this.move;
 	this.move = function() {
-		this.superClassMove(this.skeletonTimeBetweenChangeDir, this.skeletonMoveSpeed);
+		this.superClassMove(this.skeletonTimeBetweenChangeDir);
 	}
 
 	this.distributeTreasure = function(){

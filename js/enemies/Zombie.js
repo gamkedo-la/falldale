@@ -1,10 +1,10 @@
-
+const ZOMBIE_SPEED = 0.4;
 
 
 zombieClass.prototype = new enemyClass();
 function zombieClass(zombieName, whichPic) {
 	
-	this.speed = 2;
+	this.speed = ZOMBIE_SPEED;
 	this.myZombiePic = whichPic; 
 	this.myName = zombieName;
 	
@@ -25,7 +25,6 @@ function zombieClass(zombieName, whichPic) {
 	this.ticksPerFrame = 5;
 	this.zombieMove = true; 
 	this.zombieTimeBetweenChangeDir = 700;
-	this.zombieMoveSpeed = 0.4;
 	
 	this.superClassReset = this.reset;
 	this.reset = function(resetX, resetY) {
@@ -37,7 +36,7 @@ function zombieClass(zombieName, whichPic) {
 		
 	this.superClassMove = this.move;
 	this.move = function() {
-		this.superClassMove(this.zombieTimeBetweenChangeDir, this.zombieMoveSpeed);
+		this.superClassMove(this.zombieTimeBetweenChangeDir);
 
 		this.myBite.move();
         this.myBite.x = this.x;

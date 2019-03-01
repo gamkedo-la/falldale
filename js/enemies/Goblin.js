@@ -3,7 +3,7 @@ const GOBLIN_TIME_BETWEEN_CHANGE_DIR = 100;
 
 goblinClass.prototype = new enemyClass();
 function goblinClass(goblinName) {
-    this.speed = 4;
+    this.speed = goblinMoveSpeed;
     this.myGoblinPic = goblinPic; // which picture to use
     this.health = 12;
     this.maxhealth = 12;
@@ -44,7 +44,7 @@ function goblinClass(goblinName) {
     
     this.superClassMove = this.move;
     this.move = function() {
-        this.superClassMove(GOBLIN_TIME_BETWEEN_CHANGE_DIR, goblinMoveSpeed);
+        this.superClassMove(GOBLIN_TIME_BETWEEN_CHANGE_DIR);
     
 		if (this.walkNorth) {
             this.sy = this.height;

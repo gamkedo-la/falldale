@@ -1,7 +1,9 @@
+const NPC_SPEED = 0.5;
+
 npcClass.prototype = new enemyClass();
 
 function npcClass(npcName, npcPic) {
-    this.speed = 4;
+    this.speed = NPC_SPEED;
     this.myNPCPic = npcPic; // which picture to use
     this.myName = "Untitled character";
     this.myName = npcName;
@@ -14,7 +16,6 @@ function npcClass(npcName, npcPic) {
     this.ticksPerFrame = 5;
     this.npcMove = true;
 	this.npcTimeBetweenChangeDir = 100;
-	this.npcMoveSpeed = 0.5;
 
     this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
@@ -25,7 +26,7 @@ function npcClass(npcName, npcPic) {
 
     this.superClassMove = this.move;
     this.move = function() {
-        this.superClassMove(this.npcTimeBetweenChangeDir, this.npcMoveSpeed);
+        this.superClassMove(this.npcTimeBetweenChangeDir);
 
         if (this.walkNorth) {
             this.sy = this.height;

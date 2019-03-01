@@ -189,11 +189,13 @@ function warriorClass() {
 				this.y = nextY;
 				break;	
 			case TILE_GRAVE_YARD_PORTAL:
-				loadLevel(graveYard);
+				levelNow = 1;//1=graveyard
+				loadLevel(levelList[levelNow]);
 				break;	
 				
 			case TILE_HOME_VILLAGE_PORTAL:
-				loadLevel(levelOne);
+			levelNow = 0;//0=levelOne
+			loadLevel(levelList[levelNow]);
 				break;	
 			case TILE_FINISH:
 				nextLevel();

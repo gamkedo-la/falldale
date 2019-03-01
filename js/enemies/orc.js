@@ -1,6 +1,8 @@
+const ORC_SPEED = 0.6;
+
 orcClass.prototype = new enemyClass();
 function orcClass(orcName, whichPicture) {
-    this.speed = 4;
+    this.speed = ORC_SPEED;
     this.myOrcPic = whichPicture; // which picture to use
     this.health = 12;
     this.maxhealth = 12;
@@ -18,7 +20,6 @@ function orcClass(orcName, whichPicture) {
     this.height = 69;
     this.ticksPerFrame = 5;
     this.orcMove = true;
-	this.orcMoveSpeed = .6;
 
 	this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
@@ -33,7 +34,7 @@ function orcClass(orcName, whichPicture) {
 
     this.superClassMove = this.move;
     this.move = function() {
-        this.superClassMove(this.orcTimeBetweenChangeDir, this.orcMoveSpeed);
+        this.superClassMove(this.orcTimeBetweenChangeDir);
     
 		if (this.walkNorth) {
             this.sy = 0;

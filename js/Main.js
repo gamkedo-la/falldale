@@ -74,8 +74,9 @@ function imageLoadingDoneSoStartGame() {
     setInterval(updateAll, 1000 / framesPerSecond);
 
     setupInput();
-	console.log("setupInput should run - Main.js");
-    loadLevel(graveYard);
+    console.log("setupInput should run - Main.js");
+    levelNow = 1;//TODO: remove this line, only used to start in the graveyard vice levelOne
+    loadLevel(levelList[levelNow]);
 	if(debugSkipToGame){
 		console.log("Debug Mode is on, skip directly to game");
 	}
