@@ -5,14 +5,20 @@ function heartsReadyToRemove() {
         if (heartsList[i].x < redWarrior.centerX && (heartsList[i].x + heartsList[i].width) > redWarrior.centerX && 
 			heartsList[i].y < redWarrior.centerY && (heartsList[i].y + heartsList[i].height) > redWarrior.centerY) {
 				heartsList[i].readyToRemove = true;
-        }
-    }
+        } 
+	console.log(heartsList[i].readyToRemove);
+	}
 }
 
 function removeHearts(){
     for(var i=heartsList.length-1;i>=0;i--) {
         if(heartsList[i].readyToRemove) {
-            heartsList.splice(i,1);
+            redWarrior.health = redWarrior.health + heartsList[i].heartValue;
+			if(redWarrior.health > redWarrior.maxHealth){
+				redWarrior.health = redWarrior.maxHealth;
+			}
+			redWarrior.displayHealth = true;
+			heartsList.splice(i,1);
         }
     }
 }

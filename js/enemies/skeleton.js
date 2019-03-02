@@ -46,14 +46,13 @@ function skeletonClass(skeletonName) {
 			var randomTreasure =  Math.round(Math.random() * 2);
 			switch (randomTreasure) {
 				case 0:
-					heartsList.push(new heartClass('2', this.x, this.y));
-					console.log(heartsList);
+					heartsList.push(new heartClass(1, this.x, this.y));
 				break;
 				case 1:
-					goldList.push(new goldClass('2', this.x, this.y));
+					goldList.push(new goldClass(5, this.x, this.y));
 				break;
 				case 2:
-					healingPotionList.push(new healingPotionClass('2', this.x, this.y));
+					healingPotionList.push(new healingPotionClass(1, this.x, this.y));
 				break;
 			}
 		}

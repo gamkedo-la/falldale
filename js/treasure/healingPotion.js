@@ -16,6 +16,8 @@ function removeHealingPotion(){
         if(healingPotionList[i].readyToRemove) {
 			if(healingPotionList[i].available){
 				healingPotionList[i].available = false;
+				redWarrior.healingPotion = redWarrior.healingPotion + healingPotionListList[i].healingPotionValueValue;
+				redWarrior.healingPotionValue;
 			}
 			healingPotionList.splice(i,1);
         }
@@ -26,6 +28,8 @@ function healingPotionClass(healingPotion, xPosition, yPosition) {
 	this.healingPotionValue = healingPotion;
 	this.x = xPosition;
 	this.y = yPosition;
+	this.width = 50;
+	this.height = 50;
 	this.available = true;
 	
 	this.isOverlappingPoint = function(redWarriorCenterX,redWarriorCenterY) { 
