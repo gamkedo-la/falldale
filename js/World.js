@@ -295,6 +295,22 @@ const TILE_GRAVE_2 = 143;
 const TILE_GRAVE_3 = 144;
 const TILE_GRAVE_4 = 145;
 
+const skeletonSpawnTiles = [TILE_MAUSOLEUM_TL,
+							TILE_MAUSOLEUM_TM,
+							TILE_MAUSOLEUM_TR,
+							TILE_MAUSOLEUM_ML,
+							TILE_MAUSOLEUM_MM,
+							TILE_MAUSOLEUM_MR,
+							TILE_MAUSOLEUM_BL,
+							TILE_MAUSOLEUM_BM,
+							TILE_MAUSOLEUM_BR,
+							TILE_GRAVEYARD_FENCE_LEFT,
+							TILE_GRAVEYARD_FENCE_RIGHT,
+							TILE_GRAVEYARD_FENCE,
+							TILE_GRAVE_1,
+							TILE_GRAVE_2,
+							TILE_GRAVE_3,
+							TILE_GRAVE_4];
 
 // List of tiles with no collision interaction for ranged weapons
 // (Created because it would be a shorter list than for tiles with collision [I think])
@@ -329,6 +345,17 @@ function getTileIndexAtPixelCoord(atX, atY) {
 
 	return undefined;
 } // end of warriorWorldHandling func
+
+function isTileIndexAdjacentToPixelCoord(atX, atY, tileIndex) {
+	return roomGrid[getTileIndexAtPixelCoord(atX, atY - TILE_H/2)] == tileIndex ||
+		   roomGrid[getTileIndexAtPixelCoord(atX - TILE_W/2, atY - TILE_H/2)] == tileIndex ||
+		   roomGrid[getTileIndexAtPixelCoord(atX - TILE_W/2, atY + TILE_H/2)] == tileIndex ||
+		   roomGrid[getTileIndexAtPixelCoord(atX, atY + TILE_H/2)] == tileIndex || 
+		   roomGrid[getTileIndexAtPixelCoord(atX + TILE_W/2, atY + TILE_H/2)] == tileIndex || 
+		   roomGrid[getTileIndexAtPixelCoord(atX + TILE_W/2, atY - TILE_H/2)] == tileIndex || 
+		   roomGrid[getTileIndexAtPixelCoord(atX - TILE_W / 2, atY)] == tileIndex ||
+		   roomGrid[getTileIndexAtPixelCoord(atX + TILE_W / 2, atY)] == tileIndex;
+}
 
 function getCenterPixelCoordForArrayIndex(index) {
 	const col = index % ROOM_COLS;
