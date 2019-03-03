@@ -1,3 +1,5 @@
+// This is a testing comment made by Sergio Ocaña. Ths will be delted in a moment!
+
 var debugSkipToGame = true;
 
 // Characters //
