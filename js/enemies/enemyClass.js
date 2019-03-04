@@ -1,3 +1,18 @@
+function enemyReadyToRemove() {
+    for(var i=0;i<enemyList.length;i++) {
+		enemyList[i].readyToRemove = true;
+		console.log(enemyList[i].readyToRemove);
+		}
+    }
+
+function removeEnemy(){
+    for(var i=enemyList.length-1;i>=0;i--) {
+        if(enemyList[i].readyToRemove) {
+			enemyList.splice(i,1);
+        }
+    }
+}
+
 function enemyClass() {
     this.x = 0;
     this.y = 0;
@@ -23,6 +38,7 @@ function enemyClass() {
     this.pather = null;
 	this.currentPath = [];
 	this.currentPathIndex = 0;
+	this.readyToRemove = false;
 
     this.move = function(timeBetweenChangeDir) {
         if (this.health <= 0) {

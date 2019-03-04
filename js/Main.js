@@ -174,7 +174,7 @@ function moveAll() {
             enemyList[i].move();
             if (enemyList[i].health > 0) {
                 redWarrior.checkWarriorandWeaponCollisionAgainst(enemyList[i]);
-            }
+            } 
         }
 		cameraFollow();
     };

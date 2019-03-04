@@ -1,4 +1,4 @@
-const ZOMBIE_SPEED = 0.4;
+const ZOMBIE_SPEED = 0.3;
 
 
 zombieClass.prototype = new enemyClass();
@@ -20,9 +20,9 @@ function zombieClass(zombieName, whichPic) {
 	this.tickCount = 0;
 	this.frameIndex = 0;
 	this.width = 30;
-	this.numberOfFrames = 4;
-	this.height = 50;
-	this.ticksPerFrame = 5;
+	this.numberOfFrames = 6;
+	this.height = 52;
+	this.ticksPerFrame = 7;
 	this.zombieMove = true; 
 	this.zombieTimeBetweenChangeDir = 700;
 	
@@ -50,10 +50,10 @@ function zombieClass(zombieName, whichPic) {
                 this.myZombiePic = zombiePic;
                 break;
             case 1:
-                this.myZombiePic = zombiePic; //2
+                this.myZombiePic = zombiePic2; 
                 break;
             case 2:
-                this.myZombiePic = zombiePic; //3
+                this.myZombiePic = zombiePic3; 
                 break;
         }
     }

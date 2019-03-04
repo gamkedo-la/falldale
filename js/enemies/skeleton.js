@@ -25,6 +25,7 @@ function skeletonClass(skeletonName) {
 	this.skeletonTimeBetweenChangeDir = 700;
 	this.pather = new Pathfinder3();
 	this.treasureAvailable = true;
+	this.framesPerDeadSkeleton = 0;
 
 	this.superClassReset = this.reset;
 	this.reset = function(resetX, resetY) {
@@ -43,15 +44,15 @@ function skeletonClass(skeletonName) {
 		var chanceOnTreasure = Math.round(Math.random() * 10);
 		if(chanceOnTreasure >= 1){	
 			console.log("Treasure Provided")		
-			var randomTreasure =  Math.round(Math.random() * 2);
+			var randomTreasure =  Math.round(Math.random() * 3);
 			switch (randomTreasure) {
-				case 0:
+				case 1:
 					heartsList.push(new heartClass(1, this.x, this.y));
 				break;
-				case 1:
+				case 2:
 					goldList.push(new goldClass(5, this.x, this.y));
 				break;
-				case 2:
+				case 3:
 					healingPotionList.push(new healingPotionClass(1, this.x, this.y));
 				break;
 			}
@@ -93,6 +94,14 @@ function skeletonClass(skeletonName) {
                 break;
         }
     }
+	
+	this.countFramesForDeadSkeleton = function(){
+		this.framesPerDeadSkeleton++;
+		if(this.framesPerDeadSkeleton == 120){
+			enemyReadyToRemove()
+		}
+	}
+	
 		
 	this.draw = function() { 
 		if(this.skeletonMove) {
@@ -140,7 +149,9 @@ function skeletonClass(skeletonName) {
 				}
 		
 		} else {
+			this.countFramesForDeadSkeleton();
 			canvasContext.drawImage(deadSkeletonPic, this.x,this.y);
+			//removeEnemy();
 		}
 		
 		if (this.health <= 0) {

@@ -16,8 +16,7 @@ function removeHealingPotion(){
         if(healingPotionList[i].readyToRemove) {
 			if(healingPotionList[i].available){
 				healingPotionList[i].available = false;
-				redWarrior.healingPotion = redWarrior.healingPotion + healingPotionListList[i].healingPotionValueValue;
-				redWarrior.healingPotionValue;
+				redWarrior.healingPotion = redWarrior.healingPotion + healingPotionList[i].healingPotionValueValue;
 			}
 			healingPotionList.splice(i,1);
         }
