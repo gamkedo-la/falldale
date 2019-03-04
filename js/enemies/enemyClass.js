@@ -1,9 +1,10 @@
 function enemyReadyToRemove() {
     for(var i=0;i<enemyList.length;i++) {
-		enemyList[i].readyToRemove = true;
-		console.log(enemyList[i].readyToRemove);
+		if(enemyList[i].health <= 0){
+			enemyList[i].readyToRemove = true;
 		}
     }
+}
 
 function removeEnemy(){
     for(var i=enemyList.length-1;i>=0;i--) {

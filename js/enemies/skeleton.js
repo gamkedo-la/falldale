@@ -98,7 +98,7 @@ function skeletonClass(skeletonName) {
 	this.countFramesForDeadSkeleton = function(){
 		this.framesPerDeadSkeleton++;
 		if(this.framesPerDeadSkeleton == 120){
-			enemyReadyToRemove()
+			enemyReadyToRemove();
 		}
 	}
 	
@@ -151,7 +151,7 @@ function skeletonClass(skeletonName) {
 		} else {
 			this.countFramesForDeadSkeleton();
 			canvasContext.drawImage(deadSkeletonPic, this.x,this.y);
-			//removeEnemy();
+			removeEnemy();
 		}
 		
 		if (this.health <= 0) {

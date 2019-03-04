@@ -151,7 +151,7 @@ function loadLevel(whichLevel) {
             resetY = eachRow * TILE_H + TILE_H/2;
             newEnemy.reset(resetX, resetY);
             enemyList.push(newEnemy);
-
+			console.log(enemyList);
             roomGrid[arrayIndex] = TILE_ROAD;
             arrayIndex++;
         } //end of col for
