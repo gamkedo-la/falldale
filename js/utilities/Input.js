@@ -65,7 +65,7 @@ function setupInput() {
 }
 
 function updateMousePos(evt) {
-	
+
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
 
@@ -125,6 +125,10 @@ function keyPressed(evt) {
         CycleMute();
     }
 
+    // if (evt.keyCode == KEY_Y) {
+    //     saveGame.saveData();
+    // }
+
     if (isInShop) {
         shopInput(evt.keyCode);
     } else if (isAtHealer) {
@@ -134,7 +138,7 @@ function keyPressed(evt) {
     } else if (scrollBackgroundScreen) {
         scrollBackgroundScreenInput(evt.keyCode);
 	} else if (tileEditor) {
-        tileEditorInput(evt.keyCode);	
+        tileEditorInput(evt.keyCode);
 	} else {
         keySet(evt, redWarrior, true);
         if (evt.keyCode == redWarrior.controlKeySword) {
@@ -187,13 +191,13 @@ function keyReleased(evt) {
 
 function handleMouseClick(evt) {
 
-    
+
     if (true) { // (debugMode) {
         console.log(
-            "clicked pixel x,y:" + (mouseX+camPanX) + "," + (mouseY+camPanY) + 
-            " tile col,row: " + Math.floor((mouseX+camPanX) / TILE_W) + 
-            "," + Math.floor((mouseY+camPanY) / TILE_H) + " tile index: " + 
-            rowColToArrayIndex(Math.floor((mouseX+camPanX) / TILE_W), 
+            "clicked pixel x,y:" + (mouseX+camPanX) + "," + (mouseY+camPanY) +
+            " tile col,row: " + Math.floor((mouseX+camPanX) / TILE_W) +
+            "," + Math.floor((mouseY+camPanY) / TILE_H) + " tile index: " +
+            rowColToArrayIndex(Math.floor((mouseX+camPanX) / TILE_W),
                 Math.floor((mouseY+camPanY) / TILE_H)));
     }
 

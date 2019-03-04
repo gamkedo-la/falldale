@@ -29,6 +29,7 @@ var displayHealth = false;
 var tileEditor = false;
 var gamePaused = false;
 var muteInputCycle = 0;
+var saveGame = new SaveGame();
 
 // Sounds //
 
@@ -119,9 +120,9 @@ function loadLevel(whichLevel) {
             } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_SWORD) {
                 newEnemy = new orcClass('Orc - Sword', orcPic);
 			} else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_CLUB) {
-                newEnemy = new orcClass('Orc - Club2', orcPic2);	
+                newEnemy = new orcClass('Orc - Club2', orcPic2);
 			} else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_AX) {
-                newEnemy = new orcClass('Orc - Ax', orcPic3);	
+                newEnemy = new orcClass('Orc - Ax', orcPic3);
             } else if(roomGrid[arrayIndex] == TILE_ARCHER) {
                 newEnemy = new archerClass('Archer');
             } else if(roomGrid[arrayIndex] == TILE_ADDY) {   // NPC
@@ -164,7 +165,7 @@ function updateAll() {
 }
 
 function moveAll() {
-	
+
     if (menuScreen || isAtHealer || tileEditor || gamePaused) {
         // no movement
     } else if (gamePaused == false) {
@@ -185,7 +186,7 @@ function updateItems(){
 	goldReadyToRemove();
 	removegold();
 	healingPotionReadyToRemove();
-	removeHealingPotion();	
+	removeHealingPotion();
 }
 
 
@@ -198,7 +199,7 @@ function health() {
 }
 
 function messageDraw() {
-	
+
 	dialogUIVisibilityCountdown--;
 	displayMessage();
 }
@@ -206,15 +207,15 @@ function messageDraw() {
 function setDialogUICountdown(seconds) {
 	dialogUIVisibilityCountdown = seconds * 30; // 30fps
 }
-	
-function displayMessage() {	
+
+function displayMessage() {
 
 	colorRect(0, canvas.height - 50, canvas.width, 50, "black");
 	colorRect(5, canvas.height - 45, canvas.width - 10, 40, "white");
-	
+
     if (dialogUIVisibilityCountdown <= 0) {
 		return;
-	} else {	
+	} else {
 		colorText(dialog, 20, canvas.height - 20, "Black");
 	}
 }
@@ -316,13 +317,13 @@ function drawAll() {
     } else if (isAtHealer) {
         drawHealerShop();
     } else if (characterCreationScreen) {
-        //if(redWarrior.strength == 0){			
+        //if(redWarrior.strength == 0){
         drawCreationScreen(strength);
         drawDice(Dice1);
         drawDice(Dice2);
         drawDice(Dice3);
 		if(debugSkipToGame){
-			characterCreationScreenInput(KEY_SPACEBAR);	
+			characterCreationScreenInput(KEY_SPACEBAR);
 			characterCreationScreenInput(ENTER);
 		}
         //}
