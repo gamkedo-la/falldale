@@ -125,8 +125,12 @@ function keyPressed(evt) {
         CycleMute();
     }
 
+    // save game testing keys
     // if (evt.keyCode == KEY_Y) {
     //     saveGame.saveData();
+    // }
+    // if (evt.keyCode == KEY_U) {
+    //     saveGame.loadData();
     // }
 
     if (isInShop) {

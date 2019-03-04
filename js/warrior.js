@@ -1,9 +1,9 @@
 var playerMoveSpeed = 3.0;
 
-// TODO: Probably want to set direction per object instead of 
+// TODO: Probably want to set direction per object instead of
 //       putting it in a global variable
 // this also doesn't allow diagonal movement
-var direction = "south"; 
+var direction = "south";
 
 var healthCountdownSeconds = 5;
 var displayHealthCountdown = healthCountdownSeconds * 30;
@@ -20,7 +20,7 @@ level10Experience = 68000;
 
 function warriorClass() {
 	this.mySword = new swordClass();
-	this.myArrow = new arrowClass(); 
+	this.myArrow = new arrowClass();
 	this.myRock = new rockClass();
 	this.recentWeapon = this.mySword;
 	this.arrowList = [];
@@ -61,7 +61,7 @@ function warriorClass() {
 	this.armor = 10;
 	this.healingPotion = 0;
 	this.haveMap = false;
-	
+
 	this.keyHeld_WalkNorth = false;
 	this.keyHeld_WalkSouth = false;
 	this.keyHeld_WalkWest = false;
@@ -73,12 +73,15 @@ function warriorClass() {
 	this.controlKeyDown;
 	this.controlKeyLeft;
 	this.controlKeySword;
-	
+
+	this.savePrefix = "player_";
+	this.saveVariables = ["x", "y", "health"];
+
 	this.setupInput = function(upKey, rightKey, downKey, leftKey, swordKey, arrowKey, rockKey, inventoryKey, statsKey, healthKey) {
 		this.controlKeyUp = upKey;
 		this.controlKeyRight = rightKey;
 		this.controlKeyDown = downKey;
-		this.controlKeyLeft = leftKey;	
+		this.controlKeyLeft = leftKey;
 		this.controlKeySword = swordKey;
 		this.controlKeyArrow = arrowKey;
 		this.controlKeyRock = rockKey;
@@ -94,7 +97,21 @@ function warriorClass() {
 		this.keyHeld_WalkEast = false;
 		this.keyHeld_Sword = false;
 	}
-	
+
+	this.saveData = function() {
+		for (var variable in this.saveVariables) {
+			localStorage[this.savePrefix + this.saveVariables[variable]] = this[this.saveVariables[variable]];
+			console.log("saving " + this[this.saveVariables[variable]] + " which is " + this.saveVariables[variable]);
+		}
+	};
+
+	this.loadData = function() {
+		for (var variable in this.saveVariables) {
+			this[this.saveVariables[variable]] = parseInt(localStorage[this.savePrefix + this.saveVariables[variable]]);
+			console.log("loaded " + this[this.saveVariables[variable]] + " which is " + this.saveVariables[variable]);
+		}
+	};
+
 	this.reset = function(whichImage, warriorName) {
 		this.name = warriorName;
 		this.myWarriorPic;
@@ -103,7 +120,7 @@ function warriorClass() {
 		this.blueKeysHeld = 0;
 		this.redKeysHeld = 0;
 		this.health = 4;
-		
+
 		for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
 			for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
@@ -120,11 +137,11 @@ function warriorClass() {
 		this.myArrow.reset();
 		this.myRock.reset();
 	} // end of warriorRest func
-	
+
 	this.move = function() {
 		var nextX = this.x;
 		var nextY = this.y;
-				
+
 		if(this.keyHeld_WalkNorth) {
 			nextY -= playerMoveSpeed;
 			direction = "north";
@@ -141,7 +158,7 @@ function warriorClass() {
 			nextX -= playerMoveSpeed;
 			direction = "west";
 			this.sx = 0;
-			this.sy = this.height*2; 
+			this.sy = this.height*2;
 		}
 		if(this.keyHeld_WalkEast) {
 			nextX += playerMoveSpeed;
@@ -152,7 +169,7 @@ function warriorClass() {
 
 		if(this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast) {
 			this.playerMove = true;
-		} else { 
+		} else {
 			this.playerMove = false;
 		}
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
@@ -169,7 +186,7 @@ function warriorClass() {
 		}
 		if(direction == "east") {
 			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+this.width, nextY+(this.height/2));
-		}	
+		}
 
 		if(walkIntoTileIndex != undefined) {
 			walkIntoTileType = roomGrid[walkIntoTileIndex];
@@ -186,16 +203,16 @@ function warriorClass() {
 				playerMoveSpeed = 2.0;
 				this.x = nextX;
 				this.y = nextY;
-				break;	
+				break;
 			case TILE_GRAVE_YARD_PORTAL:
 				levelNow = 1;//1=graveyard
 				loadLevel(levelList[levelNow]);
-				break;	
-				
+				break;
+
 			case TILE_HOME_VILLAGE_PORTAL:
 			levelNow = 0;//0=levelOne
 			loadLevel(levelList[levelNow]);
-				break;	
+				break;
 			case TILE_FINISH:
 				nextLevel();
 				break;
@@ -242,7 +259,7 @@ function warriorClass() {
 				break;
 			case TILE_FRONTDOOR_YELLOW:
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				break;				
+				break;
 			case TILE_RED_DOOR:
 				if(this.redKeysHeld > 0 || debugMode) {
 					this.redKeysHeld--; // one less key
@@ -266,7 +283,7 @@ function warriorClass() {
 					setDialogUICountdown(3);
 					dialog = "I need a blue key to open this door.";
 				}
-				break;	
+				break;
 			case TILE_YELLOW_KEY:
 				this.yellowKeysHeld++; // one more key
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
@@ -295,12 +312,12 @@ function warriorClass() {
 				dialog = "I've found a green key.";
 				keySound.play();
 				break;
-			case TILE_MAP:	
+			case TILE_MAP:
 				this.haveMap = true; // treasure map found
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
 				setDialogUICountdown(3);
 				dialog = "So this is what this place looks like.  [PRESS 3] for map";
-	
+
 				break;
 			case TILE_TREASURE:
 				if(this.yellowKeysHeld > 0) {
@@ -320,13 +337,13 @@ function warriorClass() {
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
 				setDialogUICountdown(3);
 				dialog = "What luck!  I can use these rocks for throwing at enemies.";
-				break;	
+				break;
 			case TILE_ARROWS:
 				redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
 				setDialogUICountdown(3);
 				dialog = "I'll add these 5 arrows to my inventory.";
-				break;	
+				break;
 			case TILE_GRAVE:
 				setDialogUICountdown(3);
 				dialog = "Too many good people have died from the Skeleton King and his army of the dead.";
@@ -369,7 +386,7 @@ function warriorClass() {
 			case TILE_HOUSE_LS_BED_BOTTOM:
 				setDialogUICountdown(3);
 				dialog = "No time to sleep!.";
-				break;		
+				break;
 			case TILE_BS_BW_WEAPONSRACKBOTTOM:
 				setDialogUICountdown(3);
 				dialog = "No swords?!  Isn't this a blacksmith's shop?";
@@ -381,27 +398,27 @@ function warriorClass() {
 			case TILE_CHAIR:
 				this.x = nextX;
 				this.y = nextY;
-				break;				
+				break;
 			case TILE_WALL:
 			default:
 				break;
-			
+
 		} // end of switch
-		
+
 		this.previousTileType = walkIntoTileType;
 		this.mySword.move();
 		this.myArrow.move();
-		this.myRock.move();		
-		
-		this.tryToTriggerMonsterSpawnAt(skeletonClass, skeletonPic, skeletonSpawnTiles, this.x + this.width / 2, this.y + this.height / 2, direction);		
-	}	
-		
+		this.myRock.move();
+
+		this.tryToTriggerMonsterSpawnAt(skeletonClass, skeletonPic, skeletonSpawnTiles, this.x + this.width / 2, this.y + this.height / 2, direction);
+	}
+
 	this.tryToTriggerMonsterSpawnAt = function(monsterClass, monsterPic, spawnTiles, x, y, dir = direction, chance = 0.3) { // 0.0 to less than 2.0 chance
 		for (var i = 0; i < spawnTiles.length; i++) {
 			if(isTileIndexAdjacentToPixelCoord(x, y, spawnTiles[i])) {
 				// TODO: Find a better way to determine the chance?
-				if (this.tickCount * 12 % 10 == 0 && Math.random() + Math.random() > 2.0 - chance) {								
-					var monsterInstance = new monsterClass('Papyrus', monsterPic);				
+				if (this.tickCount * 12 % 10 == 0 && Math.random() + Math.random() > 2.0 - chance) {
+					var monsterInstance = new monsterClass('Papyrus', monsterPic);
 					if (dir == "north") {
 						y -= 2 * TILE_H;
 					}
@@ -415,7 +432,7 @@ function warriorClass() {
 						x += 2 * TILE_W;
 					}
 					monsterInstance.reset(x, y);
-					enemyList.push(monsterInstance);			
+					enemyList.push(monsterInstance);
 					return;
 				}
 			};
@@ -443,7 +460,7 @@ function warriorClass() {
 				this.levelup();
 		}
 	}
-	
+
 	this.levelup = function(){
 		// results when player hits certain experience
 		var increasedHitPoints = 0;
@@ -457,20 +474,20 @@ function warriorClass() {
 		setDialogUICountdown(3);
 		dialog = "I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points";
 	}
-	
+
 	this.checkWarriorandWeaponCollisionAgainst = function(thisEnemy) {
-		
+
 		this.centerX = this.x + this.width/2;
 		this.centerY = this.y + this.height/2;
 
 		if(thisEnemy.isOverlappingPoint(this.centerX,this.centerY)) {
 			//empty
 		}
-		
+
 		if( this.mySword.hitTest(this, thisEnemy) ) {
 			//empty
 		}
-		
+
 		if(this.myArrow.rangeTest(thisEnemy)) {
 			if( this.myArrow.hitTest(this, thisEnemy) ) {
 				//empty
@@ -481,25 +498,25 @@ function warriorClass() {
 			if( this.myRock.hitTest(this, thisEnemy) ) {
 				//empty
 			}
-		}		
+		}
 	}
-	
+
 	this.swordSwing = function() {
-		if( this.mySword.isReady() ) {	
+		if( this.mySword.isReady() ) {
 			this.recentWeapon = this.mySword;
 			this.mySword.shootFrom(this);
 		}
 	}
-	
+
 	this.shotArrow = function() {
 		if( this.myArrow.isReady() ) {
 			this.recentWeapon = this.myArrow;
 			this.myArrow.shootFrom(this, direction);
 		}
 	}
-	
+
 	this.shotRock = function() {
-		if( this.myRock.isReady() ) {	
+		if( this.myRock.isReady() ) {
 			this.recentWeapon = this.myRock;
 			this.myRock.shootFrom(this, direction);
 		}
@@ -510,8 +527,8 @@ function warriorClass() {
 		playerHurtSound.play();
 		this.displayHealth = true;
 	}
-	
-	this.draw = function() { 
+
+	this.draw = function() {
 		if(this.playerMove) {
 			this.tickCount++;
 		}
@@ -523,18 +540,18 @@ function warriorClass() {
 				this.frameIndex = 0;
 			}
 		}
-			
-		this.sx = this.frameIndex * this.width;		
-		
-		if(this.displayHealth){		
-			if (displayHealthCountdown % 10 >= 4) {		
+
+		this.sx = this.frameIndex * this.width;
+
+		if(this.displayHealth){
+			if (displayHealthCountdown % 10 >= 4) {
 				canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 				canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			}
-			colorRect(this.x,this.y-16, 40,12, "black"); 
+			colorRect(this.x,this.y-16, 40,12, "black");
 			colorRect(this.x+2,this.y-14, 35, 8, "red");
 			colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
-		
+
 			displayHealthCountdown--;
 			if(displayHealthCountdown <= 0){
 				this.displayHealth = false;
@@ -544,28 +561,28 @@ function warriorClass() {
 		else {
 			canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 			canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
-		}			
-			
+		}
+
 			if(debugMode){
-				
-				
-				colorRect(this.x,this.y, 5,5, "white"); 
+
+
+				colorRect(this.x,this.y, 5,5, "white");
 				colorRect(this.x,this.y+this.height, 5,5, "white");
 				colorRect(this.x+this.width,this.y, 5,5, "white");
 				colorRect(this.x+this.width,this.y+this.height, 5,5, "white");
-						
-				colorRect(this.centerX,this.centerY, 5, 5, 'white'); 
+
+				colorRect(this.centerX,this.centerY, 5, 5, 'white');
 			}
-	
+
 		this.mySword.draw(this);
-			
+
 		this.myArrow.draw();
-		
+
 		this.myRock.draw();
-	
+
 		}
 	}
-	
+
 function instantCamFollow() {
     camPanX = redWarrior.x - canvas.width/2;
     camPanY = redWarrior.y - canvas.height/2;
@@ -592,7 +609,7 @@ function cameraFollow() {
         camPanY -= playerMoveSpeed;
       }
     }
-	
+
 	if(camPanX < 0) {
       camPanX = 0;
     }
@@ -608,4 +625,4 @@ function cameraFollow() {
       camPanY = maxPanTop;
     }
   }
-	
+
