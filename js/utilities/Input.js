@@ -132,14 +132,14 @@ function keyPressed(evt) {
     if (isInShop) {
         shopInput(evt.keyCode);
     } else if (isAtHealer) {
-		healerInput(evt.keyCode);
-	} else if (characterCreationScreen) {
+        healerInput(evt.keyCode);
+    } else if (characterCreationScreen) {
         characterCreationScreenInput(evt.keyCode);
     } else if (scrollBackgroundScreen) {
         scrollBackgroundScreenInput(evt.keyCode);
-	} else if (tileEditor) {
+    } else if (tileEditor) {
         tileEditorInput(evt.keyCode);
-	} else {
+    } else {
         keySet(evt, redWarrior, true);
         if (evt.keyCode == redWarrior.controlKeySword) {
             redWarrior.swordSwing();
@@ -169,15 +169,15 @@ function keyPressed(evt) {
             if (tileEditor) {
                 tileEditor = false;
                 levelNow = 0;//0=levelOne
-				loadLevel(levelList[levelNow]);
+                loadLevel(levelList[levelNow]);
                 dialog = "Exited Tile Editor Mode";
             } else {
                 tileEditor = true;
             }
         } else if (evt.keyCode == mapToggle) {
             if(redWarrior.haveMap){
-				mapShow = !mapShow;
-			}
+                mapShow = !mapShow;
+            }
         } else if (evt.keyCode == redWarrior.controlKeyDisplayHealth) {
             displayHealth = !displayHealth
         }
@@ -205,7 +205,7 @@ function handleMouseClick(evt) {
         menuScreen = false;
         characterCreationScreen = true;
     }
-	if (tileEditor) {
-		tileSelectedClicked = true;
-	}
+    if (tileEditor) {
+        tileSelectedClicked = true;
+    }
 }
