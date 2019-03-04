@@ -75,7 +75,7 @@ function warriorClass() {
 	this.controlKeySword;
 
 	this.savePrefix = "player_";
-	this.saveVariables = ["x", "y", "health"];
+	this.saveVariables = ["x", "y", "health", "maxHealth", "name", "experience", "keysHeld", "goldpieces", "experienceLevel", "healingPotion", "haveMap"];
 
 	this.setupInput = function(upKey, rightKey, downKey, leftKey, swordKey, arrowKey, rockKey, inventoryKey, statsKey, healthKey) {
 		this.controlKeyUp = upKey;
@@ -88,7 +88,7 @@ function warriorClass() {
 		this.controlKeyInventory = inventoryKey;
 		this.controlKeyStats = statsKey;
 		this.controlKeyDisplayHealth = healthKey;
-	}
+	};
 
 	this.releaseKeys = function(){
 		this.keyHeld_WalkNorth = false;
@@ -96,7 +96,7 @@ function warriorClass() {
 		this.keyHeld_WalkWest = false;
 		this.keyHeld_WalkEast = false;
 		this.keyHeld_Sword = false;
-	}
+	};
 
 	this.saveData = function() {
 		for (var variable in this.saveVariables) {
@@ -136,7 +136,7 @@ function warriorClass() {
 		this.mySword.reset();
 		this.myArrow.reset();
 		this.myRock.reset();
-	} // end of warriorRest func
+	}; // end of warriorRest func
 
 	this.move = function() {
 		var nextX = this.x;
@@ -411,7 +411,7 @@ function warriorClass() {
 		this.myRock.move();
 
 		this.tryToTriggerMonsterSpawnAt(skeletonClass, skeletonPic, skeletonSpawnTiles, this.x + this.width / 2, this.y + this.height / 2, direction);
-	}
+	};
 
 	this.tryToTriggerMonsterSpawnAt = function(monsterClass, monsterPic, spawnTiles, x, y, dir = direction, chance = 0.3) { // 0.0 to less than 2.0 chance
 		for (var i = 0; i < spawnTiles.length; i++) {
@@ -435,9 +435,9 @@ function warriorClass() {
 					enemyList.push(monsterInstance);
 					return;
 				}
-			};
+			}
 		}
-	}
+	};
 
 	this.checkForLevelUp = function(){
 		if(this.experience >= level02Experience && this.experienceLevel == 1){
@@ -459,7 +459,7 @@ function warriorClass() {
 		} else if (this.experience >= level10Experience && this.experienceLevel == 9){
 				this.levelup();
 		}
-	}
+	};
 
 	this.levelup = function(){
 		// results when player hits certain experience
@@ -473,7 +473,7 @@ function warriorClass() {
 		}
 		setDialogUICountdown(3);
 		dialog = "I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points";
-	}
+	};
 
 	this.checkWarriorandWeaponCollisionAgainst = function(thisEnemy) {
 
@@ -499,34 +499,34 @@ function warriorClass() {
 				//empty
 			}
 		}
-	}
+	};
 
 	this.swordSwing = function() {
 		if( this.mySword.isReady() ) {
 			this.recentWeapon = this.mySword;
 			this.mySword.shootFrom(this);
 		}
-	}
+	};
 
 	this.shotArrow = function() {
 		if( this.myArrow.isReady() ) {
 			this.recentWeapon = this.myArrow;
 			this.myArrow.shootFrom(this, direction);
 		}
-	}
+	};
 
 	this.shotRock = function() {
 		if( this.myRock.isReady() ) {
 			this.recentWeapon = this.myRock;
 			this.myRock.shootFrom(this, direction);
 		}
-	}
+	};
 
 	this.takeDamage = function(howMuch) {
 		this.health -= howMuch / 10;
 		playerHurtSound.play();
 		this.displayHealth = true;
-	}
+	};
 
 	this.draw = function() {
 		if(this.playerMove) {
