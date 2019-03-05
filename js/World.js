@@ -65,10 +65,10 @@ var oldGraveYard =  [    65, 65, 65, 65, 65, 65, 65, 65, 65, 66, 39, 66, 66, 66,
 						151,141,141,141,141,141,141,141,140, 18,  0,139,141,141,141,141,141,141,141,148, 18, 18, 18, 18, 18, 18, 18, 18,155,156,157, 66,
 						149, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 65,146, 18, 18, 18, 18, 18, 18, 18, 18,158,159,160, 65,
 						149, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 66,146, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 66,
-						149, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18,146, 18, 18, 18, 18, 18, 18, 18, 18,  0,161,  0, 67,
-						149, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18,146, 18, 18, 18, 18, 18, 18, 18, 18,  0,  0,  0, 68,
-					    149, 18,143,143,143, 18,142, 18,145, 18,  0, 18,143,143, 18,142, 18,142, 18,146, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 67,
-						149, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18,146, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 68,
+						149, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18,146, 18, 18, 18, 18, 18, 18, 18, 18,161,162,163,164,
+						149, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18,146, 18, 18, 18, 18, 18, 18, 18, 18,165,170,  0,166,
+					    149, 18,143,143,143, 18,142, 18,145, 18,  0, 18,143,143, 18,142, 18,142, 18,146, 18, 18, 18, 18, 18, 18, 18, 18,165,  0,  0,166,
+						149, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18,146, 18, 18, 18, 18, 18, 18, 18, 18,167,168,168,169,
 						149, 67, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18,146, 18, 18, 18, 18, 67, 18, 67, 18, 18, 18, 18, 67,
 						149, 68,143,143,143, 18,142, 18,142, 18,  0, 18,143,143, 18,142, 18,142, 18,146, 18, 18, 18, 18, 68, 18, 68, 18, 18, 18, 18, 68,
 						149, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18,146, 18, 65, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
@@ -236,7 +236,7 @@ const TILE_GREEN_ORC_SWORD = 62;
 const TILE_GREEN_ORC_CLUB = 63;
 const TILE_GREEN_ORC_AX = 64;
 const TILE_ARCHER = 37;
-const TILE_DRUID = 161;
+const TILE_DRUID = 170;
 // NPCs 
 const TILE_SHOPKEEPER = 31;
 const TILE_HEALER = 43;
@@ -300,6 +300,7 @@ const TILE_GRAVE_1 = 142;
 const TILE_GRAVE_2 = 143;
 const TILE_GRAVE_3 = 144;
 const TILE_GRAVE_4 = 145;
+//druid tiles
 const TILE_DRUID_CIRCLE_1 = 152;
 const TILE_DRUID_CIRCLE_2= 153;
 const TILE_DRUID_CIRCLE_3 = 154;
@@ -309,6 +310,15 @@ const TILE_DRUID_CIRCLE_6= 157;
 const TILE_DRUID_CIRCLE_7 = 158;
 const TILE_DRUID_CIRCLE_8= 159;
 const TILE_DRUID_CIRCLE_9 = 160;
+const TILE_DRUID_HOUSE_TL = 161;
+const TILE_DRUID_HOUSE_TM = 162;
+const TILE_DRUID_HOUSE_TD = 163;
+const TILE_DRUID_HOUSE_TR = 164;
+const TILE_DRUID_HOUSE_SL = 165;
+const TILE_DRUID_HOUSE_SR = 166;
+const TILE_DRUID_HOUSE_BL = 167;
+const TILE_DRUID_HOUSE_BM = 168;
+const TILE_DRUID_HOUSE_BR = 169;
 
 const skeletonSpawnTiles = [TILE_MAUSOLEUM_BR,
 							TILE_GRAVE_1,
@@ -415,6 +425,8 @@ function tileTypeHasTransparency(checkTileType) {
 			checkTileType == TILE_MAUSOLEUM_ML ||
 			checkTileType == TILE_MAUSOLEUM_MM ||
 			checkTileType == TILE_MAUSOLEUM_MR ||
+			checkTileType == TILE_DRUID_HOUSE_SL ||
+			checkTileType == TILE_DRUID_HOUSE_SR ||
 			checkTileType == TILE_ALTER 
 			);
 }

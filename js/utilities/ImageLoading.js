@@ -210,7 +210,16 @@ function loadImages() {
 			{tileType: TILE_DRUID_CIRCLE_7, theFile: "graves/druidcircle7.png"},
 			{tileType: TILE_DRUID_CIRCLE_8, theFile: "graves/druidcircle8.png"},
 			{tileType: TILE_DRUID_CIRCLE_9, theFile: "graves/druidcircle9.png"},
-			
+			{tileType: TILE_DRUID_HOUSE_TL, theFile: "graves/druidhouse_tl.png"},
+			{tileType: TILE_DRUID_HOUSE_TM, theFile: "graves/druidhouse_tm.png"},
+			{tileType: TILE_DRUID_HOUSE_TD, theFile: "graves/druidhouse_tm.png"},
+			{tileType: TILE_DRUID_HOUSE_TR, theFile: "graves/druidhouse_tr.png"},
+			{tileType: TILE_DRUID_HOUSE_SL, theFile: "graves/druidhouse_ml.png"},
+			{tileType: TILE_DRUID_HOUSE_SR, theFile: "graves/druidhouse_mr.png"},
+			{tileType: TILE_DRUID_HOUSE_BL, theFile: "graves/druidhouse_fl.png"},
+			{tileType: TILE_DRUID_HOUSE_BM, theFile: "graves/druidhouse_fm.png"},
+			{tileType: TILE_DRUID_HOUSE_BR, theFile: "graves/druidhouse_fr.png"},
+				
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: swordPic, theFile: "sword.png"},
