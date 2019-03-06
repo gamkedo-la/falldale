@@ -399,17 +399,6 @@ function enemyClass() {
             case TILE_GREEN_DOOR:
             case TILE_BLUE_DOOR:
             case TILE_RED_DOOR:
-            case TILE_CABINET:
-            case TILE_BED:
-            case TILE_SHOP_1:
-            case TILE_SHOP_2:
-            case TILE_SHOP_3:
-            case TILE_SHOP_4:
-            case TILE_SHOP_6:
-            case TILE_SHOP_7:
-            case TILE_SHOP_8:
-            case TILE_SHOP_9:
-            case TILE_SHOP_A:
             case TILE_ROOF_FRONTRIGHT:
             case TILE_ROOF_SIDERIGHT:
             case TILE_ROOF_BACKRIGHT:
@@ -507,9 +496,6 @@ function enemyClass() {
 			case TILE_SPIKES:
 			case TILE_SPIKES_BLOODY:
 			case TILE_WATER:
-            case TILE_GRAVE:
-            case TILE_FRESH_GRAVE:
-            case TILE_ALTER:
             case TILE_FOUNTAIN:
                 return false;
             case TILE_PLAYERSTART:

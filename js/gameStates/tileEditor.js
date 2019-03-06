@@ -43,11 +43,9 @@ function tileEditorInput(whichKeyCode){
 	switch(whichKeyCode){
 		case KEY_UP_ARROW:
 			if(tileTypeSelected != -1){
-				if(roomGrid[tileSelected] < 128){  // need to write code not to have a hard number of 74 for roomGrid's length
-					do {
-						roomGrid[tileSelected]++;						
-					} while(typeof(worldPics[roomGrid[tileSelected]]) == "undefined");
-				}
+				do {
+					roomGrid[tileSelected]++;						
+				} while(typeof(worldPics[roomGrid[tileSelected]]) == "undefined");
 			}		
 		break;
 		case KEY_DOWN_ARROW:
@@ -59,11 +57,99 @@ function tileEditorInput(whichKeyCode){
 				}
 			}		
 		break;
+		
+		 roomGrid[tileUnderMouseIndex]
+		
 		case KEY_LEFT_ARROW:
-			console.log("Left Arrow");
+			console.log(roomGrid[tileSelected]);
+			if(tileTypeSelected != -1){
+				if(roomGrid[tileSelected] < 50) {
+					roomGrid[tileSelected] = 389;	// NPCs and Monsters error out
+				} else if(roomGrid[tileSelected] > 49 && roomGrid[tileSelected] < 100){
+					roomGrid[tileSelected] = 0;	
+				} else if(roomGrid[tileSelected] > 99 && roomGrid[tileSelected] < 150){
+					roomGrid[tileSelected] = 50;	
+				} else if(roomGrid[tileSelected] > 149 && roomGrid[tileSelected] < 200){
+					roomGrid[tileSelected] = 100;	
+				} else if(roomGrid[tileSelected] > 199 && roomGrid[tileSelected] < 250){
+					roomGrid[tileSelected] = 150;	
+				} else if(roomGrid[tileSelected] > 249 && roomGrid[tileSelected] < 300){
+					roomGrid[tileSelected] = 200;	
+				} else if(roomGrid[tileSelected] > 299 && roomGrid[tileSelected] < 350){
+					roomGrid[tileSelected] = 250;	
+				} else if(roomGrid[tileSelected] > 349 && roomGrid[tileSelected] < 400){
+					roomGrid[tileSelected] = 300;	
+				} else if(roomGrid[tileSelected] > 399 && roomGrid[tileSelected] < 450){
+					roomGrid[tileSelected] = 349;	
+				} else if(roomGrid[tileSelected] > 449 && roomGrid[tileSelected] < 500){
+					roomGrid[tileSelected] = 349;	
+				} else if(roomGrid[tileSelected] > 499 && roomGrid[tileSelected] < 550){
+					roomGrid[tileSelected] = 349;	
+				} else if(roomGrid[tileSelected] > 549 && roomGrid[tileSelected] < 600){
+					roomGrid[tileSelected] = 400;	
+				} else if(roomGrid[tileSelected] > 599 && roomGrid[tileSelected] < 650){
+					roomGrid[tileSelected] = 400;	
+				} else if(roomGrid[tileSelected] > 649 && roomGrid[tileSelected] < 700){
+					roomGrid[tileSelected] = 400;	
+				} else if(roomGrid[tileSelected] > 699 && roomGrid[tileSelected]< 750){				
+					roomGrid[tileSelected] = 400;	
+				} else if(roomGrid[tileSelected] > 749 && roomGrid[tileSelected] < 800){
+					roomGrid[tileSelected] = 400;	
+				} else if(roomGrid[tileSelected] > 799 && roomGrid[tileSelected] < 850){
+					roomGrid[tileSelected] = 400;	
+				} else if(roomGrid[tileSelected] > 849 && roomGrid[tileSelected] < 900){
+					roomGrid[tileSelected] = 800;	
+				} else if(roomGrid[tileSelected] > 900){
+					roomGrid[tileSelected] = 850;	
+				}
+			console.log(roomGrid[tileSelected]);
+			}					
 		break;
 		case KEY_RIGHT_ARROW:
-			console.log("Right Arrow");
+			console.log(roomGrid[tileSelected]);
+			if(tileTypeSelected != -1){
+				if(roomGrid[tileSelected] < 50) {
+					roomGrid[tileSelected] = 50;	// NPCs and Monsters error out
+				} else if(roomGrid[tileSelected] > 49 && roomGrid[tileSelected] < 100){
+					roomGrid[tileSelected] = 100;	
+				} else if(roomGrid[tileSelected] > 99 && roomGrid[tileSelected] < 150){
+					roomGrid[tileSelected] = 150;	
+				} else if(roomGrid[tileSelected] > 149 && roomGrid[tileSelected] < 200){
+					roomGrid[tileSelected] = 200;	
+				} else if(roomGrid[tileSelected] > 199 && roomGrid[tileSelected] < 250){
+					roomGrid[tileSelected] = 250;	
+				} else if(roomGrid[tileSelected] > 249 && roomGrid[tileSelected] < 300){
+					roomGrid[tileSelected] = 300;	
+				} else if(roomGrid[tileSelected] > 299 && roomGrid[tileSelected] < 350){
+					roomGrid[tileSelected] = 350;	
+				} else if(roomGrid[tileSelected] > 349 && roomGrid[tileSelected] < 400){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 399 && roomGrid[tileSelected] < 450){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 449 && roomGrid[tileSelected] < 500){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 499 && roomGrid[tileSelected] < 550){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 549 && roomGrid[tileSelected] < 600){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 599 && roomGrid[tileSelected] < 650){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 649 && roomGrid[tileSelected] < 700){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 699 && roomGrid[tileSelected]< 750){				
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 749 && roomGrid[tileSelected] < 800){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 799 && roomGrid[tileSelected] < 850){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 849 && roomGrid[tileSelected] < 900){
+					roomGrid[tileSelected] = 389;	
+				} else if(roomGrid[tileSelected] > 900){
+					roomGrid[tileSelected] = 0;	
+				}
+			console.log(roomGrid[tileSelected]);
+			}					
+		break;
 		break;
 		
 		case KEY_SPACEBAR:
