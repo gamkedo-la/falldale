@@ -17,9 +17,9 @@ function skeletonClass(skeletonName) {
 
 	this.tickCount = 0;
 	this.frameIndex = 0;
-	this.width = 35;
-	this.numberOfFrames = 4;
-	this.height = 50;
+	this.width = 31;
+	this.numberOfFrames = 6;
+	this.height = 52;
 	this.ticksPerFrame = 5;
 	this.skeletonMove = true;
 	this.skeletonTimeBetweenChangeDir = 700;
@@ -121,9 +121,6 @@ function skeletonClass(skeletonName) {
 			if(gamePaused == false){
 				this.sx = this.frameIndex * this.width;
 			}
-			
-			this.sy = 0;
-			this.sx = 0;
 			
 			canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 			canvasContext.drawImage(this.mySkeletonPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
