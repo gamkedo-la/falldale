@@ -29,6 +29,16 @@ function SoundOverlapsClass(filenameWithPath) {
         }
         altSoundTurn = !this.altSoundTurn;
     }
+
+    this.startOrStopSFX = function() {
+        if(altSound.volume >= 1 || mainSound.volume >= 1) {
+            altSound.volume = 0;
+            mainSound.volume = 0;
+        } else {
+            altSound.volume = 1;
+            mainSound.volume = 1;
+        }
+    }
 }
 
 function BackgroundMusicClass() {
