@@ -216,12 +216,6 @@ function warriorClass() {
 			case TILE_FINISH:
 				nextLevel();
 				break;
-			case TILE_SHOP_A:
-				if(walkIntoTileType != this.previousTileType){
-					this.releaseKeys();
-					isInShop = true;
-				}
-				break;
 			case TILE_ALTER:
 				if(walkIntoTileType != this.previousTileType){
 					this.releaseKeys();
