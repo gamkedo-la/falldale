@@ -216,12 +216,12 @@ function warriorClass() {
 			case TILE_FINISH:
 				nextLevel();
 				break;
-			case TILE_ALTER:
-				if(walkIntoTileType != this.previousTileType){
-					this.releaseKeys();
-					isAtHealer = true;
-				}
-				break;
+			// case TILE_ALTER:
+			// 	if(walkIntoTileType != this.previousTileType){
+			// 		this.releaseKeys();
+			// 		isAtHealer = true;
+			// 	}
+			// 	break;
 			case TILE_HEALER_FRONTDOOR:
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				setDialogUICountdown(3);
@@ -338,26 +338,26 @@ function warriorClass() {
 				setDialogUICountdown(3);
 				dialog = "I'll add these 5 arrows to my inventory.";
 				break;
-			case TILE_GRAVE:
+     		case TILE_GRAVE_1 || TILE_GRAVE_2 || TILE_GRAVE_3:
 				setDialogUICountdown(3);
 				dialog = "Too many good people have died from the Skeleton King and his army of the dead.";
 				break;
-			case TILE_FRESH_GRAVE:
+		    case TILE_GRAVE_4:
 				setDialogUICountdown(3);
 				dialog = "I need to avenge my friend.  The Skeleton King and his army of the dead must be destroyed!.";
 				break;
-			case TILE_BED:
-				setDialogUICountdown(3);
-				dialog = "I am not tired.";
-				break;
+			// case TILE_BED:
+			// 	setDialogUICountdown(3);
+			// 	dialog = "I am not tired.";
+			// 	break;
 			case TILE_FOUNTAIN:
 				setDialogUICountdown(3);
 				dialog = "What a beautiful fountain.";
 				break;
-			case TILE_CABINET:
-				setDialogUICountdown(3);
-				dialog = "The bookcase is bare.  One day, I'll have a library of my own.";
-				break;
+			// case TILE_CABINET:
+			// 	setDialogUICountdown(3);
+			// 	dialog = "The bookcase is bare.  One day, I'll have a library of my own.";
+			// 	break;
 			case TILE_SPIKES:
 				var i = 1;
 				this.x = nextX;
