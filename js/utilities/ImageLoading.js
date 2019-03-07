@@ -144,6 +144,7 @@ function loadImages() {
 			{tileType: TILE_BS_BW_RS,  theFile: "shopBlacksmith/backwallrightside.png"},
 			{tileType: TILE_BS_DESK,  theFile: "shopBlacksmith/desk.png"},
 			{tileType: TILE_BS_FW_LS,  theFile: "shopBlacksmith/frontwallleftside.png"},
+			{tileType: TILE_BS_FW_RS,  theFile: "shopBlacksmith/frontwallrightside.png"},
 			{tileType: TILE_BS_LW,  theFile: "shopBlacksmith/leftwall.png"},
 			{tileType: TILE_HOUSE_FRONT_WALL, theFile: "House1/solidwall.png"},
 			{tileType: TILE_HOUSE_FRONT_WALL_DAMAGED, theFile: "House1/solidwall2.png"},

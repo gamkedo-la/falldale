@@ -340,23 +340,15 @@ function warriorClass() {
 				setDialogUICountdown(3);
 				dialog = "I need to avenge my friend.  The Skeleton King and his army of the dead must be destroyed!.";
 				break;
-			// case TILE_BED:
-			// 	setDialogUICountdown(3);
-			// 	dialog = "I am not tired.";
-			// 	break;
 			case TILE_FOUNTAIN:
 				setDialogUICountdown(3);
 				dialog = "What a beautiful fountain.";
 				break;
-			// case TILE_CABINET:
-			// 	setDialogUICountdown(3);
-			// 	dialog = "The bookcase is bare.  One day, I'll have a library of my own.";
-			// 	break;
 			case TILE_SPIKES:
 				var i = 1;
 				this.x = nextX;
 				this.y = nextY;
-				this.health = this.health - 0.5; // Damage to Health
+				this.health = this.health - 0.5; 
 				roomGrid[walkIntoTileIndex] = TILE_SPIKES_BLOODY;
 				spikeSound.play();
 				break;
