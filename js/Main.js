@@ -76,7 +76,7 @@ function imageLoadingDoneSoStartGame() {
 
     setupInput();
     console.log("setupInput should run - Main.js");
-    levelNow = 2;//TODO: remove this line, only used to start in the graveyard vice levelOne
+    //levelNow = 2; // Use this line to skip to level being worked on. 
     loadLevel(levelList[levelNow]);
 	if(debugSkipToGame){
 		console.log("Debug Mode is on, skip directly to game");
