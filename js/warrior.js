@@ -216,12 +216,6 @@ function warriorClass() {
 			case TILE_FINISH:
 				nextLevel();
 				break;
-			// case TILE_ALTER:
-			// 	if(walkIntoTileType != this.previousTileType){
-			// 		this.releaseKeys();
-			// 		isAtHealer = true;
-			// 	}
-			// 	break;
 			case TILE_HEALER_FRONTDOOR:
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				setDialogUICountdown(3);
