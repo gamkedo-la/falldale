@@ -15,7 +15,6 @@ function healerInput(whichKeyCode) {
     var shopKeeperFeedback = null;
 
     switch (whichKeyCode) {
-
         case NUM_1:
             if (redWarrior.goldpieces >= 10) {
 				if (redWarrior.health <= redWarrior.maxHealth - 1){
@@ -58,6 +57,7 @@ function healerInput(whichKeyCode) {
             shopKeeperFeedback = "Healer:  Please come again.";
             break;
     }
+	console.log("worked");
 	isAtHealer = false;
 	setDialogUICountdown(3);
     dialog = shopKeeperFeedback;

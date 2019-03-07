@@ -305,7 +305,6 @@ function warriorClass() {
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
 				setDialogUICountdown(3);
 				dialog = "So this is what this place looks like.  [PRESS 3] for map";
-
 				break;
 			case TILE_TREASURE:
 				if(this.yellowKeysHeld > 0) {

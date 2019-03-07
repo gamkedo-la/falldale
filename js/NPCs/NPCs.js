@@ -72,11 +72,11 @@ function npcClass(npcName, npcPic) {
 			}
 			if(this.myName == "Healer"){
 				dialog = "Hi, I'm the Healer.  I could use a better name."
-				isInShop = true;
+				isAtHealer = true;
 			}
 			if(this.myName == "Shop Keeper"){
 				dialog = "Hi, I'm the Shop Keeper.  I could use a better name."
-				isAtHealer = true;
+				isInShop = true;
 				
 			}	
 		}
