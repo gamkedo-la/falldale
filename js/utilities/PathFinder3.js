@@ -37,7 +37,7 @@ function Pathfinder3() {
 
         path.splice(0, 0, start);
 
-        let string = "";
+/*        let string = "";
         for(let j = 0; j < levelList[levelNow].length; j++) {
             let distString = cameFrom[j];
 
@@ -57,7 +57,7 @@ function Pathfinder3() {
             }
         }
 
-//        console.log(string); 
+//        console.log(string); */
 
         return path;
     }
@@ -69,10 +69,6 @@ function Pathfinder3() {
         if(above != null) {
             if(isPassable(levelList[levelNow][above])) {
                 result.push(above);
-
-                if(levelList[levelNow][above] == 93) {
-                    console.log("That shouldn't happen!!!!");
-                }
             }
         }
 
@@ -80,10 +76,6 @@ function Pathfinder3() {
         if(below != null) {
             if(isPassable(levelList[levelNow][below])) {
                 result.push(below);
-
-                if(levelList[levelNow][below] == 93) {
-                    console.log("That shouldn't happen!!!!");
-                }
             }
         }
 
@@ -91,19 +83,6 @@ function Pathfinder3() {
         if(left != null) {
             if(isPassable(levelList[levelNow][left])) {
                 result.push(left);
-                
-
-
-                if(levelList[levelNow][left] == 93) {
-                    console.log("That shouldn't happen!!!!");
-                }
-/*                if(index == 643) {
-                    console.log("643: " + left);
-                } else if(index == 644) {
-                    console.log("644: " + left);
-                } else if(index == 645) {
-                    console.log("645: " + left);
-                }*/
             }
         }
 
@@ -111,10 +90,6 @@ function Pathfinder3() {
         if(right != null) {
             if(isPassable(levelList[levelNow][right])) {
                 result.push(right);
-
-                if(levelList[levelNow][right] == 93) {
-                    console.log("That shouldn't happen!!!!");
-                }
             }
         }
 

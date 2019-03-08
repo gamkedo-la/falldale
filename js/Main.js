@@ -137,6 +137,7 @@ function loadLevel(whichLevel) {
                 newEnemy = new npcClass('Fenton', fentonPic);
 			} else if(roomGrid[arrayIndex] == TILE_GABRIEL) {   // NPC
                 newEnemy = new npcClass('Gabriel', gabrielPic);
+                newEnemy.patrolPoints = [157, 73, 74, 138];//index of tiles Gabriel cycles through, Not working yet
 			} else if(roomGrid[arrayIndex] == TILE_HEALER) {   // NPC
                 newEnemy = new npcClass('Healer', healerPic);
 			} else if(roomGrid[arrayIndex] == TILE_PRINCESS) {   // NPC
