@@ -271,6 +271,7 @@ var roomGrid = [];
 const TILE_PLAYERSTART = 950;
 
 // terrain tiles  Numbers 0 through 49  //
+const TERRAIN_TILE_NUM_MAX = 49; // used by tileIsAFloor() function
 const TILE_ROAD = 0;
 //leave Road types open 1 though 10
 const TILE_WALL = 11;
@@ -590,7 +591,7 @@ function drawTileFX(checkTileType, drawTileX, drawTileY) {
 	}
 }
 
-function drawRoom() {
+function drawRoom(drawFloors, drawWalls) {
 
 	var arrayIndex = 0;
 	var drawTileX = 0;
@@ -610,8 +611,14 @@ function drawRoom() {
 			if( tileTypeHasGrassTransparency(tileKindHere) ) {
 				canvasContext.drawImage(worldPics[TILE_GRASS], drawTileX, drawTileY);
 			}
-			drawTileFX(tileKindHere, drawTileX, drawTileY);
-			canvasContext.drawImage(useImg, drawTileX, drawTileY);
+			
+			var isFloor = tileIsAFloor(tileKindHere);
+
+			if (drawFloors && isFloor ||
+				drawWalls && !isFloor) {
+				drawTileFX(tileKindHere, drawTileX, drawTileY);
+				canvasContext.drawImage(useImg, drawTileX, drawTileY);
+			}
 
 			// edit mode highlight
 			if (tileEditor && arrayIndex==tileSelected) {
@@ -632,7 +639,13 @@ function drawRoom() {
 	// TODO: why is this here? -- Vince's response: This was meant for when the player enters a new map area.
 	// fadingTitles.begin("COOL MESSAGE","headline","subtitle");
 }
-	
+
+function tileIsAFloor(tileKind) {
+
+	return (tileKind <= TERRAIN_TILE_NUM_MAX); 
+
+}
+
 function drawOnlyTilesOnScreen() {
 	var cameraLeftMostCol = Math.floor(camPanX / TILE_W);
 	var cameraTopMostRow = Math.floor(camPanY / TILE_H);

@@ -341,9 +341,9 @@ function drawAll() {
         colorRect(0,0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
         canvasContext.save();
         canvasContext.translate(-camPanX, -camPanY);
-        drawRoom();
         //drawOnlyTilesOnScreen();
-        redWarrior.draw();
+        //drawRoom(true,false); // draw floors only
+        drawRoom(true,true); // draw all level tiles
         for (var i=0; i<enemyList.length; i++) {
             enemyList[i].draw();
         }
@@ -356,6 +356,8 @@ function drawAll() {
 		for (var i=0; i<goldList.length; i++) {
             goldList[i].draw();
         }
+        //drawRoom(false,true); // draw all non floors
+        redWarrior.draw();
         drawRooftops();
         canvasContext.restore();
         health();
