@@ -5,6 +5,19 @@
 var rooftops = [ // x1,y1,x2,y2
 	//rooftops for the town area
 	
+	[1,0,6,3], // player's house
+	[9,0,11,2], // farmer next door
+	[7,12,10,14], // small house south
+	[12,12,15,14], // their neighbour
+	[8,19,11,22], // south w farmer
+	[12,19,16,22], // south big house
+	[23,0,30,4], // nw store
+	[35,0,42,4], // nww store
+	[29,14,38,28], // tavern
+
+
+
+
 	/*[1,1,6,2],   
 	[19,0,24,3],
 	[26,0,31,3],
