@@ -16,7 +16,7 @@ var OverlayFX = new function() {
         TILE_RED_DOOR,
         TILE_GRAVE_YARD_PORTAL,
         TILE_HOME_VILLAGE_PORTAL,
-        TILE_FINISH,
+        TILE_FOREST_PORTAL,
         TILE_KEY,
         TILE_YELLOW_KEY,
         TILE_GREEN_KEY,
