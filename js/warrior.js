@@ -210,11 +210,12 @@ function warriorClass() {
 				break;
 
 			case TILE_HOME_VILLAGE_PORTAL:
-			levelNow = 0;//0=levelOne
+			levelNow = 0;//0=Falldale
 			loadLevel(levelList[levelNow]);
 				break;
-			case TILE_FINISH:
-				nextLevel();
+			case TILE_FOREST_PORTAL:
+				levelNow = 3;// 3=FOREST
+				loadLevel(levelList[levelNow]);
 				break;
 			case TILE_HEALER_FRONTDOOR:
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
