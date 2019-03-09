@@ -42,6 +42,7 @@ var skeletonHurtSound = new SoundOverlapsClass("skeletonhurt");
 var batHurtSound = new SoundOverlapsClass("bathurt");
 var playerHurtSound = new SoundOverlapsClass("playerHurt");
 var backgroundMusic = new BackgroundMusicClass();
+var meowPurrSound = new SoundOverlapsClass("meow_purr");
 
 
 
