@@ -148,7 +148,8 @@ function loadLevel(whichLevel) {
 			} else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
                 newEnemy = new npcClass('Taran', taranPic);
 			} else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
-                newEnemy = new npcClass('Fido', catPic);	
+                newEnemy = new npcClass('Fido', catPic);
+                newEnemy.numberOfFrames = 6; // six frame walk cycle: FIXME: no effect
 			} else {
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
