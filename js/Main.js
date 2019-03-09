@@ -45,6 +45,7 @@ var backgroundMusic = new BackgroundMusicClass();
 
 
 
+
 var dialogUIVisibilityCountdown = 3;
 
 
@@ -68,7 +69,7 @@ window.onload = function() {
     colorText("Loading Images... please wait", 400, 300, 'black');
     loadImages();
     canvas.addEventListener('mousedown', handleMouseClick);
-    backgroundMusic.loopSong("dungeonbackground");
+    backgroundMusic.loopSong("falldale-pub");
 }
 
 function imageLoadingDoneSoStartGame() {
