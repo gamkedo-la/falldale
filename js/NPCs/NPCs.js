@@ -43,6 +43,10 @@ function npcClass(npcName, npcPic) {
         }
     }
 
+    var meows=['meow','meOOOWW!','purr','me-roww','purrrrrrrr','mmmmyow','mowmow','mew','mew mew','HISS!','meow','meeeeeow','me. ow.','me? ow!','mew meow purr','purr meow!','meow?','MEOW?','MEOW?!?!','meow!','meROWE','purr purr','purr purr purr'];
+    var meowframes = 30;
+    var meowcount = 0;
+
     this.isOverlappingPoint = function(testX, testY) { // textX is redWarrior.x and testY is redWarrior.y
 
         //test if redWarrior is inside box of NPC
@@ -77,7 +81,16 @@ function npcClass(npcName, npcPic) {
 			if(this.myName == "Shop Keeper"){
 				dialog = "Hi, I'm the Shop Keeper.  I could use a better name."
 				isInShop = true;
-				
+            }	
+            if(this.myName == "Fido"){
+                // alternately, we can choose a random one from the array
+                // dialog = meows[Math.floor(Math.random()*meows.length)];
+
+                //every 30 frames, switch to the next one and loop around
+                meowcount++;
+                dialog = meows[Math.floor(meowcount/meowframes)%meows.length];
+
+                isInShop = false;
 			}	
 		}
     }

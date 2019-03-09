@@ -149,7 +149,8 @@ function loadLevel(whichLevel) {
                 newEnemy = new npcClass('Taran', taranPic);
 			} else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
                 newEnemy = new npcClass('Fido', catPic);
-                newEnemy.numberOfFrames = 6; // six frame walk cycle: FIXME: no effect
+                newEnemy.numberOfFrames = 6; // six frame walk cycle
+                newEnemy.patrolPoints = [4, 6, 10, 6]; // sidewalk near your house
 			} else {
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
