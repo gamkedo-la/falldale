@@ -147,6 +147,8 @@ function loadLevel(whichLevel) {
                 newEnemy = new npcClass('Shop Keeper', shopkeeperPic);
 			} else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
                 newEnemy = new npcClass('Taran', taranPic);
+			} else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
+                newEnemy = new npcClass('Fido', catPic);	
 			} else {
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
