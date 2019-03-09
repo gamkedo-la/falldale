@@ -85,9 +85,14 @@ function npcClass(npcName, npcPic) {
     this.draw = function() {
 
         if (this.npcMove) {
-         //   this.tickCount++;
-
+            if (this.myNPCPic.width >= (this.width * this.numberOfFrames)) {
+                this.tickCount++; // this makes spritesheet animation work
+            } else {
+                // unfinished artwork, stay at frame 0 forever
+                // and just slide aroun for now
+            }
         }
+
         if (this.tickCount > this.ticksPerFrame) {
             this.tickCount = 0;
             if (this.frameIndex < this.numberOfFrames - 1) {
