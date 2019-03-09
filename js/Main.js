@@ -365,6 +365,7 @@ function drawAll() {
         //drawRoom(false,true); // draw all non floors
         redWarrior.draw();
         drawRooftops();
+        OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
         canvasContext.restore();
         health();
         messageDraw();

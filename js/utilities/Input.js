@@ -106,6 +106,7 @@ function keyPressed(evt) {
     var mapToggle = NUM_3;
     var paused = KEY_P;
     var mute = KEY_M;
+    var nightModeToggle = KEY_N;
 
     if (evt.keyCode == paused) {
         if (gamePaused) {
@@ -118,6 +119,10 @@ function keyPressed(evt) {
 
     if (gamePaused) {
         return;
+    }
+
+    if(evt.keyCode == nightModeToggle) {
+        OverlayFX.nightMode = !OverlayFX.nightMode;
     }
 
     if(evt.keyCode == mute) {
