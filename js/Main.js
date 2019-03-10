@@ -42,6 +42,7 @@ var skeletonHurtSound = new SoundOverlapsClass("skeletonhurt");
 var batHurtSound = new SoundOverlapsClass("bathurt");
 var playerHurtSound = new SoundOverlapsClass("playerHurt");
 var backgroundMusic = new BackgroundMusicClass();
+var meowPurrSound = new SoundOverlapsClass("meow_purr");
 
 
 
@@ -77,7 +78,7 @@ function imageLoadingDoneSoStartGame() {
 
     setupInput();
     console.log("setupInput should run - Main.js");
-    //levelNow = 2; // Use this line to skip to level being worked on. 
+    // levelNow = 3; // Use this line to skip to level being worked on. 
     loadLevel(levelList[levelNow]);
 	if(debugSkipToGame){
 		console.log("Debug Mode is on, skip directly to game");
@@ -147,6 +148,10 @@ function loadLevel(whichLevel) {
                 newEnemy = new npcClass('Shop Keeper', shopkeeperPic);
 			} else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
                 newEnemy = new npcClass('Taran', taranPic);
+			} else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
+                newEnemy = new npcClass('Fido', catPic);
+                newEnemy.numberOfFrames = 6; // six frame walk cycle
+                newEnemy.patrolPoints = [4, 6, 10, 6]; // sidewalk near your house
 			} else {
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
@@ -360,6 +365,7 @@ function drawAll() {
         //drawRoom(false,true); // draw all non floors
         redWarrior.draw();
         drawRooftops();
+        OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
         canvasContext.restore();
         health();
         messageDraw();
