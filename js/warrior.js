@@ -60,7 +60,7 @@ function warriorClass() {
 	this.experienceLevel = 1;
 	this.armor = 10;
 	this.healingPotion = 0;
-	this.haveMap = false; 
+	this.haveMap = false;
 	this.questOneComplete = false; // Clear the town of Goblins
 	this.delkonRewardOffer = false; // 50 gp
 
@@ -77,7 +77,8 @@ function warriorClass() {
 	this.controlKeySword;
 
 	this.savePrefix = "player_";
-	this.saveVariables = ["x", "y", "health", "maxHealth", "name", "experience", "keysHeld", "goldpieces", "experienceLevel", "healingPotion", "haveMap"];
+	this.saveVariables = ["x", "y", "health", "maxHealth", "name", "experience", "keysHeld", "goldpieces",
+		"experienceLevel", "healingPotion", "haveMap", "questOneComplete", "delkonRewardOffer"];
 
 	this.setupInput = function(upKey, rightKey, downKey, leftKey, swordKey, arrowKey, rockKey, inventoryKey, statsKey, healthKey) {
 		this.controlKeyUp = upKey;
@@ -350,7 +351,7 @@ function warriorClass() {
 				var i = 1;
 				this.x = nextX;
 				this.y = nextY;
-				this.health = this.health - 0.5; 
+				this.health = this.health - 0.5;
 				roomGrid[walkIntoTileIndex] = TILE_SPIKES_BLOODY;
 				spikeSound.play();
 				break;
