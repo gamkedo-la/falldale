@@ -272,6 +272,12 @@ function inventoryDraw() {
     colorText("Green Keys: " + redWarrior.greenKeysHeld, canvas.width - 170, canvas.height - 60, "Black");
 }
 
+function miniMapDraw() {
+    const posX = canvas.width - 190;
+    const posY = 10;
+    drawMiniMap(posX,posY,4);
+}
+
 function mapDraw() {
     let maxScreenLength = canvas.width < canvas.height ? canvas.width : canvas.height;
     let mapLength = maxScreenLength * 0.8;
@@ -373,6 +379,7 @@ function drawAll() {
         health();
         messageDraw();
         damageDraw();
+        // miniMapDraw();
 		if(muteAudio){
 			canvasContext.drawImage(muteAudioPic, 20, 20);
 		}
