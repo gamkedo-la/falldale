@@ -203,11 +203,11 @@ function handleMouseClick(evt) {
 
     if (true) { // (debugMode) {
         console.log(
-            "clicked pixel x,y:" + (mouseX+camera.camPanX) + "," + (mouseY+camera.camPanY) +
-            " tile col,row: " + Math.floor((mouseX+camera.camPanX) / TILE_W) +
-            "," + Math.floor((mouseY+camera.camPanY) / TILE_H) + " tile index: " +
-            rowColToArrayIndex(Math.floor((mouseX+camera.camPanX) / TILE_W),
-                Math.floor((mouseY+camera.camPanY) / TILE_H)));
+            "clicked pixel x,y:" + (mouseX+camera.x) + "," + (mouseY+camera.y) +
+            " tile col,row: " + Math.floor((mouseX+camera.x) / TILE_W) +
+            "," + Math.floor((mouseY+camera.y) / TILE_H) + " tile index: " +
+            rowColToArrayIndex(Math.floor((mouseX+camera.x) / TILE_W),
+                Math.floor((mouseY+camera.y) / TILE_H)));
     }
 
     if (menuScreen) {

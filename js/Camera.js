@@ -1,48 +1,49 @@
 function Camera () {    
-    this.camPanX = 0.0;
-    this.camPanY = 0.0;
+    this.x = 0.0;
+    this.y = 0.0;
 
     this.follow = function (target, distFromCenterX = 150, distFromCenterY = 100) {
-        var cameraFocusCenterX = this.camPanX + canvas.width/2;
-        var cameraFocusCenterY = this.camPanY + canvas.height/2;
+        var cameraFocusCenterX = this.x + canvas.width/2;
+        var cameraFocusCenterY = this.y + canvas.height/2;
 
         var playerDistFromCameraFocusX = Math.abs(target.x-cameraFocusCenterX);
         var playerDistFromCameraFocusY = Math.abs(target.y-cameraFocusCenterY);
+        var scrollSpeed = target.speed;
 
         if(playerDistFromCameraFocusX > distFromCenterX) {
             if(cameraFocusCenterX < target.x)  {
-                this.camPanX += target.speed;
+                this.x += scrollSpeed;
             } else {
-                this.camPanX -= target.speed;
+                this.x -= scrollSpeed;
             }
         }
         if(playerDistFromCameraFocusY > distFromCenterY) {
             if(cameraFocusCenterY < target.y)  {
-                this.camPanY += target.speed;
+                this.y += scrollSpeed;
             } else {
-                this.camPanY -= target.speed;
+                this.y -= scrollSpeed;
             }
         }
-        if (Math.abs(target.x - cameraFocusCenterX) > canvas.width) {
-            this.camPanX = target.x;
+        if (playerDistFromCameraFocusX > canvas.width) {
+            this.x = target.x;   
         }
-        if (Math.abs(target.y - cameraFocusCenterY) > canvas.height) {
-            this.camPanY = target.y;
+        if (playerDistFromCameraFocusY > canvas.height) {
+            this.y = target.y;
         }
 
-        if(this.camPanX < 0) {
-            this.camPanX = 0;
+        if(this.x < 0) {
+            this.x = 0;
         }
-        if(this.camPanY < 0) {
-            this.camPanY = 0;
+        if(this.y < 0) {
+            this.y = 0;
         }        
         var maxPanRight = ROOM_COLS * TILE_W - canvas.width;
         var maxPanTop = ROOM_ROWS * TILE_H - canvas.height;
-        if(this.camPanX > maxPanRight) {
-            this.camPanX = maxPanRight;
+        if(this.x > maxPanRight) {
+            this.x = maxPanRight;
         }
-        if(this.camPanY > maxPanTop) {
-            this.camPanY = maxPanTop;
+        if(this.y > maxPanTop) {
+            this.y = maxPanTop;
         }
     };
 }

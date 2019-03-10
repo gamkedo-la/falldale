@@ -639,8 +639,8 @@ function drawRoom(drawFloors, drawWalls) {
 
 function drawMiniMap(posX,posY,miniMapTileSize) {
 
-	miniMapCamPanX = camPanX * (miniMapTileSize/TILE_W); // reductionFactor (eg: 50/25=0.5): miniMapTileSize/TILE_W 
-	miniMapCamPanY = camPanY * (miniMapTileSize/TILE_H);
+	miniMapCamPanX = camera.x * (miniMapTileSize/TILE_W); // reductionFactor (eg: 50/25=0.5): miniMapTileSize/TILE_W 
+	miniMapCamPanY = camera.y * (miniMapTileSize/TILE_H);
 
 	// console.log(miniMapCamPanX,miniMapCamPanY);
 
@@ -689,8 +689,8 @@ function tileIsAFloor(tileKind) {
 }
 
 function drawOnlyTilesOnScreen() {
-	var cameraLeftMostCol = Math.floor(camera.camPanX / TILE_W);
-	var cameraTopMostRow = Math.floor(camera.camPanY / TILE_H);
+	var cameraLeftMostCol = Math.floor(camera.x / TILE_W);
+	var cameraTopMostRow = Math.floor(camera.y / TILE_H);
 	var colsThatFitOnScreen = Math.floor(canvas.width / TILE_W);
 	var rowsThatFitOnScreen = Math.floor(canvas.height / TILE_W);
 	var cameraRightMostCol = cameraLeftMostCol + colsThatFitOnScreen + 2;
