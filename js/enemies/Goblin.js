@@ -1,5 +1,6 @@
 var goblinMoveSpeed = 0.5;
 const GOBLIN_TIME_BETWEEN_CHANGE_DIR = 100;
+var goblinsKilled = 0;
 
 goblinClass.prototype = new enemyClass();
 function goblinClass(goblinName) {
@@ -22,6 +23,7 @@ function goblinClass(goblinName) {
     this.height = 50;
     this.ticksPerFrame = 5;
     this.goblinMove = true;
+	this.treasureAvailable = true;
 
 	this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
@@ -97,8 +99,16 @@ function goblinClass(goblinName) {
         this.health -= howMuch;
         goblinHurtSound.play();
         this.displayHealth = true;
+		if(this.health <= 0){
+			if(this.treasureAvailable){
+				this.distributeTreasure();
+				this.treasureAvailable = false;
+				goblinsKilled++;
+				countGoblinforQuestOne();
+			}
+		}
     }
-    
+    	
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {

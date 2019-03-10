@@ -177,7 +177,7 @@ function keyPressed(evt) {
         } else if (evt.keyCode == tileEditorModeKey) {
             if (tileEditor) {
                 tileEditor = false;
-                levelNow = 0;//0=levelOne
+                levelNow = 0;//0=fallDale
                 loadLevel(levelList[levelNow]);
                 dialog = "Exited Tile Editor Mode";
             } else {

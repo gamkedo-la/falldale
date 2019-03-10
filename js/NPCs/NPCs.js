@@ -55,21 +55,21 @@ function npcClass(npcName, npcPic) {
             setDialogUICountdown(5);
             if (this.myName == "Addy") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "I'm Addy, there's no time to talk right now.  We are invaded by Goblins!";
-                } else {
-                    dialog = "Hi, I'm Addy.  Eventually, I'll have more to say.";
+                    dialog = "Addy:  I'm Addy, there's no time to talk right now.  We are invaded by Goblins!";
+                } else if (redWarrior.questOneComplete) {
+                    dialog = "Addy:  Thank you for saving Falldale!";
                 }
             } else if (this.myName == "Dodd") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "I'm Dodd, we need to clear all the Goblins from the town!";
-                } else {
-                    dialog = "Hi, I'm Dodd.  Eventually, I'll have more to say.";
+                    dialog = "Dodd:  I'm Dodd, we need to clear all the Goblins from the town!";
+                } else if (redWarrior.questOneComplete) {
+                    dialog = "Dodd:  We are in debt to you for saving our town.";
                 }
             } else if (this.myName == "Taran") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "I'm Taran.  Now is not the best time to talk.  These Goblins are destroying the town!";
-                } else {
-                    dialog = "Hi, I'm Taran.  Eventually, I'll have more to say.";
+                    dialog = "Taran:  I'm Taran.  Now is not the best time to talk.  These Goblins are destroying the town!";
+                } else if (redWarrior.questOneComplete) {
+                    dialog = "Taran:  You are such a brave individual!";
                 }
             } else if (this.myName == "Delkon") {
                 if (redWarrior.questOneComplete == false) {
@@ -79,24 +79,26 @@ function npcClass(npcName, npcPic) {
                     redWarrior.gold = redWarrior.gold + 50;
                     dialog = "Thank you for clearing the town of those horrible beasts!  Please take this reward of 50 gold pieces";
                     redWarrior.delkonRewardOffer = false;
-                }
+                } else if (redWarrior.questOneComplete) {
+					 dialog = "Thank you for clearing the town of those horrible beasts!";
+				}
             } else if (this.myName == "Princess") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "My town is being destroyed by these horrible Goblins.  Please do something!";
-                } else {
-                dialog = "Hi, I'm the Princess.  Eventually, I'll have more to say."
+                    dialog = "Princess:  My town is being destroyed by these horrible Goblins.  Please do something!";
+                } else if (redWarrior.questOneComplete) {
+					dialog = "Princess:  I am incredible grateful for you saving our town of Falldale.  These Goblin attacks have been happening more often of late."
 				}
-            } else if (this.myName == "Gabriel") {
+			} else if (this.myName == "Gabriel") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Please clear this town of all these Goblins!";
-                } else {
-                    dialog = "Hi, I'm Gabriel.  Eventually, I'll have more to say.";
+                    dialog = "Gabriel:  Please clear this town of all these Goblins!";
+                } else if (redWarrior.questOneComplete) {
+                    dialog = "Gabriel:  Sorry we couldn't talk earlier.  My name is Gabriel, I am grateful you saved our town.  These Goblins have been attacking us a lot lately.";
                 }
             } else if (this.myName == "Fenton") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "I'm Fenton, our town is being overran by Goblins!  Please do something!";
-                } else {
-                    dialog = "Hi, I'm Fenton.  Eventually, I'll have more to say.";
+                    dialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
+                } else if (redWarrior.questOneComplete) {
+                    dialog = "Thank you for saving our town!";
                 }
             } else if (this.myName == "Healer") {
                 dialog = "Hi, I'm the Healer.  I could use a better name.";

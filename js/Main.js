@@ -163,7 +163,6 @@ function loadLevel(whichLevel) {
             resetY = eachRow * TILE_H + TILE_H/2;
             newEnemy.reset(resetX, resetY);
             enemyList.push(newEnemy);
-			console.log(enemyList);
             roomGrid[arrayIndex] = TILE_ROAD;
             arrayIndex++;
         } //end of col for
@@ -200,8 +199,6 @@ function updateItems(){
 	healingPotionReadyToRemove();
 	removeHealingPotion();
 }
-
-
 
 function health() {
 
@@ -335,7 +332,6 @@ function drawAll() {
     } else if (isAtHealer) {
         drawHealerShop();
     } else if (characterCreationScreen) {
-        //if(redWarrior.strength == 0){
         drawCreationScreen(strength);
         drawDice(Dice1);
         drawDice(Dice2);
@@ -344,7 +340,6 @@ function drawAll() {
 			characterCreationScreenInput(KEY_SPACEBAR);
 			characterCreationScreenInput(ENTER);
 		}
-        //}
     } else if (scrollBackgroundScreen) {
         drawScrollNarrative();
 		if(debugSkipToGame){

@@ -53,6 +53,7 @@ function warriorClass() {
 	this.haveMap = false;
 	this.questOneComplete = false; // Clear the town of Goblins
 	this.delkonRewardOffer = false; // 50 gp
+	this.goblinsKilledInFallDale = 0;
 
 	this.keyHeld_WalkNorth = false;
 	this.keyHeld_WalkSouth = false;
