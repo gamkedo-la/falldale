@@ -8,6 +8,7 @@ var damageUICountdown = 3;//in seconds
 var diceWidth = 40;
 var diceHeight = 40;
 var stateScreenOffsetX, stateScreenOffsetY;
+var camera;
 var redWarrior = new warriorClass();
 var enemyList = [];
 var dialog = "H: Hides health, I: Inventory, O: Stats";
@@ -65,12 +66,14 @@ window.onload = function() {
     window.addEventListener('blur', function() {gamePaused = true;})
 
     resizeCanvas();
+    camera = new Camera();
 
     colorRect(0, 0, canvas.width, canvas.height, 'orange'); // startup page
     colorText("Loading Images... please wait", 400, 300, 'black');
     loadImages();
     canvas.addEventListener('mousedown', handleMouseClick);
     backgroundMusic.loopSong("falldale-pub");
+
 }
 
 function imageLoadingDoneSoStartGame() {
@@ -185,7 +188,7 @@ function moveAll() {
                 redWarrior.checkWarriorandWeaponCollisionAgainst(enemyList[i]);
             } 
         }
-		cameraFollow();
+        camera.follow(redWarrior);        
     };
 };
 
@@ -346,7 +349,7 @@ function drawAll() {
     } else {
         colorRect(0,0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
         canvasContext.save();
-        canvasContext.translate(-camPanX, -camPanY);
+        canvasContext.translate(-camera.camPanX, -camera.camPanY);
         //drawOnlyTilesOnScreen();
         //drawRoom(true,false); // draw floors only
         drawRoom(true,true); // draw all level tiles

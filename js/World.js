@@ -3,11 +3,6 @@ const TILE_H = 50;
 const ROOM_COLS = 64;
 const ROOM_ROWS = 48;
 
-var camPanX = 0.0;
-var camPanY = 0.0;
-const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X = 150;
-const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y = 100;
-
 var levelOne =   [367,247,243,246,243,249,245,361,361,247,249,245,361,361,361,361,361,364, 18, 17, 18, 18, 18,228,231,225,225,226,226,227,229, 18, 18, 18, 18,216,213,215,215,213,212,212,217, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 				  365,248,  0,  0,  0,250,223,301,301,248,250,223, 18, 18, 18, 18, 18,362, 18, 17, 18, 18, 18,234,232,  0,  0,214,214,214,223, 18, 18, 18, 18,222,214,214,214,214,  0,  0,223, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 				  365,234,  0,950,  0,  0,223,302,302,234,857,223, 18,257,257,257,257,362, 18, 17, 18, 18, 18,234,  0,  0,850,  0,  0,  0,223, 18, 18, 18, 18,222,851,  0,  0,  0,  0,  0,223, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
@@ -641,8 +636,8 @@ function tileIsAFloor(tileKind) {
 }
 
 function drawOnlyTilesOnScreen() {
-	var cameraLeftMostCol = Math.floor(camPanX / TILE_W);
-	var cameraTopMostRow = Math.floor(camPanY / TILE_H);
+	var cameraLeftMostCol = Math.floor(camera.camPanX / TILE_W);
+	var cameraTopMostRow = Math.floor(camera.camPanY / TILE_H);
 	var colsThatFitOnScreen = Math.floor(canvas.width / TILE_W);
 	var rowsThatFitOnScreen = Math.floor(canvas.height / TILE_W);
 	var cameraRightMostCol = cameraLeftMostCol + colsThatFitOnScreen + 2;
