@@ -555,16 +555,16 @@ function cameraFollow() {
 
 	if(playerDistFromCameraFocusX > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X) {
 		if(cameraFocusCenterX < redWarrior.x)  {
-			camPanX += playerMoveSpeed;
+			camPanX += this.speed;
 		} else {
-			camPanX -= playerMoveSpeed;
+			camPanX -= this.speed;
 		}
 	}
 	if(playerDistFromCameraFocusY > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y) {
 		if(cameraFocusCenterY < redWarrior.y)  {
-			camPanY += playerMoveSpeed;
+			camPanY += this.speed;
 		} else {
-			camPanY -= playerMoveSpeed;
+			camPanY -= this.speed;
 		}
 	}
 
