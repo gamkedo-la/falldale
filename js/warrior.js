@@ -8,15 +8,7 @@ var direction = "south";
 var healthCountdownSeconds = 5;
 var displayHealthCountdown = healthCountdownSeconds * 30;
 
-level02Experience = 500;
-level03Experience = 2000;
-level04Experience = 4000;
-level05Experience = 6000;
-level06Experience = 10000;
-level07Experience = 16000;
-level08Experience = 26000;
-level09Experience = 42000;
-level10Experience = 68000;
+levelExperienceArray = [500, 2000, 4000, 6000, 10000, 16000, 26000, 42000, 68000]
 
 function warriorClass() {
 	this.mySword = new swordClass();
@@ -423,25 +415,10 @@ function warriorClass() {
 	};
 
 	this.checkForLevelUp = function(){
-		if(this.experience >= level02Experience && this.experienceLevel == 1){
+		
+		if (this.experience >= levelExperienceArray[this.experienceLevel]){
 			this.levelup();
-		} else if (this.experience >= level03Experience && this.experienceLevel == 2){
-			this.levelup();
-		} else if (this.experience >= level04Experience && this.experienceLevel == 3){
-			this.levelup();
-		} else if (this.experience >= level05Experience && this.experienceLevel == 4){
-				this.levelup();
-		} else if (this.experience >= level06Experience && this.experienceLevel == 5){
-				this.levelup();
-		} else if (this.experience >= level07Experience && this.experienceLevel == 6){
-				this.levelup();
-		} else if (this.experience >= level08Experience && this.experienceLevel == 7){
-				this.levelup();
-		} else if (this.experience >= level09Experience && this.experienceLevel == 8){
-				this.levelup();
-		} else if (this.experience >= level10Experience && this.experienceLevel == 9){
-				this.levelup();
-		}
+		}w
 	};
 
 	this.levelup = function(){
