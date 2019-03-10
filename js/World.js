@@ -444,6 +444,12 @@ const TILE_ADDY = 856;
 const TILE_GABRIEL = 857;
 const TILE_FENTON = 858;
 
+// minimap 900-950
+const TILE_GRASS_MINIMAP = 900;
+const TILE_WATER_MINIMAP = 901;
+const TILE_ROAD_MINIMAP = 902;
+const TILE_BLOCKED_MINIMAP = 903;
+
 const skeletonSpawnTiles = [TILE_MAUSOLEUM_BR,
 							TILE_GRAVE_1,
 							TILE_GRAVE_2,
@@ -457,7 +463,9 @@ var RANGED_NO_COLLIDE = [TILE_SKELETON, TILE_GOBLIN, TILE_BAT, TILE_ZOMBIE, TILE
  TILE_SHOPKEEPER, TILE_HEALER, TILE_PRINCESS, TILE_DODD, TILE_TARAN, TILE_DELKON, TILE_ADDY, TILE_GABRIEL, TILE_FENTON,
  TILE_BRIDGE_LOWER, TILE_BRIDGE_UPPER,
  TILE_ARROWS, TILE_THROWINGROCKS, TILE_KEY, TILE_YELLOW_KEY, TILE_GREEN_KEY, TILE_BLUE_KEY, TILE_RED_KEY, TILE_TREASURE,
- TILE_WATER, TILE_ROAD, TILE_GRASS]
+ TILE_WATER, TILE_ROAD, TILE_GRASS,
+ TILE_WATER_MINIMAP, TILE_ROAD_MINIMAP, TILE_GRASS_MINIMAP, TILE_BLOCKED_MINIMAP
+]
 
 function returnTileTypeAtColRow(col, row) {
 	if(col >= 0 && col < ROOM_COLS &&
@@ -632,7 +640,52 @@ function drawRoom() {
 	// TODO: why is this here? -- Vince's response: This was meant for when the player enters a new map area.
 	// fadingTitles.begin("COOL MESSAGE","headline","subtitle");
 }
-	
+
+function drawMiniMap(posX,posY,miniMapTileSize) {
+
+	miniMapCamPanX = camPanX * (miniMapTileSize/TILE_W); // reductionFactor (eg: 50/25=0.5): miniMapTileSize/TILE_W 
+	miniMapCamPanY = camPanY * (miniMapTileSize/TILE_H);
+
+	// console.log(miniMapCamPanX,miniMapCamPanY);
+
+	var arrayIndex = 0;
+	var drawTileX = 0;
+	var drawTileY = 0;
+
+	colorRect(posX-5, posY-5, 190, 190, "black");
+
+	for(var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
+		for(var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
+
+			var arrayIndex = rowColToArrayIndex(eachCol, eachRow); 
+			var tileKindHere = roomGrid[arrayIndex];
+
+			var tilePosX = drawTileX + posX + 90 - redWarrior.x/13;
+			var tilePosY = drawTileY + posY + 90 - redWarrior.y/13;
+			// var tilePosX = drawTileX + posX - miniMapCamPanX + 90;
+			// var tilePosY = drawTileY + posY - miniMapCamPanY + 90;
+
+			if (tileKindHere === 17) {
+				tileKindHere = 901;
+				colorRect(tilePosX, tilePosY, 5,5, "#0000ff");
+			} else if (tileKindHere === 18) {
+				colorRect(tilePosX, tilePosY, 5,5, "#008000");
+			} else if (tileKindHere === 0) {
+				colorRect(tilePosX, tilePosY, 5,5, "#8c8c8c");
+			} else {
+				colorRect(tilePosX, tilePosY, 5,5, "#b97a57");
+			}
+
+			colorRect(posX+90, posY+90, 5,5, "red");
+
+			drawTileX += miniMapTileSize;
+			arrayIndex++;
+		}
+		drawTileY += miniMapTileSize;
+		drawTileX = 0;
+	}
+}
+
 function drawOnlyTilesOnScreen() {
 	var cameraLeftMostCol = Math.floor(camPanX / TILE_W);
 	var cameraTopMostRow = Math.floor(camPanY / TILE_H);

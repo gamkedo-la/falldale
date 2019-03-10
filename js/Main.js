@@ -76,7 +76,7 @@ function imageLoadingDoneSoStartGame() {
 
     setupInput();
     console.log("setupInput should run - Main.js");
-    //levelNow = 2; // Use this line to skip to level being worked on. 
+    levelNow = 0;//TODO: remove this line, only used to start in the graveyard vice levelOne
     loadLevel(levelList[levelNow]);
 	if(debugSkipToGame){
 		console.log("Debug Mode is on, skip directly to game");
@@ -262,6 +262,12 @@ function inventoryDraw() {
     colorText("Green Keys: " + redWarrior.greenKeysHeld, canvas.width - 170, canvas.height - 60, "Black");
 }
 
+function miniMapDraw() {
+    const posX = canvas.width - 190;
+    const posY = 10;
+    drawMiniMap(posX,posY,4);
+}
+
 function mapDraw() {
     let maxScreenLength = canvas.width < canvas.height ? canvas.width : canvas.height;
     let mapLength = maxScreenLength * 0.8;
@@ -360,6 +366,7 @@ function drawAll() {
         health();
         messageDraw();
         damageDraw();
+        // miniMapDraw();
 		if(muteAudio){
 			canvasContext.drawImage(muteAudioPic, 20, 20);
 		}
