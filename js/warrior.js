@@ -1,5 +1,3 @@
-var playerMoveSpeed = 3.0;
-
 // TODO: Probably want to set direction per object instead of
 //       putting it in a global variable
 // this also doesn't allow diagonal movement
@@ -32,7 +30,7 @@ function warriorClass() {
 	this.feet = this.y + 25;
 	this.leftArm = this.x + 25;
 	this.rightArm = this.x - 25;
-	this.speed = 0;
+	this.speed = 3.0;
 	this.myWarriorPic = biggyPic; // which picture to use
 	this.name = "Untitled warrior";
 	this.keysHeld = 0;
@@ -143,25 +141,25 @@ function warriorClass() {
 		var nextY = this.y;
 
 		if(this.keyHeld_WalkNorth) {
-			nextY -= playerMoveSpeed;
+			nextY -= this.speed;
 			direction = "north";
 			this.sx = 0;
 			this.sy = 0;
 		}
 		if(this.keyHeld_WalkSouth) {
-			nextY += playerMoveSpeed;
+			nextY += this.speed;
 			direction = "south";
 			this.sx = 0;
 			this.sy = this.height;
 		}
 		if(this.keyHeld_WalkWest) {
-			nextX -= playerMoveSpeed;
+			nextX -= this.speed;
 			direction = "west";
 			this.sx = 0;
 			this.sy = this.height*2;
 		}
 		if(this.keyHeld_WalkEast) {
-			nextX += playerMoveSpeed;
+			nextX += this.speed;
 			direction = "east";
 			this.sx = 0;
 			this.sy = this.height*3;
@@ -195,12 +193,12 @@ function warriorClass() {
 		switch(walkIntoTileType) {
 			case TILE_BRIDGE_LOWER:
 			case TILE_ROAD:
-				playerMoveSpeed = 3.0;
+				this.speed = 3.0;
 				this.x = nextX;
 				this.y = nextY;
 				break;
 			case TILE_GRASS:
-				playerMoveSpeed = 2.0;
+				this.speed = 2.0;
 				this.x = nextX;
 				this.y = nextY;
 				break;
@@ -568,40 +566,40 @@ function instantCamFollow() {
 }
 
 function cameraFollow() {
-    var cameraFocusCenterX = camPanX + canvas.width/2;
-    var cameraFocusCenterY = camPanY + canvas.height/2;
+	var cameraFocusCenterX = camPanX + canvas.width/2;
+	var cameraFocusCenterY = camPanY + canvas.height/2;
 
-    var playerDistFromCameraFocusX = Math.abs(redWarrior.x-cameraFocusCenterX);
-    var playerDistFromCameraFocusY = Math.abs(redWarrior.y-cameraFocusCenterY);
+	var playerDistFromCameraFocusX = Math.abs(redWarrior.x-cameraFocusCenterX);
+	var playerDistFromCameraFocusY = Math.abs(redWarrior.y-cameraFocusCenterY);
 
-    if(playerDistFromCameraFocusX > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X) {
-      if(cameraFocusCenterX < redWarrior.x)  {
-        camPanX += playerMoveSpeed;
-      } else {
-        camPanX -= playerMoveSpeed;
-      }
-    }
-    if(playerDistFromCameraFocusY > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y) {
-      if(cameraFocusCenterY < redWarrior.y)  {
-        camPanY += playerMoveSpeed;
-      } else {
-        camPanY -= playerMoveSpeed;
-      }
-    }
+	if(playerDistFromCameraFocusX > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X) {
+		if(cameraFocusCenterX < redWarrior.x)  {
+			camPanX += playerMoveSpeed;
+		} else {
+			camPanX -= playerMoveSpeed;
+		}
+	}
+	if(playerDistFromCameraFocusY > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y) {
+		if(cameraFocusCenterY < redWarrior.y)  {
+			camPanY += playerMoveSpeed;
+		} else {
+			camPanY -= playerMoveSpeed;
+		}
+	}
 
-	if(camPanX < 0) {
-      camPanX = 0;
-    }
-    if(camPanY < 0) {
-      camPanY = 0;
-    }
-    var maxPanRight = ROOM_COLS * TILE_W - canvas.width;
-    var maxPanTop = ROOM_ROWS * TILE_H - canvas.height;
-    if(camPanX > maxPanRight) {
-      camPanX = maxPanRight;
-    }
-    if(camPanY > maxPanTop) {
-      camPanY = maxPanTop;
-    }
-  }
+if(camPanX < 0) {
+		camPanX = 0;
+	}
+	if(camPanY < 0) {
+		camPanY = 0;
+	}
+	var maxPanRight = ROOM_COLS * TILE_W - canvas.width;
+	var maxPanTop = ROOM_ROWS * TILE_H - canvas.height;
+	if(camPanX > maxPanRight) {
+		camPanX = maxPanRight;
+	}
+	if(camPanY > maxPanTop) {
+		camPanY = maxPanTop;
+	}
+}
 
