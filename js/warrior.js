@@ -60,7 +60,9 @@ function warriorClass() {
 	this.experienceLevel = 1;
 	this.armor = 10;
 	this.healingPotion = 0;
-	this.haveMap = false;
+	this.haveMap = false; 
+	this.questOneComplete = false; // Clear the town of Goblins
+	this.delkonRewardOffer = false; // 50 gp
 
 	this.keyHeld_WalkNorth = false;
 	this.keyHeld_WalkSouth = false;

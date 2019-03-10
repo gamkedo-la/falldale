@@ -78,7 +78,7 @@ function imageLoadingDoneSoStartGame() {
 
     setupInput();
     console.log("setupInput should run - Main.js");
-    //levelNow = 3; // Use this line to skip to level being worked on. 
+    // levelNow = 3; // Use this line to skip to level being worked on. 
     loadLevel(levelList[levelNow]);
 	if(debugSkipToGame){
 		console.log("Debug Mode is on, skip directly to game");
