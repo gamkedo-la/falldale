@@ -23,10 +23,10 @@ function Camera () {
                 this.camPanY -= target.speed;
             }
         }
-        if (playerDistFromCameraFocusX > ROOM_ROWS * TILE_W / 2) {
+        if (Math.abs(target.x - cameraFocusCenterX) > canvas.width) {
             this.camPanX = target.x;
         }
-        if (playerDistFromCameraFocusY > ROOM_COLS * TILE_H / 2) {
+        if (Math.abs(target.y - cameraFocusCenterY) > canvas.height) {
             this.camPanY = target.y;
         }
 
