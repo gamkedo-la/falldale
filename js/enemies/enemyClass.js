@@ -502,7 +502,7 @@ function enemyClass() {
 			case TILE_ROAD:
 			case TILE_BRIDGE_UPPER:
             case TILE_BRIDGE_LOWER:
-            case TILE_FINISH:
+            case TILE_FOREST_PORTAL:
             case TILE_GRASS:
             case TILE_GRAVE_YARD_PORTAL:
             case TILE_HOME_VILLAGE_PORTAL:

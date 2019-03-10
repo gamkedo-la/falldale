@@ -41,6 +41,7 @@ var healerPic = document.createElement("img");
 var princessPic = document.createElement("img");
 var shopkeeperPic = document.createElement("img");
 var taranPic = document.createElement("img");
+var catPic = document.createElement("img");
 
 var archerPic = document.createElement("img");
 var deadArcherPic = document.createElement("img");
@@ -92,7 +93,7 @@ function loadImages() {
 			{tileType: TILE_BLUE_DOOR, theFile: "keyedDoorsandKeys/blueDoor.png"},
 			{tileType: TILE_GREEN_DOOR, theFile: "keyedDoorsandKeys/greenDoor.png"},
 			{tileType: TILE_RED_DOOR, theFile: "keyedDoorsandKeys/redDoor.png"},
-			{tileType: TILE_FINISH, theFile: "world_goal.png"},
+			{tileType: TILE_FOREST_PORTAL, theFile: "world_goal.png"},
 			{tileType: TILE_SPIKES, theFile: "spikes.png"},
 			{tileType: TILE_SPIKES_BLOODY, theFile: "spikesBloody.png"},
 			{tileType: TILE_GRASS,  theFile: "grass.png"},
@@ -252,6 +253,7 @@ function loadImages() {
 			{varName: princessPic, theFile: "NPCs/princess.png"},
 			{varName: shopkeeperPic, theFile: "NPCs/shopkeeper.png"},
 			{varName: taranPic, theFile: "NPCs/Taran.png"},
+			{varName: catPic, theFile: "NPCs/cat.png"},
 			{varName: goldPic, theFile: "gold.png"},
 			{varName: healingPotionPic, theFile: "healingPotion.png"},
 			{varName: heartPic, theFile: "heart.png"}

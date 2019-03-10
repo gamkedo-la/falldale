@@ -42,6 +42,8 @@ var skeletonHurtSound = new SoundOverlapsClass("skeletonhurt");
 var batHurtSound = new SoundOverlapsClass("bathurt");
 var playerHurtSound = new SoundOverlapsClass("playerHurt");
 var backgroundMusic = new BackgroundMusicClass();
+var meowPurrSound = new SoundOverlapsClass("meow_purr");
+
 
 
 
@@ -68,7 +70,7 @@ window.onload = function() {
     colorText("Loading Images... please wait", 400, 300, 'black');
     loadImages();
     canvas.addEventListener('mousedown', handleMouseClick);
-    backgroundMusic.loopSong("dungeonbackground");
+    backgroundMusic.loopSong("falldale-pub");
 }
 
 function imageLoadingDoneSoStartGame() {
@@ -76,7 +78,7 @@ function imageLoadingDoneSoStartGame() {
 
     setupInput();
     console.log("setupInput should run - Main.js");
-    levelNow = 0;//TODO: remove this line, only used to start in the graveyard vice levelOne
+    // levelNow = 3; // Use this line to skip to level being worked on. 
     loadLevel(levelList[levelNow]);
 	if(debugSkipToGame){
 		console.log("Debug Mode is on, skip directly to game");
@@ -137,6 +139,7 @@ function loadLevel(whichLevel) {
                 newEnemy = new npcClass('Fenton', fentonPic);
 			} else if(roomGrid[arrayIndex] == TILE_GABRIEL) {   // NPC
                 newEnemy = new npcClass('Gabriel', gabrielPic);
+                newEnemy.patrolPoints = [157, 73, 74, 138];//index of tiles Gabriel cycles through, Not working yet
 			} else if(roomGrid[arrayIndex] == TILE_HEALER) {   // NPC
                 newEnemy = new npcClass('Healer', healerPic);
 			} else if(roomGrid[arrayIndex] == TILE_PRINCESS) {   // NPC
@@ -145,6 +148,10 @@ function loadLevel(whichLevel) {
                 newEnemy = new npcClass('Shop Keeper', shopkeeperPic);
 			} else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
                 newEnemy = new npcClass('Taran', taranPic);
+			} else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
+                newEnemy = new npcClass('Fido', catPic);
+                newEnemy.numberOfFrames = 6; // six frame walk cycle
+                newEnemy.patrolPoints = [4, 6, 10, 6]; // sidewalk near your house
 			} else {
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
@@ -346,9 +353,9 @@ function drawAll() {
         colorRect(0,0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
         canvasContext.save();
         canvasContext.translate(-camPanX, -camPanY);
-        drawRoom();
         //drawOnlyTilesOnScreen();
-        redWarrior.draw();
+        //drawRoom(true,false); // draw floors only
+        drawRoom(true,true); // draw all level tiles
         for (var i=0; i<enemyList.length; i++) {
             enemyList[i].draw();
         }
@@ -361,7 +368,10 @@ function drawAll() {
 		for (var i=0; i<goldList.length; i++) {
             goldList[i].draw();
         }
+        //drawRoom(false,true); // draw all non floors
+        redWarrior.draw();
         drawRooftops();
+        OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
         canvasContext.restore();
         health();
         messageDraw();

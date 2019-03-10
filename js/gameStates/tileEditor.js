@@ -7,7 +7,7 @@ var isDisplayRoomGridOn = false;
 
 function drawEditorMode() {
 	//loadLevel(allGrass);
-    drawRoom();
+    drawRoom(true,true);
 	var tileUnderMouseIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
     var tileUnderMouseType = roomGrid[tileUnderMouseIndex];
 	//roomGrid[tileUnderMouseIndex] = 18;

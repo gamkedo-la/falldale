@@ -268,7 +268,7 @@ function batClass() {
                 return false;
             case TILE_PLAYERSTART:
             case TILE_ROAD:
-            case TILE_FINISH:
+            case TILE_FOREST_PORTAL:
             case TILE_GRASS:
             case TILE_WATER:
             case TILE_FOUNTAIN:
