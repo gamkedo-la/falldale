@@ -45,7 +45,7 @@ var playerHurtSound = new SoundOverlapsClass("playerHurt");
 var backgroundMusic = new BackgroundMusicClass();
 var meowPurrSound = new SoundOverlapsClass("meow_purr");
 
-
+const DIALOG_BOX_HEIGHT = 50;
 
 
 var dialogUIVisibilityCountdown = 3;
