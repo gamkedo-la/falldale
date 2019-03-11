@@ -1,4 +1,4 @@
-function Camera () {    
+function Camera () {
     this.x = 0.0;
     this.y = 0.0;
 
@@ -25,7 +25,7 @@ function Camera () {
             }
         }
         if (playerDistFromCameraFocusX > canvas.width) {
-            this.x = target.x;   
+            this.x = target.x;
         }
         if (playerDistFromCameraFocusY > canvas.height) {
             this.y = target.y;
@@ -36,9 +36,9 @@ function Camera () {
         }
         if(this.y < 0) {
             this.y = 0;
-        }        
+        }
         var maxPanRight = ROOM_COLS * TILE_W - canvas.width;
-        var maxPanTop = ROOM_ROWS * TILE_H - canvas.height;
+        var maxPanTop = ROOM_ROWS * TILE_H - canvas.height + DIALOG_BOX_HEIGHT;
         if(this.x > maxPanRight) {
             this.x = maxPanRight;
         }

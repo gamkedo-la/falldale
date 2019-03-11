@@ -31,6 +31,7 @@ var tileEditor = false;
 var gamePaused = false;
 var muteInputCycle = 0;
 var saveGame = new SaveGame();
+var gameStarted = false;
 
 // Sounds //
 
@@ -46,13 +47,14 @@ var backgroundMusic = new BackgroundMusicClass();
 var meowPurrSound = new SoundOverlapsClass("meow_purr");
 
 
+const DIALOG_BOX_HEIGHT = 50;
 
 
 var dialogUIVisibilityCountdown = 3;
 
 
 function resizeCanvas() {
-	canvas.width = window.innerWidth;
+    canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     stateScreenOffsetX = canvas.width/2 - 400;
     stateScreenOffsetY = canvas.height/2 - 300;
@@ -63,7 +65,7 @@ window.onload = function() {
     canvasContext = canvas.getContext('2d');
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener('focus', function () {gamePaused = false;});
-    window.addEventListener('blur', function() {gamePaused = true;})
+    window.addEventListener('blur', function() {gamePaused = true;});
 
     resizeCanvas();
     camera = new Camera();
@@ -74,7 +76,7 @@ window.onload = function() {
     canvas.addEventListener('mousedown', handleMouseClick);
     backgroundMusic.loopSong("falldale-pub");
 
-}
+};
 
 function imageLoadingDoneSoStartGame() {
     setInterval(updateAll, 1000 / framesPerSecond);
@@ -83,9 +85,9 @@ function imageLoadingDoneSoStartGame() {
     console.log("setupInput should run - Main.js");
     // levelNow = 3; // Use this line to skip to level being worked on.
     loadLevel();
-	if(debugSkipToGame){
-		console.log("Debug Mode is on, skip directly to game");
-	}
+    if(debugSkipToGame){
+        console.log("Debug Mode is on, skip directly to game");
+    }
 }
 
 function nextLevel() {
@@ -101,7 +103,10 @@ function loadLevel() {
     recalulateLevelNow();
     var whichLevel = levelList[levelNow];
     roomGrid = whichLevel.slice();
-    redWarrior.reset(warriorPic, "Red warrior");
+    if (gameStarted === false) {
+        redWarrior.reset(warriorPic, "Red warrior");
+        // gameStarted = true;
+    }
 
     enemyList.splice(0, enemyList.length); //Empty enemyList
 
@@ -113,52 +118,52 @@ function loadLevel() {
                 newEnemy = new batClass('Bat');
             } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
                 newEnemy = new skeletonClass('Skeleton1', skeletonPic);
-			} else if(roomGrid[arrayIndex] == TILE_SKELETON) {
+            } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
                 newEnemy = new skeletonClass('Skeleton2', skeletonPic2);
-			} else if(roomGrid[arrayIndex] == TILE_SKELETON) {
+            } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
                 newEnemy = new skeletonClass('Skeleton3', skeletonPic3);
             } else if(roomGrid[arrayIndex] == TILE_ZOMBIE) {
                 newEnemy = new zombieClass('Zombie', zombiePic);
             } else if(roomGrid[arrayIndex] == TILE_ZOMBIE2) {
                 newEnemy = new zombieClass('Zombie2', zombiePic2);
-			} else if(roomGrid[arrayIndex] == TILE_ZOMBIE3) {
+            } else if(roomGrid[arrayIndex] == TILE_ZOMBIE3) {
                 newEnemy = new zombieClass('Zombie3', zombiePic3);
-			} else if(roomGrid[arrayIndex] == TILE_GOBLIN) {
+            } else if(roomGrid[arrayIndex] == TILE_GOBLIN) {
                 newEnemy = new goblinClass('Goblin');
             } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_SWORD) {
                 newEnemy = new orcClass('Orc - Sword', orcPic);
-			} else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_CLUB) {
+            } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_CLUB) {
                 newEnemy = new orcClass('Orc - Club2', orcPic2);
-			} else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_AX) {
+            } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_AX) {
                 newEnemy = new orcClass('Orc - Ax', orcPic3);
             } else if(roomGrid[arrayIndex] == TILE_ARCHER) {
                 newEnemy = new archerClass('Archer');
-			} else if(roomGrid[arrayIndex] == TILE_DRUID) {
+            } else if(roomGrid[arrayIndex] == TILE_DRUID) {
                 newEnemy = new druidClass('Druid', druidPic);
             } else if(roomGrid[arrayIndex] == TILE_ADDY) {   // NPC
                 newEnemy = new npcClass('Addy', addyPic );
-			} else if(roomGrid[arrayIndex] == TILE_DELKON) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_DELKON) {   // NPC
                 newEnemy = new npcClass('Delkon', delkonPic);
-			} else if(roomGrid[arrayIndex] == TILE_DODD) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_DODD) {   // NPC
                 newEnemy = new npcClass('Dodd', doddPic);
-			} else if(roomGrid[arrayIndex] == TILE_FENTON) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_FENTON) {   // NPC
                 newEnemy = new npcClass('Fenton', fentonPic);
-			} else if(roomGrid[arrayIndex] == TILE_GABRIEL) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_GABRIEL) {   // NPC
                 newEnemy = new npcClass('Gabriel', gabrielPic);
                 newEnemy.patrolPoints = [157, 73, 74, 138];//index of tiles Gabriel cycles through, Not working yet
-			} else if(roomGrid[arrayIndex] == TILE_HEALER) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_HEALER) {   // NPC
                 newEnemy = new npcClass('Healer', healerPic);
-			} else if(roomGrid[arrayIndex] == TILE_PRINCESS) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_PRINCESS) {   // NPC
                 newEnemy = new npcClass('Princess', princessPic);
-			} else if(roomGrid[arrayIndex] == TILE_SHOPKEEPER) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_SHOPKEEPER) {   // NPC
                 newEnemy = new npcClass('Shop Keeper', shopkeeperPic);
-			} else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
                 newEnemy = new npcClass('Taran', taranPic);
-			} else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
                 newEnemy = new npcClass('Fido', catPic);
                 newEnemy.numberOfFrames = 6; // six frame walk cycle
                 newEnemy.patrolPoints = [4, 6, 10, 6]; // sidewalk near your house
-			} else {
+            } else {
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
             }
@@ -173,8 +178,8 @@ function loadLevel() {
 }
 
 function updateAll() {
-	moveAll();
-	updateItems();
+    moveAll();
+    updateItems();
     drawAll();
 }
 
@@ -190,17 +195,17 @@ function moveAll() {
                 redWarrior.checkWarriorandWeaponCollisionAgainst(enemyList[i]);
             }
         }
-        camera.follow(redWarrior);        
+        camera.follow(redWarrior);
     };
 };
 
 function updateItems(){
-	heartsReadyToRemove();
-	removeHearts();
-	goldReadyToRemove();
-	removegold();
-	healingPotionReadyToRemove();
-	removeHealingPotion();
+    heartsReadyToRemove();
+    removeHearts();
+    goldReadyToRemove();
+    removegold();
+    healingPotionReadyToRemove();
+    removeHealingPotion();
 }
 
 function health() {
@@ -212,24 +217,24 @@ function health() {
 
 function messageDraw() {
 
-	dialogUIVisibilityCountdown--;
-	displayMessage();
+    dialogUIVisibilityCountdown--;
+    displayMessage();
 }
 
 function setDialogUICountdown(seconds) {
-	dialogUIVisibilityCountdown = seconds * 30; // 30fps
+    dialogUIVisibilityCountdown = seconds * 30; // 30fps
 }
 
 function displayMessage() {
 
-	colorRect(0, canvas.height - 50, canvas.width, 50, "black");
-	colorRect(5, canvas.height - 45, canvas.width - 10, 40, "white");
+    colorRect(0, canvas.height - 50, canvas.width, DIALOG_BOX_HEIGHT, "black");
+    colorRect(5, canvas.height - 45, canvas.width - 10, 40, "white");
 
     if (dialogUIVisibilityCountdown <= 0) {
-		return;
-	} else {
-		colorText(dialog, 20, canvas.height - 20, "Black");
-	}
+        return;
+    } else {
+        colorText(dialog, 20, canvas.height - 20, "Black");
+    }
 }
 
 function damageDraw() {
@@ -327,10 +332,10 @@ function drawMenuScreen() {
 function drawAll() {
     if (menuScreen) {
         drawMenuScreen();
-		if(debugSkipToGame){
-			handleMouseClick(null);
-		}
-	} else if (isInShop) {
+        if(debugSkipToGame){
+            handleMouseClick(null);
+        }
+    } else if (isInShop) {
         drawShop();
     } else if (isAtHealer) {
         drawHealerShop();
@@ -339,16 +344,16 @@ function drawAll() {
         drawDice(Dice1);
         drawDice(Dice2);
         drawDice(Dice3);
-		if(debugSkipToGame){
-			characterCreationScreenInput(KEY_SPACEBAR);
-			characterCreationScreenInput(ENTER);
-		}
+        if(debugSkipToGame){
+            characterCreationScreenInput(KEY_SPACEBAR);
+            characterCreationScreenInput(ENTER);
+        }
     } else if (scrollBackgroundScreen) {
         drawScrollNarrative();
-		if(debugSkipToGame){
-			scrollBackgroundScreenInput(KEY_SPACEBAR);
-		}
-	} else if (tileEditor) {
+        if(debugSkipToGame){
+            scrollBackgroundScreenInput(KEY_SPACEBAR);
+        }
+    } else if (tileEditor) {
         drawEditorMode();
     } else {
         colorRect(0,0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
@@ -360,13 +365,13 @@ function drawAll() {
         for (var i=0; i<enemyList.length; i++) {
             enemyList[i].draw();
         }
-		for (var i=0; i<heartsList.length; i++) {
+        for (var i=0; i<heartsList.length; i++) {
             heartsList[i].draw();
         }
-		for (var i=0; i<healingPotionList.length; i++) {
+        for (var i=0; i<healingPotionList.length; i++) {
             healingPotionList[i].draw();
         }
-		for (var i=0; i<goldList.length; i++) {
+        for (var i=0; i<goldList.length; i++) {
             goldList[i].draw();
         }
         //drawRoom(false,true); // draw all non floors
@@ -378,9 +383,9 @@ function drawAll() {
         messageDraw();
         damageDraw();
         // miniMapDraw();
-		if(muteAudio){
-			canvasContext.drawImage(muteAudioPic, 20, 20);
-		}
+        if(muteAudio){
+            canvasContext.drawImage(muteAudioPic, 20, 20);
+        }
         if (inventoryScreen) {
             inventoryDraw();
         }
@@ -390,7 +395,7 @@ function drawAll() {
         if (mapShow) {
             mapDraw();
         }
-		if (gamePaused) {
+        if (gamePaused) {
             colorRect(0,0, canvas.width, canvas.height, "rgba(0,0,0,0.8");
             colorRect(canvas.width/2-150, canvas.height/2-75, 300, 4, "rgba(255,255,255,0.7)");
             colorRect(canvas.width/2-150, canvas.height/2+50, 300, 4, "rgba(255,255,255,0.7 )");
