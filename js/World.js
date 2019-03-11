@@ -251,9 +251,9 @@ var allGrass =   [ 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 1
 				   18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 				   18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18];
 
-var levelList = [allGrass, allGrass, allGrass,
-				allGrass, allGrass, allGrass,
-				allGrass, fallDale, allGrass,
+var levelList = [allGrass, allGrass, allGrass,  // 0, 1, 2
+				allGrass, allGrass, allGrass, // 3, 4, 5
+				allGrass, fallDale, allGrass, // 6, 7, 8
 				forest, graveYard, oldGraveYard];
 var levelRow = 2;
 var levelCol = 1;

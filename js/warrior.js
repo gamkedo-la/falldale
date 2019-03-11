@@ -203,7 +203,6 @@ function warriorClass() {
 				levelCol = 1;
 				loadLevel();
 				break;
-
 			case TILE_HOME_VILLAGE_PORTAL:
 				levelRow = 2;
 				levelCol = 1;

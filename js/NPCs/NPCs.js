@@ -72,11 +72,12 @@ function npcClass(npcName, npcPic) {
                     dialog = "Taran:  You are such a brave individual!";
                 }
             } else if (this.myName == "Delkon") {
+				console.log(redWarrior.questOneComplete, redWarrior.delkonRewardOffer);
                 if (redWarrior.questOneComplete == false) {
                     dialog = "The name is Delkon.  I have 50 gold pieces I can give you if you clear the town of the Goblins!";
                     redWarrior.delkonRewardOffer = true;
                 } else if (redWarrior.questOneComplete && redWarrior.delkonRewardOffer) {
-                    redWarrior.gold = redWarrior.gold + 50;
+                    redWarrior.goldpieces = redWarrior.goldpieces + 50;
                     dialog = "Thank you for clearing the town of those horrible beasts!  Please take this reward of 50 gold pieces";
                     redWarrior.delkonRewardOffer = false;
                 } else if (redWarrior.questOneComplete) {
@@ -98,13 +99,13 @@ function npcClass(npcName, npcPic) {
                 if (redWarrior.questOneComplete == false) {
                     dialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
                 } else if (redWarrior.questOneComplete) {
-                    dialog = "Thank you for saving our town!";
+                    dialog = "Fenton:  Thank you for saving our town!";
                 }
             } else if (this.myName == "Healer") {
-                dialog = "Hi, I'm the Healer.  I could use a better name.";
+                dialog = "Healer:  Hi, I'm the Healer.  I could use a better name.";
                 isAtHealer = true;
             } else if (this.myName == "Shop Keeper") {
-                dialog = "Hi, I'm the Shop Keeper.  I could use a better name.";
+                dialog = "Healer:  Hi, I'm the Shop Keeper.  I could use a better name.";
                 isInShop = true;
             } else if (this.myName == "Fido") {
                 // alternately, we can choose a random one from the array
