@@ -166,40 +166,41 @@ function warriorClass() {
 		} else {
 			this.playerMove = false;
 		}
-		var tileC = pixelXtoTileCol(this.x);
-		var tileR = pixelYtoTileRow(this.y);
+		var tileC = pixelXtoTileCol(nextX);
+		var tileR = pixelYtoTileRow(nextY);
 
-		/*if (tileC <= 0) {
-			levelCol --;
-			this.x = (ROOM_COLS - 1) * TILE_W;
-			loadLevel();
+		if (tileC <= 0) {
 			console.log("Touching left edge of map");
+			levelCol --;
+			console.log("this.x before is " + this.x);
+			this.x = (ROOM_COLS - 3) * TILE_W;
+			loadLevel();
 			return;
 		}
 
 		if (tileR <= 0) {
-			levelRow--;
-			loadLevel();
-			this.y = (ROOM_ROWS - 1) * TILE_H;
 			console.log("Touching top edge of map");
+			levelRow--;
+			this.y = (ROOM_ROWS - 3) * TILE_H;
+			loadLevel();
 			return;
 		}
 
 		if (tileC >= ROOM_COLS - 1) {
-			levelCol++;
-			loadLevel();
-			this.x = TILE_W;
 			console.log("Touching right edge of map");
+			levelCol++;
+			this.x = TILE_W;
+			loadLevel();
 			return;
 		}
 
 		if (tileR >= ROOM_ROWS - 1) {
-			levelRow++;
-			loadLevel();
-			this.y = TILE_H;
 			console.log("Touching bottom edge of map");
+			levelRow++;
+			this.y = TILE_H;
+			loadLevel();
 			return;
-		}*/
+		}
 
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
 		var walkIntoTileType = TILE_WALL;
