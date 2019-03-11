@@ -75,26 +75,33 @@ function goblinClass(goblinName) {
 	
 	this.distributeTreasure = function(){
 		var chanceOnTreasure = Math.round(Math.random() * 10);
-		if(chanceOnTreasure >= 7){	
+		if(chanceOnTreasure >= 1){	
 			console.log("Treasure Provided")		
-			var randomTreasure = Math.round(Math.random() * 3);
+			var randomTreasure = 4; //Math.round(Math.random() * 4);
 			switch (randomTreasure) {
-				case 0:
-				// heart
-				console.log("heart");
-				break;
 				case 1:
-				// gold
-				console.log("gold");
+					heartsList.push(new heartClass(1, this.x, this.y));
 				break;
 				case 2:
-				// healing potion
-				console.log("healing potion");
+					goldList.push(new goldClass(5, this.x, this.y));
 				break;
+				case 3:
+					healingPotionList.push(new healingPotionClass(1, this.x, this.y));
+				break;
+				case 4:
+					console.log("Provide Map");
+					if(redWarrior.haveMap == false){
+						mapList.push(new mapClass(this.x, this.y));
+					} else {
+						goldList.push(new goldClass(5, this.x, this.y));
+					}
+				break;
+				
+				
 			}
 		}
 	}
-    
+		
     this.takeDamage = function(howMuch) {
         this.health -= howMuch;
         goblinHurtSound.play();

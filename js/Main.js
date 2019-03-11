@@ -199,6 +199,8 @@ function updateItems(){
 	removeHearts();
 	goldReadyToRemove();
 	removegold();
+	mapReadyToRemove();
+	removemap();
 	healingPotionReadyToRemove();
 	removeHealingPotion();
 }
@@ -365,9 +367,12 @@ function drawAll() {
         }
 		for (var i=0; i<healingPotionList.length; i++) {
             healingPotionList[i].draw();
-        }
+		}
 		for (var i=0; i<goldList.length; i++) {
             goldList[i].draw();
+        }
+		for (var i=0; i<mapList.length; i++) {
+            mapList[i].draw();
         }
         //drawRoom(false,true); // draw all non floors
         redWarrior.draw();

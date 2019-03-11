@@ -53,6 +53,7 @@ var shadowPic = document.createElement("img");
 var shinyPic = document.createElement("img");
 
 var falldaleMap = document.createElement("img");
+var mapPic = document.createElement("img");
 var heartPic = document.createElement("img");
 var healingPotionPic = document.createElement("img");
 var goldPic = document.createElement("img");
@@ -255,6 +256,7 @@ function loadImages() {
 			{varName: taranPic, theFile: "NPCs/Taran.png"},
 			{varName: catPic, theFile: "NPCs/cat.png"},
 			{varName: goldPic, theFile: "gold.png"},
+			{varName: mapPic, theFile: "map.png"},
 			{varName: healingPotionPic, theFile: "healingPotion.png"},
 			{varName: heartPic, theFile: "heart.png"}
 		];

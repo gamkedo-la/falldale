@@ -419,7 +419,7 @@ function warriorClass() {
 		
 		if (this.experience >= levelExperienceArray[this.experienceLevel]){
 			this.levelup();
-		}w
+		}
 	};
 
 	this.levelup = function(){
