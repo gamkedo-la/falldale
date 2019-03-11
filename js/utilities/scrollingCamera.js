@@ -32,12 +32,12 @@ function sliderReset() {
     redWarrior.y = canvas.height / 2;
 }
 
-function instantCamFollow() {
+/*function instantCamFollow() {
     camPanX = redWarrior.x - canvas.width / 2;
     camPanY = redWarrior.y - canvas.height / 2;
-}
+}*/
 
-function cameraFollow() {
+/*function cameraFollow() {
     var cameraFocusCenterX = camPanX + canvas.width / 2;
     var cameraFocusCenterY = camPanY + canvas.height / 2;
 
@@ -77,7 +77,7 @@ function cameraFollow() {
     if (camPanY > maxPanTop) {
         camPanY = maxPanTop;
     }
-}
+}*/
 
 
 /* function drawOnlyBricksOnScreen() {

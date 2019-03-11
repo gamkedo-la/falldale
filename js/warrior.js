@@ -166,6 +166,41 @@ function warriorClass() {
 		} else {
 			this.playerMove = false;
 		}
+		var tileC = pixelXtoTileCol(this.x);
+		var tileR = pixelYtoTileRow(this.y);
+
+		/*if (tileC <= 0) {
+			levelCol --;
+			this.x = (ROOM_COLS - 1) * TILE_W;
+			loadLevel();
+			console.log("Touching left edge of map");
+			return;
+		}
+
+		if (tileR <= 0) {
+			levelRow--;
+			loadLevel();
+			this.y = (ROOM_ROWS - 1) * TILE_H;
+			console.log("Touching top edge of map");
+			return;
+		}
+
+		if (tileC >= ROOM_COLS - 1) {
+			levelCol++;
+			loadLevel();
+			this.x = TILE_W;
+			console.log("Touching right edge of map");
+			return;
+		}
+
+		if (tileR >= ROOM_ROWS - 1) {
+			levelRow++;
+			loadLevel();
+			this.y = TILE_H;
+			console.log("Touching bottom edge of map");
+			return;
+		}*/
+
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
 		var walkIntoTileType = TILE_WALL;
 
@@ -189,12 +224,20 @@ function warriorClass() {
 		switch(walkIntoTileType) {
 			case TILE_BRIDGE_LOWER:
 			case TILE_ROAD:
-				this.speed = 3.0;
+				if (debugMode) {
+					this.speed = 20.0;
+				} else {
+					this.speed = 3.0;
+				}
 				this.x = nextX;
 				this.y = nextY;
 				break;
 			case TILE_GRASS:
-				this.speed = 2.0;
+				if (debugMode) {
+					this.speed = 20.0;
+				} else {
+					this.speed = 2.0;
+				}
 				this.x = nextX;
 				this.y = nextY;
 				break;
@@ -207,7 +250,7 @@ function warriorClass() {
 				levelRow = 2;
 				levelCol = 1;
 				loadLevel();
-					break;
+				break;
 			case TILE_FOREST_PORTAL:
 				levelRow = 3;
 				levelCol = 0;
@@ -218,6 +261,7 @@ function warriorClass() {
 				setDialogUICountdown(3);
 				dialog = "This place smells nice.  Is that lavender?";
 				doorSound.play();
+				break;
 			case TILE_YELLOW_DOOR:
 				if(this.yellowKeysHeld > 0 || debugMode) {
 					this.yellowKeysHeld--; // one less key
@@ -416,7 +460,7 @@ function warriorClass() {
 	};
 
 	this.checkForLevelUp = function(){
-		
+
 		if (this.experience >= levelExperienceArray[this.experienceLevel]){
 			this.levelup();
 		}
@@ -543,4 +587,3 @@ function warriorClass() {
 
 		}
 	}
-	
