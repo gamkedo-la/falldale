@@ -7,6 +7,8 @@ function SaveGame() {
     this.saveData = function () {
 
         if (typeof Storage !== "undefined") {
+            localStorage.levelRow = levelRow;
+            localStorage.levelCol = levelCol;
             localStorage.levelNow = levelNow;
             redWarrior.saveData();
             localStorage.localHighestLevel = 1;
@@ -17,7 +19,8 @@ function SaveGame() {
 
     this.loadData = function () {
         if (typeof Storage !== "undefined") {
-            levelNow = parseInt(localStorage.levelNow);
+            levelRow = parseInt(localStorage.levelRow);
+            levelCol = parseInt(localStorage.levelCol);
             resetLevel();
             redWarrior.loadData();
         } else {

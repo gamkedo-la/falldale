@@ -81,28 +81,31 @@ function imageLoadingDoneSoStartGame() {
 
     setupInput();
     console.log("setupInput should run - Main.js");
-    // levelNow = 3; // Use this line to skip to level being worked on. 
-    loadLevel(levelList[levelNow]);
+    // levelNow = 3; // Use this line to skip to level being worked on.
+    loadLevel();
 	if(debugSkipToGame){
 		console.log("Debug Mode is on, skip directly to game");
 	}
 }
 
 function nextLevel() {
+    console.log("This is obsolete, should be setting levelRow and levelCol");
     levelNow++;
     if (levelNow > levelList.length) {
         levelNow = 0;
     }
-    loadLevel(levelList[levelNow]);
+    loadLevel();
 }
 
-function loadLevel(whichLevel) {
+function loadLevel() {
+    recalulateLevelNow();
+    var whichLevel = levelList[levelNow];
     roomGrid = whichLevel.slice();
     redWarrior.reset(warriorPic, "Red warrior");
 
     enemyList.splice(0, enemyList.length); //Empty enemyList
 
-    var arrayIndex = 0
+    var arrayIndex = 0;
     for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
         for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
             var newEnemy;
@@ -185,7 +188,7 @@ function moveAll() {
             enemyList[i].move();
             if (enemyList[i].health > 0) {
                 redWarrior.checkWarriorandWeaponCollisionAgainst(enemyList[i]);
-            } 
+            }
         }
         camera.follow(redWarrior);        
     };

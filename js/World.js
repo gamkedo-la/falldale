@@ -50,7 +50,7 @@ var fallDale =   [367,247,243,246,243,249,245,361,361,247,249,245,361,361,361,36
 				   18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 				   18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 				   18, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
-				   18, 18, 18, 50, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18]; 				   
+				   18, 18, 18, 50, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18];
 
 var graveYard =  [     18, 18, 18, 50, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 					   18, 18, 18,950, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
@@ -99,9 +99,9 @@ var graveYard =  [     18, 18, 18, 50, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 1
 					  301, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,234,  0,  0,  0,  0,  0,223, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 					  302,301, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,301, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,234,  0,  0,  0,  0,  0,223, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 					  303,302, 18,  0, 18, 18, 18,301, 18, 18,301,301, 18,301, 18,301, 18,303,303, 18,301, 18, 18, 18, 18, 18, 18, 18, 18, 18,302, 18,303, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,242,239,238,240,238,240,241, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
-					  304,301,303, 50, 18,303,304,302,304,304,302,302,304,302,301,302,303,304,304,303,302,301,303,303,303,301,301,301,301,301,301,303,304,301,301,301,301,303,303,303,303,303,303,301,301, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18];  
-				  
-				  
+					  304,301,303, 50, 18,303,304,302,304,304,302,302,304,302,301,302,303,304,304,303,302,301,303,303,303,301,301,301,301,301,301,303,304,301,301,301,301,303,303,303,303,303,303,301,301, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18];
+
+
 var oldGraveYard = [   18, 18, 18, 51, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 					   18, 18, 18,950, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 					   50,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,809,  0,  0,  0,809,  0,  0,  0,809,  0,  0,  0,  0,809,  0,  0,  0,  0,810,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 50,
@@ -149,10 +149,10 @@ var oldGraveYard = [   18, 18, 18, 51, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 1
 					  301, 18, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,234,  0,  0,  0,  0,  0,223, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 					  302,301, 18,  0, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,301, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,234,  0,  0,  0,  0,  0,223, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 					  303,302, 18,  0, 18, 18, 18,301, 18, 18,301,301, 18,301, 18,301, 18,303,303, 18,301, 18, 18, 18, 18, 18, 18, 18, 18, 18,302, 18,303, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,242,239,238,240,238,240,241, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
-					  304,301,303, 51, 18,303,304,302,304,304,302,302,304,302,301,302,303,304,304,303,302,301,303,303,303,301,301,301,301,301,301,303,304,301,301,301,301,303,303,303,303,303,303,301,301, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18]; 
-						
-					
-				  
+					  304,301,303, 51, 18,303,304,302,304,304,302,302,304,302,301,302,303,304,304,303,302,301,303,303,303,301,301,301,301,301,301,303,304,301,301,301,301,303,303,303,303,303,303,301,301, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18];
+
+
+
 var forest =	 [304,302,302,304,302,302,304,303, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18,303,301,302,304,302,304,301,302,302,304,303,302,304,302,302,302,302,302,304,302,304,301,302,301,
 				  301, 18, 18, 18, 18, 18, 18,304, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18, 18,304,302, 18, 18, 18, 18,302,301, 18, 18,304, 18, 18, 18, 18, 18, 18,153,301, 18, 18,302,157,302,
 				  302, 18, 18, 18, 18, 18, 18,301, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,  0, 18,301, 18, 18, 18, 18, 18, 18, 18,302, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,302, 18, 18, 18, 18,301,
@@ -201,7 +201,7 @@ var forest =	 [304,302,302,304,302,302,304,303, 18, 18, 18, 18, 18, 18, 18, 18, 
 				   18, 18, 18, 18, 18, 18, 18, 18, 18, 18,304, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,302, 18, 18,302,304,304, 18, 18, 18, 18, 18, 18,304,302,
 				   18, 18, 18, 18, 18, 18, 18, 18, 18, 18,301, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,				   18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18];
 
-				 
+
 var allGrass =   [ 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 				   18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 				   18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
@@ -251,8 +251,13 @@ var allGrass =   [ 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 1
 				   18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
 				   18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18];
 
-var levelList = [fallDale, graveYard, oldGraveYard, forest];
-var levelNow = 0;
+var levelList = [allGrass, allGrass, allGrass,
+				allGrass, allGrass, allGrass,
+				allGrass, fallDale, allGrass,
+				forest, graveYard, oldGraveYard];
+var levelRow = 2;
+var levelCol = 1;
+var levelNow = 0;  // 0 is invalid, will be using recalulateLevelNow() to initialize elsewhere
 var roomGrid = [];
 
 
@@ -446,6 +451,8 @@ const skeletonSpawnTiles = [TILE_MAUSOLEUM_BR,
 							TILE_GRAVE_3,
 							TILE_GRAVE_4];
 
+const MAP_WIDTH = 3;
+
 // List of tiles with no collision interaction for ranged weapons
 // (Created because it would be a shorter list than for tiles with collision [I think])
 // Add/subtract to the list if there's a tile that needs/does not need collision
@@ -454,8 +461,12 @@ var RANGED_NO_COLLIDE = [TILE_SKELETON, TILE_GOBLIN, TILE_BAT, TILE_ZOMBIE, TILE
  TILE_BRIDGE_LOWER, TILE_BRIDGE_UPPER,
  TILE_ARROWS, TILE_THROWINGROCKS, TILE_KEY, TILE_YELLOW_KEY, TILE_GREEN_KEY, TILE_BLUE_KEY, TILE_RED_KEY, TILE_TREASURE,
  TILE_WATER, TILE_ROAD, TILE_GRASS,
- TILE_WATER_MINIMAP, TILE_ROAD_MINIMAP, TILE_GRASS_MINIMAP, TILE_BLOCKED_MINIMAP
-]
+ TILE_WATER_MINIMAP, TILE_ROAD_MINIMAP, TILE_GRASS_MINIMAP, TILE_BLOCKED_MINIMAP];
+
+function recalulateLevelNow() {
+	levelNow = MAP_WIDTH * levelRow + levelCol;
+	return levelNow;
+}
 
 function returnTileTypeAtColRow(col, row) {
 	if(col >= 0 && col < ROOM_COLS &&
@@ -471,7 +482,7 @@ function getTileIndexAtPixelCoord(atX, atY) {
 	var warriorWorldCol = Math.floor(atX / TILE_W);
 	// FIX: row was .floor but this would return the tile
 	// NORTH of the player for 50% of the tile height
-	var warriorWorldRow = Math.floor(atY / TILE_H); 
+	var warriorWorldRow = Math.floor(atY / TILE_H);
 	var worldIndexUnderWarrior = rowColToArrayIndex(warriorWorldCol, warriorWorldRow);
 
 	if(warriorWorldCol >= 0 && warriorWorldCol < ROOM_COLS &&
@@ -486,9 +497,9 @@ function isTileIndexAdjacentToPixelCoord(atX, atY, tileIndex) {
 	return roomGrid[getTileIndexAtPixelCoord(atX, atY - TILE_H/2)] == tileIndex ||
 		   roomGrid[getTileIndexAtPixelCoord(atX - TILE_W/2, atY - TILE_H/2)] == tileIndex ||
 		   roomGrid[getTileIndexAtPixelCoord(atX - TILE_W/2, atY + TILE_H/2)] == tileIndex ||
-		   roomGrid[getTileIndexAtPixelCoord(atX, atY + TILE_H/2)] == tileIndex || 
-		   roomGrid[getTileIndexAtPixelCoord(atX + TILE_W/2, atY + TILE_H/2)] == tileIndex || 
-		   roomGrid[getTileIndexAtPixelCoord(atX + TILE_W/2, atY - TILE_H/2)] == tileIndex || 
+		   roomGrid[getTileIndexAtPixelCoord(atX, atY + TILE_H/2)] == tileIndex ||
+		   roomGrid[getTileIndexAtPixelCoord(atX + TILE_W/2, atY + TILE_H/2)] == tileIndex ||
+		   roomGrid[getTileIndexAtPixelCoord(atX + TILE_W/2, atY - TILE_H/2)] == tileIndex ||
 		   roomGrid[getTileIndexAtPixelCoord(atX - TILE_W / 2, atY)] == tileIndex ||
 		   roomGrid[getTileIndexAtPixelCoord(atX + TILE_W / 2, atY)] == tileIndex;
 }
@@ -569,8 +580,8 @@ function tileTypeHasGrassTransparency(checkTileType) {
 			checkTileType == TILE_DRUID_CIRCLE_7 ||
 			checkTileType == TILE_DRUID_CIRCLE_8 ||
 			checkTileType == TILE_DRUID_CIRCLE_9 ||
-			
-			checkTileType == TILE_THROWINGROCKS 
+
+			checkTileType == TILE_THROWINGROCKS
 			);
 }
 
@@ -582,7 +593,7 @@ function drawTileFX(checkTileType, drawTileX, drawTileY) {
 		checkTileType == TILE_GREEN_KEY ||
 		checkTileType == TILE_YELLOW_KEY ||
 		checkTileType == TILE_BLUE_KEY
-		) 
+		)
 	{
 		drawBitmapCenteredWithRotation(shinyPic, drawTileX+24, drawTileY+16, shinyAngle);
 	}
@@ -594,11 +605,11 @@ function drawRoom(drawFloors, drawWalls) {
 	var drawTileX = 0;
 	var drawTileY = 0;
 	shinyAngle += shinyAngleDelta;
-	
+
 	for(var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
 		for(var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
 
-			var arrayIndex = rowColToArrayIndex(eachCol, eachRow); 
+			var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 			var tileKindHere = roomGrid[arrayIndex];
 			var useImg = worldPics[tileKindHere];
 
@@ -608,7 +619,7 @@ function drawRoom(drawFloors, drawWalls) {
 			if( tileTypeHasGrassTransparency(tileKindHere) ) {
 				canvasContext.drawImage(worldPics[TILE_GRASS], drawTileX, drawTileY);
 			}
-			
+
 			var isFloor = tileIsAFloor(tileKindHere);
 
 			if (drawFloors && isFloor ||
@@ -622,7 +633,7 @@ function drawRoom(drawFloors, drawWalls) {
 				canvasContext.beginPath();
 				canvasContext.lineWidth = "1";
 				canvasContext.strokeStyle = "red";
-				canvasContext.rect(drawTileX+1, drawTileY+1, TILE_W-1, TILE_H-1); 
+				canvasContext.rect(drawTileX+1, drawTileY+1, TILE_W-1, TILE_H-1);
 				canvasContext.stroke();
 			}
 
@@ -632,14 +643,14 @@ function drawRoom(drawFloors, drawWalls) {
 		drawTileY += TILE_H;
 		drawTileX = 0;
 	} // end of for each row
-	
+
 	// TODO: why is this here? -- Vince's response: This was meant for when the player enters a new map area.
 	// fadingTitles.begin("COOL MESSAGE","headline","subtitle");
 }
 
 function drawMiniMap(posX,posY,miniMapTileSize) {
 
-	miniMapCamPanX = camera.x * (miniMapTileSize/TILE_W); // reductionFactor (eg: 50/25=0.5): miniMapTileSize/TILE_W 
+	miniMapCamPanX = camera.x * (miniMapTileSize/TILE_W); // reductionFactor (eg: 50/25=0.5): miniMapTileSize/TILE_W
 	miniMapCamPanY = camera.y * (miniMapTileSize/TILE_H);
 
 	// console.log(miniMapCamPanX,miniMapCamPanY);
@@ -653,7 +664,7 @@ function drawMiniMap(posX,posY,miniMapTileSize) {
 	for(var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
 		for(var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
 
-			var arrayIndex = rowColToArrayIndex(eachCol, eachRow); 
+			var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 			var tileKindHere = roomGrid[arrayIndex];
 
 			var tilePosX = drawTileX + posX + 90 - redWarrior.x/13;
@@ -684,7 +695,7 @@ function drawMiniMap(posX,posY,miniMapTileSize) {
 
 function tileIsAFloor(tileKind) {
 
-	return (tileKind <= TERRAIN_TILE_NUM_MAX); 
+	return (tileKind <= TERRAIN_TILE_NUM_MAX);
 
 }
 
@@ -695,22 +706,22 @@ function drawOnlyTilesOnScreen() {
 	var rowsThatFitOnScreen = Math.floor(canvas.height / TILE_W);
 	var cameraRightMostCol = cameraLeftMostCol + colsThatFitOnScreen + 2;
 	var cameraBottomMostRow = cameraTopMostRow + rowsThatFitOnScreen + 1;
-	
+
 	var arrayIndex = 0;
 	var drawTileX = 0;
 	var drawTileY = 0;
-		
+
 	for(var eachCol = cameraLeftMostCol; eachCol < cameraRightMostCol; eachCol++) {
 		for(var eachRow = cameraTopMostRow; eachRow < cameraBottomMostRow; eachRow++) {
-				
-			var arrayIndex = rowColToArrayIndex(eachCol, eachRow); 
-			var tileKindHere = roomGrid[arrayIndex];				
+
+			var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
+			var tileKindHere = roomGrid[arrayIndex];
 			var useImg = worldPics[tileKindHere];
-			
+
 			if( tileTypeHasTransparency(tileKindHere) ) {
 				canvasContext.drawImage(worldPics[TILE_ROAD], drawTileX, drawTileY);
 			}
-			
+
 			if (drawTileX <= 32) {
 			canvasContext.drawImage(useImg, drawTileX, drawTileY);
 			drawTileX += TILE_W;
@@ -719,9 +730,9 @@ function drawOnlyTilesOnScreen() {
 		}
 	}
 }
-	
+
 function resetLevel() {
-	loadLevel(levelList[levelNow])
+	loadLevel()
 }
 
 pather = new Pathfinder3();

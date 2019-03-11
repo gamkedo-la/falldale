@@ -199,17 +199,20 @@ function warriorClass() {
 				this.y = nextY;
 				break;
 			case TILE_GRAVE_YARD_PORTAL:
-				levelNow = 1;//1=graveyard
-				loadLevel(levelList[levelNow]);
+				levelRow = 3;
+				levelCol = 1;
+				loadLevel();
 				break;
 
 			case TILE_HOME_VILLAGE_PORTAL:
-			levelNow = 0;//0=Falldale
-			loadLevel(levelList[levelNow]);
-				break;
+				levelRow = 2;
+				levelCol = 1;
+				loadLevel();
+					break;
 			case TILE_FOREST_PORTAL:
-				levelNow = 3;// 3=FOREST
-				loadLevel(levelList[levelNow]);
+				levelRow = 3;
+				levelCol = 0;
+				loadLevel();
 				break;
 			case TILE_HEALER_FRONTDOOR:
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
