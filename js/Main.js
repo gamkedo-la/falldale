@@ -101,10 +101,8 @@ function loadLevel() {
     recalulateLevelNow();
     var whichLevel = levelList[levelNow];
     roomGrid = whichLevel.slice();
-    if (gameStarted === false) {
-        redWarrior.reset(warriorPic, "Red warrior");
-        gameStarted = true;
-    }
+
+    redWarrior.reset(warriorPic, "Red warrior");
 
     enemyList.splice(0, enemyList.length); //Empty enemyList
 
