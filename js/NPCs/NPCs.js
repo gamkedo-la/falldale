@@ -116,7 +116,7 @@ function npcClass(npcName, npcPic) {
                 dialog = meows[Math.floor(meowcount / meowframes) % meows.length];
                 if (meowcount % meowframes == 1) meowPurrSound.play();
             }
-            console.log(dialog);
+            //console.log(dialog);
         } 
 	}
 
