@@ -31,7 +31,7 @@ var tileEditor = false;
 var gamePaused = false;
 var muteInputCycle = 0;
 var saveGame = new SaveGame();
-var gameStarted = false;
+var continueGame = false;
 // Sounds //
 
 var doorSound = new SoundOverlapsClass("woodDoorOpen");
@@ -82,6 +82,11 @@ function imageLoadingDoneSoStartGame() {
     setupInput();
     console.log("setupInput should run - Main.js");
     // levelNow = 3; // Use this line to skip to level being worked on.
+    if (continueGame === false) {
+        redWarrior.initialize(warriorPic, "Red warrior");
+    } else {
+        saveGame.loadData();
+    }
     loadLevel();
     if(debugSkipToGame){
         console.log("Debug Mode is on, skip directly to game");
@@ -101,9 +106,6 @@ function loadLevel() {
     recalulateLevelNow();
     var whichLevel = levelList[levelNow];
     roomGrid = whichLevel.slice();
-
-    redWarrior.reset(warriorPic, "Red warrior");
-
     enemyList.splice(0, enemyList.length); //Empty enemyList
 
     var arrayIndex = 0;

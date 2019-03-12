@@ -69,7 +69,8 @@ function warriorClass() {
 
 	this.savePrefix = "player_";
 	this.saveVariables = ["x", "y", "health", "maxHealth", "name", "experience", "keysHeld", "goldpieces",
-		"experienceLevel", "healingPotion", "haveMap", "questOneComplete", "delkonRewardOffer"];
+		"experienceLevel", "healingPotion", "haveMap", "questOneComplete", "delkonRewardOffer",
+		"goblinsKilledInFallDale"];
 
 	this.setupInput = function(upKey, rightKey, downKey, leftKey, swordKey, arrowKey, rockKey, inventoryKey, statsKey, healthKey) {
 		this.controlKeyUp = upKey;
@@ -106,37 +107,31 @@ function warriorClass() {
 		}
 	};
 
-	this.reset = function(whichImage, warriorName) {
+	this.initialize = function(whichImage, warriorName) {
 		this.name = warriorName;
 		this.myWarriorPic;
-		if (gameStarted === false) {
-			this.yellowKeysHeld = 0;
-			this.greenKeysHeld = 0;
-			this.blueKeysHeld = 0;
-			this.redKeysHeld = 0;
-			this.health = 4;
-			this.mySword.reset();
-			this.myArrow.reset();
-			this.myRock.reset();
-		}
+		this.yellowKeysHeld = 0;
+		this.greenKeysHeld = 0;
+		this.blueKeysHeld = 0;
+		this.redKeysHeld = 0;
+		this.health = 4;
+		this.mySword.reset();
+		this.myArrow.reset();
+		this.myRock.reset();
 
 		for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
 			for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 				if(roomGrid[arrayIndex] == TILE_PLAYERSTART) {
 					roomGrid[arrayIndex] = TILE_ROAD;
-					if (gameStarted === false) {
-						this.x = eachCol * TILE_W + TILE_W/2;
-						this.y = eachRow * TILE_H + TILE_H/2;
-						gameStarted = true;
-					}
+					this.x = eachCol * TILE_W + TILE_W/2;
+					this.y = eachRow * TILE_H + TILE_H/2;
 					return;
 				} // end of Player Start if
 			} //end of col row for
 		} // end of row for
 		//console.log("No Player Start found!");
-
-	}; // end of warriorRest func
+	}; // end of warrior initialize func
 
 	this.move = function() {
 		var nextX = this.x;

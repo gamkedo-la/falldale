@@ -25,6 +25,7 @@ const KEY_V = 86;
 const KEY_X = 88;
 const KEY_Y = 89;
 const KEY_Z = 90;
+const KEY_ZERO = 48;
 
 const NUM_0 = 48; // Debug Mode
 const NUM_1 = 49;
@@ -168,7 +169,7 @@ function keyPressed(evt) {
             } else {
                 statsScreen = true;
             }
-        } else if (evt.keyCode == debugModeKey) {
+        } else if (evt.keyCode == debugModeKey || evt.keyCode === KEY_ZERO) {
             if (debugMode) {
                 debugMode = false;
             } else {
