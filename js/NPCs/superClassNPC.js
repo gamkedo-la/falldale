@@ -154,24 +154,27 @@ function npcSuperClass() {
 
         return {x:newX, y:newY};
     }
-
+	
     this.tileTypeAtPosition = function(nextX, nextY) {
         var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL;
 
-        if (this.direction == "north") {
-            walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, (nextY - 25));
-        } else if (this.direction == "south") {
-            walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, (nextY + 25));
-        } else if (this.direction == "west") {
-            walkIntoTileIndex = getTileIndexAtPixelCoord((nextX - 25), nextY);
-        } else if (this.direction == "east") {
-            walkIntoTileIndex = getTileIndexAtPixelCoord((nextX + 25), nextY);
-        } 
-        
-        if (walkIntoTileIndex != undefined) {
-            walkIntoTileType = roomGrid[walkIntoTileIndex];
-        }
+       	if(direction == "north") {
+			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+(this.width/2),nextY);
+		}
+		if(direction == "south") {
+			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+(this.width/2),nextY+this.height);
+		}
+		if(direction == "west") {
+			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY+(this.height/2));
+		}
+		if(direction == "east") {
+			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+this.width, nextY+(this.height/2));
+		}
+
+		if(walkIntoTileIndex != undefined) {
+			walkIntoTileType = roomGrid[walkIntoTileIndex];
+		}
 
         return walkIntoTileType;
     }
