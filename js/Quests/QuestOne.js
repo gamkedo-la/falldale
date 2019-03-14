@@ -11,7 +11,7 @@ function countGoblinforQuestOne(){
 }
 
 function checkForQuestOneComplete(){
-	if(goblinsKilledInFallDale >= 2){
+	if(goblinsKilledInFallDale >= 20){
 		redWarrior.questOneComplete = true;
 		dialog = "I have van-quest all the Goblins from Falldale!";
 	}

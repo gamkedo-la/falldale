@@ -20,7 +20,7 @@ function goblinClass(goblinName) {
     this.frameIndex = 0;
     this.width = 50;
     this.numberOfFrames = 6;
-    this.height = 50;
+    this.height = 43;
     this.ticksPerFrame = 5;
     this.goblinMove = true;
 	this.treasureAvailable = true;
@@ -35,12 +35,18 @@ function goblinClass(goblinName) {
 	this.newRandomPic = function() {
 		var whichPic = Math.round(Math.random() * 2);
 		switch (whichPic) {
-		case 0:
-			this.myGoblinPic = goblinPic;
-			break;
-		case 1:
-			this.myGoblinPic = goblinPic2;
-			break;
+			case 0:
+				this.myGoblinPic = goblinPic;
+				break;
+			case 1:
+				this.myGoblinPic = goblinPic2;
+				break;
+			case 2:
+				this.myGoblinPic = goblinPic3;
+				break;
+			case 3:
+				this.myGoblinPic = goblinPic4;
+				break;
 		}
 	}
     
@@ -56,12 +62,12 @@ function goblinClass(goblinName) {
             this.sy = 0;
         }
         if (this.walkWest) {
-            //this.sy = this.height*3;
-			this.sy = this.height;
+            this.sy = this.height*2;
+			
         }
         if (this.walkEast) {
-            //this.sy = this.height*2;
-			this.sy = this.health;
+            this.sy = this.height*3;
+
         }
         
         this.myBite.move();
@@ -142,7 +148,9 @@ function goblinClass(goblinName) {
 			if(gamePaused == false){
 				this.sx = this.frameIndex * this.width;
 			}
-				
+			
+			this.sx = 0;
+			
             canvasContext.drawImage(shadowPic, this.x-16, this.y+20);
             canvasContext.drawImage(this.myGoblinPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
             if (debugMode) {
