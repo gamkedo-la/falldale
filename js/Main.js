@@ -155,9 +155,18 @@ function loadLevel() {
                 newEnemy = new npcClass('Princess', princessPic);
             } else if(roomGrid[arrayIndex] == TILE_SHOPKEEPER) {   // NPC
                 newEnemy = new npcClass('Shop Keeper', shopkeeperPic);
-            } else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
+            } else if(roomGrid[arrayIndex] == TILE_ARYA) {   // NPC
+                newEnemy = new npcClass('Arya', aryaPic);
+            } else if(roomGrid[arrayIndex] == TILE_LAWRENCE) {   // NPC
+                newEnemy = new npcClass('Lawrence', lawrencePic);
+			} else if(roomGrid[arrayIndex] == TILE_ROWAN) {   // NPC
+                newEnemy = new npcClass('Rowan', rowanPic);
+			} else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
                 newEnemy = new npcClass('Taran', taranPic);
-            } else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
+			
+			
+			
+			} else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
                 newEnemy = new npcClass('Fido', catPic);
                 newEnemy.numberOfFrames = 6; // six frame walk cycle
                 newEnemy.patrolPoints = [4, 6, 10, 6]; // sidewalk near your house

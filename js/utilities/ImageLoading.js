@@ -44,6 +44,9 @@ var princessPic = document.createElement("img");
 var shopkeeperPic = document.createElement("img");
 var taranPic = document.createElement("img");
 var catPic = document.createElement("img");
+var aryaPic = document.createElement("img");
+var lawrencePic = document.createElement("img"); 
+var rowanPic = document.createElement("img"); 
 
 var archerPic = document.createElement("img");
 var deadArcherPic = document.createElement("img");
@@ -255,7 +258,10 @@ function loadImages() {
 			{varName: fentonPic, theFile: "NPCs/Fenton.png"},
 			{varName: gabrielPic, theFile: "NPCs/Gabriel.png"},
 			{varName: healerPic, theFile: "NPCs/healer.png"},
-			{varName: princessPic, theFile: "NPCs/princess.png"},
+			{varName: aryaPic, theFile: "NPCs/Arya.png"},
+			{varName: lawrencePic, theFile: "NPCs/Lawrence.png"},
+			{varName: rowanPic, theFile: "NPCs/Rowan.png"},
+			{varName: princessPic, theFile: "NPCs/princess.png"},			
 			{varName: shopkeeperPic, theFile: "NPCs/shopkeeper.png"},
 			{varName: taranPic, theFile: "NPCs/Taran.png"},
 			{varName: catPic, theFile: "NPCs/cat.png"},
