@@ -377,7 +377,11 @@ function drawAll() {
         redWarrior.draw();
         drawRooftops();
         OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
-        canvasContext.restore();
+        console.log(redWarrior.questOneComplete);
+		if(redWarrior.questOneComplete == false) {
+			colorText(goblinsKilledInFallDale + " out of the 20 Goblins killed in Falldale.", canvas.width - 400, 20, "red");
+		}
+		canvasContext.restore();
         health();
         messageDraw();
         damageDraw();
