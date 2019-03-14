@@ -107,7 +107,31 @@ function npcClass(npcName, npcPic) {
             } else if (this.myName == "Shop Keeper") {
                 dialog = "Healer:  Hi, I'm the Shop Keeper.  I could use a better name.";
                 isInShop = true;
-            } else if (this.myName == "Fido") {
+			} else if (this.myName == "Fenton") {
+				if (redWarrior.questOneComplete == false) {
+					dialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
+				} else if (redWarrior.questOneComplete) {
+					dialog = "Fenton:  Thank you for saving our town!";
+				}
+			} else if (this.myName == "Arya") {
+                if (redWarrior.questOneComplete == false) {
+                    dialog = "Arya:  I'm Arya, our town is being overran by Goblins!  Please do something!";
+                } else if (redWarrior.questOneComplete) {
+                    dialog = "Arya:  Thank you for saving our town!";
+                }
+			} else if (this.myName == "Lawrence") {
+                if (redWarrior.questOneComplete == false) {
+                    dialog = "Lawrence:  I'm Lawrence, our town is being overran by Goblins!  Please do something!  I'm to scared and going to stay here in the bar.";
+                } else if (redWarrior.questOneComplete) {
+                    dialog = "Lawrence:  Thank you for saving our town!";
+                }
+			} else if (this.myName == "Rowan") {
+                if (redWarrior.questOneComplete == false) {
+                    dialog = "Rowan:  I'm Rowan, our town is being overran by Goblins!  Please do something!";
+                } else if (redWarrior.questOneComplete) {
+                    dialog = "Rowan:  Thank you for saving our town!";
+                }
+			} else if (this.myName == "Fido") {
                 // alternately, we can choose a random one from the array
                 // dialog = meows[Math.floor(Math.random()*meows.length)];
 
@@ -116,7 +140,6 @@ function npcClass(npcName, npcPic) {
                 dialog = meows[Math.floor(meowcount / meowframes) % meows.length];
                 if (meowcount % meowframes == 1) meowPurrSound.play();
             }
-            //console.log(dialog);
         } 
 	}
 

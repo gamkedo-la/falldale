@@ -8,13 +8,15 @@ var rooftops = [ // x1,y1,x2,y2
 	[1,0,6,3], // player's house
 	[9,0,11,2], // farmer next door
 	[7,12,10,14], // small house south
-	[12,12,15,14], // their neighbour
+	[12,12,15,14], // their neighbor
 	[8,19,11,22], // south w farmer
-	[12,19,16,22], // south big house
+	[12,19,16,22], // south bar
 	[23,0,30,4], // nw store
 	[35,0,42,4], // nww store
 	[29,14,38,28], // tavern
-
+	[29,38,31,40], // se house
+	[34,38,36,40], // se house 2
+	[40,24,42,27], // se house 3
 
 
 

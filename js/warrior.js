@@ -225,7 +225,15 @@ function warriorClass() {
 
 		switch(walkIntoTileType) {
 			case TILE_BRIDGE_LOWER:
-			case TILE_ROAD:
+			case TILE_ROAD: 
+			case TILE_DIRTROAD_N_E:
+			case TILE_DIRTROAD_N_S:
+			case TILE_DIRTROAD_S_E:
+			case TILE_DIRTROAD_W_E:
+			case TILE_DIRTROAD_W_N:
+			case TILE_DIRTROAD_W_S:
+			case TILE_DIRTROAD_W_N_E:
+			case TILE_DIRTROAD_W_S_E:
 				if (debugMode) {
 					this.speed = 20.0;
 				} else {
@@ -235,6 +243,7 @@ function warriorClass() {
 				this.y = nextY;
 				break;
 			case TILE_GRASS:
+			case TILE_GARDEN_1:
 				if (debugMode) {
 					this.speed = 20.0;
 				} else {

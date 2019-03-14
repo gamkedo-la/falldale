@@ -497,11 +497,20 @@ function enemyClass() {
 			case TILE_SPIKES_BLOODY:
 			case TILE_WATER:
             case TILE_FOUNTAIN:
+			case TILE_BRIDGE_UPPER:
                 return false;
             case TILE_PLAYERSTART:
 			case TILE_ROAD:
-			case TILE_BRIDGE_UPPER:
-            case TILE_BRIDGE_LOWER:
+			case TILE_BRIDGE_LOWER:
+			case TILE_ROAD: 
+			case TILE_DIRTROAD_N_E:
+			case TILE_DIRTROAD_N_S:
+			case TILE_DIRTROAD_S_E:
+			case TILE_DIRTROAD_W_E:
+			case TILE_DIRTROAD_W_N:
+			case TILE_DIRTROAD_W_S:
+			case TILE_DIRTROAD_W_N_E:
+			case TILE_DIRTROAD_W_S_E:
             case TILE_FOREST_PORTAL:
             case TILE_GRASS:
             case TILE_GRAVE_YARD_PORTAL:
@@ -516,6 +525,7 @@ function enemyClass() {
             case TILE_TREASURE:
             case TILE_MAP:
             case TILE_BAT:
+			case TILE_GARDEN_1:
                 return true;
             default:
                 return true;

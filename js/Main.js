@@ -163,9 +163,6 @@ function loadLevel() {
                 newEnemy = new npcClass('Rowan', rowanPic);
 			} else if(roomGrid[arrayIndex] == TILE_TARAN) {   // NPC
                 newEnemy = new npcClass('Taran', taranPic);
-			
-			
-			
 			} else if(roomGrid[arrayIndex] == TILE_CAT) {   // NPC
                 newEnemy = new npcClass('Fido', catPic);
                 newEnemy.numberOfFrames = 6; // six frame walk cycle
@@ -386,11 +383,10 @@ function drawAll() {
         redWarrior.draw();
         drawRooftops();
         OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
-        console.log(redWarrior.questOneComplete);
+		canvasContext.restore();
 		if(redWarrior.questOneComplete == false) {
 			colorText(goblinsKilledInFallDale + " out of the 20 Goblins killed in Falldale.", canvas.width - 400, 20, "red");
 		}
-		canvasContext.restore();
         health();
         messageDraw();
         damageDraw();

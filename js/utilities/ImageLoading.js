@@ -90,6 +90,14 @@ function loadImages() {
 	
 		var imageList = [
 			{tileType: TILE_ROAD,  theFile: "worldRoad.png"},
+			{tileType: TILE_DIRTROAD_N_E,  theFile: "Roads/dirtRoadNorthToEast.png"},
+			{tileType: TILE_DIRTROAD_N_S,  theFile: "Roads/dirtRoadNorthToSouth.png"},
+			{tileType: TILE_DIRTROAD_S_E,  theFile: "Roads/dirtRoadSouthToEast.png"},
+			{tileType: TILE_DIRTROAD_W_E,  theFile: "Roads/dirtRoadWestToEast.png"},
+			{tileType: TILE_DIRTROAD_W_N,  theFile: "Roads/dirtRoadNorthToWest.png"},
+			{tileType: TILE_DIRTROAD_W_S,  theFile: "Roads/dirtRoadSouthToWest.png"},
+			{tileType: TILE_DIRTROAD_W_N_E,  theFile: "Roads/dirtRoadConnectsWestNorthEast.png"},
+			{tileType: TILE_DIRTROAD_W_S_E,  theFile: "Roads/dirtRoadConnectsWestSouthEast.png"},
 			{tileType: TILE_YELLOW_KEY,  theFile: "keyedDoorsandKeys/yellowKey.png"},
 			{tileType: TILE_GREEN_KEY,  theFile: "keyedDoorsandKeys/greenKey.png"},
 			{tileType: TILE_BLUE_KEY,  theFile: "keyedDoorsandKeys/blueKey.png"},
