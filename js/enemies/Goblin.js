@@ -83,7 +83,7 @@ function goblinClass(goblinName) {
 		var chanceOnTreasure = Math.round(Math.random() * 10);
 		if(chanceOnTreasure >= 1){	
 			console.log("Treasure Provided")		
-			var randomTreasure = 4; //Math.round(Math.random() * 4);
+			var randomTreasure = Math.round(Math.random() * 4);
 			switch (randomTreasure) {
 				case 1:
 					heartsList.push(new heartClass(1, this.x, this.y));
