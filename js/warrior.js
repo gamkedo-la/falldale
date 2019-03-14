@@ -481,6 +481,12 @@ function warriorClass() {
 		setDialogUICountdown(3);
 		dialog = "I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points";
 	};
+	
+	this.death = function(){
+		this.health = 4;
+		this.x = 300; // a better location will be coded in the feature
+		this.y = 300; // a better location will be coded in the feature
+	}
 
 	this.checkWarriorandWeaponCollisionAgainst = function(thisEnemy) {
 

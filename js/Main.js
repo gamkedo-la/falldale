@@ -209,7 +209,8 @@ function updateItems(){
 function health() {
 
     if (redWarrior.health <= 0) {
-        resetLevel();
+		resetLevel();
+		redWarrior.death();
     }
 }
 
