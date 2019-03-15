@@ -76,29 +76,37 @@ function CycleMute() {
             break;
         case 2:
             // Mute SFX
-            doorSound.startOrStopSFX();
-            keySound.startOrStopSFX();
-            spikeSound.startOrStopSFX();
-            zombieHurtSound.startOrStopSFX();
-            goblinHurtSound.startOrStopSFX();
-            skeletonHurtSound.startOrStopSFX();
-            batHurtSound.startOrStopSFX();
-            playerHurtSound.startOrStopSFX();
+            muteSFX();
             break;
         case 3:
             // Return music and SFX to normal
-            backgroundMusic.startOrStopMusic();
-            doorSound.startOrStopSFX();
-            keySound.startOrStopSFX();
-            spikeSound.startOrStopSFX();
-            zombieHurtSound.startOrStopSFX();
-            goblinHurtSound.startOrStopSFX();
-            skeletonHurtSound.startOrStopSFX();
-            batHurtSound.startOrStopSFX();
-            playerHurtSound.startOrStopSFX();
+            restoreMusicAndSFX();
 
             // Reset the counter to zero
             muteInputCycle = 0;
             break;
+    }
+
+    function restoreMusicAndSFX() {
+        backgroundMusic.startOrStopMusic();
+        doorSound.startOrStopSFX();
+        keySound.startOrStopSFX();
+        spikeSound.startOrStopSFX();
+        zombieHurtSound.startOrStopSFX();
+        goblinHurtSound.startOrStopSFX();
+        skeletonHurtSound.startOrStopSFX();
+        batHurtSound.startOrStopSFX();
+        playerHurtSound.startOrStopSFX();
+    }
+
+    function muteSFX() {
+        doorSound.startOrStopSFX();
+        keySound.startOrStopSFX();
+        spikeSound.startOrStopSFX();
+        zombieHurtSound.startOrStopSFX();
+        goblinHurtSound.startOrStopSFX();
+        skeletonHurtSound.startOrStopSFX();
+        batHurtSound.startOrStopSFX();
+        playerHurtSound.startOrStopSFX();
     }
 }
