@@ -180,14 +180,13 @@ function warriorClass() {
 		}
 	};
 
-	this.checkForLevelUp = function(){
-
+	this.checkForLevelUp = function() {
 		if (this.experience >= levelExperienceArray[this.experienceLevel]){
 			this.levelup();
 		}
 	};
 
-	this.levelup = function(){
+	this.levelup = function() {
 		// results when player hits certain experience
 		var increasedHitPoints = 0;
 		this.experienceLevel++;
@@ -200,14 +199,13 @@ function warriorClass() {
 		dialogManager.setDialogWithCountdown("I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points");
 	};
 	
-	this.death = function(){
+	this.death = function() {
 		this.health = 4;
 		this.x = 300; // a better location will be coded in the feature
 		this.y = 300; // a better location will be coded in the feature
 	}
 
 	this.checkWarriorandWeaponCollisionAgainst = function(thisEnemy) {
-
 		this.centerX = this.x + this.width/2;
 		this.centerY = this.y + this.height/2;
 
@@ -274,11 +272,12 @@ function warriorClass() {
 
 		this.sx = this.frameIndex * this.width;
 
-		if(this.displayHealth){
+		if(this.displayHealth) {
 			if (this.warriorDisplayHealthCountdown % 10 >= 4) {
 				canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 				canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			}
+
 			colorRect(this.x,this.y-16, 40,12, "black");
 			colorRect(this.x+2,this.y-14, 35, 8, "red");
 			colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
@@ -288,22 +287,19 @@ function warriorClass() {
 				this.displayHealth = false;
 				this.warriorDisplayHealthCountdown = this.warriorHealthCountdownSeconds * FRAMES_PER_SECOND;
 			}
-		}
-		else {
+		} else {
 			canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 			canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 		}
 
-			if(debugMode){
+		if(debugMode) {
+			colorRect(this.x,this.y, 5,5, "white");
+			colorRect(this.x,this.y+this.height, 5,5, "white");
+			colorRect(this.x+this.width,this.y, 5,5, "white");
+			colorRect(this.x+this.width,this.y+this.height, 5,5, "white");
 
-
-				colorRect(this.x,this.y, 5,5, "white");
-				colorRect(this.x,this.y+this.height, 5,5, "white");
-				colorRect(this.x+this.width,this.y, 5,5, "white");
-				colorRect(this.x+this.width,this.y+this.height, 5,5, "white");
-
-				colorRect(this.centerX,this.centerY, 5, 5, 'white');
-			}
+			colorRect(this.centerX,this.centerY, 5, 5, 'white');
+		}
 
 		this.mySword.draw(this);
 
@@ -311,7 +307,7 @@ function warriorClass() {
 
 		this.myRock.draw();
 
-		}
+	}
 
 	this.nextPosWithInput = function() {
 		let x = this.x;
@@ -424,6 +420,7 @@ function warriorClass() {
 		if(sound != null) {
 			sound.play();
 		}
+
 		roomGrid[aTileIndex] = aTileType;
 	}
 
@@ -565,7 +562,7 @@ function warriorClass() {
 				this.loadNextLevel(2, 1);
 				break;
 			case TILE_FOREST_PORTAL:
-				this.loadNewLevel(3, 0);
+				this.loadNextLevel(3, 0);
 				break;
 			case TILE_HEALER_FRONTDOOR:
 				this.openHealerDoor(walkIntoTileIndex);
