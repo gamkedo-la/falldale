@@ -11,7 +11,7 @@ function orcClass(orcName, whichPicture) {
     this.myName = orcName;
     this.displayHealth = false;
     this.orcHealthCountdownSeconds = 5;
-    this.orcDisplayHealthCountdown = this.orcHealthCountdownSeconds * 30;
+    this.orcDisplayHealthCountdown = this.orcHealthCountdownSeconds * FRAMES_PER_SECOND;
 
     this.tickCount = 0;
     this.frameIndex = 0;
@@ -85,7 +85,8 @@ function orcClass(orcName, whichPicture) {
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
-            dialog = "Ouch! I've been bite by a Orc! That really hurts.";
+            dialogManager.setDialogWithCountdown("Ouch! I've been bite by a Orc! That really hurts.", 5);
+//            dialog = "Ouch! I've been bite by a Orc! That really hurts.";
         }
     }
 
@@ -143,7 +144,7 @@ function orcClass(orcName, whichPicture) {
                     colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
                     this.orcDisplayHealthCountdown--;
                 } else {
-                    this.orcDisplayHealthCountdown = orcHealthCountdownSeconds * 30;
+                    this.orcDisplayHealthCountdown = orcHealthCountdownSeconds * FRAMES_PER_SECOND;
                     this.displayHealth = false;
                 }
             }

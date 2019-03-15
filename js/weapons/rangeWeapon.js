@@ -52,33 +52,11 @@ function rangedWeaponClass() {
 	this.shootFrom = function(warriorAttack, dir = direction) {
 		if (this.quantity > 0) {
 			this.quantity--;
-			// FIXME: use "an" for "arrows"
-			if (this.quantity > 1) {
-				dialog = "I used " + this.indefiniteArticle + " " + this.name + ". I now have " + this.quantity + " " + this.pluralName + "!";
-			} else if (this.quantity == 1) {
-				dialog = "I used " + this.indefiniteArticle + " " + this.name + ". I now have only 1 " + this.name + " left";
-			} else {
-				dialog = "That was my last " + this.name + ". I need to find more!";
-			}
+			this.setDialogForQuanitity();
 		}
 		this.direction = dir;
 
-		if(dir == "north") {
-			this.x = warriorAttack.x+25;
-			this.y = warriorAttack.y+25;
-		}
-		else if(dir == "south") {
-			this.x = warriorAttack.x+5;
-			this.y = warriorAttack.y+25 ;
-		}
-		else if(dir == "west") {
-			this.x = warriorAttack.x;
-			this.y = warriorAttack.y+30;
-		}
-		else if(dir == "east") {
-			this.x = warriorAttack.x+15;
-			this.y = warriorAttack.y+30;
-		}
+		this.setPositionForDirection(dir, warriorAttack);
 		
 		this.life = this.baseLife;
 	}
@@ -86,24 +64,11 @@ function rangedWeaponClass() {
 	this.superClassHitTest = this.hitTest;
     this.hitTest = function(wielder, adversary) {
         if(this.superClassHitTest(wielder, adversary)) {
-			dialog = "Successful " + this.name + " hit on " + adversary.myName + "!";
+			dialogManager.setDialogWithCountdown("Successful " + this.name + " hit on " + adversary.myName + "!");
         }
 	}
 
-	this.draw = function() {
-		/*		if(direction == "north") {
-
-				}
-				else if(direction == "south") {
-				0;
-				}
-				else if(direction == "west") {
-				
-				}
-				else if(direction == "east") {
-				
-				} */
-		
+	this.draw = function() {		
 		if(this.life > 0) {
 			colorRect(this.x, this.y, this.width, this.length, this.color);
 		}
@@ -129,6 +94,37 @@ function rangedWeaponClass() {
 		else // reset if out of bounds
 		{
 			this.reset();
+		}
+	}
+
+	this.setPositionForDirection = function(dir, warriorAttack) {
+		if (dir == "north") {
+			this.x = warriorAttack.x + 25;
+			this.y = warriorAttack.y + 25;
+		}
+		else if (dir == "south") {
+			this.x = warriorAttack.x + 5;
+			this.y = warriorAttack.y + 25;
+		}
+		else if (dir == "west") {
+			this.x = warriorAttack.x;
+			this.y = warriorAttack.y + 30;
+		}
+		else if (dir == "east") {
+			this.x = warriorAttack.x + 15;
+			this.y = warriorAttack.y + 30;
+		}
+	}
+
+	this.setDialogForQuanitity = function() {
+		if (this.quantity > 1) {
+			dialogManager.setDialogWithCountdown("I used " + this.indefiniteArticle + " " + this.name + ". I now have " + this.quantity + " " + this.pluralName + "!");
+		}
+		else if (this.quantity == 1) {
+			dialogManager.setDialogWithCountdown("I used " + this.indefiniteArticle + " " + this.name + ". I now have only 1 " + this.name + " left");
+		}
+		else {
+			dialogManager.setDialogWithCountdown("That was my last " + this.name + ". I need to find more!");
 		}
 	}
 }

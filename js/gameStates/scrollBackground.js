@@ -13,7 +13,8 @@ function scrollBackgroundScreenInput(whichKeyCode){
 			break;
 	} 
 	
-	dialog = gameKeeperFeedback;				
+//	dialog = gameKeeperFeedback;
+	dialogManager.setDialogWithCountdown(gameKeeperFeedback, 5);		
 }
 
 function drawScrollNarrative(){

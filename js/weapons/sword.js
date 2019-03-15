@@ -38,7 +38,7 @@ function swordClass() {
 		if(this.toHitPoints >= 10){
 			
 			if(this.damagePoints > 0){
-				dialog = "Successful hit "+ adversary.myName+" for " + this.damagePoints +" damage point!";
+				dialogManager.setDialogWithCountdown("Successful hit "+ adversary.myName+" for " + this.damagePoints +" damage point!");
 				if (adversary.takeDamage) { // this can sometimes be undefined
 					adversary.takeDamage(this.damagePoints)
 				}
@@ -50,7 +50,7 @@ function swordClass() {
 				weilder.checkForLevelUp();
 			}
 		} else {
-			dialog = adversary.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints;
+			dialogManager.setDialogWithCountdown(adversary.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints);
 		}
 	}
 	

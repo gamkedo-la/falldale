@@ -28,7 +28,7 @@ function batClass() {
 	this.myBite.baseBiteCooldown = 3;	//
     this.displayHealth = false;
     this.batHealthCountdownSeconds = 5;
-    this.batDisplayHealthCountdown = this.batHealthCountdownSeconds * 30;
+    this.batDisplayHealthCountdown = this.batHealthCountdownSeconds * FRAMES_PER_SECOND;
 
     this.frameIndex = 0;
     this.tickCount = 0;
@@ -108,8 +108,7 @@ function batClass() {
     this.isOverlappingPoint = function() {
         if(!this.batResting) {//Bats don't bite when they're resting
             if(this.superClassIsOverlappingPoint()) {
-				setDialogUICountdown(5);
-                dialog = "Ouch! I've been bite by a bat.  Quick! I need some garlic.";
+                dialogManager.setDialogWithCountdown("Ouch! I've been bite by a bat.  Quick! I need some garlic.", 5);
             }
         }
     }
@@ -129,7 +128,7 @@ function batClass() {
                 colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
                 this.batDisplayHealthCountdown--;
             } else {
-                this.batDisplayHealthCountdown = this.batHealthCountdownSeconds * 30;
+                this.batDisplayHealthCountdown = this.batHealthCountdownSeconds * FRAMES_PER_SECOND;
                 this.displayHealth = false;
             }
         }

@@ -58,7 +58,6 @@ function healerInput(whichKeyCode) {
             break;
     }
 	console.log("worked");
-	isAtHealer = false;
-	setDialogUICountdown(3);
-    dialog = shopKeeperFeedback;
+    isAtHealer = false;
+    dialogManager.setDialogWithCountdown(shopKeeperFeedback, 3);
 }

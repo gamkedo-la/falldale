@@ -11,7 +11,7 @@ function druidClass(druidName, whichPicture) {
     this.myName = druidName;
     this.displayHealth = false;
     this.druidHealthCountdownSeconds = 5;
-    this.druidDisplayHealthCountdown = this.druidHealthCountdownSeconds * 30;
+    this.druidDisplayHealthCountdown = this.druidHealthCountdownSeconds * FRAMES_PER_SECOND;
 
     this.tickCount = 0;
     this.frameIndex = 0;
@@ -84,7 +84,8 @@ function druidClass(druidName, whichPicture) {
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
-            dialog = "Ouch! I've been bite by a Druid! That really hurts.";
+            dialogManager.setDialogWithCountdown("Ouch! I've been bite by a Druid! That really hurts.", 5);
+//            dialog = "Ouch! I've been bite by a Druid! That really hurts.";
         }
     }
 
@@ -134,7 +135,7 @@ function druidClass(druidName, whichPicture) {
                     colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
                     this.druidDisplayHealthCountdown--;
                 } else {
-                    this.druidDisplayHealthCountdown = druidHealthCountdownSeconds * 30;
+                    this.druidDisplayHealthCountdown = druidHealthCountdownSeconds * FRAMES_PER_SECOND;
                     this.displayHealth = false;
                 }
             }

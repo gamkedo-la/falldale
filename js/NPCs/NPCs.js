@@ -50,97 +50,101 @@ function npcClass(npcName, npcPic) {
     this.isOverlappingPoint = function(testX, testY) { // textX is redWarrior.x and testY is redWarrior.y
         var dialogcount = 0;
         //test if redWarrior is inside box of NPC
+        let NPCDialog = "";
 
         if (this.x < testX && (this.x + this.width) > testX && this.y < testY && (this.y + this.height) > testY) {
-            setDialogUICountdown(5);
             if (this.myName == "Addy") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Addy:  I'm Addy, there's no time to talk right now.  We are invaded by Goblins!";
+                    NPCDialog = "Addy:  I'm Addy, there's no time to talk right now.  We are invaded by Goblins!";
                 } else if (redWarrior.questOneComplete) {
-                    dialog = "Addy:  Thank you for saving Falldale!";
+                    NPCDialog = "Addy:  Thank you for saving Falldale!";
                 }
             } else if (this.myName == "Dodd") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Dodd:  I'm Dodd, we need to clear all the Goblins from the town!";
+                    NPCDialog = "Dodd:  I'm Dodd, we need to clear all the Goblins from the town!";
                 } else if (redWarrior.questOneComplete) {
-                    dialog = "Dodd:  We are in debt to you for saving our town.";
+                    NPCDialog = "Dodd:  We are in debt to you for saving our town.";
                 }
             } else if (this.myName == "Taran") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Taran:  I'm Taran.  Now is not the best time to talk.  These Goblins are destroying the town!";
+                    NPCDialog = "Taran:  I'm Taran.  Now is not the best time to talk.  These Goblins are destroying the town!";
                 } else if (redWarrior.questOneComplete) {
-                    dialog = "Taran:  You are such a brave individual!";
+                    NPCDialog = "Taran:  You are such a brave individual!";
                 }
             } else if (this.myName == "Delkon") {
 				console.log(redWarrior.questOneComplete, redWarrior.delkonRewardOffer);
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "The name is Delkon.  I have 50 gold pieces I can give you if you clear the town of the Goblins!";
+                    NPCDialog = "The name is Delkon.  I have 50 gold pieces I can give you if you clear the town of the Goblins!";
                     redWarrior.delkonRewardOffer = true;
                 } else if (redWarrior.questOneComplete && redWarrior.delkonRewardOffer) {
                     redWarrior.goldpieces = redWarrior.goldpieces + 50;
-                    dialog = "Thank you for clearing the town of those horrible beasts!  Please take this reward of 50 gold pieces";
+                    NPCDialog = "Thank you for clearing the town of those horrible beasts!  Please take this reward of 50 gold pieces";
                     redWarrior.delkonRewardOffer = false;
                 } else if (redWarrior.questOneComplete) {
-					 dialog = "Thank you for clearing the town of those horrible beasts!";
+					 NPCDialog = "Thank you for clearing the town of those horrible beasts!";
 				}
             } else if (this.myName == "Princess") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Princess:  My town is being destroyed by these horrible Goblins.  Please do something!";
+                    NPCDialog = "Princess:  My town is being destroyed by these horrible Goblins.  Please do something!";
                 } else if (redWarrior.questOneComplete) {
-					dialog = "Princess:  I am incredible grateful for you saving our town of Falldale.  These Goblin attacks have been happening more often of late."
+					NPCDialog = "Princess:  I am incredible grateful for you saving our town of Falldale.  These Goblin attacks have been happening more often of late."
 				}
 			} else if (this.myName == "Gabriel") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Gabriel:  Please clear this town of all these Goblins!";
+                    NPCDialog = "Gabriel:  Please clear this town of all these Goblins!";
                 } else if (redWarrior.questOneComplete) {
-                    dialog = "Gabriel:  Sorry we couldn't talk earlier.  My name is Gabriel, I am grateful you saved our town.  These Goblins have been attacking us a lot lately.";
+                    NPCDialog = "Gabriel:  Sorry we couldn't talk earlier.  My name is Gabriel, I am grateful you saved our town.  These Goblins have been attacking us a lot lately.";
                 }
             } else if (this.myName == "Fenton") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
+                    NPCDialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
                 } else if (redWarrior.questOneComplete) {
-                    dialog = "Fenton:  Thank you for saving our town!";
+                    NPCDialog = "Fenton:  Thank you for saving our town!";
                 }
             } else if (this.myName == "Healer") {
-                dialog = "Healer:  Hi, I'm the Healer.  I could use a better name.";
+                NPCDialog = "Healer:  Hi, I'm the Healer.  I could use a better name.";
                 isAtHealer = true;
             } else if (this.myName == "Shop Keeper") {
-                dialog = "Healer:  Hi, I'm the Shop Keeper.  I could use a better name.";
+                NPCDialog = "Healer:  Hi, I'm the Shop Keeper.  I could use a better name.";
                 isInShop = true;
 			} else if (this.myName == "Fenton") {
 				if (redWarrior.questOneComplete == false) {
-					dialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
+					NPCDialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
 				} else if (redWarrior.questOneComplete) {
-					dialog = "Fenton:  Thank you for saving our town!";
+					NPCDialog = "Fenton:  Thank you for saving our town!";
 				}
 			} else if (this.myName == "Arya") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Arya:  I'm Arya, our town is being overran by Goblins!  Please do something!";
+                    NPCDialog = "Arya:  I'm Arya, our town is being overran by Goblins!  Please do something!";
                 } else if (redWarrior.questOneComplete) {
-                    dialog = "Arya:  Thank you for saving our town!";
+                    NPCDialog = "Arya:  Thank you for saving our town!";
                 }
 			} else if (this.myName == "Lawrence") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Lawrence:  I'm Lawrence, our town is being overran by Goblins!  Please do something!  I'm to scared and going to stay here in the bar.";
+                    NPCDialog = "Lawrence:  I'm Lawrence, our town is being overran by Goblins!  Please do something!  I'm to scared and going to stay here in the bar.";
                 } else if (redWarrior.questOneComplete) {
-                    dialog = "Lawrence:  Thank you for saving our town!";
+                    NPCDialog = "Lawrence:  Thank you for saving our town!";
                 }
 			} else if (this.myName == "Rowan") {
                 if (redWarrior.questOneComplete == false) {
-                    dialog = "Rowan:  I'm Rowan, our town is being overran by Goblins!  Please do something!";
+                    NPCDialog = "Rowan:  I'm Rowan, our town is being overran by Goblins!  Please do something!";
                 } else if (redWarrior.questOneComplete) {
-                    dialog = "Rowan:  Thank you for saving our town!";
+                    NPCDialog = "Rowan:  Thank you for saving our town!";
                 }
 			} else if (this.myName == "Fido") {
                 // alternately, we can choose a random one from the array
-                // dialog = meows[Math.floor(Math.random()*meows.length)];
+                // NPCDialog = meows[Math.floor(Math.random()*meows.length)];
 
                 //every 30 frames, switch to the next one and loop around
                 meowcount++;
-                dialog = meows[Math.floor(meowcount / meowframes) % meows.length];
+                NPCDialog = meows[Math.floor(meowcount / meowframes) % meows.length];
                 if (meowcount % meowframes == 1) meowPurrSound.play();
             }
         } 
+
+        if(NPCDialog != "") {
+            dialogManager.setDialogWithCountdown(NPCDialog, 5);
+        }
 	}
 
         this.draw = function() {

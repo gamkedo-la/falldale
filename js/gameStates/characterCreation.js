@@ -110,7 +110,7 @@ function characterCreationRolling(){
 }
 
 function characterCreationScreenInput(whichKeyCode){
-	var gameKeeperFeedback = null;
+	var gameKeeperFeedback = "Choose your Hero";
 	
 	switch(whichKeyCode){
 		
@@ -130,12 +130,13 @@ function characterCreationScreenInput(whichKeyCode){
 		{
 			characterCreationScreen = false;
 			scrollBackgroundScreen = true;
+
+			gameKeeperFeedback = "Have you chosen wisely?";
 		}
 
 		default:
 			gameKeeperFeedback = "";
 			break;
 	} 
-	setDialogUICountdown(3);
-	dialog = gameKeeperFeedback;				
+	dialogManager.setDialogWithCountdown(gameKeeperFeedback, 40);
 }

@@ -3,9 +3,6 @@
 // this also doesn't allow diagonal movement
 var direction = "south";
 
-var healthCountdownSeconds = 5;
-var displayHealthCountdown = healthCountdownSeconds * 30;
-
 levelExperienceArray = [500, 2000, 4000, 6000, 10000, 16000, 26000, 42000, 68000]
 
 function warriorClass() {
@@ -30,6 +27,8 @@ function warriorClass() {
 	this.experience = 0;
 	this.maxHealth = 4;
 	this.health = 4;
+	this.warriorHealthCountdownSeconds = 5;
+	this.warriorDisplayHealthCountdown = this.warriorHealthCountdownSeconds * FRAMES_PER_SECOND;
 	this.waitTime = 0;
 	this.previousTileType = -1;
 	this.sx = 40;
@@ -269,32 +268,27 @@ function warriorClass() {
 				break;
 			case TILE_HEALER_FRONTDOOR:
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				setDialogUICountdown(3);
-				dialog = "This place smells nice.  Is that lavender?";
+				dialogManager.setDialogWithCountdown("This place smells nice.  Is that lavender?");
 				doorSound.play();
 				break;
 			case TILE_YELLOW_DOOR:
 				if(this.yellowKeysHeld > 0 || debugMode) {
 					this.yellowKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					setDialogUICountdown(3);
-					dialog = "I've used a yellow key.";
+					dialogManager.setDialogWithCountdown("I've used a yellow key.");
 					doorSound.play();
 				} else {
-					setDialogUICountdown(3);
-					dialog = "I need a yellow key to open this door.";
+					dialogManager.setDialogWithCountdown("I need a yellow key to open this door.");
 				}
 				break;
 			case TILE_GREEN_DOOR:
 				if(this.greenKeysHeld > 0 || debugMode) {
 					this.greenKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					setDialogUICountdown(3);
-					dialog = "I've used a green key.";
+					dialogManager.setDialogWithCountdown("I've used a green key.");
 					doorSound.play();
 				} else {
-					setDialogUICountdown(3);
-					dialog = "I need a green key to open this door.";
+					dialogManager.setDialogWithCountdown("I need a green key to open this door.");
 				}
 				break;
 			case TILE_FRONTDOOR_YELLOW:
@@ -304,59 +298,50 @@ function warriorClass() {
 				if(this.redKeysHeld > 0 || debugMode) {
 					this.redKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					setDialogUICountdown(3);
-					dialog = "I've used a red key.";
+					dialogManager.setDialogWithCountdown("I've used a red key.");
 					doorSound.play();
 				} else {
-					setDialogUICountdown(3);
-					dialog = "I need a red key to open this door.";
+					dialogManager.setDialogWithCountdown("I need a red key to open this door.");
 				}
 				break;
 			case TILE_BLUE_DOOR:
 				if(this.blueKeysHeld > 0 || debugMode) {
 					this.blueKeysHeld--; // one less key
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					setDialogUICountdown(3);
-					dialog = "I've used a blue key.";
+					dialogManager.setDialogWithCountdown("I've used a blue key.");
 					doorSound.play();
 				} else {
-					setDialogUICountdown(3);
-					dialog = "I need a blue key to open this door.";
+					dialogManager.setDialogWithCountdown("I need a blue key to open this door.");
 				}
 				break;
 			case TILE_YELLOW_KEY:
 				this.yellowKeysHeld++; // one more key
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				setDialogUICountdown(3);
-				dialog = "I've found a yellow key.";
+				dialogManager.setDialogWithCountdown("I've found a yellow key.");
 				keySound.play();
 				break;
 			case TILE_RED_KEY:
 				this.redKeysHeld++; // one more key
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				setDialogUICountdown(3);
-				dialog = "I've found a red key.";
+				dialogManager.setDialogWithCountdown("I've found a red key.");
 				keySound.play();
 				break;
 			case TILE_BLUE_KEY:
 				this.blueKeysHeld++; // one more key
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				setDialogUICountdown(3);
-				dialog = "I've found a blue key.";
+				dialogManager.setDialogWithCountdown("I've found a blue key.");
 				keySound.play();
 				break;
 			case TILE_GREEN_KEY:
 				this.greenKeysHeld++; // one more key
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				setDialogUICountdown(3);
-				dialog = "I've found a green key.";
+				dialogManager.setDialogWithCountdown("I've found a green key.");
 				keySound.play();
 				break;
 			case TILE_MAP:
 				this.haveMap = true; // treasure map found
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
-				setDialogUICountdown(3);
-				dialog = "So this is what this place looks like.  [PRESS 3] for map";
+				dialogManager.setDialogWithCountdown("So this is what this place looks like.  [PRESS 3] for map");
 				break;
 			case TILE_TREASURE:
 				if(this.yellowKeysHeld > 0) {
@@ -364,36 +349,29 @@ function warriorClass() {
 					this.goldpieces = this.goldpieces + 50;
 					redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					setDialogUICountdown(3);
-					dialog = "I've used a yellow key and found 50 gold pieces, and 5 arrows";
+					dialogManager.setDialogWithCountdown("I've used a yellow key and found 50 gold pieces, and 5 arrows");
 				} else {
-					setDialogUICountdown(3);
-					dialog = "I need a yellow key to open this treasure chest.";
+					dialogManager.setDialogWithCountdown("I need a yellow key to open this treasure chest.");
 				}
 				break;
 			case TILE_THROWINGROCKS:
 				redWarrior.myRock.rockQuantity = redWarrior.myRock.rockQuantity + 5;
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
-				setDialogUICountdown(3);
-				dialog = "What luck!  I can use these rocks for throwing at enemies.";
+				dialogManager.setDialogWithCountdown("What luck!  I can use these rocks for throwing at enemies.");
 				break;
 			case TILE_ARROWS:
 				redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
 				roomGrid[walkIntoTileIndex] = TILE_GRASS;
-				setDialogUICountdown(3);
-				dialog = "I'll add these 5 arrows to my inventory.";
+				dialogManager.setDialogWithCountdown("I'll add these 5 arrows to my inventory.");
 				break;
      		case TILE_GRAVE_1 || TILE_GRAVE_2 || TILE_GRAVE_3:
-				setDialogUICountdown(3);
-				dialog = "Too many good people have died from the Skeleton King and his army of the dead.";
+				dialogManager.setDialogWithCountdown("Too many good people have died from the Skeleton King and his army of the dead.");
 				break;
 		    case TILE_GRAVE_4:
-				setDialogUICountdown(3);
-				dialog = "I need to avenge my friend.  The Skeleton King and his army of the dead must be destroyed!.";
+				dialogManager.setDialogWithCountdown("I need to avenge my friend.  The Skeleton King and his army of the dead must be destroyed!.");
 				break;
 			case TILE_FOUNTAIN:
-				setDialogUICountdown(3);
-				dialog = "What a beautiful fountain.";
+				dialogManager.setDialogWithCountdown("What a beautiful fountain.");
 				break;
 			case TILE_SPIKES:
 				var i = 1;
@@ -407,24 +385,19 @@ function warriorClass() {
 				var i = 1;
 				this.x = nextX;
 				this.y = nextY;
-				setDialogUICountdown(3);
-				dialog = "OUCH! Bloody Spikes!";
+				dialogManager.setDialogWithCountdown("OUCH! Bloody Spikes!");
 				break;
 			case TILE_HOUSE_DRESSER_BOTTOM:
-				setDialogUICountdown(3);
-				dialog = "I really need to get some new clothes.";
+				dialogManager.setDialogWithCountdown("I really need to get some new clothes.");
 				break;
 			case TILE_HOUSE_LS_BED_BOTTOM:
-				setDialogUICountdown(3);
-				dialog = "No time to sleep!.";
+				dialogManager.setDialogWithCountdown("No time to sleep!.");
 				break;
 			case TILE_BS_BW_WEAPONSRACKBOTTOM:
-				setDialogUICountdown(3);
-				dialog = "No swords?!  Isn't this a blacksmith's shop?";
+				dialogManager.setDialogWithCountdown("No swords?!  Isn't this a blacksmith's shop?");
 				break;
 			case TILE_CHAIR:
-				setDialogUICountdown(3);
-				dialog = "I really need a drink!";
+				dialogManager.setDialogWithCountdown("I really need a drink!");
 				break;
 			case TILE_CHAIR:
 				this.x = nextX;
@@ -487,8 +460,7 @@ function warriorClass() {
 		if(this.health > this.maxHealth){
 			this.health = this.maxHealth;
 		}
-		setDialogUICountdown(3);
-		dialog = "I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points";
+		dialogManager.setDialogWithCountdown("I feel stronger!.  LEVEL UP. I've gained " + increasedHitPoints + " Hit Points");
 	};
 	
 	this.death = function(){
@@ -566,7 +538,7 @@ function warriorClass() {
 		this.sx = this.frameIndex * this.width;
 
 		if(this.displayHealth){
-			if (displayHealthCountdown % 10 >= 4) {
+			if (this.warriorDisplayHealthCountdown % 10 >= 4) {
 				canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 				canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
 			}
@@ -574,10 +546,10 @@ function warriorClass() {
 			colorRect(this.x+2,this.y-14, 35, 8, "red");
 			colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
 
-			displayHealthCountdown--;
-			if(displayHealthCountdown <= 0){
+			this.warriorDisplayHealthCountdown--;
+			if(this.warriorDisplayHealthCountdown <= 0){
 				this.displayHealth = false;
-				displayHealthCountdown = healthCountdownSeconds * 30;
+				this.warriorDisplayHealthCountdown = this.warriorHealthCountdownSeconds * FRAMES_PER_SECOND;
 			}
 		}
 		else {

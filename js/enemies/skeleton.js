@@ -13,7 +13,7 @@ function skeletonClass(skeletonName) {
 	this.myBite.baseBiteCooldown = 10;		//
 	this.displayHealth = false;
 	this.skeletonHealthCountdownSeconds = 5;
-	this.skeletonDisplayHealthCountdown = this.skeletonHealthCountdownSeconds * 30;
+	this.skeletonDisplayHealthCountdown = this.skeletonHealthCountdownSeconds * FRAMES_PER_SECOND;
 
 	this.tickCount = 0;
 	this.frameIndex = 0;
@@ -75,8 +75,7 @@ function skeletonClass(skeletonName) {
 	this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
-			setDialogUICountdown(5);
-            dialog = "Ouch! I've been bite by a Skeleton! Who knew they could do that?!?";
+			dialogManager.setDialogWithCountdown("Ouch! I've been bite by a Skeleton! Who knew they could do that?!?", 5);
         }
     }
 	
@@ -132,7 +131,7 @@ function skeletonClass(skeletonName) {
 					colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
 					this.skeletonDisplayHealthCountdown--;
 				} else {
-					this.skeletonDisplayHealthCountdown = this.skeletonHealthCountdownSeconds * 30;
+					this.skeletonDisplayHealthCountdown = this.skeletonHealthCountdownSeconds * FRAMES_PER_SECOND;
 					this.displayHealth = false;
 				}
 			}

@@ -24,36 +24,27 @@ function clubClass() {
     //override weaponClass.rangeTest
     this.rangeTest = function(weilder, adversary) {
         if(weilder.direction == "north") {// warrior facing North
-            if(	this.x+25 > adversary.x &&    // within left side
-                this.x+25 < (adversary.x + adversary.width) && //within right side
-                this.y-20 > adversary.y && // within top side
-                this.y-20 < (adversary.y + adversary.height)) {// within bottom 
-                    return true;
-            }
+            if(this.rangeHitTest(25, -20, adversary)) {return true;}
         } else if(weilder.direction == "south") {// warrior facing South
-            if(	(this.x + 10 > adversary.x) &&    // within left side
-                (this.x + 10 < (adversary.x + adversary.width)) && //within right side
-                (this.y + 70 > adversary.y) && // within top side
-                (this.y + 70 < (adversary.y + adversary.height))) {// within bottom 
-                    return true;
-            }			
-        } else if(weilder.direction == "west") {// warrior facing West        
-            if(	this.x -30 > adversary.x &&    // within left side
-                this.x -30 < (adversary.x + adversary.width) && //within right side
-                this.y + 25 > adversary.y && // within top side
-                this.y + 25 < (adversary.y + adversary.height)) {
-                    return true;
-            }			
+            if(this.rangeHitTest(10, 70, adversary)) {return true;}
+        } else if(weilder.direction == "west") {// warrior facing West
+            if(this.rangeHitTest(-30, 25, adversary)) {return true;}
         } else if(weilder.direction == "east") {// warrior facing East
-            if(	this.x + 60 > adversary.x &&    // within left side
-                this.x + 60 < (adversary.x + adversary.width) && //within right side
-                this.y + 25 > adversary.y && // within top side
-                this.y + 25 < (adversary.y + adversary.height)) {// within bottom 
-                    return true;
-            }			    
-        } else {
-            return false;
+            if(this.rangeHitTest(60, 25, adversary)) {return true;}
         }
+
+        return false;
+    }
+
+    this.rangeHitTest = function(deltaX, deltaY, adversary) {
+        if((this.x + deltaX > adversary.x) &&
+           (this.x + deltaX < (adversary.x + adversary.width)) &&
+           (this.y + deltaY > adversary.y) &&
+           (this.y + deltaY < (adversary.y + adversary.height))) {
+                return true;
+        }
+
+        return false;
     }
     
     //override weaponClass.hitTest

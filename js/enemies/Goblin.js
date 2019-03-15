@@ -14,7 +14,7 @@ function goblinClass(goblinName) {
     this.myMelee = new clubClass();
     this.displayHealth = false;
     this.goblinHealthCountdownSeconds = 5;
-    this.goblinDisplayHealthCountdown = this.goblinHealthCountdownSeconds * 30;
+    this.goblinDisplayHealthCountdown = this.goblinHealthCountdownSeconds * FRAMES_PER_SECOND;
 
     this.tickCount = 0;
     this.frameIndex = 0;
@@ -125,8 +125,7 @@ function goblinClass(goblinName) {
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
-			setDialogUICountdown(5);
-            dialog = "Ouch! I've been bite by a goblin.";
+            dialogManager.setDialogWithCountdown("Ouch! I've been bite by a goblin.", 5);
         }
     }
 
@@ -170,7 +169,7 @@ function goblinClass(goblinName) {
                     colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
                     this.goblinDisplayHealthCountdown--;
                 } else {
-                    this.goblinDisplayHealthCountdown = this.goblinHealthCountdownSeconds * 30;
+                    this.goblinDisplayHealthCountdown = this.goblinHealthCountdownSeconds * FRAMES_PER_SECOND;
                     this.displayHealth = false;
                 }
             }

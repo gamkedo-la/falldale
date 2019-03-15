@@ -15,7 +15,7 @@ function archerClass(archerName) {
 	this.myBite.baseBiteCooldown = 10;		//
 	this.displayHealth = false;
 	this.archerHealthCountdownSeconds = 5;
-	this.archerDisplayHealthCountdown = this.archerHealthCountdownSeconds * 30;
+	this.archerDisplayHealthCountdown = this.archerHealthCountdownSeconds * FRAMES_PER_SECOND;
 
 	this.tickCount = 0;
 	this.frameIndex = 0;
@@ -71,8 +71,7 @@ function archerClass(archerName) {
 	this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
-			setDialogUICountdown(5);
-            dialog = "Ouch! I've been bite by an Archer! An Archer!";
+			dialogManager.setDialogWithCountdown("Ouch! I've been bite by an Archer! An Archer!", 5);
         }
     }
 		
@@ -105,7 +104,7 @@ function archerClass(archerName) {
 						colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
 						this.archerDisplayHealthCountdown--;	
 					} else {
-						this.archerDisplayHealthCountdown = this.archerHealthCountdownSeconds * 30;
+						this.archerDisplayHealthCountdown = this.archerHealthCountdownSeconds * FRAMES_PER_SECOND;
 						this.displayHealth = false;
 					}
 

@@ -159,8 +159,7 @@ function tileEditorInput(whichKeyCode){
 			
 		break;
 	}
-	setDialogUICountdown(5);
-	drawDialog();
+	dialogManager.drawDialog();
 }
 
 function downloadString(text, fileType, fileName) {

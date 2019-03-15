@@ -29,7 +29,7 @@ function weaponClass() {
 	}
 	
 	this.setDamageUICountdown = function () {
-		damageUIVisibilityCountdown = damageUICountdown * framesPerSecond;
+		damageUIVisibilityCountdown = damageUICountdown * FRAMES_PER_SECOND;
     }
     
     this.reset = function() {
@@ -74,7 +74,7 @@ function weaponClass() {
         }
     }
 
-    this.move = function(weilder = null) {
+    this.move = function() {
 		if(this.life > 0) {
 			this.life--;  
         }

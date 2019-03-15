@@ -15,7 +15,7 @@ function zombieClass(zombieName, whichPic) {
 	this.myBite.baseBiteCooldown = 2;	//
 	this.displayHealth = false;
 	this.zombieHealthCountdownSeconds = 5;
-	this.zombieDisplayHealthCountdown = this.zombieHealthCountdownSeconds * 30;
+	this.zombieDisplayHealthCountdown = this.zombieHealthCountdownSeconds * FRAMES_PER_SECOND;
 		
 	this.tickCount = 0;
 	this.frameIndex = 0;
@@ -89,8 +89,7 @@ function zombieClass(zombieName, whichPic) {
 	this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
-			setDialogUICountdown(5);
-            dialog = "Ouch! I've been bite by a zombie.  I hope it isn't contagious.";
+			dialogManager.setDialogWithCountdown("Ouch! I've been bite by a zombie.  I hope it isn't contagious.", 5);
         }
     }
 		
@@ -121,7 +120,7 @@ function zombieClass(zombieName, whichPic) {
 					colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
 					this.zombieDisplayHealthCountdown--;
 				} else {
-					this.zombieDisplayHealthCountdown = this.zombieHealthCountdownSeconds * 30;
+					this.zombieDisplayHealthCountdown = this.zombieHealthCountdownSeconds * FRAMES_PER_SECOND;
 					this.displayHealth = false;
 				}
 			}

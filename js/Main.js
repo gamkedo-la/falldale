@@ -3,7 +3,7 @@ var debugSkipToGame = true;
 // Characters //
 
 var canvas, canvasContext;
-var framesPerSecond = 30;
+const FRAMES_PER_SECOND = 30;
 var damageUICountdown = 3;//in seconds
 var diceWidth = 40;
 var diceHeight = 40;
@@ -11,7 +11,8 @@ var stateScreenOffsetX, stateScreenOffsetY;
 var camera;
 var redWarrior = new warriorClass();
 var enemyList = [];
-var dialog = "H: Hides health, I: Inventory, O: Stats";
+const dialogManager = new DialogManager();
+dialogManager.setDialogWithCountdown("H: Hides health, I: Inventory, O: Stats", 3);
 var inventory = " ";
 var inventoryScreen = false;
 var mapShow = false;
@@ -48,7 +49,7 @@ var meowPurrSound = new SoundOverlapsClass("meow_purr");
 const DIALOG_BOX_HEIGHT = 50;
 
 
-var dialogUIVisibilityCountdown = 3;
+//var dialogUIVisibilityCountdown = 3;
 
 
 function resizeCanvas() {
@@ -77,7 +78,7 @@ window.onload = function() {
 };
 
 function imageLoadingDoneSoStartGame() {
-    setInterval(updateAll, 1000 / framesPerSecond);
+    setInterval(updateAll, 1000 / FRAMES_PER_SECOND);
 
     setupInput();
     console.log("setupInput should run - Main.js");
@@ -217,28 +218,6 @@ function health() {
     if (redWarrior.health <= 0) {
 		resetLevel();
 		redWarrior.death();
-    }
-}
-
-function messageDraw() {
-
-    dialogUIVisibilityCountdown--;
-    displayMessage();
-}
-
-function setDialogUICountdown(seconds) {
-    dialogUIVisibilityCountdown = seconds * 30; // 30fps
-}
-
-function displayMessage() {
-
-    colorRect(0, canvas.height - 50, canvas.width, DIALOG_BOX_HEIGHT, "black");
-    colorRect(5, canvas.height - 45, canvas.width - 10, 40, "white");
-
-    if (dialogUIVisibilityCountdown <= 0) {
-        return;
-    } else {
-        colorText(dialog, 20, canvas.height - 20, "Black");
     }
 }
 
@@ -388,7 +367,8 @@ function drawAll() {
 			colorText(goblinsKilledInFallDale + " out of the 20 Goblins killed in Falldale.", canvas.width - 400, 20, "red");
 		}
         health();
-        messageDraw();
+        dialogManager.drawDialog();
+//        messageDraw();
         damageDraw();
         // miniMapDraw();
         if(muteAudio){

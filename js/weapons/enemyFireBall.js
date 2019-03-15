@@ -64,7 +64,7 @@ function enemyFireBallClass() {
     this.superClassHitTest = this.hitTest;
     this.hitTest = function(weilder, adversary) {
         if(this.superClassHitTest(weilder, adversary)) {
-			dialog = "Successful fireball on "+ adversary.myName+"!";
+			dialogManager.setDialogWithCountdown("Successful fireball on "+ adversary.myName+"!", 5);
         }
 	}
 
