@@ -11,6 +11,7 @@ var stateScreenOffsetX, stateScreenOffsetY;
 var camera;
 var redWarrior = new warriorClass();
 var enemyList = [];
+var tileList = [];
 const dialogManager = new DialogManager();
 dialogManager.setDialogWithCountdown("H: Hides health, I: Inventory, O: Stats", 3);
 var inventory = " ";
@@ -94,25 +95,18 @@ function imageLoadingDoneSoStartGame() {
     }
 }
 
-function nextLevel() {
-    console.log("This is obsolete, should be setting levelRow and levelCol");
-    levelNow++;
-    if (levelNow > levelList.length) {
-        levelNow = 0;
-    }
-    loadLevel();
-}
-
 function loadLevel() {
     recalulateLevelNow();
     var whichLevel = levelList[levelNow];
     roomGrid = whichLevel.slice();
     enemyList.splice(0, enemyList.length); //Empty enemyList
+    tileList.splice(0, tileList.length); //Empty tileList
 
     var arrayIndex = 0;
     for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
         for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
             var newEnemy;
+            var newTile;
             if(roomGrid[arrayIndex] == TILE_BAT) {
                 newEnemy = new batClass('Bat');
             } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
@@ -169,6 +163,7 @@ function loadLevel() {
                 newEnemy.numberOfFrames = 6; // six frame walk cycle
                 newEnemy.patrolPoints = [4, 6, 10, 6]; // sidewalk near your house
             } else {
+                tileList.push(new TileObject(arrayIndex));
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
             }
@@ -177,6 +172,7 @@ function loadLevel() {
             newEnemy.reset(resetX, resetY);
             enemyList.push(newEnemy);
             roomGrid[arrayIndex] = TILE_ROAD;
+            tileList.push(new TileObject(arrayIndex));
             arrayIndex++;
         } //end of col for
     } // end of row for
@@ -312,6 +308,49 @@ function drawMenuScreen() {
     canvasContext.restore();
 }
 
+function depthSortedDraw() {
+    let tilesOnscreen = tileList.filter(
+        tile => camera.canShow(tile.x, tile.y, tile.width, tile.height)
+    );
+
+    let floorTiles = tilesOnscreen.filter(
+        tile => tileIsAFloor(tile.type)
+    );
+
+    let objectsToDraw = tilesOnscreen.filter(
+        tile => (!tileIsAFloor(tile.type))
+    );
+    
+    objectsToDraw = objectsToDraw.concat(enemyList.filter(
+        enemy => camera.canShow(enemy.x, enemy.y, enemy.width, enemy.height)
+    ));
+
+    objectsToDraw = objectsToDraw.concat(heartsList.filter(
+        heart => camera.canShow(heart.x, heart.y, heart.width, heart.height)
+    ));
+
+    objectsToDraw = objectsToDraw.concat(healingPotionList.filter(
+        potion => camera.canShow(potion.x, potion.y, potion.width, potion.height)
+    ));
+
+    objectsToDraw = objectsToDraw.concat(goldList.filter(
+        gold => camera.canShow(gold.x, gold.y, gold.width, gold.height)
+    ));
+
+    objectsToDraw.push(redWarrior);
+
+    objectsToDraw.sort(
+        function(a, b) {return ((a.y + a.height) - (b.y + b.height));}
+    );
+
+    for(let i = 0; i < floorTiles.length; i++) {
+        floorTiles[i].draw();
+    }
+
+    for(let i = 0; i < objectsToDraw.length; i++) {
+        objectsToDraw[i].draw();
+    }
+}
 
 function drawAll() {
     if (menuScreen) {
@@ -343,23 +382,9 @@ function drawAll() {
         colorRect(0,0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
         canvasContext.save();
         canvasContext.translate(-camera.x, -camera.y);
-        //drawOnlyTilesOnScreen();
-        //drawRoom(true,false); // draw floors only
-        drawRoom(true,true); // draw all level tiles
-        for (var i=0; i<enemyList.length; i++) {
-            enemyList[i].draw();
-        }
-        for (var i=0; i<heartsList.length; i++) {
-            heartsList[i].draw();
-        }
-        for (var i=0; i<healingPotionList.length; i++) {
-            healingPotionList[i].draw();
-        }
-        for (var i=0; i<goldList.length; i++) {
-            goldList[i].draw();
-        }
-        //drawRoom(false,true); // draw all non floors
-        redWarrior.draw();
+
+        depthSortedDraw();
+
         drawRooftops();
         OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
 		canvasContext.restore();

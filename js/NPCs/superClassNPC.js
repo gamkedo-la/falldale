@@ -183,6 +183,7 @@ function npcSuperClass() {
         const walkIntoTileType = this.tileTypeAtPosition(this.x, this.y);
 
         switch(walkIntoTileType) {
+            //TODO: Do we want NPCs to trigger the transition to bloody spikes?
             case TILE_SPIKES:
                 this.health = this.health - 0.5; // Damage to Health
                 roomGrid[walkIntoTileIndex] = TILE_SPIKES_BLOODY;

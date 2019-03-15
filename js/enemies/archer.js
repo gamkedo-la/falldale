@@ -76,7 +76,6 @@ function archerClass(archerName) {
     }
 		
 	this.draw = function() { 
-						
 		if(this.archerMove) {
 			this.tickCount++;
 		}

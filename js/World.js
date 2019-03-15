@@ -527,6 +527,13 @@ function isTileIndexAdjacentToPixelCoord(atX, atY, tileIndex) {
 		   roomGrid[getTileIndexAtPixelCoord(atX + TILE_W / 2, atY)] == tileIndex;
 }
 
+function getPixelCoordForArrayIndex(index) {
+	const col = index % ROOM_COLS;
+	const row = Math.floor(index / ROOM_COLS);
+
+	return {x: (col * TILE_W), y: (row * TILE_H)};
+}
+
 function getCenterPixelCoordForArrayIndex(index) {
 	const col = index % ROOM_COLS;
 	const row = Math.floor(index / ROOM_COLS);

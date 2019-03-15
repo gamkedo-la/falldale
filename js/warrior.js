@@ -421,6 +421,17 @@ function warriorClass() {
 			sound.play();
 		}
 
+		const indexFilter = function(anIndex) {
+			return (function(tile) {
+				return tile.index == anIndex;
+			});
+		}
+
+		const thisTile = tileList.filter(
+			indexFilter(aTileIndex)
+		)
+
+		thisTile[0].setNewType(aTileType);
 		roomGrid[aTileIndex] = aTileType;
 	}
 
@@ -606,7 +617,9 @@ function warriorClass() {
 			case TILE_ARROWS:
 				this.pickUpArrows(walkIntoTileIndex);
 				break;
-     		case TILE_GRAVE_1 || TILE_GRAVE_2 || TILE_GRAVE_3:
+			 case TILE_GRAVE_1:
+			 case TILE_GRAVE_2:
+			 case TILE_GRAVE_3:
 				dialogManager.setDialogWithCountdown("Too many good people have died from the Skeleton King and his army of the dead.");
 				break;
 		    case TILE_GRAVE_4:

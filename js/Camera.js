@@ -46,4 +46,13 @@ function Camera () {
             this.y = maxPanTop;
         }
     };
+
+    this.canShow = function(x, y, width, height) {
+        if(x + width < this.x) {return false;}
+        if(x > this.x + canvas.width) {return false;}
+        if(y + height < this.y) {return false;}
+        if(y > this.y + canvas.height) {return false;}
+
+        return true;
+    }
 }
