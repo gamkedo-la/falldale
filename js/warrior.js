@@ -133,283 +133,20 @@ function warriorClass() {
 	}; // end of warrior initialize func
 
 	this.move = function() {
-		var nextX = this.x;
-		var nextY = this.y;
+		var {nextX, nextY} = this.nextPosWithInput(nextY, nextX);
 
-		if(this.keyHeld_WalkNorth) {
-			nextY -= this.speed;
-			direction = "north";
-			this.sx = 0;
-			this.sy = 0;
-		}
-		if(this.keyHeld_WalkSouth) {
-			nextY += this.speed;
-			direction = "south";
-			this.sx = 0;
-			this.sy = this.height;
-		}
-		if(this.keyHeld_WalkWest) {
-			nextX -= this.speed;
-			direction = "west";
-			this.sx = 0;
-			this.sy = this.height*2;
-		}
-		if(this.keyHeld_WalkEast) {
-			nextX += this.speed;
-			direction = "east";
-			this.sx = 0;
-			this.sy = this.height*3;
-		}
+		this.playerMove = (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast);
 
-		if(this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast) {
-			this.playerMove = true;
-		} else {
-			this.playerMove = false;
-		}
-		var tileC = pixelXtoTileCol(nextX);
-		var tileR = pixelYtoTileRow(nextY);
+		const tileC = pixelXtoTileCol(nextX);
+		const tileR = pixelYtoTileRow(nextY);
 
-		if (tileC <= 0) {
-			console.log("Touching left edge of map");
-			levelCol --;
-			console.log("this.x before is " + this.x);
-			this.x = (ROOM_COLS - 3) * TILE_W;
-			loadLevel();
-			return;
-		}
+		const didLoadNewLevel = this.loadNewLevelIfAtEdge(tileC, tileR);
+		if(didLoadNewLevel) {return;}
 
-		if (tileR <= 0) {
-			console.log("Touching top edge of map");
-			levelRow--;
-			this.y = (ROOM_ROWS - 3) * TILE_H;
-			loadLevel();
-			return;
-		}
+		const walkIntoTileIndex = this.indexOfNextTile(nextX, nextY);
 
-		if (tileC >= ROOM_COLS - 1) {
-			console.log("Touching right edge of map");
-			levelCol++;
-			this.x = TILE_W;
-			loadLevel();
-			return;
-		}
+		this.previousTileType = this.updatePosition(nextX, nextY, walkIntoTileIndex);
 
-		if (tileR >= ROOM_ROWS - 1) {
-			console.log("Touching bottom edge of map");
-			levelRow++;
-			this.y = TILE_H;
-			loadLevel();
-			return;
-		}
-
-		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
-		var walkIntoTileType = TILE_WALL;
-
-		if(direction == "north") {
-			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+(this.width/2),nextY);
-		}
-		if(direction == "south") {
-			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+(this.width/2),nextY+this.height);
-		}
-		if(direction == "west") {
-			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY+(this.height/2));
-		}
-		if(direction == "east") {
-			walkIntoTileIndex = getTileIndexAtPixelCoord(nextX+this.width, nextY+(this.height/2));
-		}
-
-		if(walkIntoTileIndex != undefined) {
-			walkIntoTileType = roomGrid[walkIntoTileIndex];
-		}
-
-		switch(walkIntoTileType) {
-			case TILE_BRIDGE_LOWER:
-			case TILE_ROAD: 
-			case TILE_DIRTROAD_N_E:
-			case TILE_DIRTROAD_N_S:
-			case TILE_DIRTROAD_S_E:
-			case TILE_DIRTROAD_W_E:
-			case TILE_DIRTROAD_W_N:
-			case TILE_DIRTROAD_W_S:
-			case TILE_DIRTROAD_W_N_E:
-			case TILE_DIRTROAD_W_S_E:
-				if (debugMode) {
-					this.speed = 20.0;
-				} else {
-					this.speed = 3.0;
-				}
-				this.x = nextX;
-				this.y = nextY;
-				break;
-			case TILE_GRASS:
-			case TILE_GARDEN_1:
-				if (debugMode) {
-					this.speed = 20.0;
-				} else {
-					this.speed = 2.0;
-				}
-				this.x = nextX;
-				this.y = nextY;
-				break;
-			case TILE_GRAVE_YARD_PORTAL:
-				levelRow = 3;
-				levelCol = 1;
-				loadLevel();
-				break;
-			case TILE_HOME_VILLAGE_PORTAL:
-				levelRow = 2;
-				levelCol = 1;
-				loadLevel();
-				break;
-			case TILE_FOREST_PORTAL:
-				levelRow = 3;
-				levelCol = 0;
-				loadLevel();
-				break;
-			case TILE_HEALER_FRONTDOOR:
-				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				dialogManager.setDialogWithCountdown("This place smells nice.  Is that lavender?");
-				doorSound.play();
-				break;
-			case TILE_YELLOW_DOOR:
-				if(this.yellowKeysHeld > 0 || debugMode) {
-					this.yellowKeysHeld--; // one less key
-					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					dialogManager.setDialogWithCountdown("I've used a yellow key.");
-					doorSound.play();
-				} else {
-					dialogManager.setDialogWithCountdown("I need a yellow key to open this door.");
-				}
-				break;
-			case TILE_GREEN_DOOR:
-				if(this.greenKeysHeld > 0 || debugMode) {
-					this.greenKeysHeld--; // one less key
-					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					dialogManager.setDialogWithCountdown("I've used a green key.");
-					doorSound.play();
-				} else {
-					dialogManager.setDialogWithCountdown("I need a green key to open this door.");
-				}
-				break;
-			case TILE_FRONTDOOR_YELLOW:
-					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				break;
-			case TILE_RED_DOOR:
-				if(this.redKeysHeld > 0 || debugMode) {
-					this.redKeysHeld--; // one less key
-					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					dialogManager.setDialogWithCountdown("I've used a red key.");
-					doorSound.play();
-				} else {
-					dialogManager.setDialogWithCountdown("I need a red key to open this door.");
-				}
-				break;
-			case TILE_BLUE_DOOR:
-				if(this.blueKeysHeld > 0 || debugMode) {
-					this.blueKeysHeld--; // one less key
-					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					dialogManager.setDialogWithCountdown("I've used a blue key.");
-					doorSound.play();
-				} else {
-					dialogManager.setDialogWithCountdown("I need a blue key to open this door.");
-				}
-				break;
-			case TILE_YELLOW_KEY:
-				this.yellowKeysHeld++; // one more key
-				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				dialogManager.setDialogWithCountdown("I've found a yellow key.");
-				keySound.play();
-				break;
-			case TILE_RED_KEY:
-				this.redKeysHeld++; // one more key
-				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				dialogManager.setDialogWithCountdown("I've found a red key.");
-				keySound.play();
-				break;
-			case TILE_BLUE_KEY:
-				this.blueKeysHeld++; // one more key
-				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				dialogManager.setDialogWithCountdown("I've found a blue key.");
-				keySound.play();
-				break;
-			case TILE_GREEN_KEY:
-				this.greenKeysHeld++; // one more key
-				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				dialogManager.setDialogWithCountdown("I've found a green key.");
-				keySound.play();
-				break;
-			case TILE_MAP:
-				this.haveMap = true; // treasure map found
-				roomGrid[walkIntoTileIndex] = TILE_GRASS;
-				dialogManager.setDialogWithCountdown("So this is what this place looks like.  [PRESS 3] for map");
-				break;
-			case TILE_TREASURE:
-				if(this.yellowKeysHeld > 0) {
-					this.yellowKeysHeld--; // one less key
-					this.goldpieces = this.goldpieces + 50;
-					redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
-					roomGrid[walkIntoTileIndex] = TILE_ROAD;
-					dialogManager.setDialogWithCountdown("I've used a yellow key and found 50 gold pieces, and 5 arrows");
-				} else {
-					dialogManager.setDialogWithCountdown("I need a yellow key to open this treasure chest.");
-				}
-				break;
-			case TILE_THROWINGROCKS:
-				redWarrior.myRock.rockQuantity = redWarrior.myRock.rockQuantity + 5;
-				roomGrid[walkIntoTileIndex] = TILE_GRASS;
-				dialogManager.setDialogWithCountdown("What luck!  I can use these rocks for throwing at enemies.");
-				break;
-			case TILE_ARROWS:
-				redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
-				roomGrid[walkIntoTileIndex] = TILE_GRASS;
-				dialogManager.setDialogWithCountdown("I'll add these 5 arrows to my inventory.");
-				break;
-     		case TILE_GRAVE_1 || TILE_GRAVE_2 || TILE_GRAVE_3:
-				dialogManager.setDialogWithCountdown("Too many good people have died from the Skeleton King and his army of the dead.");
-				break;
-		    case TILE_GRAVE_4:
-				dialogManager.setDialogWithCountdown("I need to avenge my friend.  The Skeleton King and his army of the dead must be destroyed!.");
-				break;
-			case TILE_FOUNTAIN:
-				dialogManager.setDialogWithCountdown("What a beautiful fountain.");
-				break;
-			case TILE_SPIKES:
-				var i = 1;
-				this.x = nextX;
-				this.y = nextY;
-				this.health = this.health - 0.5;
-				roomGrid[walkIntoTileIndex] = TILE_SPIKES_BLOODY;
-				spikeSound.play();
-				break;
-			case TILE_SPIKES_BLOODY:
-				var i = 1;
-				this.x = nextX;
-				this.y = nextY;
-				dialogManager.setDialogWithCountdown("OUCH! Bloody Spikes!");
-				break;
-			case TILE_HOUSE_DRESSER_BOTTOM:
-				dialogManager.setDialogWithCountdown("I really need to get some new clothes.");
-				break;
-			case TILE_HOUSE_LS_BED_BOTTOM:
-				dialogManager.setDialogWithCountdown("No time to sleep!.");
-				break;
-			case TILE_BS_BW_WEAPONSRACKBOTTOM:
-				dialogManager.setDialogWithCountdown("No swords?!  Isn't this a blacksmith's shop?");
-				break;
-			case TILE_CHAIR:
-				dialogManager.setDialogWithCountdown("I really need a drink!");
-				break;
-			case TILE_CHAIR:
-				this.x = nextX;
-				this.y = nextY;
-				break;
-			case TILE_WALL:
-			default:
-				break;
-
-		} // end of switch
-
-		this.previousTileType = walkIntoTileType;
 		this.mySword.move();
 		this.myArrow.move();
 		this.myRock.move();
@@ -575,4 +312,338 @@ function warriorClass() {
 		this.myRock.draw();
 
 		}
+
+	this.nextPosWithInput = function() {
+		let x = this.x;
+		let y = this.y;
+		if (this.keyHeld_WalkNorth) {
+			y -= this.speed;
+			direction = "north";
+			this.sx = 0;
+			this.sy = 0;
+		}
+		if (this.keyHeld_WalkSouth) {
+			y += this.speed;
+			direction = "south";
+			this.sx = 0;
+			this.sy = this.height;
+		}
+		if (this.keyHeld_WalkWest) {
+			x -= this.speed;
+			direction = "west";
+			this.sx = 0;
+			this.sy = this.height * 2;
+		}
+		if (this.keyHeld_WalkEast) {
+			x += this.speed;
+			direction = "east";
+			this.sx = 0;
+			this.sy = this.height * 3;
+		}
+
+		return {nextX:x, nextY:y};
 	}
+
+	this.loadNewLevelIfAtEdge = function(tileC, tileR) {
+		if (tileC <= 0) {
+			console.log("Touching left edge of map");
+			levelCol--;
+			console.log("this.x before is " + this.x);
+			this.x = (ROOM_COLS - 3) * TILE_W;
+			loadLevel();
+			return true;
+		}
+
+		if (tileR <= 0) {
+			console.log("Touching top edge of map");
+			levelRow--;
+			this.y = (ROOM_ROWS - 3) * TILE_H;
+			loadLevel();
+			return true;
+		}
+
+		if (tileC >= ROOM_COLS - 1) {
+			console.log("Touching right edge of map");
+			levelCol++;
+			this.x = TILE_W;
+			loadLevel();
+			return true;
+		}
+
+		if (tileR >= ROOM_ROWS - 1) {
+			console.log("Touching bottom edge of map");
+			levelRow++;
+			this.y = TILE_H;
+			loadLevel();
+			return true;
+		}
+
+		return false;
+	}
+
+	this.indexOfNextTile = function(nextX, nextY) {
+		if(direction == "north") {
+			return getTileIndexAtPixelCoord(nextX+(this.width/2),nextY);
+		} else if(direction == "south") {
+			return getTileIndexAtPixelCoord(nextX+(this.width/2),nextY+this.height);
+		} else if(direction == "west") {
+			return getTileIndexAtPixelCoord(nextX, nextY+(this.height/2));
+		} else if(direction == "east") {
+			return getTileIndexAtPixelCoord(nextX+this.width, nextY+(this.height/2));
+		} else {
+			return getTileIndexAtPixelCoord(nextX, nextY);
+		}
+	}
+
+	this.tileTypeForIndex = function(tileIndex) {
+		if(tileIndex == undefined) {
+			return TILE_WALL;
+		} else {
+			return roomGrid[tileIndex];
+		}
+	}
+
+	this.setSpeedAndPosition = function(speed, xPos, yPos) {
+		if(debugMode) {
+			this.speed = 20;
+		} else {
+			this.speed = speed;
+		}
+
+		this.x = xPos;
+		this.y = yPos;
+	}
+
+	this.loadNextLevel = function(newRow, newCol) {
+		levelRow = newRow;
+		levelCol = newCol;
+		loadLevel();
+	}
+
+	this.repaceTileAtIndexWithTileOfTypeAndPlaySound = function(aTileIndex, aTileType, sound = null) {
+		if(sound != null) {
+			sound.play();
+		}
+		roomGrid[aTileIndex] = aTileType;
+	}
+
+	this.openHealerDoor = function(tileIndex) {
+		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+		dialogManager.setDialogWithCountdown("This place smells nice.  Is that lavender?");
+	}
+
+	this.tryToOpenYellowDoor = function(tileIndex) {
+		if(this.yellowKeysHeld > 0 || debugMode) {
+			this.yellowKeysHeld--; // one less key
+			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+			dialogManager.setDialogWithCountdown("I've used a yellow key.");
+		} else {
+			dialogManager.setDialogWithCountdown("I need a yellow key to open this door.");
+		}
+	}
+
+	this.tryToOpenGreenDoor = function(tileIndex) {
+		if(this.greenKeysHeld > 0 || debugMode) {
+			this.greenKeysHeld--; // one less key
+			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+			dialogManager.setDialogWithCountdown("I've used a green key.");
+		} else {
+			dialogManager.setDialogWithCountdown("I need a green key to open this door.");
+		}
+	}
+
+	this.tryToOpenRedDoor = function(tileIndex) {
+		if(this.redKeysHeld > 0 || debugMode) {
+			this.redKeysHeld--; // one less key
+			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+			dialogManager.setDialogWithCountdown("I've used a red key.");
+		} else {
+			dialogManager.setDialogWithCountdown("I need a red key to open this door.");
+		}
+
+	}
+
+	this.tryToOpenBlueDoor = function(tileIndex) {
+		if(this.blueKeysHeld > 0 || debugMode) {
+			this.blueKeysHeld--; // one less key
+			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+			dialogManager.setDialogWithCountdown("I've used a blue key.");
+		} else {
+			dialogManager.setDialogWithCountdown("I need a blue key to open this door.");
+		}
+	}
+
+	this.pickUpYellowKey = function(tileIndex) {
+		this.yellowKeysHeld++; // one more key
+		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
+		dialogManager.setDialogWithCountdown("I've found a yellow key.");
+	}
+
+	this.pickUpRedKey = function(tileIndex) {
+		this.redKeysHeld++; // one more key
+		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
+		dialogManager.setDialogWithCountdown("I've found a red key.");
+	}
+
+	this.pickUpBlueKey = function(tileIndex) {
+		this.blueKeysHeld++; // one more key
+		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
+		dialogManager.setDialogWithCountdown("I've found a blue key.");
+	}
+
+	this.pickUpGreenKey = function(tileIndex) {
+		this.greenKeysHeld++; // one more key
+		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
+		dialogManager.setDialogWithCountdown("I've found a green key.");
+	}
+
+	this.pickUpMap = function(tileIndex) {
+		this.haveMap = true; // treasure map found
+		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
+		dialogManager.setDialogWithCountdown("So this is what this place looks like.  [PRESS 3] for map");
+	}
+
+	this.tryToGetTreasureWithYellowKey = function(tileIndex) {
+		if(this.yellowKeysHeld > 0) {
+			this.yellowKeysHeld--; // one less key
+			this.goldpieces = this.goldpieces + 50;
+			redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
+			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, null);
+			dialogManager.setDialogWithCountdown("I've used a yellow key and found 50 gold pieces, and 5 arrows");
+		} else {
+			dialogManager.setDialogWithCountdown("I need a yellow key to open this treasure chest.");
+		}
+	}
+
+	this.pickUpThrowingRocks = function(tileIndex) {
+		redWarrior.myRock.rockQuantity = redWarrior.myRock.rockQuantity + 5;
+		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
+		dialogManager.setDialogWithCountdown("What luck!  I can use these rocks for throwing at enemies.");
+	}
+
+	this.pickUpArrows = function(tileIndex) {
+		redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
+		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
+		dialogManager.setDialogWithCountdown("I'll add these 5 arrows to my inventory.");
+	}
+
+	this.impaledOnFreshSpikes = function(tileIndex, nextX, nextY) {
+		this.setSpeedAndPosition(this.speed, nextX, nextY);
+		this.health = this.health - 0.5;
+		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_SPIKES_BLOODY, spikeSound);
+	}
+
+	this.impaledOnBloodySpikes = function(nextX, nextY) {
+		this.setSpeedAndPosition(this.speed, nextX, nextY);
+		dialogManager.setDialogWithCountdown("OUCH! Bloody Spikes!");
+	}
+
+	this.updatePosition = function(nextX, nextY, walkIntoTileIndex) {
+		const walkIntoTileType = this.tileTypeForIndex(walkIntoTileIndex);
+
+		switch(walkIntoTileType) {
+			case TILE_BRIDGE_LOWER:
+			case TILE_ROAD: 
+			case TILE_DIRTROAD_N_E:
+			case TILE_DIRTROAD_N_S:
+			case TILE_DIRTROAD_S_E:
+			case TILE_DIRTROAD_W_E:
+			case TILE_DIRTROAD_W_N:
+			case TILE_DIRTROAD_W_S:
+			case TILE_DIRTROAD_W_N_E:
+			case TILE_DIRTROAD_W_S_E:
+				this.setSpeedAndPosition(3.0, nextX, nextY);
+				break;
+			case TILE_GRASS:
+			case TILE_GARDEN_1:
+				this.setSpeedAndPosition(2.0, nextX, nextY);
+				break;
+			case TILE_GRAVE_YARD_PORTAL:
+				this.loadNextLevel(3, 1);
+				break;
+			case TILE_HOME_VILLAGE_PORTAL:
+				this.loadNextLevel(2, 1);
+				break;
+			case TILE_FOREST_PORTAL:
+				this.loadNewLevel(3, 0);
+				break;
+			case TILE_HEALER_FRONTDOOR:
+				this.openHealerDoor(walkIntoTileIndex);
+				break;
+			case TILE_YELLOW_DOOR:
+				this.tryToOpenYellowDoor(walkIntoTileIndex);
+				break;
+			case TILE_GREEN_DOOR:
+				this.tryToOpenGreenDoor(walkIntoTileIndex);
+				break;
+			case TILE_FRONTDOOR_YELLOW:
+				this.repaceTileAtIndexWithTileOfTypeAndPlaySound(walkIntoTileIndex, TILE_ROAD, null);
+				break;
+			case TILE_RED_DOOR:
+				this.tryToOpenRedDoor(walkIntoTileIndex);
+				break;
+			case TILE_BLUE_DOOR:
+				this.tryToOpenBlueDoor(walkIntoTileIndex);
+				break;
+			case TILE_YELLOW_KEY:
+				this.pickUpYellowKey(walkIntoTileIndex);
+				break;
+			case TILE_RED_KEY:
+				this.pickUpRedKey(walkIntoTileIndex);
+				break;
+			case TILE_BLUE_KEY:
+				this.pickUpBlueKey(walkIntoTileIndex);
+				break;
+			case TILE_GREEN_KEY:
+				this.pickUpGreenKey(walkIntoTileIndex);
+				break;
+			case TILE_MAP:
+				this.pickUpMap(walkIntoTileIndex);
+				break;
+			case TILE_TREASURE:
+				this.tryToGetTreasureWithYellowKey(walkIntoTileIndex);
+				break;
+			case TILE_THROWINGROCKS:
+				this.pickUpThrowingRocks(walkIntoTileIndex);
+				break;
+			case TILE_ARROWS:
+				this.pickUpArrows(walkIntoTileIndex);
+				break;
+     		case TILE_GRAVE_1 || TILE_GRAVE_2 || TILE_GRAVE_3:
+				dialogManager.setDialogWithCountdown("Too many good people have died from the Skeleton King and his army of the dead.");
+				break;
+		    case TILE_GRAVE_4:
+				dialogManager.setDialogWithCountdown("I need to avenge my friend.  The Skeleton King and his army of the dead must be destroyed!.");
+				break;
+			case TILE_FOUNTAIN:
+				dialogManager.setDialogWithCountdown("What a beautiful fountain.");
+				break;
+			case TILE_SPIKES:
+				this.impaledOnFreshSpikes(walkIntoTileIndex, nextX, nextY);
+				break;
+			case TILE_SPIKES_BLOODY:
+				this.impaledOnBloodySpikes(nextX, nextY);
+				break;
+			case TILE_HOUSE_DRESSER_BOTTOM:
+				dialogManager.setDialogWithCountdown("I really need to get some new clothes.");
+				break;
+			case TILE_HOUSE_LS_BED_BOTTOM:
+				dialogManager.setDialogWithCountdown("No time to sleep!.");
+				break;
+			case TILE_BS_BW_WEAPONSRACKBOTTOM:
+				dialogManager.setDialogWithCountdown("No swords?!  Isn't this a blacksmith's shop?");
+				break;
+			case TILE_CHAIR:
+				dialogManager.setDialogWithCountdown("I really need a drink!");
+				break;
+			case TILE_CHAIR:
+				this.setSpeedAndPosition(this.speed, nextX, nextY);
+				break;
+			case TILE_WALL:
+			default:
+				break;
+		} // end of switch
+
+		return walkIntoTileType;
+	}// end of updatePosition()
+}// end of warriorClass
