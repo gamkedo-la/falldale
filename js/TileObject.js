@@ -7,6 +7,9 @@ function TileObject(index) {
     this.height = TILE_H;
     this.index = index;
     this.type = roomGrid[index];
+    if(this.type == TILE_PLAYERSTART) {
+        this.type = TILE_ROAD;
+    }
     this.image = worldPics[this.type];
 
     this.draw = function() {
