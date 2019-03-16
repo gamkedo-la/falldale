@@ -29,6 +29,7 @@ function batClass() {
     this.displayHealth = false;
     this.batHealthCountdownSeconds = 5;
     this.batDisplayHealthCountdown = this.batHealthCountdownSeconds * FRAMES_PER_SECOND;
+    this.isFlying = true;
 
     this.frameIndex = 0;
     this.tickCount = 0;

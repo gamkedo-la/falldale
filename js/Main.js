@@ -319,9 +319,17 @@ function depthSortedDraw() {
     let objectsToDraw = tilesOnscreen.filter(
         tile => (!tileIsAFloor(tile.type))
     );
-    
-    objectsToDraw = objectsToDraw.concat(enemyList.filter(
+
+    let visibleEnemies = enemyList.filter(
         enemy => camera.canShow(enemy.x, enemy.y, enemy.width, enemy.height)
+    );
+
+    let flyingEnemies = visibleEnemies.filter(
+        enemy => (enemy.isFlying)
+    );
+
+    objectsToDraw = objectsToDraw.concat(visibleEnemies.filter(
+        enemy => (!enemy.isFlying)
     ));
 
     objectsToDraw = objectsToDraw.concat(heartsList.filter(
@@ -348,6 +356,10 @@ function depthSortedDraw() {
 
     for(let i = 0; i < objectsToDraw.length; i++) {
         objectsToDraw[i].draw();
+    }
+
+    for(let i = 0; i < flyingEnemies.length; i++) {
+        flyingEnemies[i].draw();
     }
 }
 

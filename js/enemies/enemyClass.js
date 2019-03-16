@@ -39,7 +39,8 @@ function enemyClass() {
     this.pather = null;
 	this.currentPath = [];
 	this.currentPathIndex = 0;
-	this.readyToRemove = false;
+    this.readyToRemove = false;
+    this.isFlying = false;
 
     this.move = function(timeBetweenChangeDir) {
         if (this.health <= 0) {
