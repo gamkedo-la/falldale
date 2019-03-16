@@ -439,17 +439,7 @@ function warriorClass() {
 			sound.play();
 		}
 
-		const indexFilter = function(anIndex) {
-			return (function(tile) {
-				return tile.index == anIndex;
-			});
-		}
-
-		const thisTile = tileList.filter(
-			indexFilter(aTileIndex)
-		)
-
-		thisTile[0].setNewType(aTileType);
+		setNewTypeForTileObjectAtIndex(aTileType, aTileIndex);
 		roomGrid[aTileIndex] = aTileType;
 	}
 

@@ -207,17 +207,8 @@ function enemyClass() {
             case TILE_SPIKES:
                 const aTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
                 this.health = this.health - 0.5; // Damage to Health
-                const indexFilter = function(anIndex) {
-                    return (function(tile) {
-                        return tile.index == anIndex;
-                    });
-                }
-        
-                const thisTile = tileList.filter(
-                    indexFilter(aTileIndex)
-                )
-        
-                thisTile[0].setNewType(aTileType);
+
+                setNewTypeForTileObjectAtIndex(TILE_SPIKES_BLOODY, aTileIndex);
                 roomGrid[walkIntoTileIndex] = TILE_SPIKES_BLOODY;
                 spikeSound.play();
                 break;

@@ -13,32 +13,30 @@ function TileObject(index) {
     this.image = worldPics[this.type];
 
     this.draw = function() {
-        if(this.underImage != null) {
-            canvasContext.drawImage(this.underImage, this.x, this.y);
-        }
-
         canvasContext.drawImage(this.image, this.x, this.y);
     }
-
-    const getUnderImage = function(aType) {
-        if(tileTypeHasTransparency(aType)) {
-            return worldPics[TILE_ROAD];
-        } else if(tileTypeHasGrassTransparency(aType)) {
-            return worldPics[TILE_GRASS]
-        } else {
-            return null;
-        }
-    }
-
-    this.underImage = getUnderImage(this.type);
 
     this.setNewType = function(newType) {
         this.type = newType;
         this.image = worldPics[this.type];
-        this.underImage = getUnderImage(this.type)
+    }
+}
+
+function tileObjectForArrayIndex(index) {
+    const indexFilter = function(anIndex) {
+        return (function(tile) {
+            return tile.index == anIndex;
+        });
     }
 
-    this.isMe = function(anIndex) {
-        return (this.index == anIndex);
-    }
+    const thisTile = tileList.filter(
+        indexFilter(index)
+    )
+
+    return thisTile[0];
+}
+
+function setNewTypeForTileObjectAtIndex(newType, index) {    
+    const theTile = tileObjectForArrayIndex(index);
+    theTile.setNewType(newType);
 }

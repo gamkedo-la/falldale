@@ -106,6 +106,7 @@ function loadLevel() {
     for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
         for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
             var newEnemy;
+            var newTile;
             if(roomGrid[arrayIndex] == TILE_BAT) {
                 newEnemy = new batClass('Bat');
             } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
@@ -162,7 +163,19 @@ function loadLevel() {
                 newEnemy.numberOfFrames = 6; // six frame walk cycle
                 newEnemy.patrolPoints = [4, 6, 10, 6]; // sidewalk near your house
             } else {
-                tileList.push(new TileObject(arrayIndex));
+                newTile = new TileObject(arrayIndex);
+
+                if(tileTypeHasTransparency(newTile.type)) {
+                    newTile.setNewType(TILE_ROAD);
+                    tileList.push(newTile)
+                    newTile = new TileObject(arrayIndex);
+                } else if(tileTypeHasGrassTransparency(newTile.type)) {
+                    newTile.setNewType(TILE_GRASS);
+                    tileList.push(newTile)
+                    newTile = new TileObject(arrayIndex);
+                }
+
+                tileList.push(newTile);
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
             }
