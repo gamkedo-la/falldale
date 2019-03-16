@@ -85,7 +85,7 @@ function imageLoadingDoneSoStartGame() {
     console.log("setupInput should run - Main.js");
     // levelNow = 3; // Use this line to skip to level being worked on.
     if (continueGame === false) {
-        redWarrior.initialize(warriorPic, "Red warrior");
+        redWarrior.initialize("Red warrior");
     } else {
         saveGame.loadData();
     }
@@ -106,7 +106,6 @@ function loadLevel() {
     for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
         for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
             var newEnemy;
-            var newTile;
             if(roomGrid[arrayIndex] == TILE_BAT) {
                 newEnemy = new batClass('Bat');
             } else if(roomGrid[arrayIndex] == TILE_SKELETON) {

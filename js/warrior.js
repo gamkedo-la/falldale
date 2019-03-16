@@ -106,18 +106,7 @@ function warriorClass() {
 		}
 	};
 
-	this.initialize = function(whichImage, warriorName) {
-		this.name = warriorName;
-		this.myWarriorPic;
-		this.yellowKeysHeld = 0;
-		this.greenKeysHeld = 0;
-		this.blueKeysHeld = 0;
-		this.redKeysHeld = 0;
-		this.health = 4;
-		this.mySword.reset();
-		this.myArrow.reset();
-		this.myRock.reset();
-
+	this.positionWarriorAtStartAndReplaceStartTile = function() {
 		for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
 			for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
@@ -129,8 +118,22 @@ function warriorClass() {
 				} // end of Player Start if
 			} //end of col row for
 		} // end of row for
-		//console.log("No Player Start found!");
-	}; // end of warrior initialize func
+	}
+
+	this.initialize = function(warriorName) {
+		this.name = warriorName;
+		this.yellowKeysHeld = 0;
+		this.greenKeysHeld = 0;
+		this.blueKeysHeld = 0;
+		this.redKeysHeld = 0;
+		this.health = 4;
+
+		this.mySword.reset();
+		this.myArrow.reset();
+		this.myRock.reset();
+
+		this.positionWarriorAtStartAndReplaceStartTile();
+	}; // end of warrior initialize function
 
 	this.move = function() {
 		var {nextX, nextY} = this.nextPosWithInput(nextY, nextX);
@@ -257,49 +260,64 @@ function warriorClass() {
 		this.displayHealth = true;
 	};
 
-	this.draw = function() {
-		if(this.playerMove) {
+	this.updateTickCountAndFrameIndex = function() {
+		if (this.playerMove) {
 			this.tickCount++;
 		}
+
 		if (this.tickCount > this.ticksPerFrame) {
 			this.tickCount = 0;
-			if(this.frameIndex < this.numberOfFrames-1) {
+			if (this.frameIndex < this.numberOfFrames - 1) {
 				this.frameIndex += 1;
-			} else {
+			}
+			else {
 				this.frameIndex = 0;
 			}
 		}
+	}
+
+	this.drawFlashingWarriorAndHealth = function() {
+		if (this.warriorDisplayHealthCountdown % 10 >= 4) {
+			this.drawWarriorAndShadow()
+		}
+
+		colorRect(this.x,this.y-16, 40,12, "black");
+		colorRect(this.x+2,this.y-14, 35, 8, "red");
+		colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
+
+		this.warriorDisplayHealthCountdown--;
+		if(this.warriorDisplayHealthCountdown <= 0){
+			this.displayHealth = false;
+			this.warriorDisplayHealthCountdown = this.warriorHealthCountdownSeconds * FRAMES_PER_SECOND;
+		}
+	}
+
+	this.drawDebug = function() {
+		colorRect(this.x,this.y, 5,5, "white");
+		colorRect(this.x,this.y+this.height, 5,5, "white");
+		colorRect(this.x+this.width,this.y, 5,5, "white");
+		colorRect(this.x+this.width,this.y+this.height, 5,5, "white");
+
+		colorRect(this.centerX,this.centerY, 5, 5, 'white');
+	}
+
+	this.drawWarriorAndShadow = function() {
+		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
+		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+	}
+
+	this.draw = function() {
+		this.updateTickCountAndFrameIndex();
 
 		this.sx = this.frameIndex * this.width;
 
 		if(this.displayHealth) {
-			if (this.warriorDisplayHealthCountdown % 10 >= 4) {
-				canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
-				canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
-			}
-
-			colorRect(this.x,this.y-16, 40,12, "black");
-			colorRect(this.x+2,this.y-14, 35, 8, "red");
-			colorRect(this.x+2,this.y-14, (this.health/this.maxHealth)*35, 8, "green");
-
-			this.warriorDisplayHealthCountdown--;
-			if(this.warriorDisplayHealthCountdown <= 0){
-				this.displayHealth = false;
-				this.warriorDisplayHealthCountdown = this.warriorHealthCountdownSeconds * FRAMES_PER_SECOND;
-			}
+			this.drawFlashingWarriorAndHealth();
 		} else {
-			canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
-			canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+			this.drawWarriorAndShadow();
 		}
 
-		if(debugMode) {
-			colorRect(this.x,this.y, 5,5, "white");
-			colorRect(this.x,this.y+this.height, 5,5, "white");
-			colorRect(this.x+this.width,this.y, 5,5, "white");
-			colorRect(this.x+this.width,this.y+this.height, 5,5, "white");
-
-			colorRect(this.centerX,this.centerY, 5, 5, 'white');
-		}
+		if(debugMode) {this.drawDebug();}
 
 		this.mySword.draw(this);
 
