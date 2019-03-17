@@ -701,9 +701,22 @@ function drawMiniMap(posX,posY,miniMapTileSize) {
 	var drawTileY = 0;
 
 	colorRect(posX-5, posY-5, 190, 190, "black");
+	
+	console.log(Math.floor(redWarrior.y/TILE_H));
+	const tileCountX = 190/miniMapTileSize;
+	const tileCountY = 190/miniMapTileSize;
+	const warrTilePosX = Math.floor(redWarrior.y/TILE_H);
+	const warrTilePosY = Math.floor(redWarrior.x/TILE_W);
 
-	for(var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
-		for(var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
+	// half tile count always shown. + warrTilePosY
+	const foo = tileCountX/2 + warrTilePosX;
+	const bar = tileCountY/2 + warrTilePosY;
+
+	const tileYPos = (camera.y - miniMapCamPanY)/miniMapTileSize;
+	const tileXPos = (camera.x - miniMapCamPanX)/miniMapTileSize;
+
+	for(var eachRow = 0; eachRow < foo; eachRow++) {
+		for(var eachCol = 0; eachCol < bar - tileXPos; eachCol++) {
 
 			var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 			var tileKindHere = roomGrid[arrayIndex];
