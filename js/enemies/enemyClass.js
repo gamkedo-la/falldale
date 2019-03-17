@@ -26,6 +26,7 @@ function enemyClass() {
     this.resting = false;
     this.restingTime = Math.random() * 400;
     this.health = 8;
+    this.armorRating = 10;
     this.sx = 50;
     this.sy = 0;
     this.direction = "east";
