@@ -19,7 +19,7 @@ function shopInput(whichKeyCode) {
         case NUM_1:
             if (redWarrior.goldpieces >= 10) {
                 redWarrior.goldpieces = redWarrior.goldpieces - 10;
-                redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 10;
+                redWarrior.myArrow.quantity = redWarrior.myArrow.quantity + 10;
                 shopKeeperFeedback = "Shop Keeper:  Thank you for purchasing the arrows.  Please come again.";
             } else {
                 shopKeeperFeedback = "Shop Keeper:  You don't have enough gold pieces";
@@ -29,7 +29,7 @@ function shopInput(whichKeyCode) {
         case NUM_2:
             if (redWarrior.goldpieces >= 10) {
                 redWarrior.goldpieces = redWarrior.goldpieces - 10;
-                redWarrior.myRock.rockQuantity = redWarrior.myRock.rockQuantity + 10;
+                redWarrior.myRock.quantity = redWarrior.myRock.quantity + 10;
                 shopKeeperFeedback = "Shop Keeper:  Thank you for purchasing the throwing rocks.  Please come again.";
             } else {
                 shopKeeperFeedback = "Shop Keeper:  You don't have enough gold pieces";
