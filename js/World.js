@@ -708,8 +708,8 @@ function drawMiniMap(posX,posY,miniMapTileSize) {
 			var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 			var tileKindHere = roomGrid[arrayIndex];
 
-			var tilePosX = drawTileX + posX + 90 - redWarrior.x/13;
-			var tilePosY = drawTileY + posY + 90 - redWarrior.y/13;
+			var tilePosX = drawTileX + posX + 90 - redWarrior.x/12.5;
+			var tilePosY = drawTileY + posY + 90 - redWarrior.y/12.5;
 			// var tilePosX = drawTileX + posX - miniMapCamPanX + 90;
 			// var tilePosY = drawTileY + posY - miniMapCamPanY + 90;
 
