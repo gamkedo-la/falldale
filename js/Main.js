@@ -133,6 +133,8 @@ function loadLevel() {
                 newEnemy = new archerClass('Archer');
             } else if(roomGrid[arrayIndex] == TILE_DRUID) {
                 newEnemy = new druidClass('Druid', druidPic);
+			} else if(roomGrid[arrayIndex] == TILE_ORCBOSS) {
+                newEnemy = new orcBossClass('Orc Boss', orcBossPic);	
             } else if(roomGrid[arrayIndex] == TILE_ADDY) {   // NPC
                 newEnemy = new npcClass('Addy', addyPic );
             } else if(roomGrid[arrayIndex] == TILE_DELKON) {   // NPC
