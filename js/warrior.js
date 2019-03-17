@@ -434,7 +434,7 @@ function warriorClass() {
 		loadLevel();
 	};
 
-	this.repaceTileAtIndexWithTileOfTypeAndPlaySound = function(aTileIndex, aTileType, sound = null) {
+	this.replaceTileAtIndexWithTileOfTypeAndPlaySound = function(aTileIndex, aTileType, sound = null) {
 		if(sound != null) {
 			sound.play();
 		}
@@ -444,14 +444,14 @@ function warriorClass() {
 	};
 
 	this.openHealerDoor = function(tileIndex) {
-		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+		this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
 		dialogManager.setDialogWithCountdown("This place smells nice.  Is that lavender?");
 	};
 
 	this.tryToOpenYellowDoor = function(tileIndex) {
 		if(this.yellowKeysHeld > 0 || debugMode) {
 			this.yellowKeysHeld--; // one less key
-			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
 			dialogManager.setDialogWithCountdown("I've used a yellow key.");
 		} else {
 			dialogManager.setDialogWithCountdown("I need a yellow key to open this door.");
@@ -461,7 +461,7 @@ function warriorClass() {
 	this.tryToOpenGreenDoor = function(tileIndex) {
 		if(this.greenKeysHeld > 0 || debugMode) {
 			this.greenKeysHeld--; // one less key
-			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
 			dialogManager.setDialogWithCountdown("I've used a green key.");
 		} else {
 			dialogManager.setDialogWithCountdown("I need a green key to open this door.");
@@ -471,7 +471,7 @@ function warriorClass() {
 	this.tryToOpenRedDoor = function(tileIndex) {
 		if(this.redKeysHeld > 0 || debugMode) {
 			this.redKeysHeld--; // one less key
-			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
 			dialogManager.setDialogWithCountdown("I've used a red key.");
 		} else {
 			dialogManager.setDialogWithCountdown("I need a red key to open this door.");
@@ -482,7 +482,7 @@ function warriorClass() {
 	this.tryToOpenBlueDoor = function(tileIndex) {
 		if(this.blueKeysHeld > 0 || debugMode) {
 			this.blueKeysHeld--; // one less key
-			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
+			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
 			dialogManager.setDialogWithCountdown("I've used a blue key.");
 		} else {
 			dialogManager.setDialogWithCountdown("I need a blue key to open this door.");
@@ -563,7 +563,7 @@ function warriorClass() {
 				default:
 			}
 
-			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, tileReplacedIndex, tileSound);
+			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, tileReplacedIndex, tileSound);
 			dialogManager.setDialogWithCountdown(dialog);
 		}
 	};
@@ -571,7 +571,7 @@ function warriorClass() {
 	this.impaledOnFreshSpikes = function(tileIndex, nextX, nextY) {
 		this.setSpeedAndPosition(this.speed, nextX, nextY);
 		this.health = this.health - 0.5;
-		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_SPIKES_BLOODY, spikeSound);
+		this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_SPIKES_BLOODY, spikeSound);
 	};
 
 	this.impaledOnBloodySpikes = function(nextX, nextY) {
@@ -618,7 +618,7 @@ function warriorClass() {
 				this.tryToOpenGreenDoor(walkIntoTileIndex);
 				break;
 			case TILE_FRONTDOOR_YELLOW:
-				this.repaceTileAtIndexWithTileOfTypeAndPlaySound(walkIntoTileIndex, TILE_ROAD, null);
+				this.replaceTileAtIndexWithTileOfTypeAndPlaySound(walkIntoTileIndex, TILE_ROAD, null);
 				break;
 			case TILE_RED_DOOR:
 				this.tryToOpenRedDoor(walkIntoTileIndex);
