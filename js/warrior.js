@@ -118,7 +118,7 @@ function warriorClass() {
 				} // end of Player Start if
 			} //end of col row for
 		} // end of row for
-	}
+	};
 
 	this.initialize = function(warriorName) {
 		this.name = warriorName;
@@ -206,7 +206,7 @@ function warriorClass() {
 		this.health = 4;
 		this.x = 300; // a better location will be coded in the feature
 		this.y = 300; // a better location will be coded in the feature
-	}
+	};
 
 	this.checkWarriorandWeaponCollisionAgainst = function(thisEnemy) {
 		this.centerX = this.x + this.width/2;
@@ -274,7 +274,7 @@ function warriorClass() {
 				this.frameIndex = 0;
 			}
 		}
-	}
+	};
 
 	this.drawFlashingWarriorAndHealth = function() {
 		if (this.warriorDisplayHealthCountdown % 10 >= 4) {
@@ -290,7 +290,7 @@ function warriorClass() {
 			this.displayHealth = false;
 			this.warriorDisplayHealthCountdown = this.warriorHealthCountdownSeconds * FRAMES_PER_SECOND;
 		}
-	}
+	};
 
 	this.drawDebug = function() {
 		colorRect(this.x,this.y, 5,5, "white");
@@ -299,12 +299,12 @@ function warriorClass() {
 		colorRect(this.x+this.width,this.y+this.height, 5,5, "white");
 
 		colorRect(this.centerX,this.centerY, 5, 5, 'white');
-	}
+	};
 
 	this.drawWarriorAndShadow = function() {
 		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
-	}
+	};
 
 	this.draw = function() {
 		this.updateTickCountAndFrameIndex();
@@ -325,7 +325,7 @@ function warriorClass() {
 
 		this.myRock.draw();
 
-	}
+	};
 
 	this.nextPosWithInput = function() {
 		let x = this.x;
@@ -356,7 +356,7 @@ function warriorClass() {
 		}
 
 		return {nextX:x, nextY:y};
-	}
+	};
 
 	this.loadNewLevelIfAtEdge = function(tileC, tileR) {
 		if (tileC <= 0) {
@@ -393,7 +393,7 @@ function warriorClass() {
 		}
 
 		return false;
-	}
+	};
 
 	this.indexOfNextTile = function(nextX, nextY) {
 		if(direction == "north") {
@@ -407,7 +407,7 @@ function warriorClass() {
 		} else {
 			return getTileIndexAtPixelCoord(nextX, nextY);
 		}
-	}
+	};
 
 	this.tileTypeForIndex = function(tileIndex) {
 		if(tileIndex == undefined) {
@@ -415,7 +415,7 @@ function warriorClass() {
 		} else {
 			return roomGrid[tileIndex];
 		}
-	}
+	};
 
 	this.setSpeedAndPosition = function(speed, xPos, yPos) {
 		if(debugMode) {
@@ -426,13 +426,13 @@ function warriorClass() {
 
 		this.x = xPos;
 		this.y = yPos;
-	}
+	};
 
 	this.loadNextLevel = function(newRow, newCol) {
 		levelRow = newRow;
 		levelCol = newCol;
 		loadLevel();
-	}
+	};
 
 	this.repaceTileAtIndexWithTileOfTypeAndPlaySound = function(aTileIndex, aTileType, sound = null) {
 		if(sound != null) {
@@ -441,12 +441,12 @@ function warriorClass() {
 
 		setNewTypeForTileObjectAtIndex(aTileType, aTileIndex);
 		roomGrid[aTileIndex] = aTileType;
-	}
+	};
 
 	this.openHealerDoor = function(tileIndex) {
 		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
 		dialogManager.setDialogWithCountdown("This place smells nice.  Is that lavender?");
-	}
+	};
 
 	this.tryToOpenYellowDoor = function(tileIndex) {
 		if(this.yellowKeysHeld > 0 || debugMode) {
@@ -456,7 +456,7 @@ function warriorClass() {
 		} else {
 			dialogManager.setDialogWithCountdown("I need a yellow key to open this door.");
 		}
-	}
+	};
 
 	this.tryToOpenGreenDoor = function(tileIndex) {
 		if(this.greenKeysHeld > 0 || debugMode) {
@@ -466,7 +466,7 @@ function warriorClass() {
 		} else {
 			dialogManager.setDialogWithCountdown("I need a green key to open this door.");
 		}
-	}
+	};
 
 	this.tryToOpenRedDoor = function(tileIndex) {
 		if(this.redKeysHeld > 0 || debugMode) {
@@ -477,7 +477,7 @@ function warriorClass() {
 			dialogManager.setDialogWithCountdown("I need a red key to open this door.");
 		}
 
-	}
+	};
 
 	this.tryToOpenBlueDoor = function(tileIndex) {
 		if(this.blueKeysHeld > 0 || debugMode) {
@@ -487,37 +487,37 @@ function warriorClass() {
 		} else {
 			dialogManager.setDialogWithCountdown("I need a blue key to open this door.");
 		}
-	}
+	};
 
 	this.pickUpYellowKey = function(tileIndex) {
 		this.yellowKeysHeld++; // one more key
 		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
 		dialogManager.setDialogWithCountdown("I've found a yellow key.");
-	}
+	};
 
 	this.pickUpRedKey = function(tileIndex) {
 		this.redKeysHeld++; // one more key
 		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
 		dialogManager.setDialogWithCountdown("I've found a red key.");
-	}
+	};
 
 	this.pickUpBlueKey = function(tileIndex) {
 		this.blueKeysHeld++; // one more key
 		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
 		dialogManager.setDialogWithCountdown("I've found a blue key.");
-	}
+	};
 
 	this.pickUpGreenKey = function(tileIndex) {
 		this.greenKeysHeld++; // one more key
 		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
 		dialogManager.setDialogWithCountdown("I've found a green key.");
-	}
+	};
 
 	this.pickUpMap = function(tileIndex) {
 		this.haveMap = true; // treasure map found
 		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
 		dialogManager.setDialogWithCountdown("So this is what this place looks like.  [PRESS 3] for map");
-	}
+	};
 
 	this.tryToGetTreasureWithYellowKey = function(tileIndex) {
 		if(this.yellowKeysHeld > 0) {
@@ -529,30 +529,30 @@ function warriorClass() {
 		} else {
 			dialogManager.setDialogWithCountdown("I need a yellow key to open this treasure chest.");
 		}
-	}
+	};
 
 	this.pickUpThrowingRocks = function(tileIndex) {
 		redWarrior.myRock.rockQuantity = redWarrior.myRock.rockQuantity + 5;
 		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
 		dialogManager.setDialogWithCountdown("What luck!  I can use these rocks for throwing at enemies.");
-	}
+	};
 
 	this.pickUpArrows = function(tileIndex) {
 		redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
 		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
 		dialogManager.setDialogWithCountdown("I'll add these 5 arrows to my inventory.");
-	}
+	};
 
 	this.impaledOnFreshSpikes = function(tileIndex, nextX, nextY) {
 		this.setSpeedAndPosition(this.speed, nextX, nextY);
 		this.health = this.health - 0.5;
 		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_SPIKES_BLOODY, spikeSound);
-	}
+	};
 
 	this.impaledOnBloodySpikes = function(nextX, nextY) {
 		this.setSpeedAndPosition(this.speed, nextX, nextY);
 		dialogManager.setDialogWithCountdown("OUCH! Bloody Spikes!");
-	}
+	};
 
 	this.updatePosition = function(nextX, nextY, walkIntoTileIndex) {
 		const walkIntoTileType = this.tileTypeForIndex(walkIntoTileIndex);
@@ -663,5 +663,5 @@ function warriorClass() {
 		} // end of switch
 
 		return walkIntoTileType;
-	}// end of updatePosition()
+	};// end of updatePosition()
 }// end of warriorClass
