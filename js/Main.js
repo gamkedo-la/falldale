@@ -262,8 +262,8 @@ function damageDraw() {
 function inventoryDraw() {
     colorRect(canvas.width - 200, canvas.height - 200, 200, 150, "black");
     colorRect(canvas.width - 195, canvas.height - 195, 190, 140, "white");
-    colorText("Arrows: " + redWarrior.myArrow.arrowQuantity, canvas.width - 170, canvas.height - 180, "Black");
-    colorText("Rocks: " + redWarrior.myRock.rockQuantity, canvas.width - 170, canvas.height - 160, "Black");
+    colorText("Arrows: " + redWarrior.myArrow.quantity, canvas.width - 170, canvas.height - 180, "Black");
+    colorText("Rocks: " + redWarrior.myRock.quantity, canvas.width - 170, canvas.height - 160, "Black");
     colorText("Gold Pieces: " + redWarrior.goldpieces, canvas.width - 170, canvas.height - 140, "Black");
     colorText("Yellow Keys: " + redWarrior.yellowKeysHeld, canvas.width - 170, canvas.height - 120, "Black");
     colorText("Red Keys: " + redWarrior.redKeysHeld, canvas.width - 170, canvas.height - 100, "Black");

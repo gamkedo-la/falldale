@@ -489,58 +489,83 @@ function warriorClass() {
 		}
 	};
 
-	this.pickUpYellowKey = function(tileIndex) {
-		this.yellowKeysHeld++; // one more key
-		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
-		dialogManager.setDialogWithCountdown("I've found a yellow key.");
-	};
+	this.pickUp = function(tileIndex) {
+		let whichItemIndex = pickableItems.findIndex(tileIndex);
+		
+		if (whichItemIndex > -1) {
+			let foundItemIndex = pickableItems[whichItemIndex];
+			let dialog = "Rubber shoes in motion.";
+			let tileReplacedIndex = TILE_GRASS;
+			let tileSound = null;
 
-	this.pickUpRedKey = function(tileIndex) {
-		this.redKeysHeld++; // one more key
-		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
-		dialogManager.setDialogWithCountdown("I've found a red key.");
-	};
+			switch (foundItemIndex) {
+				case TILE_ARROWS:
+					this.myArrow.quantity += 5;
+					tileReplacedIndex = TILE_GRASS;
+					dialog = "I'll add these 5 arrows to my inventory.";
+					break;
+				
+				case TILE_THROWINGROCKS:
+					this.myRock.quantity += 5;
+					tileReplacedIndex = TILE_GRASS;
+					dialog = "What luck!  I can use these rocks for throwing at enemies.";
+					break;
+				
+				case TILE_KEY:
+					break;
+				
+				case TILE_YELLOW_KEY:
+					this.yellowKeysHeld++; // one more key
+					tileReplacedIndex = TILE_ROAD;
+					tileSound = keySound;
+					dialog = "I've found a yellow key.";
+					break;
 
-	this.pickUpBlueKey = function(tileIndex) {
-		this.blueKeysHeld++; // one more key
-		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
-		dialogManager.setDialogWithCountdown("I've found a blue key.");
-	};
+				case TILE_GREEN_KEY:
+					this.greenKeysHeld++; // one more key
+					tileReplacedIndex = TILE_ROAD;
+					tileSound = keySound;
+					dialog = "I've found a green key.";
+					break;
 
-	this.pickUpGreenKey = function(tileIndex) {
-		this.greenKeysHeld++; // one more key
-		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, keySound);
-		dialogManager.setDialogWithCountdown("I've found a green key.");
-	};
+				case TILE_BLUE_KEY:
+					this.blueKeysHeld++; // one more key
+					tileReplacedIndex = TILE_ROAD;
+					tileSound = keySound;
+					dialog = "I've found a blue key.";
+					break;
+				
+				case TILE_RED_KEY:
+					this.redKeysHeld++; // one more key
+					tileReplacedIndex = TILE_ROAD;
+					tileSound = keySound;
+					dialog = "I've found a red key.";
+					break;
 
-	this.pickUpMap = function(tileIndex) {
-		this.haveMap = true; // treasure map found
-		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
-		dialogManager.setDialogWithCountdown("So this is what this place looks like.  [PRESS 3] for map");
-	};
+				case TILE_TREASURE:
+					if(this.yellowKeysHeld > 0) {
+						this.yellowKeysHeld--; // one less key
+						this.goldpieces = this.goldpieces + 50;
+						this.myArrow.quantity += 5;
+						tileReplacedIndex = TILE_ROAD;
+						dialog = "I've used a yellow key and found 50 gold pieces, and 5 arrows";
+					} else {
+						dialog = "I need a yellow key to open this treasure chest.";
+					}
+					break;
+				
+				case TILE_MAP:
+					this.haveMap = true; // treasure map found
+					tileReplacedIndex = TILE_GRASS;
+					dialog = "So this is what this place looks like.  [PRESS 3] for map";
+					break;
 
-	this.tryToGetTreasureWithYellowKey = function(tileIndex) {
-		if(this.yellowKeysHeld > 0) {
-			this.yellowKeysHeld--; // one less key
-			this.goldpieces = this.goldpieces + 50;
-			redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
-			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, null);
-			dialogManager.setDialogWithCountdown("I've used a yellow key and found 50 gold pieces, and 5 arrows");
-		} else {
-			dialogManager.setDialogWithCountdown("I need a yellow key to open this treasure chest.");
+				default:
+			}
+
+			this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, tileReplacedIndex, tileSound);
+			dialogManager.setDialogWithCountdown(dialog);
 		}
-	};
-
-	this.pickUpThrowingRocks = function(tileIndex) {
-		redWarrior.myRock.rockQuantity = redWarrior.myRock.rockQuantity + 5;
-		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
-		dialogManager.setDialogWithCountdown("What luck!  I can use these rocks for throwing at enemies.");
-	};
-
-	this.pickUpArrows = function(tileIndex) {
-		redWarrior.myArrow.arrowQuantity = redWarrior.myArrow.arrowQuantity + 5;
-		this.repaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
-		dialogManager.setDialogWithCountdown("I'll add these 5 arrows to my inventory.");
 	};
 
 	this.impaledOnFreshSpikes = function(tileIndex, nextX, nextY) {
@@ -602,28 +627,28 @@ function warriorClass() {
 				this.tryToOpenBlueDoor(walkIntoTileIndex);
 				break;
 			case TILE_YELLOW_KEY:
-				this.pickUpYellowKey(walkIntoTileIndex);
+				this.pickUp(walkIntoTileIndex);
 				break;
 			case TILE_RED_KEY:
-				this.pickUpRedKey(walkIntoTileIndex);
+				this.pickUp(walkIntoTileIndex);
 				break;
 			case TILE_BLUE_KEY:
-				this.pickUpBlueKey(walkIntoTileIndex);
+				this.pickUp(walkIntoTileIndex);
 				break;
 			case TILE_GREEN_KEY:
-				this.pickUpGreenKey(walkIntoTileIndex);
+				this.pickUp(walkIntoTileIndex);
 				break;
 			case TILE_MAP:
-				this.pickUpMap(walkIntoTileIndex);
+				this.pickUp(walkIntoTileIndex);
 				break;
 			case TILE_TREASURE:
-				this.tryToGetTreasureWithYellowKey(walkIntoTileIndex);
+				this.pickUp(walkIntoTileIndex);
 				break;
 			case TILE_THROWINGROCKS:
-				this.pickUpThrowingRocks(walkIntoTileIndex);
+				this.pickUp(walkIntoTileIndex);
 				break;
 			case TILE_ARROWS:
-				this.pickUpArrows(walkIntoTileIndex);
+				this.pickUp(walkIntoTileIndex);
 				break;
 			 case TILE_GRAVE_1:
 			 case TILE_GRAVE_2:

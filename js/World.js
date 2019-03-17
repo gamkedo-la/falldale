@@ -302,6 +302,19 @@ const TILE_BLUE_KEY = 155;
 const TILE_RED_KEY = 156;
 const TILE_TREASURE = 157;
 const TILE_MAP = 158;
+
+const pickableItems = [
+	TILE_ARROWS,
+	TILE_THROWINGROCKS,
+	TILE_KEY,
+	TILE_YELLOW_KEY,
+	TILE_GREEN_KEY,
+	TILE_BLUE_KEY,
+	TILE_RED_KEY,
+	TILE_TREASURE,
+	TILE_MAP
+];
+
 //players house Numbers 200 through 299
 const TILE_ROOF_FRONTRIGHT = 200;
 const TILE_ROOF_SIDERIGHT = 201;
@@ -397,6 +410,16 @@ const TILE_GRAVE_1 = 368;
 const TILE_GRAVE_2 = 369;
 const TILE_GRAVE_3 = 370;
 const TILE_GRAVE_4 = 371;
+
+const skeletonSpawnTiles = [
+	TILE_MAUSOLEUM_BR,
+	TILE_MAUSOLEUM_TL,
+	TILE_GRAVE_1,
+	TILE_GRAVE_2,
+	TILE_GRAVE_3,
+	TILE_GRAVE_4
+];
+
 //druid tiles
 const TILE_DRUID_CIRCLE_1 = 372;
 const TILE_DRUID_CIRCLE_2= 373;
@@ -459,13 +482,6 @@ const TILE_GRASS_MINIMAP = 900;
 const TILE_WATER_MINIMAP = 901;
 const TILE_ROAD_MINIMAP = 902;
 const TILE_BLOCKED_MINIMAP = 903;
-
-const skeletonSpawnTiles = [TILE_MAUSOLEUM_BR,
-							TILE_MAUSOLEUM_TL,
-							TILE_GRAVE_1,
-							TILE_GRAVE_2,
-							TILE_GRAVE_3,
-							TILE_GRAVE_4];
 
 const MAP_WIDTH = 3;
 
