@@ -568,6 +568,7 @@ function tileTypeHasTransparency(checkTileType) {
 			checkTileType == TILE_BS_DESK ||
 			checkTileType == TILE_BS_BW_WEAPONSRACKBOTTOM ||
 			checkTileType == TILE_HOUSE_LS_BED_BOTTOM ||
+			checkTileType == TILE_HOUSE_LS_BED_TOP ||
 			checkTileType == TILE_HOUSE_DRESSER_BOTTOM ||
 			checkTileType == TILE_BAR ||
 			checkTileType == TILE_BAR_TOP ||
