@@ -74,7 +74,7 @@ window.onload = function() {
     colorText("Loading Images... please wait", 400, 300, 'black');
     loadImages();
     canvas.addEventListener('mousedown', handleMouseClick);
-    backgroundMusic.loopSong("falldale-pub");
+    backgroundMusic.loopSong("have-a-nice-beer");
 
 };
 
@@ -133,6 +133,8 @@ function loadLevel() {
                 newEnemy = new archerClass('Archer');
             } else if(roomGrid[arrayIndex] == TILE_DRUID) {
                 newEnemy = new druidClass('Druid', druidPic);
+			} else if(roomGrid[arrayIndex] == TILE_ORCBOSS) {
+                newEnemy = new orcBossClass('Orc Boss', orcBossPic);	
             } else if(roomGrid[arrayIndex] == TILE_ADDY) {   // NPC
                 newEnemy = new npcClass('Addy', addyPic );
             } else if(roomGrid[arrayIndex] == TILE_DELKON) {   // NPC
@@ -260,8 +262,8 @@ function damageDraw() {
 function inventoryDraw() {
     colorRect(canvas.width - 200, canvas.height - 200, 200, 150, "black");
     colorRect(canvas.width - 195, canvas.height - 195, 190, 140, "white");
-    colorText("Arrows: " + redWarrior.myArrow.arrowQuantity, canvas.width - 170, canvas.height - 180, "Black");
-    colorText("Rocks: " + redWarrior.myRock.rockQuantity, canvas.width - 170, canvas.height - 160, "Black");
+    colorText("Arrows: " + redWarrior.myArrow.quantity, canvas.width - 170, canvas.height - 180, "Black");
+    colorText("Rocks: " + redWarrior.myRock.quantity, canvas.width - 170, canvas.height - 160, "Black");
     colorText("Gold Pieces: " + redWarrior.goldpieces, canvas.width - 170, canvas.height - 140, "Black");
     colorText("Yellow Keys: " + redWarrior.yellowKeysHeld, canvas.width - 170, canvas.height - 120, "Black");
     colorText("Red Keys: " + redWarrior.redKeysHeld, canvas.width - 170, canvas.height - 100, "Black");

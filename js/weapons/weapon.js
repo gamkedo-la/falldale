@@ -22,10 +22,8 @@ function weaponClass() {
 	}
 	
 	this.rollForDamage = function() {
-		if(this.toHitPoints >= 10){
 			this.damagePoints = Math.floor(Math.random() * this.damageDice) + 1;
 			displayDamagePoints = this.damagePoints;
-		}
 	}
 	
 	this.setDamageUICountdown = function () {
@@ -61,7 +59,7 @@ function weaponClass() {
 
         //Close enough to the enemy to determine if this is a hit or not
         this.rollToDetermineIfHit();
-        if(this.toHitPoints > 10){
+        if(this.toHitPoints + weilder.experienceLevel > adversary.armorRating){
             //this is a hit
             this.rollForDamage();
             this.life = 0;//assumes weapons are only good for one hit

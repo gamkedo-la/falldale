@@ -33,6 +33,7 @@ var orcPic3 = document.createElement("img");
 var deadOrcPic = document.createElement("img");
 
 var druidPic = document.createElement("img");
+var orcBossPic = document.createElement("img"); 
 
 var addyPic = document.createElement("img");
 var delkonPic = document.createElement("img");
@@ -98,6 +99,7 @@ function loadImages() {
 			{tileType: TILE_DIRTROAD_W_S,  theFile: "Roads/dirtRoadSouthToWest.png"},
 			{tileType: TILE_DIRTROAD_W_N_E,  theFile: "Roads/dirtRoadConnectsWestNorthEast.png"},
 			{tileType: TILE_DIRTROAD_W_S_E,  theFile: "Roads/dirtRoadConnectsWestSouthEast.png"},
+			{tileType: TILE_FALLDALE_ROADSIGN,  theFile: "Roads/FalldaleRoadSign.png"},
 			{tileType: TILE_YELLOW_KEY,  theFile: "keyedDoorsandKeys/yellowKey.png"},
 			{tileType: TILE_GREEN_KEY,  theFile: "keyedDoorsandKeys/greenKey.png"},
 			{tileType: TILE_BLUE_KEY,  theFile: "keyedDoorsandKeys/blueKey.png"},
@@ -244,6 +246,7 @@ function loadImages() {
 			{varName: orcPic, theFile: "Monsters/Orc1.png"},
 			{varName: orcPic2, theFile: "Monsters/Orc2.png"},
 			{varName: orcPic3, theFile: "Monsters/Orc3.png"},
+			{varName: orcBossPic, theFile: "Monsters/OrcChief.png"},
 			{varName: druidPic, theFile: "Monsters/druid.png"},
 			{varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png"},
 			{varName: archerPic, theFile: "Monsters/archer.png"},
