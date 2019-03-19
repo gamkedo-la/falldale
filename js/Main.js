@@ -270,9 +270,12 @@ function inventoryDraw() {
 }
 
 function miniMapDraw() {
-    const posX = canvas.width - 190;
-    const posY = 10;
-    drawMiniMap(posX,posY,4);
+    const distFromEdge = 30;
+    const width = 180;
+    const height = 180;
+    const posX = canvas.width - width - distFromEdge;
+    const posY = distFromEdge;
+    drawMiniMap(posX,posY, width,height, 4);
 }
 
 function mapDraw() {
@@ -419,7 +422,7 @@ function drawAll() {
         dialogManager.drawDialog();
 //        messageDraw();
         damageDraw();
-        // miniMapDraw();
+        miniMapDraw();
         if(muteAudio){
             canvasContext.drawImage(muteAudioPic, 20, 20);
         }

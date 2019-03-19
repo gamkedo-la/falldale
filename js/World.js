@@ -689,42 +689,32 @@ function drawRoom(drawFloors, drawWalls) {
 	// fadingTitles.begin("COOL MESSAGE","headline","subtitle");
 }
 
-function drawMiniMap(posX,posY,miniMapTileSize) {
+function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
 
-	miniMapCamPanX = camera.x * (miniMapTileSize/TILE_W); // reductionFactor (eg: 50/25=0.5): miniMapTileSize/TILE_W
-	miniMapCamPanY = camera.y * (miniMapTileSize/TILE_H);
+	let drawTileX = 0;
+	let drawTileY = 0;
 
-	// console.log(miniMapCamPanX,miniMapCamPanY);
+	colorRect(miniMapPosX,miniMapPosY, width,height, "#7e4e35");
 
-	var arrayIndex = 0;
-	var drawTileX = 0;
-	var drawTileY = 0;
+	const tileCountX = Math.floor(width/miniMapTileSize);
+	const tileCountY = Math.floor(height/miniMapTileSize);
+	const warrTilePosXOnMap = Math.floor(redWarrior.y/TILE_H);
+	const warrTilePosYOnMap = Math.floor(redWarrior.x/TILE_W);
 
-	colorRect(posX-5, posY-5, 190, 190, "black");
-	
-	console.log(Math.floor(redWarrior.y/TILE_H));
-	const tileCountX = 190/miniMapTileSize;
-	const tileCountY = 190/miniMapTileSize;
-	const warrTilePosX = Math.floor(redWarrior.y/TILE_H);
-	const warrTilePosY = Math.floor(redWarrior.x/TILE_W);
+	const miniMapTilePosX = Math.floor(tileCountX/2 + warrTilePosXOnMap);
+	const miniMapTilePosY = Math.floor(tileCountY/2 + warrTilePosYOnMap);
 
-	// half tile count always shown. + warrTilePosY
-	const foo = tileCountX/2 + warrTilePosX;
-	const bar = tileCountY/2 + warrTilePosY;
+	const foo = miniMapTilePosX > 44 ? miniMapTilePosX - 44 : 0;
+	const bar = miniMapTilePosY > 44 ? miniMapTilePosY - 44 : 0;	
 
-	const tileYPos = (camera.y - miniMapCamPanY)/miniMapTileSize;
-	const tileXPos = (camera.x - miniMapCamPanX)/miniMapTileSize;
+	for(let eachRow = 0 + foo; eachRow < miniMapTilePosX; eachRow++) {
+		for(let eachCol = 0 + bar; eachCol < miniMapTilePosY; eachCol++) {
 
-	for(var eachRow = 0; eachRow < foo; eachRow++) {
-		for(var eachCol = 0; eachCol < bar - tileXPos; eachCol++) {
+			let arrayIndex = rowColToArrayIndex(eachCol, eachRow);
+			let tileKindHere = roomGrid[arrayIndex];
 
-			var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
-			var tileKindHere = roomGrid[arrayIndex];
-
-			var tilePosX = drawTileX + posX + 90 - redWarrior.x/12.5;
-			var tilePosY = drawTileY + posY + 90 - redWarrior.y/12.5;
-			// var tilePosX = drawTileX + posX - miniMapCamPanX + 90;
-			// var tilePosY = drawTileY + posY - miniMapCamPanY + 90;
+			let tilePosX = drawTileX + (bar*4) + miniMapPosX + 90 - redWarrior.x/12.5;
+			let tilePosY = drawTileY + (foo*4) + miniMapPosY + 90 - redWarrior.y/12.5;
 
 			if (tileKindHere === 17) {
 				tileKindHere = 901;
@@ -737,7 +727,7 @@ function drawMiniMap(posX,posY,miniMapTileSize) {
 				colorRect(tilePosX, tilePosY, 5,5, "#b97a57");
 			}
 
-			colorRect(posX+90, posY+90, 5,5, "red");
+			colorCircle(miniMapPosX+90+2, miniMapPosY+90+2, 4, "#FFF");
 
 			drawTileX += miniMapTileSize;
 			arrayIndex++;
@@ -745,12 +735,14 @@ function drawMiniMap(posX,posY,miniMapTileSize) {
 		drawTileY += miniMapTileSize;
 		drawTileX = 0;
 	}
+
+	const strokeWidth = 6;
+	emptyRect(miniMapPosX,miniMapPosY, width-strokeWidth/2,height-strokeWidth/2, strokeWidth, "#000");
+	emptyRect(miniMapPosX+1,miniMapPosY+1, width-strokeWidth/2-2,height-strokeWidth/2-2, 1, "#FFF");
 }
 
 function tileIsAFloor(tileKind) {
-
 	return (tileKind <= TERRAIN_TILE_NUM_MAX);
-
 }
 
 function drawOnlyTilesOnScreen() {
