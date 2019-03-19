@@ -38,3 +38,9 @@ function drawTextWithShadowCentered(text, x,y, color, font="13px sans-serif") {
 	canvasContext.shadowBlur = 0;
 }
 
+function emptyRect(x,y, width,height, lineWidth, strokeColor) {
+	canvasContext.lineWidth = lineWidth;
+	canvasContext.strokeStyle  = strokeColor;
+	canvasContext.strokeRect(x,y, width,height);
+	canvasContext.lineWidth = 0;
+}
