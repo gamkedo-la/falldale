@@ -690,41 +690,39 @@ function drawRoom(drawFloors, drawWalls) {
 }
 
 function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
-
-	let drawTileX = 0;
-	let drawTileY = 0;
-
-	colorRect(miniMapPosX,miniMapPosY, width,height, "#7e4e35");
-
 	const tileCountX = Math.floor(width/miniMapTileSize);
 	const tileCountY = Math.floor(height/miniMapTileSize);
 	const warrTilePosXOnMap = Math.floor(redWarrior.y/TILE_H);
 	const warrTilePosYOnMap = Math.floor(redWarrior.x/TILE_W);
-
 	const miniMapTilePosX = Math.floor(tileCountX/2 + warrTilePosXOnMap);
 	const miniMapTilePosY = Math.floor(tileCountY/2 + warrTilePosYOnMap);
+	const tileOverflowLeft = miniMapTilePosX > 44 ? miniMapTilePosX - 44 : 0;
+	const tileOverflowRight = miniMapTilePosY > 44 ? miniMapTilePosY - 44 : 0;
 
-	const foo = miniMapTilePosX > 44 ? miniMapTilePosX - 44 : 0;
-	const bar = miniMapTilePosY > 44 ? miniMapTilePosY - 44 : 0;	
+	// draw minimap backgrounf
+	colorRect(miniMapPosX,miniMapPosY, width,height, "#7e4e35");
 
-	for(let eachRow = 0 + foo; eachRow < miniMapTilePosX; eachRow++) {
-		for(let eachCol = 0 + bar; eachCol < miniMapTilePosY; eachCol++) {
+	let drawTileX = 0;
+	let drawTileY = 0;
+
+	for(let eachRow = 0 + tileOverflowLeft; eachRow < miniMapTilePosX; eachRow++) {
+		for(let eachCol = 0 + tileOverflowRight; eachCol < miniMapTilePosY; eachCol++) {
 
 			let arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 			let tileKindHere = roomGrid[arrayIndex];
 
-			let tilePosX = drawTileX + (bar*4) + miniMapPosX + 90 - redWarrior.x/12.5;
-			let tilePosY = drawTileY + (foo*4) + miniMapPosY + 90 - redWarrior.y/12.5;
+			let tilePosX = drawTileX + (tileOverflowRight*4) + miniMapPosX + 90 - redWarrior.x/12.5;
+			let tilePosY = drawTileY + (tileOverflowLeft*4) + miniMapPosY + 90 - redWarrior.y/12.5;
 
 			if (tileKindHere === 17) {
 				tileKindHere = 901;
-				colorRect(tilePosX, tilePosY, 5,5, "#0000ff");
+				colorRect(tilePosX, tilePosY, 5,5, "#0000ff"); // water
 			} else if (tileKindHere === 18) {
-				colorRect(tilePosX, tilePosY, 5,5, "#008000");
+				colorRect(tilePosX, tilePosY, 5,5, "#008000"); // grass
 			} else if (tileKindHere === 0) {
-				colorRect(tilePosX, tilePosY, 5,5, "#8c8c8c");
+				colorRect(tilePosX, tilePosY, 5,5, "#8c8c8c"); // road
 			} else {
-				colorRect(tilePosX, tilePosY, 5,5, "#b97a57");
+				colorRect(tilePosX, tilePosY, 5,5, "#b97a57"); // all other
 			}
 
 			colorCircle(miniMapPosX+90+2, miniMapPosY+90+2, 4, "#FFF");
