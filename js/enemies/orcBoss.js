@@ -140,7 +140,7 @@ function orcBossClass(druidName, whichPicture) {
                 }
             }
         } else {
-            canvasContext.drawImage(deadOrcBossPic, this.x, this.y);
+           canvasContext.drawImage(deadGoblinPic, this.x, this.y); // temporarily assigning dead goblin.  Need a pic for the Dead Orc Boss
         }
 
         if (this.health <= 0) {
