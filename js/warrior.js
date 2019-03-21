@@ -244,6 +244,7 @@ function warriorClass() {
 		if( this.myArrow.isReady() ) {
 			this.recentWeapon = this.myArrow;
 			this.myArrow.shootFrom(this, direction);
+			arrowShotSound.play();
 		}
 	};
 

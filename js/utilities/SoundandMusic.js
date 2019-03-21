@@ -97,6 +97,12 @@ function CycleMute() {
         skeletonHurtSound.startOrStopSFX();
         batHurtSound.startOrStopSFX();
         playerHurtSound.startOrStopSFX();
+		arrowShotSound.startOrStopSFX();
+		humanMaleHello.startOrStopSFX();
+		humanMaleHi.startOrStopSFX();
+		humanMaleGoodDay.startOrStopSFX();
+		humanMaleWelcome.startOrStopSFX();
+		humanMaleGoodAfternoon.startOrStopSFX();
     }
 
     function muteSFX() {
@@ -108,5 +114,11 @@ function CycleMute() {
         skeletonHurtSound.startOrStopSFX();
         batHurtSound.startOrStopSFX();
         playerHurtSound.startOrStopSFX();
-    }
+		arrowShotSound.startOrStopSFX();
+		humanMaleHello.startOrStopSFX();
+		humanMaleHi.startOrStopSFX();
+		humanMaleGoodDay.startOrStopSFX();
+		humanMaleWelcome.startOrStopSFX();
+		humanMaleGoodAfternoon.startOrStopSFX();
+	}
 }

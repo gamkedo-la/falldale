@@ -56,20 +56,26 @@ function npcClass(npcName, npcPic) {
             if (this.myName == "Addy") {
                 if (redWarrior.questOneComplete == false) {
                     NPCDialog = "Addy:  I'm Addy, there's no time to talk right now.  We are invaded by Goblins!";
+					humanMaleHello.play();
                 } else if (redWarrior.questOneComplete) {
-                    NPCDialog = "Addy:  Thank you for saving Falldale!";
+                    NPCDialog = "Addy:  Thank you for saving Falldale!";		
+					humanMaleHello.play();
                 }
             } else if (this.myName == "Dodd") {
                 if (redWarrior.questOneComplete == false) {
                     NPCDialog = "Dodd:  I'm Dodd, we need to clear all the Goblins from the town!";
+					humanMaleHi.play();
                 } else if (redWarrior.questOneComplete) {
                     NPCDialog = "Dodd:  We are in debt to you for saving our town.";
-                }
+					humanMaleHi.play();
+				}
             } else if (this.myName == "Taran") {
                 if (redWarrior.questOneComplete == false) {
                     NPCDialog = "Taran:  I'm Taran.  Now is not the best time to talk.  These Goblins are destroying the town!";
-                } else if (redWarrior.questOneComplete) {
+					humanMaleGoodDay.play();
+				} else if (redWarrior.questOneComplete) {
                     NPCDialog = "Taran:  You are such a brave individual!";
+					humanMaleGoodDay.play();
                 }
             } else if (this.myName == "Delkon") {
 				console.log(redWarrior.questOneComplete, redWarrior.delkonRewardOffer);
@@ -92,14 +98,18 @@ function npcClass(npcName, npcPic) {
 			} else if (this.myName == "Gabriel") {
                 if (redWarrior.questOneComplete == false) {
                     NPCDialog = "Gabriel:  Please clear this town of all these Goblins!";
-                } else if (redWarrior.questOneComplete) {
+					humanMaleGoodAfternoon.play();
+				} else if (redWarrior.questOneComplete) {
                     NPCDialog = "Gabriel:  Sorry we couldn't talk earlier.  My name is Gabriel, I am grateful you saved our town.  These Goblins have been attacking us a lot lately.";
-                }
+					humanMaleGoodAfternoon.play();
+				}
             } else if (this.myName == "Fenton") {
                 if (redWarrior.questOneComplete == false) {
                     NPCDialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
+					humanMaleWelcome.play();
                 } else if (redWarrior.questOneComplete) {
                     NPCDialog = "Fenton:  Thank you for saving our town!";
+					humanMaleWelcome.play();
                 }
             } else if (this.myName == "Healer") {
                 NPCDialog = "Healer:  Hi, I'm the Healer.  I could use a better name.";
