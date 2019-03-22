@@ -101,6 +101,9 @@ function CycleMute() {
 		swordSwingSound.startOrStopSFX();
 		humanMaleHello.startOrStopSFX();
 		humanMaleHi.startOrStopSFX();
+		humanMaleHi2.startOrStopSFX();
+		humanMaleHi3.startOrStopSFX();
+		humanMaleHi4.startOrStopSFX();
 		humanMaleGoodDay.startOrStopSFX();
 		humanMaleWelcome.startOrStopSFX();
 		humanMaleGoodAfternoon.startOrStopSFX();
@@ -121,6 +124,9 @@ function CycleMute() {
 		swordSwingSound.startOrStopSFX();
 		humanMaleHello.startOrStopSFX();
 		humanMaleHi.startOrStopSFX();
+	humanMaleHi2.startOrStopSFX();
+		humanMaleHi3.startOrStopSFX();
+		humanMaleHi4.startOrStopSFX();
 		humanMaleGoodDay.startOrStopSFX();
 		humanMaleWelcome.startOrStopSFX();
 		humanMaleGoodAfternoon.startOrStopSFX();
