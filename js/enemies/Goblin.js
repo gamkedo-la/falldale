@@ -18,7 +18,7 @@ function goblinClass(goblinName) {
 
     this.tickCount = 0;
     this.frameIndex = 0;
-    this.width = 50;
+    this.width = 28;
     this.numberOfFrames = 6;
     this.height = 43;
     this.ticksPerFrame = 5;
