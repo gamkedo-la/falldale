@@ -1,14 +1,14 @@
 const ORCBOSS_SPEED = 0.6;
 
 orcBossClass.prototype = new enemyClass();
-function orcBossClass(druidName, whichPicture) {
+function orcBossClass(orcBossName, whichPicture) {
     this.speed = ORC_SPEED;
     this.myOrcBossPic = whichPicture; // which picture to use
-    this.health = 12;
-    this.maxhealth = 12;
+    this.health = 100;
+    this.maxhealth = 100;
     this.alive = true;
     this.myBite = new biteClass();
-    this.myName = druidName;
+    this.myName = orcBossName;
     this.displayHealth = false;
     this.druidHealthCountdownSeconds = 5;
     this.druidDisplayHealthCountdown = this.druidHealthCountdownSeconds * FRAMES_PER_SECOND;
@@ -36,17 +36,11 @@ function orcBossClass(druidName, whichPicture) {
     this.move = function() {
         this.superClassMove(this.orcBossTimeBetweenChangeDir);
     
-		if (this.walkNorth) {
-            this.sy = 0;
-        }
-        if (this.walkSouth) {
-            this.sy = this.height * 1;
-        }
         if (this.walkWest) {
-            this.sy = this.height*2;
+            this.sy = this.height*0;
         }
         if (this.walkEast) {
-            this.sy = this.height*3;
+            this.sy = this.height*0;
         }
     
         this.myBite.move();
@@ -114,7 +108,6 @@ function orcBossClass(druidName, whichPicture) {
 			}
 			
 			this.sx = 0;
-			this.sy = 0;
 				
 			canvasContext.drawImage(shadowPic, this.x-4, this.y+54);
             canvasContext.drawImage(this.myOrcBossPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
