@@ -117,13 +117,13 @@ function rangedWeaponClass() {
 	}
 
 	this.setDialogForQuanitity = function() {
-		if (this.quantity > 1) {
+		if (redWarrior.quantity > 1) {
 			dialogManager.setDialogWithCountdown("I used " + this.indefiniteArticle + " " + this.name + ". I now have " + this.quantity + " " + this.pluralName + "!");
 		}
-		else if (this.quantity == 1) {
+		else if (redWarrior.quantity == 1) {
 			dialogManager.setDialogWithCountdown("I used " + this.indefiniteArticle + " " + this.name + ". I now have only 1 " + this.name + " left");
 		}
-		else {
+		else if (redWarrior.quantity == 0) {
 			dialogManager.setDialogWithCountdown("That was my last " + this.name + ". I need to find more!");
 		}
 	}

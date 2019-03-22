@@ -6,8 +6,8 @@ goblinClass.prototype = new enemyClass();
 function goblinClass(goblinName) {
     this.speed = goblinMoveSpeed;
     this.myGoblinPic = goblinPic; // which picture to use
-    this.health = 12;
-    this.maxhealth = 12;
+    this.health = 4;
+    this.maxhealth = 4;
     this.alive = true;
     this.myName = goblinName;
     this.myBite = new biteClass();
@@ -29,7 +29,7 @@ function goblinClass(goblinName) {
     this.reset = function(resetX, resetY) {
 		this.superClassReset(resetX, resetY);
         this.newRandomPic();
-        this.health = 12;
+        this.health = 8;
     } 
 	
 	this.newRandomPic = function() {
@@ -125,6 +125,7 @@ function goblinClass(goblinName) {
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
+			// add function here for hit chance 
             dialogManager.setDialogWithCountdown("Ouch! I've been bite by a goblin.", 5);
         }
     }
