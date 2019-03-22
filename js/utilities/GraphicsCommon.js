@@ -18,10 +18,10 @@ function colorCircle(centerX,centerY, radius, fillColor) {  //draw circles
 	canvasContext.fill();
 }
 
-function colorText(showWords, textX, textY, fillColor) {
+function colorText(showWords, textX, textY, fillColor, font = "14px Arial Black") {
 	canvasContext.textAlign = "left";
 	canvasContext.fillStyle = fillColor;
-	canvasContext.font = "14px Arial Black"
+	canvasContext.font = font;
 	canvasContext.fillText(showWords, textX, textY);
 }
 

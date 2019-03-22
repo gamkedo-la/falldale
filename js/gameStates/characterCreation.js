@@ -8,6 +8,7 @@ var rollingCreationDice = false;
 var strength = false;
 var dexterity = false;
 var ready = false; // prevents starting the game without rolling
+var gameKeeperFeedback = "Choose your Hero";
 
 function drawCreationScreen(){
 	if(rollingCreationDice) {
@@ -17,6 +18,7 @@ function drawCreationScreen(){
     canvasContext.save();
     canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
 	canvasContext.drawImage(storeFrontPic, 0,0);  // replace with a Creation Screen background
+	drawTextWithShadowCentered(gameKeeperFeedback , 0.60 * canvas.width, 50, "white", "45px sans-serif");
 	colorText("Character Creation" , 25, 50, "white");
 	colorText('Press "Space Bar" to Roll' , 25, 70, "white");
 	colorText("Strength: " + redWarrior.strength , 50, 100, "white");
@@ -26,7 +28,7 @@ function drawCreationScreen(){
 	colorText("Wisdom: " + redWarrior.wisdom, 50, 180, "white");
 	colorText("Charisma: " + redWarrior.charisma, 50, 200, "white");
 	colorText('Press "Enter" to continue', 25, 230, "white");
-	colorText('bug: press "spacebar" to bypass', 25, 280, "red");
+//	colorText('bug: press "spacebar" to bypass', 25, 280, "red");
 	canvasContext.restore();
 }
 
@@ -125,8 +127,6 @@ function characterCreationRolling(){
 }
 
 function characterCreationScreenInput(whichKeyCode){
-	var gameKeeperFeedback = "Choose your Hero";
-	
 	switch(whichKeyCode){
 		
 		case KEY_SPACEBAR:
