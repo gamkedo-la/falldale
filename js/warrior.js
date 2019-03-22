@@ -237,6 +237,7 @@ function warriorClass() {
 		if( this.mySword.isReady() ) {
 			this.recentWeapon = this.mySword;
 			this.mySword.shootFrom(this);
+			swordSwingSound.play();
 		}
 	};
 

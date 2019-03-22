@@ -126,8 +126,10 @@ function npcClass(npcName, npcPic) {
 			} else if (this.myName == "Arya") {
                 if (redWarrior.questOneComplete == false) {
                     NPCDialog = "Arya:  I'm Arya, our town is being overran by Goblins!  Please do something!";
+					humanFemaleHello.play();
                 } else if (redWarrior.questOneComplete) {
                     NPCDialog = "Arya:  Thank you for saving our town!";
+					humanFemaleHello.play();
                 }
 			} else if (this.myName == "Lawrence") {
                 if (redWarrior.questOneComplete == false) {
@@ -138,8 +140,10 @@ function npcClass(npcName, npcPic) {
 			} else if (this.myName == "Rowan") {
                 if (redWarrior.questOneComplete == false) {
                     NPCDialog = "Rowan:  I'm Rowan, our town is being overran by Goblins!  Please do something!";
+					humanFemaleHi.play();
                 } else if (redWarrior.questOneComplete) {
                     NPCDialog = "Rowan:  Thank you for saving our town!";
+					humanFemaleHi.play();
                 }
 			} else if (this.myName == "Fido") {
                 // alternately, we can choose a random one from the array

@@ -98,11 +98,14 @@ function CycleMute() {
         batHurtSound.startOrStopSFX();
         playerHurtSound.startOrStopSFX();
 		arrowShotSound.startOrStopSFX();
+		swordSwingSound.startOrStopSFX();
 		humanMaleHello.startOrStopSFX();
 		humanMaleHi.startOrStopSFX();
 		humanMaleGoodDay.startOrStopSFX();
 		humanMaleWelcome.startOrStopSFX();
 		humanMaleGoodAfternoon.startOrStopSFX();
+		humanFemaleHello.startOrStopSFX();
+		humanFemaleHi.startOrStopMusic();
     }
 
     function muteSFX() {
@@ -115,10 +118,13 @@ function CycleMute() {
         batHurtSound.startOrStopSFX();
         playerHurtSound.startOrStopSFX();
 		arrowShotSound.startOrStopSFX();
+		swordSwingSound.startOrStopSFX();
 		humanMaleHello.startOrStopSFX();
 		humanMaleHi.startOrStopSFX();
 		humanMaleGoodDay.startOrStopSFX();
 		humanMaleWelcome.startOrStopSFX();
 		humanMaleGoodAfternoon.startOrStopSFX();
+		humanFemaleHello.startOrStopSFX();
+		humanFemaleHi.startOrStopSFX();
 	}
 }

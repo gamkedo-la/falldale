@@ -45,6 +45,7 @@ var skeletonHurtSound = new SoundOverlapsClass("skeletonhurt");
 var batHurtSound = new SoundOverlapsClass("bathurt");
 var playerHurtSound = new SoundOverlapsClass("playerHurt");
 var arrowShotSound = new SoundOverlapsClass("arrowShot");
+var swordSwingSound = new SoundOverlapsClass("swordSwing");
 var backgroundMusic = new BackgroundMusicClass();
 var meowPurrSound = new SoundOverlapsClass("meow_purr");
 var humanMaleHello = new SoundOverlapsClass("humanMaleHello");
@@ -52,6 +53,8 @@ var humanMaleHi = new SoundOverlapsClass("humanMaleHi");
 var humanMaleGoodDay = new SoundOverlapsClass("humanMaleGoodDay");
 var humanMaleWelcome = new SoundOverlapsClass("humanMaleWelcome");
 var humanMaleGoodAfternoon = new SoundOverlapsClass("humanMaleGoodAfternoon");
+var humanFemaleHello = new SoundOverlapsClass("humanFemaleHello");
+var humanFemaleHi = new SoundOverlapsClass("humanFemaleHi");
 
 const DIALOG_BOX_HEIGHT = 50;
 
