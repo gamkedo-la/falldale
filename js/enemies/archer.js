@@ -8,14 +8,16 @@ archerClass.prototype = new enemyClass();
 function archerClass(archerName) {
     this.myArrow = new arrowClass();
     this.speed = archerMoveSpeed;
-    this.myArcherPic = archerPic; // which picture to use
+    this.myArcherPic = archerPic; 
     this.myName = archerName;
 
     this.maxhealth = 6;
     this.alive = true;
-    this.myBite = new biteClass(); //
+    this.myBite = new biteClass(); 
     this.myBite.baseBiteLife = 30; //Archers bite, but they're not very good at it
     this.myBite.baseBiteCooldown = 10; //
+    this.myRanged = new rangedWeaponClass(); //Archers can shoot arrows
+	this.arrowList = [];
     this.displayHealth = false;
     this.archerHealthCountdownSeconds = 5;
     this.archerDisplayHealthCountdown = this.archerHealthCountdownSeconds * FRAMES_PER_SECOND;
@@ -27,13 +29,13 @@ function archerClass(archerName) {
     this.height = 50;
     this.ticksPerFrame = 5;
     this.archerMove = true;
-    //this.myRanged = true;
 
     this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
         this.superClassReset(resetX, resetY);
         this.myArcherPic;
         this.health = 6;
+		this.myArrow.reset();
     }
 
     this.superClassMove = this.move;
@@ -43,6 +45,8 @@ function archerClass(archerName) {
         this.myBite.move();
         this.myBite.x = this.x;
         this.myBite.y = this.y;
+		
+		this.myArrow.move();
 
         this.checkToFireArrow();
     }
@@ -116,7 +120,6 @@ function archerClass(archerName) {
 
 	this.shotArrow = function() {
 		if (this.myArrow.isReady()) {
-			this.recentWeapon = this.myArrow;
 			this.myArrow.shootFrom(this, direction);
 			arrowShotSound.play();
 		}
@@ -137,7 +140,8 @@ function archerClass(archerName) {
 
 
     this.draw = function() {
-        if (this.archerMove) {
+		
+		if (this.archerMove) {
             this.tickCount++;
         }
         if (this.tickCount > this.ticksPerFrame) {
@@ -181,6 +185,8 @@ function archerClass(archerName) {
         } else {
             canvasContext.drawImage(deadArcherPic, this.x, this.y);
         }
+		
+		this.myArrow.draw();
 
         if (this.health <= 0) {
             this.alive = false;

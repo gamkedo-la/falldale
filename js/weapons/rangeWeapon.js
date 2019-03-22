@@ -109,6 +109,7 @@ function rangedWeaponClass() {
 		else if (dir == "west") {
 			this.x = warriorAttack.x;
 			this.y = warriorAttack.y + 30;
+			console.log(this.x,this.y);
 		}
 		else if (dir == "east") {
 			this.x = warriorAttack.x + 15;

@@ -25,7 +25,7 @@ function orcBossClass(orcBossName, whichPicture) {
     this.reset = function(resetX, resetY) {
         this.superClassReset(resetX, resetY);
         this.newRandomPic();
-        this.health = 12;
+        this.health = 100;
         this.orcBossTimeBetweenChangeDir = Math.floor(Math.random() * 1000) + 1;
         
         //this.mySword.reset();
