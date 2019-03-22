@@ -4,11 +4,16 @@ var result3sx;
 var Dice1 = false;
 var Dice2 = false;
 var Dice3 = false;
+var rollingCreationDice = false;
 var strength = false;
 var dexterity = false;
 var ready = false; // prevents starting the game without rolling
 
 function drawCreationScreen(){
+	if(rollingCreationDice) {
+		updateCharaterAbilities();
+	}
+
     canvasContext.save();
     canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
 	canvasContext.drawImage(storeFrontPic, 0,0);  // replace with a Creation Screen background
@@ -47,6 +52,16 @@ function drawDice(DiceNumber){
 
 }
 
+function updateCharaterAbilities() {
+	characterCreationRolling();
+
+	redWarrior.strength = characterCreationRolling();
+	redWarrior.dexterity = characterCreationRolling();
+	redWarrior.constitution = characterCreationRolling();
+	redWarrior.intelligence = characterCreationRolling();
+	redWarrior.wisdom = characterCreationRolling();
+	redWarrior.charisma = characterCreationRolling();
+}
 	
 function characterCreationRolling(){
 
@@ -115,13 +130,13 @@ function characterCreationScreenInput(whichKeyCode){
 	switch(whichKeyCode){
 		
 		case KEY_SPACEBAR:
-		redWarrior.strength = characterCreationRolling();
-		redWarrior.dexterity = characterCreationRolling();
-		redWarrior.constitution = characterCreationRolling();
-		redWarrior.intelligence = characterCreationRolling();
-		redWarrior.wisdom = characterCreationRolling();
-		redWarrior.charisma = characterCreationRolling();
-		ready = true;
+		if(rollingCreationDice) {
+			rollingCreationDice = false;
+			ready = true;
+		} else {
+			rollingCreationDice = true;
+			ready = false;
+		}
 
 		break;
 
