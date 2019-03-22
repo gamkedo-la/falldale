@@ -6,7 +6,7 @@ const ARCHER_TAKE_SHOT_RANGE = 50;
 archerClass.prototype = new enemyClass();
 
 function archerClass(archerName) {
-    this.myArrow = new arrowClass();
+    this.myArrow = new arrowClass(this.direction);
     this.speed = archerMoveSpeed;
     this.myArcherPic = archerPic; 
     this.myName = archerName;

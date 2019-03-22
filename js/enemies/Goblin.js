@@ -149,8 +149,6 @@ function goblinClass(goblinName) {
 				this.sx = this.frameIndex * this.width;
 			}
 			
-			this.sx = 0;
-			
             canvasContext.drawImage(shadowPic, this.x-16, this.y+20);
             canvasContext.drawImage(this.myGoblinPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
             if (debugMode) {
