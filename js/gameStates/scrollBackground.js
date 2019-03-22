@@ -3,7 +3,8 @@ function scrollBackgroundScreenInput(whichKeyCode){
 	
 	switch(whichKeyCode){
 		
-		case KEY_SPACEBAR: 
+		case KEY_SPACEBAR:
+		case ENTER:
 		{
 			scrollBackgroundScreen = false;
 		} 		break;
