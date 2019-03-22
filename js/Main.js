@@ -1,4 +1,4 @@
-var debugSkipToGame = false;
+var debugSkipToGame = true;
 
 // Characters //
 
