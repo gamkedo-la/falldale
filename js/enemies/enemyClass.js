@@ -234,104 +234,69 @@ function enemyClass() {
     this.changeDirection = function(newDirection) {
         if(newDirection == undefined) {
             const newDir = Math.floor(3 * Math.random());
-            if (this.walkNorth == true) {
-                this.walkNorth = false;
+            if (this.walkNorth) {
                 switch(newDir) {
                     case 0:
-                        this.walkSouth = true;
-                        this.walkEast = false;
-                        this.walkWest = false;
+                        this.changeDirection("south")
                     break;
                     case 1:
-                        this.walkSouth = false;
-                        this.walkEast = true;
-                        this.walkWest = false;
+                        this.changeDirection("east")
                     break;
                     case 2:
-                        this.walkSouth = false;
-                        this.walkEast = false;
-                        this.walkWest = true;
+                        this.changeDirection("west")
                     break;
                 }
-            } else if (this.walkWest == true) {
-                this.walkWest = false;
+            } else if (this.walkWest) {
                 switch(newDir) {
                     case 0:
-                        this.walkSouth = true;
-                        this.walkEast = false;
-                        this.walkNorth = false;
+                        this.changeDirection("south")
                     break;
                     case 1:
-                        this.walkSouth = false;
-                        this.walkEast = true;
-                        this.walkNorth = false;
+                        this.changeDirection("east")
                     break;
                     case 2:
-                        this.walkSouth = false;
-                        this.walkEast = false;
-                        this.walkNorth = true;
+                        this.changeDirection("north")
                     break;
                 }
-            } else if (this.walkEast == true) {
-                this.walkEast = false;
+            } else if (this.walkEast) {
                 switch(newDir) {
                     case 0:
-                        this.walkSouth = true;
-                        this.walkNorth = false;
-                        this.walkWest = false;
+                        this.changeDirection("south")
                     break;
                     case 1:
-                        this.walkSouth = false;
-                        this.walkNorth = true;
-                        this.walkWest = false;
+                        this.changeDirection("north")
                     break;
                     case 2:
-                        this.walkSouth = false;
-                        this.walkNorth = false;
-                        this.walkWest = true;
+                        this.changeDirection("west")
                     break;
                 }
-            } else if (this.walkSouth == true) {
-                this.walkSouth = false;
+            } else if (this.walkSouth) {
                 switch(newDir) {
                     case 0:
-                        this.walkNorth = true;
-                        this.walkEast = false;
-                        this.walkWest = false;
+                        this.changeDirection("north")
                     break;
                     case 1:
-                        this.walkNorth = false;
-                        this.walkEast = true;
-                        this.walkWest = false;
+                        this.changeDirection("east")
                     break;
                     case 2:
-                        this.walkNorth = false;
-                        this.walkEast = false;
-                        this.walkWest = true;
+                        this.changeDirection("west")
                     break;
                 }
             }
         } else {
+            this.walkNorth = false;
+            this.walkEast = false;
+            this.walkWest = false;
+            this.walkSouth = false;
+
             if(newDirection == "east") {
-                this.walkNorth = false;
                 this.walkEast = true;
-                this.walkWest = false;
-                this.walkSouth = false;
             } else if(newDirection == "west") {
-                this.walkNorth = false;
-                this.walkEast = false;
                 this.walkWest = true;
-                this.walkSouth = false;
             } else if(newDirection == "south") {
-                this.walkNorth = false;
-                this.walkEast = false;
-                this.walkWest = false;
                 this.walkSouth = true;
             } else if(newDirection == "north") {
                 this.walkNorth = true;
-                this.walkEast = false;
-                this.walkWest = false;
-                this.walkSouth = false;
             }
         }
     }
