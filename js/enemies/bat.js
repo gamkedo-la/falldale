@@ -4,107 +4,67 @@ const BAT_COLLISION_RADIUS = 5;
 const BAT_RESTING_TIME = 850;
 
 batClass.prototype = new enemyClass();
-
-
 function batClass() {
-    this.myName = "Bat";
     this.x = Math.random() * 600;
     this.y = Math.random() * 800;
+	this.width = 50;
+    this.height = 21;
     this.speed = BAT_SPEED;
     this.xv = 0;
     this.yv = 0;
     this.sx = 0;
     this.sy = 0;
-    this.health = 2;
     this.maxhealth = 2;
-    this.myBatPic; // which picture to use
     this.cyclesTilDirectionChange = 0;
     this.cyclesOfBatActive = 0;
     this.cyclesofBatResting = 200;
-    this.batResting = false;
-    this.alive = true;
-    this.myBite = new biteClass();	    //
-	this.myBite.baseBiteLife = 3;		//Bats bite, but only when they're not resting
-	this.myBite.baseBiteCooldown = 3;	//
-    this.displayHealth = false;
-    this.batHealthCountdownSeconds = 5;
-    this.batDisplayHealthCountdown = this.batHealthCountdownSeconds * FRAMES_PER_SECOND;
     this.isFlying = true;
-
-    this.frameIndex = 0;
-    this.tickCount = 0;
+	this.hurtSound = batHurtSound;
     this.ticksPerFrame = 10;
-    this.numberOfFrames = 5 || 1;
+	this.timeBetweenChangeDir = BAT_TIME_BETWEEN_CHANGE_DIR;
+	this.animateOnGamePause = true;
+	this.shadowXOffset = this.width/2;
+	this.shadowYOffset = this.height/26;
+
+	this.superClassInitialize = this.initialize;
+	this.initialize = function(enemyName, enemyPic, numberOfFrames=4) {
+		this.superClassInitialize(enemyName, enemyPic, numberOfFrames);
+		this.myBite.baseBiteLife = 3;		//Bats bite, but only when they're not resting
+		this.myBite.baseBiteCooldown = 3;	//
+	}
 
     this.superClassReset = this.reset;
     this.reset = function(resetX, resetY) {
         this.superClassReset(resetX, resetY);
-        this.myBatPic = batPic;
         this.numberOfFrames = 4;
-        this.width = 50;
-        this.height = 21;
         this.cyclesOfBatResting = 0;
         this.cyclesTilDirectionChange = 0;
-        this.health = 2;
+        this.health = this.maxhealth;
     } // end of batReset func
 
     this.superclassMove = this.move;
     this.move = function() {
         if (this.alive) {
-            if (this.batResting == false) {
-                this.superclassMove(BAT_TIME_BETWEEN_CHANGE_DIR);
-                this.cyclesOfBatActive++;		
+			if (this.enemyMove) {
+                this.superclassMove(this.timeBetweenChangeDir);
+                this.cyclesOfBatActive++;
                 this.cyclesOfBatResting = 0;
-
                 this.sx = 0;
                 this.sy = 0;
-                if (this.cyclesOfBatActive >= 300) {
-                    this.batResting = true;
-                }
-            } else if (this.batResting == true) {
-                this.cyclesOfBatActive = 0;
+				this.enemyMove = this.cyclesOfBatActive < 300;
+			} else {
+				this.cyclesOfBatActive = 0;
                 this.cyclesOfBatResting++;		
                 this.xv = 0;
                 this.yv = 0;
                 this.sx = 0;
                 this.sy = 0;
                 this.frameIndex = 0;
-                if (this.cyclesOfBatResting >= 100) {
-                    this.batResting = false;
-                }
-            }
+				this.enemyMove = this.cyclesOfBatResting >= 100;
+			}
         }
     }
-
-	this.distributeTreasure = function(){
-		var chanceOnTreasure = Math.round(Math.random() * 10);
-		if(chanceOnTreasure >= 7){	
-			console.log("Treasure Provided")		
-			var randomTreasure = Math.round(Math.random() * 3);
-			switch (randomTreasure) {
-				case 0:
-				// heart
-				console.log("heart");
-				break;
-				case 1:
-				// gold
-				console.log("gold");
-				break;
-				case 2:
-				// healing potion
-				console.log("healing potion");
-				break;
-			}
-		}
-	}
 	
-	
-    this.takeDamage = function(howMuch) {
-        this.health -= howMuch;
-        batHurtSound.play();
-        this.displayHealth = true;
-	}
-
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(!this.batResting) {//Bats don't bite when they're resting
@@ -114,59 +74,16 @@ function batClass() {
         }
     }
 
+	this.superClassDraw = this.draw;
     this.draw = function() {
-
-        if (this.health > 0) {
-            this.alive = true;
-        } else {
-            this.alive = false;
-        }
-
-        if (this.displayHealth && this.alive) {
-            if (this.batDisplayHealthCountdown >=0) {
-                colorRect(this.x, this.y - 16, 40, 12, "black");
-                colorRect(this.x + 2, this.y - 14, 35, 8, "red");
-                colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
-                this.batDisplayHealthCountdown--;
-            } else {
-                this.batDisplayHealthCountdown = this.batHealthCountdownSeconds * FRAMES_PER_SECOND;
-                this.displayHealth = false;
-            }
-        }
-        if (debugMode && this.alive) {
-            colorText(this.myName, this.x, this.y - 20, "red");
-            colorText("HP: " + this.health, this.x, this.y - 10, "red");
-
-            colorRect(this.x, this.y, 5, 5, "red");
-            colorRect(this.x, this.y + this.height, 5, 5, "red")
-            colorRect(this.x + this.width, this.y, 5, 5, "red")
-            colorRect(this.x + this.width, this.y + this.height, 5, 5, "red")
-        }
-
-        if (this.batResting == false) {
-            this.tickCount++;
-            if (this.tickCount > this.ticksPerFrame) {
-                this.tickCount = 0;
-                if (this.frameIndex < this.numberOfFrames - 1) {
-                    this.frameIndex += 1;
-                } else {
-                    this.frameIndex = 0;
-                }
-            }
-        } // end of if Bat is Resting
-        if (this.batResting == true) {
+		this.superClassDraw();
+        if (!this.enemyMove) {
             this.frameIndex = 4;
         }
 		
 		if(gamePaused){
 			this.frameIndex = 1;
 		}
-			
-        if (this.alive) {
-            this.sx = this.frameIndex * this.width;
-            canvasContext.drawImage(shadowPic, this.x-this.width/2, this.y+this.height/2+8+16); // shadow a bit lower so it looks in midair
-            canvasContext.drawImage(this.myBatPic, this.sx, this.sy, 50, this.height, this.x, this.y, 50, this.height);
-        }
     }
 
     this.speedMultForTileType = function(tileType) {

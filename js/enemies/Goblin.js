@@ -3,83 +3,40 @@ const GOBLIN_TIME_BETWEEN_CHANGE_DIR = 100;
 var goblinsKilled = 0;
 
 goblinClass.prototype = new enemyClass();
-function goblinClass(goblinName) {
+function goblinClass() {
     this.speed = goblinMoveSpeed;
-    this.myGoblinPic = goblinPic; // which picture to use
-    this.health = 4;
     this.maxhealth = 4;
-    this.alive = true;
-    this.myName = goblinName;
-    this.myBite = new biteClass();
     this.myMelee = new clubClass();
-    this.displayHealth = false;
-    this.goblinHealthCountdownSeconds = 5;
-    this.goblinDisplayHealthCountdown = this.goblinHealthCountdownSeconds * FRAMES_PER_SECOND;
-
-    this.tickCount = 0;
-    this.frameIndex = 0;
     this.width = 28;
     this.numberOfFrames = 6;
     this.height = 43;
     this.ticksPerFrame = 5;
-    this.goblinMove = true;
-	this.treasureAvailable = true;
+  this.treasureAvailable = true;
+  this.chanceToProvideTreasure = 1;
+  this.hurtSound = goblinHurtSound;
+  this.picVariants = [goblinPic, goblinPic2, goblinPic3, goblinPic4];
+  this.deadPic = deadGoblinPic;
+  this.faceNorthMul = 1;
+  this.faceSouthMul = 0;
+  this.shadowXOffset = 16;
+  this.shadowYOffset = 20;
 
-	this.superClassReset = this.reset;
-    this.reset = function(resetX, resetY) {
-		this.superClassReset(resetX, resetY);
-        this.newRandomPic();
-        this.health = 4;
-    } 
-	
-	this.newRandomPic = function() {
-		var whichPic = Math.round(Math.random() * 2);
-		switch (whichPic) {
-			case 0:
-				this.myGoblinPic = goblinPic;
-				break;
-			case 1:
-				this.myGoblinPic = goblinPic2;
-				break;
-			case 2:
-				this.myGoblinPic = goblinPic3;
-				break;
-			case 3:
-				this.myGoblinPic = goblinPic4;
-				break;
-		}
+	this.superClassInitialize = this.initialize;
+	this.initialize = function(enemyName, enemyPic, numberOfFrames = 4) {
+		this.superClassInitialize(enemyName, enemyPic, numberOfFrames);
+		this.originalNumberOfFrames = this.numberOfFrames;
 	}
-    
-    this.superClassMove = this.move;
+
+	this.superClassMove = this.move;	
     this.move = function() {
         this.superClassMove(GOBLIN_TIME_BETWEEN_CHANGE_DIR);
-    
-		if (this.walkNorth) {
-            this.sy = this.height;
-        }
-
-        if (this.walkSouth) {
-            this.sy = 0;
-        }
-        if (this.walkWest) {
-            this.sy = this.height*2;
-			
-        }
-        if (this.walkEast) {
-            this.sy = this.height*3;
-
-        }
-        
-        this.myBite.move();
-        this.myBite.x = this.x;
-        this.myBite.y = this.y;
-
         this.myMelee.move();
         this.myMelee.x = this.x;
         this.myMelee.y = this.y;
     }
-	
+
 	this.distributeTreasure = function(){
+		// TODO: port back to enemyClass
 		var chanceOnTreasure = Math.round(Math.random() * 10);
 		if(chanceOnTreasure >= 1){	
 			console.log("Treasure Provided")		
@@ -102,23 +59,18 @@ function goblinClass(goblinName) {
 						goldList.push(new goldClass(5, this.x, this.y));
 					}
 				break;
-				
-				
 			}
 		}
 	}
-		
+
+	this.superClassTakeDamage = this.takeDamage;
     this.takeDamage = function(howMuch) {
-        this.health -= howMuch;
-        goblinHurtSound.play();
-        this.displayHealth = true;
-		if(this.health <= 0){
-			if(this.treasureAvailable){
-				this.distributeTreasure();
-				this.treasureAvailable = false;
-				goblinsKilled++;
-				countGoblinforQuestOne();
-			}
+		this.superClassTakeDamage(howMuch);
+		if(!this.alive && this.treasureAvailable){
+			this.distributeTreasure();
+			this.treasureAvailable = false;
+			goblinsKilled++;
+			countGoblinforQuestOne();
 		}
     }
     	
@@ -130,54 +82,13 @@ function goblinClass(goblinName) {
         }
     }
 
-    this.draw = function() {
-        if (this.goblinMove) {
-            this.tickCount++;
-			
-        }
-        if (this.tickCount > this.ticksPerFrame) {
-            this.tickCount = 0;
-            if (this.frameIndex < this.numberOfFrames - 1) {
-                this.frameIndex += 1;
-            } else {
-                this.frameIndex = 0;
-            }
-        }
-        if (this.health > 0) {
-            			
-			if(gamePaused == false){
-				this.sx = this.frameIndex * this.width;
-			}
-			
-            canvasContext.drawImage(shadowPic, this.x-16, this.y+20);
-            canvasContext.drawImage(this.myGoblinPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
-            if (debugMode) {
-                colorText(this.myName, this.x, this.y - 20, "red");
-                colorText("HP: " + this.health, this.x, this.y - 10, "red");
-
-                colorRect(this.x, this.y, 5, 5, "red")
-                colorRect(this.x, this.y + this.height, 5, 5, "red")
-                colorRect(this.x + this.width, this.y, 5, 5, "red")
-                colorRect(this.x + this.width, this.y + this.height, 5, 5, "red")
-            }
-
-            if (this.displayHealth) {
-                if (this.goblinDisplayHealthCountdown >=0) {
-                    colorRect(this.x + 13, this.y - 16, this.maxhealth + 4, 12, "black");
-                    colorRect(this.x + 15, this.y - 14, this.maxhealth, 8, "red");
-                    colorRect(this.x + 15, this.y - 14, (this.health / this.maxhealth) * this.maxhealth, 8, "green");
-                    this.goblinDisplayHealthCountdown--;
-                } else {
-                    this.goblinDisplayHealthCountdown = this.goblinHealthCountdownSeconds * FRAMES_PER_SECOND;
-                    this.displayHealth = false;
-                }
-            }
-        } else {
-            canvasContext.drawImage(deadGoblinPic, this.x, this.y);
-        }
-
-        if (this.health <= 0) {
-            this.alive = false;
-        }
-    }
+	this.superClassNewRandomPic = this.newRandomPic;
+	this.newRandomPic = function() {
+		this.superClassNewRandomPic();
+		if (this.myPic == goblinPic) {
+			this.numberOfFrames = this.originalNumberOfFrames;
+		} else {
+			this.numberOfFrames = 1;
+		}
+	}
 }

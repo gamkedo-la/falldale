@@ -19,13 +19,14 @@ function enemyClass() {
     this.y = 0;
     this.speed = 0.5;
     this.myName = "anEnemy";
+	this.enemyMove = true;
     this.speedMult = 1.0;
     this.cyclesTilDirectionChange = 0;
     this.cyclesOfActive = 0;
     this.cyclesofResting = Math.random() * 400;
     this.resting = false;
     this.restingTime = Math.random() * 400;
-    this.health = 8;
+    this.maxhealth = 8;
     this.armorRating = 10;
     this.sx = 50;
     this.sy = 0;
@@ -34,6 +35,10 @@ function enemyClass() {
     this.walkEast = true;
     this.walkSouth = false;
     this.walkWest = false;
+	this.faceNorthMul = 0;
+	this.faceSouthMul = 1;
+	this.faceWestMul = 2;
+	this.faceEastMul = 3;
     this.myBite = null;
     this.myMelee = null;
     this.myRanged = null;
@@ -42,7 +47,93 @@ function enemyClass() {
 	this.currentPathIndex = 0;
     this.readyToRemove = false;
     this.isFlying = false;
+	this.displayHealth = false;
+	this.healthCountdownSeconds = 5;
+	this.chanceToProvideTreasure = 7;
+	this.treasure = ["heart", "gold", "healing potion"];
+	this.hurtSound = null;
+	this.timeBetweenChangeDir = 50;
+	this.animateOnGamePause = false;
+	this.shadowXOffset = 5;
+	this.shadorYOffset = 50;
+	this.deadPic = null;
+	this.picVariants = [];
+	this.frameIndex = 0;
+	this.tickCount = 0;
+	this.ticksPerFrame = 5;
 
+	this.initialize = function(enemyName, enemyPicture, numberOfFrames=4) {
+		this.health = this.maxhealth;
+		this.alive = this.health > 0;
+		this.myName = enemyName;
+		this.myPic = enemyPicture;
+		this.myBite = new biteClass();
+		this.displayHealthCountdown = this.healthCountdownSeconds * FRAMES_PER_SECOND;
+		this.numberOfFrames = numberOfFrames;
+	}
+
+	this.draw = function() {
+		if (this.enemyMove) {
+			this.tickCount++;
+		}
+		if (this.tickCount > this.ticksPerFrame) {
+			this.tickCount = 0;
+			if (this.frameIndex < this.numberOfFrames - 1) {
+				this.frameIndex++;
+			} else {
+				this.frameIndex = 0;
+			}
+		}
+		if (this.alive) {
+			if (this.displayHealth) {
+				this.drawHealth();
+			}
+			if (!gamePaused || this.animateOnGamePause) {
+				this.sx = this.frameIndex * this.width;
+			}
+			canvasContext.drawImage(shadowPic, this.x - this.shadowXOffset, this.y + this.shadowYOffset);
+			canvasContext.drawImage(this.myPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+			if (debugMode) {
+				colorText(this.myName, this.x, this.y - 20, "red");
+				colorText("HP: " + this.health, this.x, this.y - 10, "red");
+				colorRect(this.x, this.y, 5, 5, "red");
+				colorRect(this.x, this.y + this.height, 5, 5, "red")
+				colorRect(this.x + this.width, this.y, 5, 5, "red")
+				colorRect(this.x + this.width, this.y + this.height, 5, 5, "red")
+			}
+		} else if (this.deadPic != null) {
+			canvasContext.drawImage(this.deadPic, this.x, this.y);
+		}
+	}
+
+	this.drawHealth = function() {
+		if (this.displayHealthCountdown >= 0) {
+			colorRect(this.x, this.y - 16, 40, 12, "black");
+			colorRect(this.x + 2, this.y - 14, 35, 8, "red");
+			colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
+			this.displayHealthCountdown--;
+		} else {
+			this.displayHealthCountdown = this.healthCountdownSeconds * FRAMES_PER_SECOND;
+			this.displayHealth = false;
+		}
+	}
+
+	this.setFacing = function() {
+		if (this.walkNorth) {
+            this.sy = this.height*this.faceNorthMul;
+        }
+
+        if (this.walkSouth) {
+            this.sy = this.height*this.faceSouthMul;
+        }
+        if (this.walkWest) {
+            this.sy = this.height*this.faceWestMul;
+        }
+        if (this.walkEast) {
+            this.sy = this.height*this.faceEastMul;
+        }
+	}
+	
     this.move = function(timeBetweenChangeDir) {
         if (this.health <= 0) {
 			return;
@@ -55,14 +146,9 @@ function enemyClass() {
                 nextPos = this.randomMove(timeBetweenChangeDir, this.speed);
             }
         }
-
         this.x = nextPos.x;
         this.y = nextPos.y;
-
-        if(this.myName == "Bat") {
-//            console.log("NextPos: (" + this.x + ", " + this.y + ")");
-        }
-
+		this.setFacing();
         if(this.myBite != null) {
             this.myBite.move();
             this.myBite.x = this.x;
@@ -301,32 +387,48 @@ function enemyClass() {
         }
     }
 
-    this.isOverlappingPoint = function() { 
-		var hasMelee = this.myMelee != null;
-        var canMeleeNow = hasMelee && this.myMelee.rangeTest(this, redWarrior);
-		
-		
-		if(this.myBite.rangeTest(redWarrior)) {
-            if(this.myBite.isReady()) {
-                this.myBite.shootFrom(this);
-                if(this.myBite.hitTest(this, redWarrior)) {
-                    return true;
-                }
-            }
-        } else if(canMeleeNow) {
-            if(this.myMelee.isReady()) {
-                this.myMelee.shootFrom(this);
-                if(this.myMelee.hitTest(this, redWarrior)) {
-                    return true;
-                }
-            }
-        } 
+    this.isOverlappingPoint = function() {
+		if (this.alive) {
+			var hasMelee = this.myMelee != null;
+			var canMeleeNow = hasMelee && this.myMelee.rangeTest(this, redWarrior);
+
+			if(this.myBite.rangeTest(redWarrior)) {
+				if(this.myBite.isReady()) {
+					this.myBite.shootFrom(this);
+					if(this.myBite.hitTest(this, redWarrior)) {
+						return true;
+					}
+				}
+			} else if(canMeleeNow) {
+				if(this.myMelee.isReady()) {
+					this.myMelee.shootFrom(this);
+					if(this.myMelee.hitTest(this, redWarrior)) {
+						return true;
+					}
+				}
+			}
+		}
 		return false;
     }
 
+	this.distributeTreasure = function() {
+		var chanceOnTreasure = Math.round(Math.random() * 10);
+		if (chanceOnTreasure >= this.chanceToProvideTreasure) {
+			var randomTreasureIndex = Math.round(Math.random() * this.treasure.length);
+			this.console.log(this.treasure[randomTreasureIndex]);
+		}
+	}
+
     this.takeDamage = function(howMuch) {
-        console.log("Did not override enemyClass.takeDamage(howMuch) => INVINCIBLE!");
-		return;//failure to override results in invincible enemies
+		this.health -= howMuch;
+		if (this.health < 0) {
+			this.health = 0;
+		}
+		if (this.hurtSound != null) {
+			this.hurtSound.play();
+		}
+		this.alive = this.health > 0;
+		this.displayHealth = true;
 	}
 	
 	this.reset = function(resetX, resetY) {
@@ -334,6 +436,13 @@ function enemyClass() {
         this.changeDirection();
         this.x = resetX;
         this.y = resetY;
+		this.health = this.maxhealth;
+		if (this.hasOwnProperty("myBite")) {
+			this.myBite.reset();
+		}
+		if (this.picVariants.length) {
+			this.newRandomPic();
+		}
     }
     
     this.speedMultForTileType = function(tileType) {
@@ -501,5 +610,15 @@ function enemyClass() {
             default:
                 return true;
         }
+    }
+
+	this.newRandomPic = function() {
+		if (this.picVariants.length) {
+			var picIndex = Math.round(Math.random() * (this.picVariants.length - 1));
+			var oldPic = this.myPic;
+			this.myPic = this.picVariants[picIndex];
+		} else {
+			console.warn("Called newRandomPic on enemy without pic variants", this);
+		}
     }
 }

@@ -160,33 +160,44 @@ function loadLevel() {
             var newEnemy;
             var newTile;
             if(roomGrid[arrayIndex] == TILE_BAT) {
-                newEnemy = new batClass('Bat');
+                newEnemy = new batClass();
+				newEnemy.initialize("bat", batPic, 4);
             } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
-                newEnemy = new skeletonClass('Skeleton1', skeletonPic);
+                newEnemy = new skeletonClass('Skeleton1', skeletonPic, 4);
             } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
-                newEnemy = new skeletonClass('Skeleton2', skeletonPic2);
+                newEnemy = new skeletonClass('Skeleton2', skeletonPic2, 6);
             } else if(roomGrid[arrayIndex] == TILE_SKELETON) {
-                newEnemy = new skeletonClass('Skeleton3', skeletonPic3);
+                newEnemy = new skeletonClass('Skeleton3', skeletonPic3, 6);
             } else if(roomGrid[arrayIndex] == TILE_ZOMBIE) {
-                newEnemy = new zombieClass('Zombie', zombiePic);
+                newEnemy = new zombieClass();
+				newEnemy.initialize('Zombie', zombiePic, 4);
             } else if(roomGrid[arrayIndex] == TILE_ZOMBIE2) {
-                newEnemy = new zombieClass('Zombie2', zombiePic2);
+                newEnemy = new zombieClass();
+				newEnemy.initialize('Zombie2', zombiePic2, 6);
             } else if(roomGrid[arrayIndex] == TILE_ZOMBIE3) {
-                newEnemy = new zombieClass('Zombie3', zombiePic3);
+                newEnemy = new zombieClass();
+				newEnemy.initialize('Zombie3', zombiePic3, 6);
             } else if(roomGrid[arrayIndex] == TILE_GOBLIN) {
-                newEnemy = new goblinClass('Goblin');
+                newEnemy = new goblinClass();
+				newEnemy.initialize('Goblin', goblinPic, 6);
             } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_SWORD) {
-                newEnemy = new orcClass('Orc - Sword', orcPic);
+                newEnemy = new orcClass();
+				newEnemy.initialize('Orc - Sword', orcPic, 6);
             } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_CLUB) {
-                newEnemy = new orcClass('Orc - Club2', orcPic2);
+                newEnemy = new orcClass();
+				newEnemy.initialize('Orc - Club2', orcPic2, 4);
             } else if(roomGrid[arrayIndex] == TILE_GREEN_ORC_AX) {
-                newEnemy = new orcClass('Orc - Ax', orcPic3);
+                newEnemy = new orcClass();
+				newEnemy.initialize('Orc - Ax', orcPic3, 4);
             } else if(roomGrid[arrayIndex] == TILE_ARCHER) {
-                newEnemy = new archerClass('Archer');
+                newEnemy = new archerClass();
+				newEnemy.initialize('Archer', archerPic, 4);
             } else if(roomGrid[arrayIndex] == TILE_DRUID) {
-                newEnemy = new druidClass('Druid', druidPic);
+                newEnemy = new druidClass();
+				newEnemy.initialize('Druid', druidPic, 1);
 			} else if(roomGrid[arrayIndex] == TILE_ORCBOSS) {
-                newEnemy = new orcBossClass('Orc Boss', orcBossPic);	
+                newEnemy = new orcBossClass();
+				newEnemy.initialize('Orc Boss', orcBossPic, 1);
             } else if(roomGrid[arrayIndex] == TILE_ADDY) {   // NPC
                 newEnemy = new npcClass('Addy', addyPic );
             } else if(roomGrid[arrayIndex] == TILE_DELKON) {   // NPC

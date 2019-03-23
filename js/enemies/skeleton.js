@@ -1,43 +1,28 @@
 const SKELETON_SPEED = 0.5;
 
 skeletonClass.prototype = new enemyClass();
-function skeletonClass(skeletonName) {
+function skeletonClass() {
 	this.speed = SKELETON_SPEED;
-	this.mySkeletonPic = skeletonPic; // which picture to use
-	this.myName = skeletonName;
-
 	this.maxhealth = 8;
-	this.alive = true;
-	this.myBite = new biteClass();	//
-	this.myBite.baseBiteLife = 30;			//Archers bite, but they're not very good at it
-	this.myBite.baseBiteCooldown = 10;		//
-	this.displayHealth = false;
-	this.skeletonHealthCountdownSeconds = 5;
-	this.skeletonDisplayHealthCountdown = this.skeletonHealthCountdownSeconds * FRAMES_PER_SECOND;
-
-	this.tickCount = 0;
-	this.frameIndex = 0;
 	this.width = 31;
 	this.numberOfFrames = 6;
 	this.height = 52;
 	this.ticksPerFrame = 5;
-	this.skeletonMove = true;
-	this.skeletonTimeBetweenChangeDir = 700;
-	this.pather = new Pathfinder3();
+	this.timeBetweenChangeDir = 700;
 	this.treasureAvailable = true;
 	this.framesPerDeadSkeleton = 0;
-
-	this.superClassReset = this.reset;
-	this.reset = function(resetX, resetY) {
-		this.superClassReset(resetX, resetY);
-		this.mySkeletonPic = skeletonPic;
-		this.health = 8;
-		this.newRandomPic();
-	}
+	this.hurtSound = skeletonHurtSound;
+	this.picVariants = [skeletonPic, skeletonPic2, skeletonPic3];
+	this.shadowXOffset = 16;
+	this.shadowYOffset = 32;
+	this.deadPic = deadSkeletonPic;
 	
-	this.superClassMove = this.move;
-	this.move = function() {
-		this.superClassMove(this.skeletonTimeBetweenChangeDir);
+	this.superClassInitialize = this.initialize;
+	this.initialize = function(enemyName, enemyPic) {
+		this.superClassInitialize(enemyName, enemyPic);
+		this.myBite.baseBiteLife = 30;	//Skeletons bite, but they're not very good at it
+		this.myBite.baseBiteCooldown = 10;
+		this.pather = new Pathfinder3();
 	}
 
 	this.distributeTreasure = function(){
@@ -58,17 +43,13 @@ function skeletonClass(skeletonName) {
 			}
 		}
 	}
-	
-	
+
+	this.superClassTakeDamage = this.takeDamage;	
 	this.takeDamage = function(howMuch) {
-		this.health -= howMuch;
-		skeletonHurtSound.play();
-		this.displayHealth = true;
-		if(this.health <= 0){
-			if(this.treasureAvailable){
-				this.distributeTreasure();
-				this.treasureAvailable = false;
-			}
+		this.superClassTakeDamage(howMuch);
+		if(this.alive && this.treasureAvailable){
+			this.distributeTreasure();
+			this.treasureAvailable = false;
 		}
 	}
 	
@@ -79,21 +60,6 @@ function skeletonClass(skeletonName) {
         }
     }
 	
-	this.newRandomPic = function() {
-        var whichPic = Math.round(Math.random() * 3);
-        switch (whichPic) {
-            case 0:
-                this.mySkeletonPic = skeletonPic;
-                break;
-            case 1:
-                this.mySkeletonPic = skeletonPic2;
-                break;
-            case 2:
-                this.mySkeletonPic = skeletonPic3;
-                break;
-        }
-    }
-	
 	this.countFramesForDeadSkeleton = function(){
 		this.framesPerDeadSkeleton++;
 		if(this.framesPerDeadSkeleton == 120){
@@ -101,57 +67,12 @@ function skeletonClass(skeletonName) {
 		}
 	}
 	
-		
-	this.draw = function() { 
-		if(this.skeletonMove) {
-			this.tickCount++;
-		}
-		if (this.tickCount > this.ticksPerFrame) {
-			this.tickCount = 0;
-			if(this.frameIndex < this.numberOfFrames-1) {
-				this.frameIndex += 1;
-			} else {
-				this.frameIndex = 0;
-			}
-		}
-		
-		if(this.health > 0){
-			
-			if(gamePaused == false){
-				this.sx = this.frameIndex * this.width;
-			}
-			
-			canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
-			canvasContext.drawImage(this.mySkeletonPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
-			
-			if(this.displayHealth){
-				if(this.skeletonDisplayHealthCountdown >= 0) {
-					colorRect(this.x,this.y-16, 40,12, "black"); 
-					colorRect(this.x+2,this.y-14, 35, 8, "red");
-					colorRect(this.x+2,this.y-14, (this.health/this.maxhealth)*35, 8, "green");
-					this.skeletonDisplayHealthCountdown--;
-				} else {
-					this.skeletonDisplayHealthCountdown = this.skeletonHealthCountdownSeconds * FRAMES_PER_SECOND;
-					this.displayHealth = false;
-				}
-			}
-			
-			
-			if(debugMode){
-				colorRect(this.x,this.y, 5,5, "red"); 
-				colorRect(this.x,this.y+this.height, 5,5, "red");
-				colorRect(this.x+this.width,this.y, 5,5, "red");
-				colorRect(this.x+this.width,this.y+this.height, 5,5, "red");
-				}
-		
-		} else {
+	this.superClassDraw = this.draw;
+	this.draw = function() {
+		this.superClassDraw();
+		if (!this.alive) {
 			this.countFramesForDeadSkeleton();
-			canvasContext.drawImage(deadSkeletonPic, this.x,this.y);
 			removeEnemy();
 		}
-		
-		if (this.health <= 0) {
-			this.alive = false;
-		}	
 	}
 }
