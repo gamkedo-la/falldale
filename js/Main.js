@@ -106,13 +106,54 @@ function imageLoadingDoneSoStartGame() {
     }
 }
 
+function backgroundMusicSelect(){
+ console.log(levelNow);
+	var musicLevel = levelNow;
+	switch(musicLevel){
+		case 1:
+		    backgroundMusic.loopSong("have-a-nice-beer")			
+			break;
+		case 2:
+		    backgroundMusic.loopSong("goblinRaid");
+			break;
+		case 3:
+		    backgroundMusic.loopSong("have-a-nice-beer")
+			break;
+		case 4:
+			backgroundMusic.loopSong("goblinRaid");
+			break;
+		case 5:
+			backgroundMusic.loopSong("have-a-nice-beer")
+			break;
+		case 6:
+		    backgroundMusic.loopSong("goblinRaid");
+			break;
+		case 7:
+		    backgroundMusic.loopSong("goblinRaid");
+			break;
+		case 8:
+		    backgroundMusic.loopSong("have-a-nice-beer")
+			break;
+		case 9:
+		    backgroundMusic.loopSong("have-a-nice-beer")
+			break;
+		case 10:
+		    backgroundMusic.loopSong("goblinRaid");
+			break;
+		case 12:
+		    backgroundMusic.loopSong("goblinRaid");
+			break;
+	}
+}
+
 function loadLevel() {
     recalulateLevelNow();
     var whichLevel = levelList[levelNow];
     roomGrid = whichLevel.slice();
     enemyList.splice(0, enemyList.length); //Empty enemyList
     tileList.splice(0, tileList.length); //Empty tileList
-
+	backgroundMusicSelect();
+	
     var arrayIndex = 0;
     for(var eachRow=0;eachRow<ROOM_ROWS;eachRow++) {
         for(var eachCol=0;eachCol<ROOM_COLS;eachCol++) {

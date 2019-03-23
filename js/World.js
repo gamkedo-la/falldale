@@ -484,7 +484,6 @@ var RANGED_NO_COLLIDE = [TILE_SKELETON, TILE_GOBLIN, TILE_BAT, TILE_ZOMBIE, TILE
 
 function recalulateLevelNow() {
 	levelNow = MAP_WIDTH * levelRow + levelCol;
-	console.log("levelNow is " + levelNow);
 	return levelNow;
 }
 
