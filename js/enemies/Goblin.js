@@ -29,7 +29,7 @@ function goblinClass(goblinName) {
     this.reset = function(resetX, resetY) {
 		this.superClassReset(resetX, resetY);
         this.newRandomPic();
-        this.health = 8;
+        this.health = 4;
     } 
 	
 	this.newRandomPic = function() {
@@ -163,9 +163,9 @@ function goblinClass(goblinName) {
 
             if (this.displayHealth) {
                 if (this.goblinDisplayHealthCountdown >=0) {
-                    colorRect(this.x, this.y - 16, 40, 12, "black");
-                    colorRect(this.x + 2, this.y - 14, 35, 8, "red");
-                    colorRect(this.x + 2, this.y - 14, (this.health / this.maxhealth) * 35, 8, "green");
+                    colorRect(this.x + 13, this.y - 16, this.maxhealth + 4, 12, "black");
+                    colorRect(this.x + 15, this.y - 14, this.maxhealth, 8, "red");
+                    colorRect(this.x + 15, this.y - 14, (this.health / this.maxhealth) * this.maxhealth, 8, "green");
                     this.goblinDisplayHealthCountdown--;
                 } else {
                     this.goblinDisplayHealthCountdown = this.goblinHealthCountdownSeconds * FRAMES_PER_SECOND;

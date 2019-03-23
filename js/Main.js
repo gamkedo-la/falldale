@@ -86,8 +86,7 @@ window.onload = function() {
     colorText("Loading Images... please wait", 400, 300, 'black');
     loadImages();
     canvas.addEventListener('mousedown', handleMouseClick);
-    backgroundMusic.loopSong("have-a-nice-beer");
-
+    backgroundMusic.loopSong("goblinRaid");
 };
 
 function imageLoadingDoneSoStartGame() {
@@ -430,7 +429,7 @@ function drawAll() {
         OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
 		canvasContext.restore();
 		if(redWarrior.questOneComplete == false) {
-			colorText(goblinsKilledInFallDale + " out of the 20 Goblins killed in Falldale.", canvas.width - 400, 20, "red");
+			colorText(goblinsKilledInFallDale + " out of the 10 Goblins killed in Falldale.", canvas.width - 400, 20, "red");
 		}
         health();
         dialogManager.drawDialog();
