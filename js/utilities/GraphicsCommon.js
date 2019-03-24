@@ -44,3 +44,21 @@ function emptyRect(x,y, width,height, lineWidth, strokeColor) {
 	canvasContext.strokeRect(x,y, width,height);
 	canvasContext.lineWidth = 0;
 }
+
+// arguments
+// ctx : the context on which to draw the mirrored image
+// image : the image to mirror
+// x,y : the top left of the rendered image
+// horizontal : boolean if true mirror along X
+// vertical : boolean if true mirror along y
+function mirrorImage(ctx, image, x = 0, y = 0, horizontal = false, vertical = false){
+    ctx.save();  // save the current canvas state
+    ctx.setTransform(
+        horizontal ? -1 : 1, 0, // set the direction of x axis
+        0, vertical ? -1 : 1,   // set the direction of y axis
+        x + horizontal ? image.width : 0, // set the x origin
+        y + vertical ? image.height : 0   // set the y origin
+    );
+    ctx.drawImage(image,0,0);
+    ctx.restore(); // restore the state as it was when this function was called
+}

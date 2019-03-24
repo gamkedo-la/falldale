@@ -230,6 +230,7 @@ function loadLevel() {
                 newEnemy = new npcClass('Fido', catPic);
                 newEnemy.numberOfFrames = 6; // six frame walk cycle
                 newEnemy.patrolPoints = [4, 6, 10, 6]; // sidewalk near your house
+                newEnemy.spriteSheetRows = 2; // to allow flipping
             } else {
                 newTile = new TileObject(arrayIndex);
 

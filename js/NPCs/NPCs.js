@@ -177,7 +177,7 @@ function npcClass(npcName, npcPic) {
                     this.tickCount++; // this makes spritesheet animation work
                 } else {
                     // unfinished artwork, stay at frame 0 forever
-                    // and just slide aroun for now
+                    // and just slide around for now
                 }
             }
 
@@ -197,8 +197,16 @@ function npcClass(npcName, npcPic) {
                 this.sx = this.frameIndex * this.width;
             }
 
-            canvasContext.drawImage(shadowPic, this.x - 20, this.y + 32);
-            canvasContext.drawImage(this.myNPCPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+            canvasContext.drawImage(shadowPic, this.x - 16, this.y + 32);
+            
+            // draw a mirror image when walking other way? use row 2
+            if (this.spriteSheetRows && !this.walkWest) { 
+                canvasContext.drawImage(this.myNPCPic, this.sx, this.sy+this.height, this.width, this.height, this.x, this.y, this.width, this.height);
+            } else { 
+                // normal drawing, never flipped, used by nearly all entities
+                canvasContext.drawImage(this.myNPCPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+            }
+            
             if (debugMode) {
                 colorText(this.myName, this.x, this.y - 20, "red");
                 colorText("HP: " + this.health, this.x, this.y - 10, "red");
