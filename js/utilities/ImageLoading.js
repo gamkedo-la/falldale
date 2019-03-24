@@ -32,6 +32,9 @@ var orcPic2 = document.createElement("img");
 var orcPic3 = document.createElement("img");
 var deadOrcPic = document.createElement("img");
 
+var bullywugPic = document.createElement("img");
+
+
 var druidPic = document.createElement("img");
 var orcBossPic = document.createElement("img"); 
 
@@ -249,6 +252,7 @@ function loadImages() {
 			{varName: orcBossPic, theFile: "Monsters/OrcChief.png"},
 			{varName: druidPic, theFile: "Monsters/druid.png"},
 			{varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png"},
+			{varName: bullywugPic, theFile: "Monsters/Bullywug.png"},
 			{varName: archerPic, theFile: "Monsters/archer.png"},
 			{varName: deadArcherPic, theFile: "Monsters/deadGoblin.png"},
 			{varName: storeFrontPic, theFile: "storefront.jpg"},

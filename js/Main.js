@@ -192,6 +192,9 @@ function loadLevel() {
             } else if(roomGrid[arrayIndex] == TILE_ARCHER) {
                 newEnemy = new archerClass();
 				newEnemy.initialize('Archer', archerPic, 4);
+            } else if(roomGrid[arrayIndex] == TILE_BULLYWUG) {
+                newEnemy = new bullywugClass();
+				newEnemy.initialize('Bullywug', bullywugPic, 0);
             } else if(roomGrid[arrayIndex] == TILE_DRUID) {
                 newEnemy = new druidClass();
 				newEnemy.initialize('Druid', druidPic, 1);
