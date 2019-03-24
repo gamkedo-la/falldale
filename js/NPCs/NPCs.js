@@ -200,7 +200,7 @@ function npcClass(npcName, npcPic) {
             canvasContext.drawImage(shadowPic, this.x - 16, this.y + 32);
             
             // draw a mirror image when walking other way? use row 2
-            if (this.spriteSheetRows && !this.walkWest) { 
+            if (this.spriteSheetRows && (this.walkEast || this.walkNorth)) { 
                 canvasContext.drawImage(this.myNPCPic, this.sx, this.sy+this.height, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
             } else { 
                 // normal drawing, never flipped, used by nearly all entities

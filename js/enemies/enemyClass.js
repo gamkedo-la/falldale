@@ -92,7 +92,7 @@ function enemyClass() {
 				this.sx = this.frameIndex * this.width;
 			}
 			canvasContext.drawImage(shadowPic, this.x - this.shadowXOffset, this.y + this.shadowYOffset);
-			canvasContext.drawImage(this.myPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+			canvasContext.drawImage(this.myPic, this.sx, this.sy, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
 			if (debugMode) {
 				colorText(this.myName, this.x, this.y - 20, "red");
 				colorText("HP: " + this.health, this.x, this.y - 10, "red");
@@ -102,7 +102,7 @@ function enemyClass() {
 				colorRect(this.x + this.width, this.y + this.height, 5, 5, "red")
 			}
 		} else if (this.deadPic != null) {
-			canvasContext.drawImage(this.deadPic, this.x, this.y);
+			canvasContext.drawImage(this.deadPic, Math.round(this.x), Math.round(this.y));
 		}
 	}
 

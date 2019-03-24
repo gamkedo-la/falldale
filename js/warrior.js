@@ -305,7 +305,7 @@ function warriorClass() {
 
 	this.drawWarriorAndShadow = function() {
 		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
-		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, this.x, this.y, this.width, this.height);
+		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
 	};
 
 	this.draw = function() {
