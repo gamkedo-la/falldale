@@ -10,9 +10,9 @@ function npcClass(npcName, npcPic) {
 
     this.tickCount = 0;
     this.frameIndex = 0;
-    this.width = 50;
+    this.width = 36;
     this.numberOfFrames = 4;
-    this.height = 50;
+    this.height = 52;
     this.ticksPerFrame = 5;
     this.npcMove = true;
     this.npcTimeBetweenChangeDir = 100;
@@ -199,6 +199,12 @@ function npcClass(npcName, npcPic) {
 
             canvasContext.drawImage(shadowPic, this.x - 16, this.y + 32);
             
+			// temp fix for "Fido"
+			
+			if(this.name == "Fido"){
+				this.width = 50;
+			}
+			
             // draw a mirror image when walking other way? use row 2
             if (this.spriteSheetRows && (this.walkEast || this.walkNorth)) { 
                 canvasContext.drawImage(this.myNPCPic, this.sx, this.sy+this.height, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
