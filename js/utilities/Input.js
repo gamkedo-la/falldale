@@ -109,13 +109,26 @@ function keyPressed(evt) {
     var mute = KEY_M;
     var nightModeToggle = KEY_N;
 
+    // Start background music when the player press a key and music/SFX are not muted(muteInputCycle = 0 or muteInputCycle = 3)
+    if(evt.keyCode !== mute && muteInputCycle !== 1 && muteInputCycle !== 2) {
+        // If the music isn't already playing, start to play
+        // Won't start to play every time a key is pressed
+        if(!backgroundMusic.checkMusicState()) {
+            backgroundMusic.loopSong("have-a-nice-beer");
+        }
+    }
+
     if (evt.keyCode == paused) {
         if (gamePaused) {
             gamePaused = false;
         } else {
             gamePaused = true;
+            // Only stop the music when the player pauses the game
+            // Changing it here so it doesn't interfere with the mute option
+            if(backgroundMusic.checkMusicState()) {
+                backgroundMusic.startOrStopMusic();
+            }
         }
-        backgroundMusic.startOrStopMusic();
     }
 
     if (gamePaused) {

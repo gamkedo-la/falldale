@@ -66,6 +66,14 @@ function BackgroundMusicClass() {
 			muteAudio = true;
         }
     }
+
+    this.checkMusicState = function() {
+        if (musicSound.paused) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
 function CycleMute() {
@@ -97,6 +105,7 @@ function CycleMute() {
         skeletonHurtSound.startOrStopSFX();
         batHurtSound.startOrStopSFX();
         playerHurtSound.startOrStopSFX();
+        meowPurrSound.startOrStopSFX();
 		arrowShotSound.startOrStopSFX();
 		swordSwingSound.startOrStopSFX();
 		humanMaleHello.startOrStopSFX();
@@ -120,6 +129,7 @@ function CycleMute() {
         skeletonHurtSound.startOrStopSFX();
         batHurtSound.startOrStopSFX();
         playerHurtSound.startOrStopSFX();
+        meowPurrSound.startOrStopSFX();
 		arrowShotSound.startOrStopSFX();
 		swordSwingSound.startOrStopSFX();
 		humanMaleHello.startOrStopSFX();

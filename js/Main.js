@@ -34,8 +34,10 @@ var gamePaused = false;
 var muteInputCycle = 0;
 var saveGame = new SaveGame();
 var continueGame = false;
+
 // Sounds //
 
+var backgroundMusic = new BackgroundMusicClass();
 var doorSound = new SoundOverlapsClass("woodDoorOpen");
 var keySound = new SoundOverlapsClass("keys");
 var spikeSound = new SoundOverlapsClass("spikes");
@@ -46,7 +48,6 @@ var batHurtSound = new SoundOverlapsClass("bathurt");
 var playerHurtSound = new SoundOverlapsClass("playerHurt");
 var arrowShotSound = new SoundOverlapsClass("arrowShot");
 var swordSwingSound = new SoundOverlapsClass("swordSwing");
-var backgroundMusic = new BackgroundMusicClass();
 var meowPurrSound = new SoundOverlapsClass("meow_purr");
 var humanMaleHello = new SoundOverlapsClass("humanMaleHello");
 var humanMaleHi = new SoundOverlapsClass("humanMaleHi");
