@@ -16,6 +16,9 @@ function colorCircle(centerX,centerY, radius, fillColor) {  //draw circles
 	canvasContext.beginPath();
 	canvasContext.arc(centerX,centerY, radius, 0,Math.PI*2, true);
 	canvasContext.fill();
+
+	// idea:
+	// canvasContext.drawImage(circlePic,centerX-radius,centerY-radius);
 }
 
 function colorText(showWords, textX, textY, fillColor, font = "14px Arial Black") {
