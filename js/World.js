@@ -731,15 +731,15 @@ function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
 				colorRect(tilePosX, tilePosY, 5,5, "#b97a57"); // all other
 			}
 
-			//colorCircle(miniMapPosX+90+2, miniMapPosY+90+2, 4, "#FFF");
-			canvasContext.drawImage(circlePic,miniMapPosX+90+2, miniMapPosY+90+2);
-
 			drawTileX += miniMapTileSize;
 			arrayIndex++;
 		}
 		drawTileY += miniMapTileSize;
 		drawTileX = 0;
 	}
+
+	//colorCircle(miniMapPosX+90+2, miniMapPosY+90+2, 4, "#FFF");
+	canvasContext.drawImage(circlePic,miniMapPosX+90+2, miniMapPosY+90+2);
 
 	const strokeWidth = 6;
 	emptyRect(miniMapPosX,miniMapPosY, width-strokeWidth/2,height-strokeWidth/2, strokeWidth, "#000");
