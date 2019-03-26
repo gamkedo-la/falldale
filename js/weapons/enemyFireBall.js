@@ -70,7 +70,8 @@ function enemyFireBallClass() {
 
     this.draw = function() {
         if (this.life > 0) {
-            colorCircle(this.x, this.y, 5, "orange");
+            //colorCircle(this.x, this.y, 5, "orange");
+            canvasContext.drawImage(fireballPic,this.x-4, this.y-4);
         }
     }
 

@@ -66,6 +66,7 @@ var mapPic = document.createElement("img");
 var heartPic = document.createElement("img");
 var healingPotionPic = document.createElement("img");
 var goldPic = document.createElement("img");
+var fireballPic = document.createElement("img");
 
 var worldPics = [];
 
@@ -280,7 +281,8 @@ function loadImages() {
 			{varName: goldPic, theFile: "gold.png"},
 			{varName: mapPic, theFile: "map.png"},
 			{varName: healingPotionPic, theFile: "healingPotion.png"},
-			{varName: heartPic, theFile: "heart.png"}
+			{varName: heartPic, theFile: "heart.png"},
+			{varName: fireballPic, theFile: "fireball.png"}
 		];
 			
 	picsToLoad = imageList.length;
