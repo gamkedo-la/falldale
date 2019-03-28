@@ -668,7 +668,15 @@ function drawRoom(drawFloors, drawWalls) {
 				drawWalls && !isFloor) {
 				drawTileFX(tileKindHere, drawTileX, drawTileY);
 				try {
-					canvasContext.drawImage(useImg, drawTileX, drawTileY);
+
+					if (tileKindHere==TILE_WATER) { // animated floor tile
+						canvasContext.drawImage(waterScrollImg, drawTileX, drawTileY);
+					} 
+					else { // draw the tile normally
+						canvasContext.drawImage(useImg, drawTileX, drawTileY);
+					}
+
+
 				} catch (err) {
 					console.log("Got the error " + err + " when trying to draw " + useImg);
 				}

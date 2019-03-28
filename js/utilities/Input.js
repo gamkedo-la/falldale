@@ -217,12 +217,15 @@ function handleMouseClick(evt) {
 
 
     if (true) { // (debugMode) {
+        var tileindex = rowColToArrayIndex(Math.floor((mouseX+camera.x) / TILE_W),
+            Math.floor((mouseY+camera.y) / TILE_H));
+
         console.log(
             "clicked pixel x,y:" + (mouseX+camera.x) + "," + (mouseY+camera.y) +
             " tile col,row: " + Math.floor((mouseX+camera.x) / TILE_W) +
-            "," + Math.floor((mouseY+camera.y) / TILE_H) + " tile index: " +
-            rowColToArrayIndex(Math.floor((mouseX+camera.x) / TILE_W),
-                Math.floor((mouseY+camera.y) / TILE_H)));
+            "," + Math.floor((mouseY+camera.y) / TILE_H) 
+            + " tile index: " + tileindex              
+            + " tile #" + roomGrid[tileindex]);
     }
 
     if (menuScreen) {

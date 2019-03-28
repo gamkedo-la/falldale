@@ -68,6 +68,7 @@ var healingPotionPic = document.createElement("img");
 var goldPic = document.createElement("img");
 var fireballPic = document.createElement("img");
 var circlePic = document.createElement("img");
+var waterScrollImg = document.createElement("img");
 
 var worldPics = [];
 
@@ -284,7 +285,8 @@ function loadImages() {
 			{varName: healingPotionPic, theFile: "healingPotion.png"},
 			{varName: heartPic, theFile: "heart.png"},
 			{varName: fireballPic, theFile: "fireball.png"},
-			{varName: circlePic, theFile: "circle.png"}
+			{varName: circlePic, theFile: "circle.png"},
+			{varName: waterScrollImg, theFile: "water_scroll.png"}
 			
 		];
 			
