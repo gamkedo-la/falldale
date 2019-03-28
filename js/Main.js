@@ -482,7 +482,10 @@ function drawAll() {
 
         depthSortedDraw();
 
-        drawRooftops();
+        if (levelNow == 7) { //7=fallDale??? elsewhere it is listed as 0 FIXME
+            drawRooftops(); // FIXME: hardcoded for main town area only
+        }
+
         OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
 		canvasContext.restore();
 		if(redWarrior.questOneComplete == false) {
