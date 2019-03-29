@@ -627,19 +627,6 @@ function tileTypeHasGrassTransparency(checkTileType) {
 			);
 }
 
-// add special fx for tiles that need it
-var shinyAngle = 0;
-var shinyAngleDelta = 0.03; // radians of rotation per frame
-function drawTileFX(checkTileType, drawTileX, drawTileY) {
-	if (checkTileType == TILE_RED_KEY ||
-		checkTileType == TILE_GREEN_KEY ||
-		checkTileType == TILE_YELLOW_KEY ||
-		checkTileType == TILE_BLUE_KEY
-		)
-	{
-		drawBitmapCenteredWithRotation(shinyPic, drawTileX+24, drawTileY+16, shinyAngle);
-	}
-}
 
 function drawRoom(drawFloors, drawWalls) {
 
@@ -666,15 +653,13 @@ function drawRoom(drawFloors, drawWalls) {
 
 			if (drawFloors && isFloor ||
 				drawWalls && !isFloor) {
-				drawTileFX(tileKindHere, drawTileX, drawTileY);
 				try {
 
-					if (tileKindHere==TILE_WATER) { // animated floor tile
-						canvasContext.drawImage(waterScrollImg, drawTileX, drawTileY);
-					} 
-					else { // draw the tile normally
-						canvasContext.drawImage(useImg, drawTileX, drawTileY);
-					}
+					// draw the tile
+					canvasContext.drawImage(useImg, drawTileX, drawTileY);
+					
+					// optional sparkles, splashes, glows are drawn on top
+					drawTileFX(tileKindHere, drawTileX, drawTileY);
 
 
 				} catch (err) {

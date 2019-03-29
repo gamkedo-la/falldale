@@ -4,6 +4,7 @@ var debugSkipToGame = true;
 
 var canvas, canvasContext;
 const FRAMES_PER_SECOND = 30;
+var frameCounter = 0;
 var damageUICountdown = 3;//in seconds
 var diceWidth = 40;
 var diceHeight = 40;
@@ -450,6 +451,7 @@ function depthSortedDraw() {
 }
 
 function drawAll() {
+    frameCounter++;
     if (menuScreen) {
         drawMenuScreen();
         if(debugSkipToGame){
