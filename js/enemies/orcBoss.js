@@ -19,17 +19,6 @@ function orcBossClass() {
         this.timeBetweenChangeDir = Math.floor(Math.random() * 1000) + 1;
     }
 
-    this.superClassMove = this.move;
-    this.move = function() {
-        this.superClassMove(this.orcBossTimeBetweenChangeDir);
-        if (this.walkWest) {
-            this.sy = this.height*0;
-        }
-        if (this.walkEast) {
-            this.sy = this.height*0;
-        }
-    }
-
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
