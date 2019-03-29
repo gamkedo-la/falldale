@@ -11,6 +11,7 @@ function swordClass() {
 	this.yv = 5;
 	this.life = SWORD_LIFE;
 	this.coolDownTime = 0;
+	this.isMagic = false;
 	this.mySwordPic = swordPic;
 	this.immunity = false;
 	this.attackHitBonus = 10; 
@@ -102,31 +103,49 @@ function swordClass() {
 		var swordLength = 40;
 		var swordXLocation = weilder.x;
 		var swordYLocation = weilder.y;
+		var rotation = 0;
 		
 		if(direction == "north") {
 			swordWidth = 10;
 			swordLength = 20;
 			swordXLocation = weilder.centerX+5;
-			swordYLocation = weilder.y - swordLength;
+			swordYLocation = weilder.y - swordLength + 10;
 		} else if(direction == "south") {
 			swordWidth = 10;
 			swordLength = 40;
-			swordXLocation = weilder.centerX-10;
-			swordYLocation = weilder.centerY+10;
+			swordXLocation = weilder.centerX - 5;
+			swordYLocation = weilder.centerY + 35;
+			rotation = Math.PI;
 		} else if(direction == "west") {
 			swordWidth = 40;
 			swordLength = 10;
-			swordXLocation = weilder.x - swordWidth + 10;
+			swordXLocation = weilder.x - swordWidth + 30;
 			swordYLocation = weilder.centerY;
+			rotation = -Math.PI / 2;
 		} else if(direction == "east") {
 			swordWidth = 40;
 			swordLength = 10;
-			swordXLocation = weilder.x + 20;
-			swordYLocation = weilder.centerY;
+			swordXLocation = weilder.x + 60;
+			swordYLocation = weilder.centerY + 30;
+			rotation = Math.PI / 2;
 		} 
 		
 		if(this.life > 0) {
-			colorRect(swordXLocation, swordYLocation, swordWidth, swordLength, "gray" );
+			if(this.isMagic) {
+				this.mySwordPic = magicSwordPic;
+			} else {
+				this.mySwordPic = swordPic;
+			}
+			canvasContext.save();
+			if(rotation != 0) {
+				canvasContext.translate(swordXLocation, swordYLocation);
+				canvasContext.rotate(rotation);
+				canvasContext.drawImage(this.mySwordPic, -swordWidth/2, -swordLength/2);
+			} else {
+				canvasContext.drawImage(this.mySwordPic, swordXLocation, swordYLocation);
+			}
+			
+			canvasContext.restore();
 		}
 	}	
 }

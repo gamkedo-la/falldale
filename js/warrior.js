@@ -313,6 +313,10 @@ function warriorClass() {
 
 		this.sx = this.frameIndex * this.width;
 
+		if((direction == "north") || (direction == "west")) {
+			this.mySword.draw(this);
+		}
+
 		if(this.displayHealth) {
 			this.drawFlashingWarriorAndHealth();
 		} else {
@@ -321,7 +325,10 @@ function warriorClass() {
 
 		if(debugMode) {this.drawDebug();}
 
-		this.mySword.draw(this);
+		if((direction == "south") || (direction == "east")) {
+			this.mySword.draw(this);
+		}
+//		this.mySword.draw(this);
 
 		this.myArrow.draw();
 
