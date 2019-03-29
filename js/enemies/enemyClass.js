@@ -1,3 +1,5 @@
+const AI_VISION_RANGE = 350;//will use pathfinding if within this number
+
 function enemyReadyToRemove() {
     for(var i=0;i<enemyList.length;i++) {
 		if(enemyList[i].health <= 0){
@@ -168,6 +170,12 @@ function enemyClass() {
         }
     }
 
+    this.nonPathDistance = function(x1,y1, x2,y2){
+        var XD = x2 - x1;
+        var YD = y2 - y1;
+        return Math.sqrt(XD*XD + YD*YD);
+    }
+
     this.pathFindingMove = function(timeBetweenDirChange) {
         if(this.pather == null) {return null;} //this enemy is not fully initialized yet
         
@@ -176,6 +184,14 @@ function enemyClass() {
 			this.cyclesTilDirectionChange = timeBetweenDirChange;
 			const thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
 			const warriorTileIndex = getTileIndexAtPixelCoord(redWarrior.x, redWarrior.y);
+
+            var dist = this.nonPathDistance(this.x, this.y, redWarrior.x, redWarrior.y);
+            //console.log("distance to player is " + dist);
+
+            if(dist > AI_VISION_RANGE) {
+               this.currentPath = null;
+               return null; 
+            }
 
 			this.currentPath = this.pather.pathFrom_To_(thisTileIndex, warriorTileIndex, this.isPassableTile);
             this.currentPathIndex = 0;

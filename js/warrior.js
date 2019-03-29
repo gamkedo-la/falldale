@@ -20,6 +20,7 @@ function warriorClass() {
 	this.leftArm = this.x + 25;
 	this.rightArm = this.x - 25;
 	this.speed = 3.0;
+	this.isFrozen = false;
 	this.myWarriorPic = biggyPic; // which picture to use
 	this.name = "Untitled warrior";
 	this.keysHeld = 0;
@@ -138,7 +139,7 @@ function warriorClass() {
 	this.move = function() {
 		var {nextX, nextY} = this.nextPosWithInput(nextY, nextX);
 
-		this.playerMove = (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast);
+		this.playerMove = !this.isFrozen && (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast);
 
 		const tileC = pixelXtoTileCol(nextX);
 		const tileR = pixelYtoTileRow(nextY);
@@ -155,6 +156,16 @@ function warriorClass() {
 		this.myRock.move();
 
 		this.tryToTriggerMonsterSpawnAt(skeletonClass, skeletonPic, skeletonSpawnTiles, this.x + this.width / 2, this.y + this.height / 2, direction);
+	};
+
+	this.freeze = function(duration) {
+		this.isFrozen = true;
+
+		(function(warrior) {
+			setTimeout(function() {
+				warrior.isFrozen = false;
+			}, duration);
+		})(this);
 	};
 
 	this.tryToTriggerMonsterSpawnAt = function(monsterClass, monsterPic, spawnTiles, x, y, dir = direction, chance = 0.3) { // 0.0 to less than 2.0 chance
@@ -429,6 +440,8 @@ function warriorClass() {
 	this.setSpeedAndPosition = function(speed, xPos, yPos) {
 		if(debugMode) {
 			this.speed = 20;
+		} else if (this.isFrozen) {
+			this.speed = 0;
 		} else {
 			this.speed = speed;
 		}
