@@ -441,6 +441,8 @@ function depthSortedDraw() {
         floorTiles[i].draw();
     }
 
+    OverlayFX.draw(); // grass, pebbles, cracks, flowers, night mode
+
     for(let i = 0; i < objectsToDraw.length; i++) {
         objectsToDraw[i].draw();
     }
@@ -484,11 +486,15 @@ function drawAll() {
 
         depthSortedDraw();
 
+        // FIXME these fx are Falldale-only right now
+        // it would be nice if they also were on all game regions
         if (levelNow == 7) { //7=fallDale??? elsewhere it is listed as 0 FIXME
             drawRooftops(); // FIXME: hardcoded for main town area only
+            // this is now rendered inside depthSortedDraw right after floor tiles
+            //OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
         }
 
-        OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
+        
 		canvasContext.restore();
 		if(redWarrior.questOneComplete == false) {
 			colorText(goblinsKilledInFallDale + " out of the 10 Goblins killed in Falldale.", canvas.width - 400, 20, "red");

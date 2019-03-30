@@ -216,7 +216,7 @@ function keyReleased(evt) {
 function handleMouseClick(evt) {
 
 
-    if (true) { // (debugMode) {
+    if (debugMode) {
         var tileindex = rowColToArrayIndex(Math.floor((mouseX+camera.x) / TILE_W),
             Math.floor((mouseY+camera.y) / TILE_H));
 
@@ -226,6 +226,14 @@ function handleMouseClick(evt) {
             "," + Math.floor((mouseY+camera.y) / TILE_H) 
             + " tile index: " + tileindex              
             + " tile #" + roomGrid[tileindex]);
+
+        // remember a list of all clicks for use in filling
+        // the world in decorations - 
+        OverlayFX.editorClicks += "["+(mouseX+camera.x)+","+(mouseY+camera.y)+"],";
+        console.log("clicks=["+OverlayFX.editorClicks+"];");
+        // hack it in temporarily so we see it
+        // (but we still need to copy n paste into Overlayfx.js deco[] arrays)
+        OverlayFX.addDecoration(mouseX+camera.x,mouseY+camera.y);
     }
 
     if (menuScreen) {
