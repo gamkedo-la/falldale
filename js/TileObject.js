@@ -35,8 +35,8 @@ function TileObject(index) {
             //console.log("we have scrolling water!");
             // in two passes, grab offset segments of the original sprite
             var offset = (frameCounter * 0.5) // slowly
-                % TILE_H; // move up and wrap around
-                offset = TILE_H - offset; // make it move down instead
+                % (TILE_H - 1); // move up and wrap around
+                offset = TILE_H - offset - 1; // make it move down instead
             // top bit
             canvasContext.drawImage(this.image, //waterScrollImg, 
                 0, offset, 					// src x,y
