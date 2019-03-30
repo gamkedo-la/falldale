@@ -601,6 +601,8 @@ function tileTypeHasGrassTransparency(checkTileType) {
 			checkTileType == TILE_TREE2BOTTOMHALF ||
 			checkTileType == TILE_TREE3TOPHALF ||
 			checkTileType == TILE_TREE3BOTTOMHALF ||
+			checkTileType == TILE_TREE4TOPHALF ||
+			checkTileType == TILE_TREE4BOTTOMHALF ||
 			checkTileType == TILE_GRAVEYARD_FENCE_LEFT ||
 			checkTileType == TILE_GRAVEYARD_FENCE_RIGHT ||
 			checkTileType == TILE_GRAVEYARD_FENCE ||

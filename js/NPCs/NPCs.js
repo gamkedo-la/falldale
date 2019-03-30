@@ -11,7 +11,7 @@ function npcClass(npcName, npcPic) {
     this.tickCount = 0;
     this.frameIndex = 0;
     this.width = 36;
-    this.numberOfFrames = 4;
+    this.numberOfFrames = 6;
     this.height = 52;
     this.ticksPerFrame = 5;
     this.npcMove = true;
@@ -41,6 +41,9 @@ function npcClass(npcName, npcPic) {
         if (this.walkEast) {
             this.sy = this.height * 2;
         }
+		if (this.npcMove == false) {
+			this.sy = this.height * 4;
+		}
     }
 
     var meows = ['meow', 'meOOOWW!', 'purr', 'me-roww', 'purrrrrrrr', 'mmmmyow', 'mowmow', 'mew', 'mew mew', 'HISS!', 'meow', 'meeeeeow', 'me. ow.', 'me? ow!', 'mew meow purr', 'purr meow!', 'meow?', 'MEOW?', 'MEOW?!?!', 'meow!', 'meROWE', 'purr purr', 'purr purr purr'];
@@ -191,7 +194,6 @@ function npcClass(npcName, npcPic) {
             }
 
             this.sx = 0;
-            this.sy = 0;
 
             if (gamePaused == false) {
                 this.sx = this.frameIndex * this.width;

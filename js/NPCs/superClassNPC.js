@@ -209,7 +209,7 @@ function npcSuperClass() {
 
     this.changeDirection = function(newDirection) {
         if(newDirection == undefined) {
-            const newDir = Math.floor(3 * Math.random());
+            const newDir = Math.floor(4 * Math.random());
             if (this.walkNorth == true) {
                 this.walkNorth = false;
                 switch(newDir) {
@@ -217,17 +217,26 @@ function npcSuperClass() {
                         this.walkSouth = true;
                         this.walkEast = false;
                         this.walkWest = false;
+						this.npcMove = true;
                     break;
                     case 1:
                         this.walkSouth = false;
                         this.walkEast = true;
                         this.walkWest = false;
+						this.npcMove = true;
                     break;
                     case 2:
                         this.walkSouth = false;
                         this.walkEast = false;
                         this.walkWest = true;
+						this.npcMove = true;
                     break;
+					case 3:
+                        this.walkSouth = false;
+                        this.walkEast = false;
+                        this.walkWest = false;
+						this.npcMove = false;
+                    break;	
                 }
             } else if (this.walkWest == true) {
                 this.walkWest = false;
@@ -247,6 +256,12 @@ function npcSuperClass() {
                         this.walkEast = false;
                         this.walkNorth = true;
                     break;
+					case 3:
+                        this.walkSouth = false;
+                        this.walkEast = false;
+                        this.walkWest = false;
+						this.npcMove = false;
+                    break;	
                 }
             } else if (this.walkEast == true) {
                 this.walkEast = false;
@@ -266,6 +281,12 @@ function npcSuperClass() {
                         this.walkNorth = false;
                         this.walkWest = true;
                     break;
+					case 3:
+                        this.walkSouth = false;
+                        this.walkEast = false;
+                        this.walkWest = false;
+						this.npcMove = false;
+                    break;	
                 }
             } else if (this.walkSouth == true) {
                 this.walkSouth = false;
@@ -285,6 +306,12 @@ function npcSuperClass() {
                         this.walkEast = false;
                         this.walkWest = true;
                     break;
+					case 3:
+                        this.walkSouth = false;
+                        this.walkEast = false;
+                        this.walkWest = false;
+						this.npcMove = false;
+                    break;	
                 }
             }
         } else {
@@ -293,21 +320,25 @@ function npcSuperClass() {
                 this.walkEast = true;
                 this.walkWest = false;
                 this.walkSouth = false;
+				this.npcMove = true;
             } else if(newDirection == "west") {
                 this.walkNorth = false;
                 this.walkEast = false;
                 this.walkWest = true;
                 this.walkSouth = false;
+				this.npcMove = true;
             } else if(newDirection == "south") {
                 this.walkNorth = false;
                 this.walkEast = false;
                 this.walkWest = false;
                 this.walkSouth = true;
+				this.npcMove = true;
             } else if(newDirection == "north") {
                 this.walkNorth = true;
                 this.walkEast = false;
                 this.walkWest = false;
                 this.walkSouth = false;
+				this.npcMove = true;
             }
         }
     }
