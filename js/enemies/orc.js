@@ -50,6 +50,8 @@ function orcClass() {
         if(this.superClassIsOverlappingPoint()) {
             dialogManager.setDialogWithCountdown("Ouch! I've been bite by a Orc! That really hurts.", 5);
 //            dialog = "Ouch! I've been bite by a Orc! That really hurts.";
+            return true;
         }
+        return false;
     }
 }

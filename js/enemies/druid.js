@@ -22,6 +22,8 @@ function druidClass() {
         if(this.superClassIsOverlappingPoint()) {
             dialogManager.setDialogWithCountdown("Ouch! I've been bite by a Druid! That really hurts.", 5);
 //            dialog = "Ouch! I've been bite by a Druid! That really hurts.";
+            return true;
         }
+        return false;
     }
 }

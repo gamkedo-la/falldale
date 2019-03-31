@@ -33,6 +33,8 @@ function zombieClass() {
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
 			dialogManager.setDialogWithCountdown("Ouch! I've been bite by a zombie.  I hope it isn't contagious.", 5);
-        }
+			return true;
+		}
+		return false;
     }
 }

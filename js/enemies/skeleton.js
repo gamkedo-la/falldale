@@ -57,7 +57,9 @@ function skeletonClass() {
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
 			dialogManager.setDialogWithCountdown("Ouch! I've been bite by a Skeleton! Who knew they could do that?!?", 5);
-        }
+			return true;
+		}
+		return false;
     }
 	
 	this.countFramesForDeadSkeleton = function(){

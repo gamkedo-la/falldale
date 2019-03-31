@@ -91,7 +91,9 @@ function archerClass(archerName) {
         if (this.superClassIsOverlappingPoint()) {
             // need to add a function for chance to do damage
             dialogManager.setDialogWithCountdown("Ouch! I've been bite by an Archer! An Archer!", 5);
+            return true;
         }
+        return false;
     }
 
     this.rangedAttack = function() {

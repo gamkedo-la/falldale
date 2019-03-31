@@ -78,8 +78,10 @@ function goblinClass() {
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
 			// add function here for hit chance 
-            dialogManager.setDialogWithCountdown("Ouch! I've been bite by a goblin.", 5);
-        }
+			dialogManager.setDialogWithCountdown("Ouch! I've been bite by a goblin.", 5);
+			return true;
+		}
+		return false;
     }
 
 	this.superClassNewRandomPic = this.newRandomPic;

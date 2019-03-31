@@ -70,7 +70,9 @@ function batClass() {
         if(!this.batResting) {//Bats don't bite when they're resting
             if(this.superClassIsOverlappingPoint()) {
                 dialogManager.setDialogWithCountdown("Ouch! I've been bite by a bat.  Quick! I need some garlic.", 5);
+                return true;
             }
+            return false;
         }
     }
 
