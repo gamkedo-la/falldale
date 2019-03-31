@@ -735,8 +735,7 @@ function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
 	}
 
 	const warrPic = getMiniMapPlayerIcon()
-	canvasContext.drawImage(circlePic,miniMapPosX+90+2, miniMapPosY+90+2);
-
+	rotateAndPaintImage(canvasContext, playerMiniMap, warrPic,miniMapPosX+90+2, miniMapPosY+90+2, 4,6);
 	const strokeWidth = 6;
 	emptyRect(miniMapPosX,miniMapPosY, width-strokeWidth/2,height-strokeWidth/2, strokeWidth, "#000");
 	emptyRect(miniMapPosX+1,miniMapPosY+1, width-strokeWidth/2-2,height-strokeWidth/2-2, 1, "#FFF");
@@ -744,13 +743,13 @@ function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
 
 function getMiniMapPlayerIcon() {
 	if (redWarrior.keyHeld_WalkNorth) {
-		return miniMapPlayerNorth;
+		return 180 * (Math.PI/180);
 	} else if (redWarrior.keyHeld_WalkEast) {
-		return miniMapPlayerEast;
+		return 270 * (Math.PI/180);
 	} else if (redWarrior.keyHeld_WalkWest) {
-		return miniMapPlayerWest;
+		return 90 * (Math.PI/180);
 	} else if (redWarrior.keyHeld_WalkSouth){
-		return miniMapPlayerSouth;
+		return 0;
 	}
 }
 function tileIsAFloor(tileKind) {

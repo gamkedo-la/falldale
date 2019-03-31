@@ -72,7 +72,7 @@ var miniMapPlayerNorth = document.createElement("img");
 var miniMapPlayerSouth = document.createElement("img");
 var miniMapPlayerEast = document.createElement("img");
 var miniMapPlayerWest = document.createElement("img");
-var circlePic = document.createElement("img");
+var playerMiniMap = document.createElement("img");
 //var waterScrollImg = document.createElement("img");
 var decorationsImg = document.createElement("img");
 
@@ -293,11 +293,7 @@ function loadImages() {
 			{varName: healingPotionPic, theFile: "healingPotion.png"},
 			{varName: heartPic, theFile: "heart.png"},
 			{varName: fireballPic, theFile: "fireball.png"},
-			{varName: miniMapPlayerNorth, theFile: "circle.png"},
-			{varName: miniMapPlayerSouth, theFile: "circle.png"},
-			{varName: miniMapPlayerEast, theFile: "circle.png"},
-			{varName: miniMapPlayerWest, theFile: "circle.png"},
-			{varName: circlePic, theFile: "circle.png"},
+			{varName: playerMiniMap, theFile: "playerMiniMap.png"},
 			//{varName: waterScrollImg, theFile: "water_scroll.png"}
 			{varName: decorationsImg, theFile: "decorations.png"}
 			

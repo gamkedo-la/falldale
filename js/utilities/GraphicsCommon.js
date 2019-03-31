@@ -65,3 +65,11 @@ function mirrorImage(ctx, image, x = 0, y = 0, horizontal = false, vertical = fa
     ctx.drawImage(image,0,0);
     ctx.restore(); // restore the state as it was when this function was called
 }
+
+function rotateAndPaintImage ( context, image, angleInRad , positionX, positionY, axisX, axisY ) {
+	canvasContext.translate( positionX, positionY );
+	canvasContext.rotate( angleInRad );
+	canvasContext.drawImage( image, -axisX, -axisY );
+	canvasContext.rotate( -angleInRad );
+	canvasContext.translate( -positionX, -positionY );
+  }
