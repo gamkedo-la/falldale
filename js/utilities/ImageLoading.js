@@ -122,7 +122,7 @@ function loadImages() {
 			{tileType: TILE_SPIKES_BLOODY, theFile: "spikesBloody.png"},
 			{tileType: TILE_GRASS,  theFile: "grass.png"},
 			{tileType: TILE_TREASURE,  theFile: "treasure.png"},
-			{tileType: TILE_WATER,  theFile: "water.png"},
+			{tileType: TILE_WATER,  theFile: "water_scroll.png"},
 			{tileType: TILE_GRAVE_YARD_PORTAL,  theFile: "worldRoad.png"},
 			{tileType: TILE_HOME_VILLAGE_PORTAL,  theFile: "worldRoad.png"},
 			{tileType: TILE_THROWINGROCKS,  theFile: "throwingRocks.png"},
