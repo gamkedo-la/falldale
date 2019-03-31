@@ -470,6 +470,7 @@ const TILE_GRASS_MINIMAP = 900;
 const TILE_WATER_MINIMAP = 901;
 const TILE_ROAD_MINIMAP = 902;
 const TILE_BLOCKED_MINIMAP = 903;
+let warriorDirection = "South";
 
 const MAP_WIDTH = 3;
 
@@ -733,7 +734,7 @@ function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
 		drawTileX = 0;
 	}
 
-	//colorCircle(miniMapPosX+90+2, miniMapPosY+90+2, 4, "#FFF");
+	const warrPic = getMiniMapPlayerIcon()
 	canvasContext.drawImage(circlePic,miniMapPosX+90+2, miniMapPosY+90+2);
 
 	const strokeWidth = 6;
@@ -741,6 +742,17 @@ function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
 	emptyRect(miniMapPosX+1,miniMapPosY+1, width-strokeWidth/2-2,height-strokeWidth/2-2, 1, "#FFF");
 }
 
+function getMiniMapPlayerIcon() {
+	if (redWarrior.keyHeld_WalkNorth) {
+		return miniMapPlayerNorth;
+	} else if (redWarrior.keyHeld_WalkEast) {
+		return miniMapPlayerEast;
+	} else if (redWarrior.keyHeld_WalkWest) {
+		return miniMapPlayerWest;
+	} else if (redWarrior.keyHeld_WalkSouth){
+		return miniMapPlayerSouth;
+	}
+}
 function tileIsAFloor(tileKind) {
 	return (tileKind <= TERRAIN_TILE_NUM_MAX);
 }
