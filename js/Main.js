@@ -43,6 +43,7 @@ var doorSound = new SoundOverlapsClass("woodDoorOpen");
 var keySound = new SoundOverlapsClass("keys");
 var spikeSound = new SoundOverlapsClass("spikes");
 var zombieHurtSound = new SoundOverlapsClass("zombiehurt");
+var zombieAlertSound = new SoundOverlapsClass("zombieAlert");
 var goblinHurtSound = new SoundOverlapsClass("goblinDeath");
 var skeletonHurtSound = new SoundOverlapsClass("skeletonhurt");
 var batHurtSound = new SoundOverlapsClass("bathurt");
