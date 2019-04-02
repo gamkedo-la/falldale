@@ -20,8 +20,8 @@ function druidClass() {
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
-            dialogManager.setDialogWithCountdown("Ouch! I've been bite by a Druid! That really hurts.", 5);
-//            dialog = "Ouch! I've been bite by a Druid! That really hurts.";
+            dialogManager.setDialogWithCountdown("Ouch! I've been bitten by a Druid! That really hurts.", 5);
+//            dialog = "Ouch! I've been bitten by a Druid! That really hurts.";
             return true;
         }
         return false;
