@@ -264,6 +264,7 @@ function warriorClass() {
 		if( this.myRock.isReady() ) {
 			this.recentWeapon = this.myRock;
 			this.myRock.shootFrom(this, direction);
+			rockThrowSound1.play();
 		}
 	};
 

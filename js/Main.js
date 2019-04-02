@@ -50,6 +50,9 @@ var batHurtSound = new SoundOverlapsClass("bathurt");
 var playerHurtSound = new SoundOverlapsClass("playerHurt");
 var arrowShotSound = new SoundOverlapsClass("arrowShot");
 var swordSwingSound = new SoundOverlapsClass("swordSwing");
+var rockThrowSound1 = new SoundOverlapsClass("rock1");
+var rockThrowSound2 = new SoundOverlapsClass("rock2");
+var rockThrowSound3 = new SoundOverlapsClass("rock3");
 var meowPurrSound = new SoundOverlapsClass("meow_purr");
 var humanMaleHello = new SoundOverlapsClass("humanMaleHello");
 var humanMaleHi = new SoundOverlapsClass("humanMaleHi");
@@ -123,16 +126,20 @@ function backgroundMusicSelect(){
 		    backgroundMusic.loopSong("have-a-nice-beer")
 			break;
 		case 4:
-			backgroundMusic.loopSong("goblinRaid");
+			backgroundMusic.loopSong("woodsbgm");
 			break;
 		case 5:
-			backgroundMusic.loopSong("have-a-nice-beer")
+			backgroundMusic.loopSong("woodsbgm")
 			break;
 		case 6:
-		    backgroundMusic.loopSong("goblinRaid");
+		    backgroundMusic.loopSong("woodsbgm");
 			break;
 		case 7:
-		    backgroundMusic.loopSong("goblinRaid");
+			if(redWarrior.questOneComplete){
+				backgroundMusic.loopSong("have-a-nice-beer");
+			} else {
+				backgroundMusic.loopSong("goblinRaid");
+			}
 			break;
 		case 8:
 		    backgroundMusic.loopSong("have-a-nice-beer")
