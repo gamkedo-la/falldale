@@ -691,15 +691,7 @@ function drawRoom(drawFloors, drawWalls) {
 	// fadingTitles.begin("COOL MESSAGE","headline","subtitle");
 }
 
-function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
-	const tileCountX = Math.floor(width/miniMapTileSize);
-	const tileCountY = Math.floor(height/miniMapTileSize);
-	const warrTilePosXOnMap = Math.floor(redWarrior.y/TILE_H);
-	const warrTilePosYOnMap = Math.floor(redWarrior.x/TILE_W);
-	const miniMapTilePosX = Math.floor(tileCountX/2 + warrTilePosXOnMap);
-	const miniMapTilePosY = Math.floor(tileCountY/2 + warrTilePosYOnMap);
-	const tileOverflowLeft = miniMapTilePosX > 44 ? miniMapTilePosX - 44 : 0;
-	const tileOverflowRight = miniMapTilePosY > 44 ? miniMapTilePosY - 44 : 0;
+function redrawMinimapTiles() {
 
 	// draw minimap background
 	minimapContext.fillStyle = '#7e4e35';
@@ -727,14 +719,27 @@ function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
 
 			minimapContext.fillRect(drawTileX,drawTileY, 4,4);
 
-			drawTileX += miniMapTileSize;
+			drawTileX += 4;
 			arrayIndex++;
 		}
-		drawTileY += miniMapTileSize;
+		drawTileY += 4;
 		drawTileX = 0;
 	} 
+}
 
-	const warrPic = getMiniMapPlayerIcon()
+function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
+	const tileCountX = Math.floor(width/miniMapTileSize); // how many tiles is the mini map
+	const tileCountY = Math.floor(height/miniMapTileSize);
+	const warrTilePosXOnMap = Math.floor(redWarrior.x/TILE_W); // tile position of the warrior
+	const warrTilePosYOnMap = Math.floor(redWarrior.y/TILE_H);
+	
+	canvasContext.fillStyle = '#7e4e35';
+	canvasContext.fillRect(miniMapPosX,miniMapPosY, width, height);
+	
+	canvasContext.drawImage(minimapCanvas, warrTilePosXOnMap*4-width/2,warrTilePosYOnMap*4-height/2, width, height,
+		miniMapPosX, miniMapPosY, width, height);
+		
+	const warrPic = getMiniMapPlayerIcon();
 	rotateAndPaintImage(canvasContext, playerMiniMap, warrPic,miniMapPosX+90+2, miniMapPosY+90+2, 4,6);
 	const strokeWidth = 6;
 	emptyRect(miniMapPosX,miniMapPosY, width-strokeWidth/2,height-strokeWidth/2, strokeWidth, "#000");

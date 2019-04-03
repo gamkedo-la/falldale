@@ -276,7 +276,7 @@ function loadLevel() {
             arrayIndex++;
         } //end of col for
     } // end of row for
-	miniMapDraw();
+	redrawMinimapTiles();
 }
 
 function updateAll() {
@@ -521,7 +521,9 @@ function drawAll() {
         dialogManager.drawDialog();
 //        messageDraw();
         damageDraw();
-        canvasContext.drawImage(minimapCanvas, canvas.width-minimapCanvas.width-20, 20);
+        //canvasContext.drawImage(minimapCanvas, canvas.width-minimapCanvas.width-20, 20);
+		miniMapDraw();
+
 		if(muteAudio){
             canvasContext.drawImage(muteAudioPic, 20, 20);
         }
