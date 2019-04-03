@@ -49,6 +49,7 @@ var goblinHurtSound = new SoundOverlapsClass("goblinDeath");
 var skeletonHurtSound = new SoundOverlapsClass("skeletonhurt");
 var batHurtSound = new SoundOverlapsClass("bathurt");
 var playerHurtSound = new SoundOverlapsClass("playerHurt");
+var bugbearHurtSound = new SoundOverlapsClass("bugbearHurt");
 var arrowShotSound = new SoundOverlapsClass("arrowShot");
 var swordSwingSound = new SoundOverlapsClass("swordSwing");
 var rockThrowSound1 = new SoundOverlapsClass("rock1");

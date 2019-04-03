@@ -105,6 +105,7 @@ function CycleMute() {
         skeletonHurtSound.startOrStopSFX();
         batHurtSound.startOrStopSFX();
         playerHurtSound.startOrStopSFX();
+        bugbearHurtSound.startOrStopSFX();
         meowPurrSound.startOrStopSFX();
 		arrowShotSound.startOrStopSFX();
 		swordSwingSound.startOrStopSFX();
@@ -117,7 +118,7 @@ function CycleMute() {
 		humanMaleWelcome.startOrStopSFX();
 		humanMaleGoodAfternoon.startOrStopSFX();
 		humanFemaleHello.startOrStopSFX();
-		humanFemaleHi.startOrStopMusic();
+        humanFemaleHi.startOrStopMusic();
     }
 
     function muteSFX() {
@@ -129,6 +130,7 @@ function CycleMute() {
         skeletonHurtSound.startOrStopSFX();
         batHurtSound.startOrStopSFX();
         playerHurtSound.startOrStopSFX();
+        bugbearHurtSound.startOrStopSFX();
         meowPurrSound.startOrStopSFX();
 		arrowShotSound.startOrStopSFX();
 		swordSwingSound.startOrStopSFX();
