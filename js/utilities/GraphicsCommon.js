@@ -8,7 +8,7 @@ function drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng) {
 
 function colorRect(topLeftX,topRightY, boxWidth,boxHeight, fillColor) {  //draw rectangles
 	canvasContext.fillStyle = fillColor;
-	canvasContext.fillRect(topLeftX,topRightY, boxWidth, boxHeight,);
+	canvasContext.fillRect(topLeftX,topRightY, boxWidth, boxHeight);
 }
 
 function colorCircle(centerX,centerY, radius, fillColor) {  //draw circles

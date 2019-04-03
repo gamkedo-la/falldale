@@ -3,6 +3,7 @@ var debugSkipToGame = true;
 // Characters //
 
 var canvas, canvasContext;
+var minimapCanvas, minimapContext;
 const FRAMES_PER_SECOND = 30;
 var frameCounter = 0;
 var damageUICountdown = 3;//in seconds
@@ -80,7 +81,15 @@ function resizeCanvas() {
 
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
+	minimapCanvas = document.createElement('canvas');
     canvasContext = canvas.getContext('2d');
+	minimapContext = minimapCanvas.getContext('2d');
+	minimapCanvas.width = ROOM_COLS*4;
+	minimapCanvas.height = ROOM_ROWS*4;
+	
+	minimapContext.fillStyle = 'red';
+	minimapContext.fillRect(0,0, minimapCanvas.width, minimapCanvas.height);
+	
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener('focus', function () {gamePaused = false;});
     window.addEventListener('blur', function() {gamePaused = true;});
@@ -267,6 +276,7 @@ function loadLevel() {
             arrayIndex++;
         } //end of col for
     } // end of row for
+	miniMapDraw();
 }
 
 function updateAll() {
@@ -511,8 +521,8 @@ function drawAll() {
         dialogManager.drawDialog();
 //        messageDraw();
         damageDraw();
-        miniMapDraw();
-        if(muteAudio){
+        canvasContext.drawImage(minimapCanvas, canvas.width-minimapCanvas.width-20, 20);
+		if(muteAudio){
             canvasContext.drawImage(muteAudioPic, 20, 20);
         }
         if (inventoryScreen) {

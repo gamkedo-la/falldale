@@ -701,38 +701,38 @@ function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
 	const tileOverflowLeft = miniMapTilePosX > 44 ? miniMapTilePosX - 44 : 0;
 	const tileOverflowRight = miniMapTilePosY > 44 ? miniMapTilePosY - 44 : 0;
 
-	// draw minimap backgrounf
-	colorRect(miniMapPosX,miniMapPosY, width,height, "#7e4e35");
+	// draw minimap background
+	minimapContext.fillStyle = '#7e4e35';
+	minimapContext.fillRect(0,0, minimapCanvas.width, minimapCanvas.height);
 
 	let drawTileX = 0;
 	let drawTileY = 0;
 
-	for(let eachRow = 0 + tileOverflowLeft; eachRow < miniMapTilePosX; eachRow++) {
-		for(let eachCol = 0 + tileOverflowRight; eachCol < miniMapTilePosY; eachCol++) {
+	for(let eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
+		for(let eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
 
 			let arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 			let tileKindHere = roomGrid[arrayIndex];
 
-			let tilePosX = drawTileX + (tileOverflowRight*4) + miniMapPosX + 90 - redWarrior.x/12.5;
-			let tilePosY = drawTileY + (tileOverflowLeft*4) + miniMapPosY + 90 - redWarrior.y/12.5;
-
 			if (tileKindHere === 17) {
 				tileKindHere = 901;
-				colorRect(tilePosX, tilePosY, 5,5, "#0000ff"); // water
+				minimapContext.fillStyle = '#0000ff';	
 			} else if (tileKindHere === 18) {
-				colorRect(tilePosX, tilePosY, 5,5, "#008000"); // grass
+				minimapContext.fillStyle = '#008000';
 			} else if (tileKindHere === 0) {
-				colorRect(tilePosX, tilePosY, 5,5, "#8c8c8c"); // road
+				minimapContext.fillStyle = '#8c8c35';
 			} else {
-				colorRect(tilePosX, tilePosY, 5,5, "#b97a57"); // all other
+				minimapContext.fillStyle = "#b97a57";
 			}
+
+			minimapContext.fillRect(drawTileX,drawTileY, 4,4);
 
 			drawTileX += miniMapTileSize;
 			arrayIndex++;
 		}
 		drawTileY += miniMapTileSize;
 		drawTileX = 0;
-	}
+	} 
 
 	const warrPic = getMiniMapPlayerIcon()
 	rotateAndPaintImage(canvasContext, playerMiniMap, warrPic,miniMapPosX+90+2, miniMapPosY+90+2, 4,6);
