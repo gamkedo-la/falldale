@@ -1,7 +1,6 @@
 // TODO: Probably want to set direction per object instead of
 //       putting it in a global variable
 // this also doesn't allow diagonal movement
-// hello world! this is a practice commit, will remove this asap - Jeremy Domasian
 var direction = "south";
 
 levelExperienceArray = [500, 2000, 4000, 6000, 10000, 16000, 26000, 42000, 68000]
