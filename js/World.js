@@ -691,50 +691,55 @@ function drawRoom(drawFloors, drawWalls) {
 	// fadingTitles.begin("COOL MESSAGE","headline","subtitle");
 }
 
-function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
-	const tileCountX = Math.floor(width/miniMapTileSize);
-	const tileCountY = Math.floor(height/miniMapTileSize);
-	const warrTilePosXOnMap = Math.floor(redWarrior.y/TILE_H);
-	const warrTilePosYOnMap = Math.floor(redWarrior.x/TILE_W);
-	const miniMapTilePosX = Math.floor(tileCountX/2 + warrTilePosXOnMap);
-	const miniMapTilePosY = Math.floor(tileCountY/2 + warrTilePosYOnMap);
-	const tileOverflowLeft = miniMapTilePosX > 44 ? miniMapTilePosX - 44 : 0;
-	const tileOverflowRight = miniMapTilePosY > 44 ? miniMapTilePosY - 44 : 0;
+function redrawMinimapTiles() {
 
-	// draw minimap backgrounf
-	colorRect(miniMapPosX,miniMapPosY, width,height, "#7e4e35");
+	// draw minimap background
+	minimapContext.fillStyle = '#7e4e35';
+	minimapContext.fillRect(0,0, minimapCanvas.width, minimapCanvas.height);
 
 	let drawTileX = 0;
 	let drawTileY = 0;
 
-	for(let eachRow = 0 + tileOverflowLeft; eachRow < miniMapTilePosX; eachRow++) {
-		for(let eachCol = 0 + tileOverflowRight; eachCol < miniMapTilePosY; eachCol++) {
+	for(let eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
+		for(let eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
 
 			let arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 			let tileKindHere = roomGrid[arrayIndex];
 
-			let tilePosX = drawTileX + (tileOverflowRight*4) + miniMapPosX + 90 - redWarrior.x/12.5;
-			let tilePosY = drawTileY + (tileOverflowLeft*4) + miniMapPosY + 90 - redWarrior.y/12.5;
-
 			if (tileKindHere === 17) {
 				tileKindHere = 901;
-				colorRect(tilePosX, tilePosY, 5,5, "#0000ff"); // water
+				minimapContext.fillStyle = '#0000ff';	
 			} else if (tileKindHere === 18) {
-				colorRect(tilePosX, tilePosY, 5,5, "#008000"); // grass
+				minimapContext.fillStyle = '#008000';
 			} else if (tileKindHere === 0) {
-				colorRect(tilePosX, tilePosY, 5,5, "#8c8c8c"); // road
+				minimapContext.fillStyle = '#8c8c35';
 			} else {
-				colorRect(tilePosX, tilePosY, 5,5, "#b97a57"); // all other
+				minimapContext.fillStyle = "#b97a57";
 			}
 
-			drawTileX += miniMapTileSize;
+			minimapContext.fillRect(drawTileX,drawTileY, 4,4);
+
+			drawTileX += 4;
 			arrayIndex++;
 		}
-		drawTileY += miniMapTileSize;
+		drawTileY += 4;
 		drawTileX = 0;
-	}
+	} 
+}
 
-	const warrPic = getMiniMapPlayerIcon()
+function drawMiniMap(miniMapPosX,miniMapPosY, width,height, miniMapTileSize) {
+	const tileCountX = Math.floor(width/miniMapTileSize); // how many tiles is the mini map
+	const tileCountY = Math.floor(height/miniMapTileSize);
+	const warrTilePosXOnMap = Math.floor(redWarrior.x/TILE_W); // tile position of the warrior
+	const warrTilePosYOnMap = Math.floor(redWarrior.y/TILE_H);
+	
+	canvasContext.fillStyle = '#7e4e35';
+	canvasContext.fillRect(miniMapPosX,miniMapPosY, width, height);
+	
+	canvasContext.drawImage(minimapCanvas, warrTilePosXOnMap*4-width/2,warrTilePosYOnMap*4-height/2, width, height,
+		miniMapPosX, miniMapPosY, width, height);
+		
+	const warrPic = getMiniMapPlayerIcon();
 	rotateAndPaintImage(canvasContext, playerMiniMap, warrPic,miniMapPosX+90+2, miniMapPosY+90+2, 4,6);
 	const strokeWidth = 6;
 	emptyRect(miniMapPosX,miniMapPosY, width-strokeWidth/2,height-strokeWidth/2, strokeWidth, "#000");

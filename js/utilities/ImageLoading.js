@@ -7,6 +7,7 @@ var muteAudioPic = document.createElement("img");
 var warriorPic = document.createElement("img");
 var swordPic = document.createElement("img");
 var magicSwordPic = document.createElement("img");
+var rockPic = document.createElement("img");
 var biggyPic = document.createElement("img");
 
 var skeletonPic = document.createElement("img");
@@ -54,6 +55,7 @@ var lawrencePic = document.createElement("img");
 var rowanPic = document.createElement("img"); 
 
 var archerPic = document.createElement("img");
+var archerPic1 = document.createElement("img");
 var deadArcherPic = document.createElement("img");
 
 var dicePic = document.createElement("img");
@@ -241,8 +243,8 @@ function loadImages() {
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: biggyPic, theFile: "Sprites/player/biggy.png"},
-			{varName: swordPic, theFile: "basicSword.png"},
-			{varName: magicSwordPic, theFile: "magicSword.png"},
+			{varName: swordPic, theFile: "Weapons/basicSword.png"},
+			{varName: magicSwordPic, theFile: "Weapons/magicSword.png"},
 			{varName: skeletonPic, theFile: "Monsters/skeleton1.png"},
 			{varName: skeletonPic2, theFile: "Monsters/skeleton2.png"},
 			{varName: skeletonPic3, theFile: "Monsters/skeleton3.png"},
@@ -265,6 +267,7 @@ function loadImages() {
 			{varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png"},
 			{varName: bullywugPic, theFile: "Monsters/Bullywug.png"},
 			{varName: archerPic, theFile: "Monsters/archer.png"},
+			{varName: archerPic1, theFile: "Monsters/archer1.png"},
 			{varName: deadArcherPic, theFile: "Monsters/deadGoblin.png"},
 			{varName: storeFrontPic, theFile: "storefront.jpg"},
 			{varName: healerStorePic, theFile: "healerStore.jpg"},
@@ -292,7 +295,8 @@ function loadImages() {
 			{varName: mapPic, theFile: "map.png"},
 			{varName: healingPotionPic, theFile: "healingPotion.png"},
 			{varName: heartPic, theFile: "heart.png"},
-			{varName: fireballPic, theFile: "fireball.png"},
+			{varName: fireballPic, theFile: "Weapons/fireball.png"},
+			{varName: rockPic, theFile: "Weapons/rock.png"},
 			{varName: playerMiniMap, theFile: "playerMiniMap.png"},
 			//{varName: waterScrollImg, theFile: "water_scroll.png"}
 			{varName: decorationsImg, theFile: "decorations.png"}

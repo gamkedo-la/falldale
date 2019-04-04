@@ -64,7 +64,7 @@ function enemyClass() {
 	this.tickCount = 0;
 	this.ticksPerFrame = 5;
 
-	this.initialize = function(enemyName, enemyPicture, numberOfFrames=4) {
+	this.initialize = function(enemyName, enemyPicture, numberOfFrames=6) {
 		this.health = this.maxhealth;
 		this.alive = this.health > 0;
 		this.myName = enemyName;
