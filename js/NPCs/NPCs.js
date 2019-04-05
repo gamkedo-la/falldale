@@ -7,6 +7,7 @@ function npcClass(npcName, npcPic) {
     this.myNPCPic = npcPic; // which picture to use
     this.myName = "Untitled character";
     this.myName = npcName;
+    this.type = "npc";
 
     this.tickCount = 0;
     this.frameIndex = 0;

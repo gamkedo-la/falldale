@@ -290,7 +290,7 @@ function moveAll() {
 
     if (menuScreen || isAtHealer || tileEditor || gamePaused) {
         // no movement
-    } else if (gamePaused == false) {
+    } else if (!gamePaused) {
         redWarrior.move();
         for (var i=0; i< enemyList.length; i++) {
             enemyList[i].move();
