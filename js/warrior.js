@@ -624,7 +624,7 @@ function warriorClass() {
 			case TILE_DIRTROAD_W_S:
 			case TILE_DIRTROAD_W_N_E:
 			case TILE_DIRTROAD_W_S_E:
-				this.setSpeedAndPosition(3.0, nextX, nextY);
+				this.setSpeedAndPosition(5.0, nextX, nextY);
 				break;
 			case TILE_GRASS:
 			case TILE_GARDEN_1:
