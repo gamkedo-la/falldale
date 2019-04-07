@@ -48,8 +48,10 @@ function orcClass() {
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
-            dialogManager.setDialogWithCountdown("Ouch! I've been bite by a Orc! That really hurts.", 5);
-//            dialog = "Ouch! I've been bite by a Orc! That really hurts.";
+            dialogManager.setDialogWithCountdown("Ouch! I've been bitten by an Orc! That really hurts.", 5);
+//            dialog = "Ouch! I've been bitten by a Orc! That really hurts.";
+            return true;
         }
+        return false;
     }
 }

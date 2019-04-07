@@ -3,6 +3,7 @@ var debugSkipToGame = true;
 // Characters //
 
 var canvas, canvasContext;
+var minimapCanvas, minimapContext;
 const FRAMES_PER_SECOND = 30;
 var frameCounter = 0;
 var damageUICountdown = 3;//in seconds
@@ -43,12 +44,17 @@ var doorSound = new SoundOverlapsClass("woodDoorOpen");
 var keySound = new SoundOverlapsClass("keys");
 var spikeSound = new SoundOverlapsClass("spikes");
 var zombieHurtSound = new SoundOverlapsClass("zombiehurt");
+var zombieAlertSound = new SoundOverlapsClass("zombieAlert");
 var goblinHurtSound = new SoundOverlapsClass("goblinDeath");
 var skeletonHurtSound = new SoundOverlapsClass("skeletonhurt");
 var batHurtSound = new SoundOverlapsClass("bathurt");
 var playerHurtSound = new SoundOverlapsClass("playerHurt");
+var bugbearHurtSound = new SoundOverlapsClass("bugbearHurt");
 var arrowShotSound = new SoundOverlapsClass("arrowShot");
 var swordSwingSound = new SoundOverlapsClass("swordSwing");
+var rockThrowSound1 = new SoundOverlapsClass("rock1");
+var rockThrowSound2 = new SoundOverlapsClass("rock2");
+var rockThrowSound3 = new SoundOverlapsClass("rock3");
 var meowPurrSound = new SoundOverlapsClass("meow_purr");
 var humanMaleHello = new SoundOverlapsClass("humanMaleHello");
 var humanMaleHi = new SoundOverlapsClass("humanMaleHi");
@@ -76,7 +82,15 @@ function resizeCanvas() {
 
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
+	minimapCanvas = document.createElement('canvas');
     canvasContext = canvas.getContext('2d');
+	minimapContext = minimapCanvas.getContext('2d');
+	minimapCanvas.width = ROOM_COLS*4;
+	minimapCanvas.height = ROOM_ROWS*4;
+	
+	minimapContext.fillStyle = 'red';
+	minimapContext.fillRect(0,0, minimapCanvas.width, minimapCanvas.height);
+	
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener('focus', function () {gamePaused = false;});
     window.addEventListener('blur', function() {gamePaused = true;});
@@ -122,16 +136,20 @@ function backgroundMusicSelect(){
 		    backgroundMusic.loopSong("have-a-nice-beer")
 			break;
 		case 4:
-			backgroundMusic.loopSong("goblinRaid");
+			backgroundMusic.loopSong("woodsbgm");
 			break;
 		case 5:
-			backgroundMusic.loopSong("have-a-nice-beer")
+			backgroundMusic.loopSong("woodsbgm")
 			break;
 		case 6:
-		    backgroundMusic.loopSong("goblinRaid");
+		    backgroundMusic.loopSong("woodsbgm");
 			break;
 		case 7:
-		    backgroundMusic.loopSong("goblinRaid");
+			if(redWarrior.questOneComplete){
+				backgroundMusic.loopSong("have-a-nice-beer");
+			} else {
+				backgroundMusic.loopSong("goblinRaid");
+			}
 			break;
 		case 8:
 		    backgroundMusic.loopSong("have-a-nice-beer")
@@ -193,7 +211,7 @@ function loadLevel() {
 				newEnemy.initialize('Orc - Ax', orcPic3, 4);
             } else if(roomGrid[arrayIndex] == TILE_ARCHER) {
                 newEnemy = new archerClass();
-				newEnemy.initialize('Archer', archerPic, 4);
+				newEnemy.initialize('Archer', archerPic2, 6);
             } else if(roomGrid[arrayIndex] == TILE_BULLYWUG) {
                 newEnemy = new bullywugClass();
 				newEnemy.initialize('Bullywug', bullywugPic, 0);
@@ -259,6 +277,7 @@ function loadLevel() {
             arrayIndex++;
         } //end of col for
     } // end of row for
+	redrawMinimapTiles();
 }
 
 function updateAll() {
@@ -271,7 +290,7 @@ function moveAll() {
 
     if (menuScreen || isAtHealer || tileEditor || gamePaused) {
         // no movement
-    } else if (gamePaused == false) {
+    } else if (!gamePaused) {
         redWarrior.move();
         for (var i=0; i< enemyList.length; i++) {
             enemyList[i].move();
@@ -503,8 +522,10 @@ function drawAll() {
         dialogManager.drawDialog();
 //        messageDraw();
         damageDraw();
-        miniMapDraw();
-        if(muteAudio){
+        //canvasContext.drawImage(minimapCanvas, canvas.width-minimapCanvas.width-20, 20);
+		miniMapDraw();
+
+		if(muteAudio){
             canvasContext.drawImage(muteAudioPic, 20, 20);
         }
         if (inventoryScreen) {

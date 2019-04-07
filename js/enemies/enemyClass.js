@@ -17,6 +17,7 @@ function removeEnemy(){
 }
 
 function enemyClass() {
+    this.type = "enemy";
     this.x = 0;
     this.y = 0;
     this.speed = 0.5;
@@ -64,7 +65,7 @@ function enemyClass() {
 	this.tickCount = 0;
 	this.ticksPerFrame = 5;
 
-	this.initialize = function(enemyName, enemyPicture, numberOfFrames=4) {
+	this.initialize = function(enemyName, enemyPicture, numberOfFrames=6) {
 		this.health = this.maxhealth;
 		this.alive = this.health > 0;
 		this.myName = enemyName;
@@ -137,9 +138,12 @@ function enemyClass() {
 	}
 	
     this.move = function(timeBetweenChangeDir) {
-        if (this.health <= 0) {
+        if (this.health <= 0 || !this.enemyMove) {
 			return;
 		}
+
+        this.storePos();
+
         let nextPos = this.pathFindingMove(timeBetweenChangeDir, this.speed);
 		if(this.currentPath == null) {
             nextPos = this.randomMove(timeBetweenChangeDir, this.speed);
@@ -402,6 +406,16 @@ function enemyClass() {
             }
         }
     }
+
+    this.storePos = function() {
+        this.prevX = this.x;
+        this.prevY = this.y;
+    };
+
+    this.restorePos = function() {
+        this.x = this.prevX;
+        this.y = this.prevY;
+    };
 
     this.isOverlappingPoint = function() {
 		if (this.alive) {

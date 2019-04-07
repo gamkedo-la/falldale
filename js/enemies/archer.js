@@ -7,8 +7,8 @@ archerClass.prototype = new enemyClass();
 function archerClass(archerName) {
     this.speed = archerMoveSpeed;
     this.maxhealth = 6;
-    this.width = 44;
-	this.height = 50;
+    this.width = 28;
+	this.height = 43;
     this.ticksPerFrame = 5;
 	this.faceNorthMul = 1;
 	this.faceSouthMul = 0;
@@ -16,13 +16,14 @@ function archerClass(archerName) {
 	this.shadowYOffset = 32;
 
 	this.superClassInitialize = this.initialize;
-	this.initialize = function(enemyName, enemyPic) {
-		this.superClassInitialize(enemyName, enemyPic);
+	this.initialize = function(enemyName, enemyPic, numberOfFrames) {
+		this.superClassInitialize(enemyName, enemyPic, numberOfFrames);
+		this.originalNumberOfFrames = this.numberOfFrames;
 		this.myArrow = new arrowClass(this.direction);
 		this.arrowList = [];
 		this.myBite.baseBiteLife = 30; //Archers bite, but they're not very good at it
 		this.myBite.baseBiteCooldown = 10; //
-		this.myRanged = new rangedWeaponClass(); //Archers can shoot arrows
+		this.myRanged = new rangedWeaponClass(); //Archers can shoot arrows	
 	}
 
     this.superClassReset = this.reset;
@@ -90,8 +91,10 @@ function archerClass(archerName) {
     this.isOverlappingPoint = function() {
         if (this.superClassIsOverlappingPoint()) {
             // need to add a function for chance to do damage
-            dialogManager.setDialogWithCountdown("Ouch! I've been bite by an Archer! An Archer!", 5);
+            dialogManager.setDialogWithCountdown("Ouch! I've been bitten by an Archer! An Archer!", 5);
+            return true;
         }
+        return false;
     }
 
     this.rangedAttack = function() {

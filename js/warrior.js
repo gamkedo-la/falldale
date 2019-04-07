@@ -12,8 +12,10 @@ function warriorClass() {
 	this.recentWeapon = this.mySword;
 	this.arrowList = [];
 	this.x = 65;
+	this.prevX = this.x;
 	this.centerX = 40;
 	this.y = 100;
+	this.prevY = this.y;
 	this.centerY = 80;
 	this.head = this.y - 25;
 	this.feet = this.y + 25;
@@ -21,6 +23,7 @@ function warriorClass() {
 	this.rightArm = this.x - 25;
 	this.speed = 3.0;
 	this.isFrozen = false;
+	this.isEnemyCollision = false;
 	this.myWarriorPic = biggyPic; // which picture to use
 	this.name = "Untitled warrior";
 	this.keysHeld = 0;
@@ -136,7 +139,19 @@ function warriorClass() {
 		this.positionWarriorAtStartAndReplaceStartTile();
 	}; // end of warrior initialize function
 
+	this.storePos = function() {
+		this.prevX = this.x;
+		this.prevY = this.y;
+	};
+
+	this.restorePos = function() {
+		this.x = this.prevX;
+		this.y = this.prevY;
+	};
+
 	this.move = function() {
+		this.storePos();
+
 		var {nextX, nextY} = this.nextPosWithInput(nextY, nextX);
 
 		this.playerMove = !this.isFrozen && (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast);
@@ -219,9 +234,26 @@ function warriorClass() {
 		this.y = 300; // a better location will be coded in the feature
 	};
 
+	this.rangeTest = function(adversary) {
+		return !(adversary.x > (this.x + this.width) || 
+	             (adversary.x + adversary.width) < this.x || 
+	             adversary.y > (this.y + this.height) ||
+	             (adversary.y + adversary.height) < this.y);
+    }
+
 	this.checkWarriorandWeaponCollisionAgainst = function(thisEnemy) {
 		this.centerX = this.x + this.width/2;
 		this.centerY = this.y + this.height/2;
+
+		if (this.rangeTest(thisEnemy) && thisEnemy.type == "enemy") {
+			this.restorePos();
+			thisEnemy.restorePos();
+			thisEnemy.enemyMove = false;
+		}
+		else if(thisEnemy.type == "enemy")
+		{
+			thisEnemy.enemyMove = true;
+		}
 
 		if(thisEnemy.isOverlappingPoint(this.centerX,this.centerY)) {
 			//empty
@@ -264,6 +296,7 @@ function warriorClass() {
 		if( this.myRock.isReady() ) {
 			this.recentWeapon = this.myRock;
 			this.myRock.shootFrom(this, direction);
+			rockThrowSound1.play();
 		}
 	};
 
@@ -350,6 +383,7 @@ function warriorClass() {
 	this.nextPosWithInput = function() {
 		let x = this.x;
 		let y = this.y;
+
 		if (this.keyHeld_WalkNorth) {
 			y -= this.speed;
 			direction = "north";
@@ -590,7 +624,7 @@ function warriorClass() {
 			case TILE_DIRTROAD_W_S:
 			case TILE_DIRTROAD_W_N_E:
 			case TILE_DIRTROAD_W_S_E:
-				this.setSpeedAndPosition(3.0, nextX, nextY);
+				this.setSpeedAndPosition(5.0, nextX, nextY);
 				break;
 			case TILE_GRASS:
 			case TILE_GARDEN_1:

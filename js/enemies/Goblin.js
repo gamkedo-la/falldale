@@ -4,25 +4,25 @@ var goblinsKilled = 0;
 
 goblinClass.prototype = new enemyClass();
 function goblinClass() {
-    this.speed = goblinMoveSpeed;
-    this.maxhealth = 4;
-    this.myMelee = new clubClass();
-    this.width = 28;
-    this.numberOfFrames = 6;
-    this.height = 43;
-    this.ticksPerFrame = 5;
-  this.treasureAvailable = true;
-  this.chanceToProvideTreasure = 1;
-  this.hurtSound = goblinHurtSound;
-  this.picVariants = [goblinPic, goblinPic2, goblinPic3, goblinPic4];
-  this.deadPic = deadGoblinPic;
-  this.faceNorthMul = 1;
-  this.faceSouthMul = 0;
-  this.shadowXOffset = 16;
-  this.shadowYOffset = 20;
+	this.speed = goblinMoveSpeed;
+	this.maxhealth = 4;
+	this.myMelee = new clubClass();
+	this.width = 28;
+	this.numberOfFrames = 6;
+	this.height = 43;
+	this.ticksPerFrame = 5;
+	this.treasureAvailable = true;
+	this.chanceToProvideTreasure = 1;
+	this.hurtSound = goblinHurtSound;
+	this.picVariants = [goblinPic, goblinPic2, goblinPic3, goblinPic4];
+	this.deadPic = deadGoblinPic;
+	this.faceNorthMul = 1;
+	this.faceSouthMul = 0;
+	this.shadowXOffset = 16;
+	this.shadowYOffset = 20;
 
 	this.superClassInitialize = this.initialize;
-	this.initialize = function(enemyName, enemyPic, numberOfFrames = 4) {
+	this.initialize = function(enemyName, enemyPic, numberOfFrames) {
 		this.superClassInitialize(enemyName, enemyPic, numberOfFrames);
 		this.originalNumberOfFrames = this.numberOfFrames;
 	}
@@ -78,8 +78,10 @@ function goblinClass() {
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
 			// add function here for hit chance 
-            dialogManager.setDialogWithCountdown("Ouch! I've been bite by a goblin.", 5);
-        }
+			dialogManager.setDialogWithCountdown("Ouch! I've been bitten by a goblin.", 5);
+			return true;
+		}
+		return false;
     }
 
 	this.superClassNewRandomPic = this.newRandomPic;

@@ -7,6 +7,7 @@ var muteAudioPic = document.createElement("img");
 var warriorPic = document.createElement("img");
 var swordPic = document.createElement("img");
 var magicSwordPic = document.createElement("img");
+var rockPic = document.createElement("img");
 var biggyPic = document.createElement("img");
 
 var skeletonPic = document.createElement("img");
@@ -54,6 +55,7 @@ var lawrencePic = document.createElement("img");
 var rowanPic = document.createElement("img"); 
 
 var archerPic = document.createElement("img");
+var archerPic2 = document.createElement("img");
 var deadArcherPic = document.createElement("img");
 
 var dicePic = document.createElement("img");
@@ -68,7 +70,11 @@ var heartPic = document.createElement("img");
 var healingPotionPic = document.createElement("img");
 var goldPic = document.createElement("img");
 var fireballPic = document.createElement("img");
-var circlePic = document.createElement("img");
+var miniMapPlayerNorth = document.createElement("img");
+var miniMapPlayerSouth = document.createElement("img");
+var miniMapPlayerEast = document.createElement("img");
+var miniMapPlayerWest = document.createElement("img");
+var playerMiniMap = document.createElement("img");
 //var waterScrollImg = document.createElement("img");
 var decorationsImg = document.createElement("img");
 
@@ -122,7 +128,7 @@ function loadImages() {
 			{tileType: TILE_SPIKES_BLOODY, theFile: "spikesBloody.png"},
 			{tileType: TILE_GRASS,  theFile: "grass.png"},
 			{tileType: TILE_TREASURE,  theFile: "treasure.png"},
-			{tileType: TILE_WATER,  theFile: "water.png"},
+			{tileType: TILE_WATER,  theFile: "water_scroll.png"},
 			{tileType: TILE_GRAVE_YARD_PORTAL,  theFile: "worldRoad.png"},
 			{tileType: TILE_HOME_VILLAGE_PORTAL,  theFile: "worldRoad.png"},
 			{tileType: TILE_THROWINGROCKS,  theFile: "throwingRocks.png"},
@@ -237,8 +243,8 @@ function loadImages() {
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: biggyPic, theFile: "Sprites/player/biggy.png"},
-			{varName: swordPic, theFile: "basicSword.png"},
-			{varName: magicSwordPic, theFile: "magicSword.png"},
+			{varName: swordPic, theFile: "Weapons/basicSword.png"},
+			{varName: magicSwordPic, theFile: "Weapons/magicSword.png"},
 			{varName: skeletonPic, theFile: "Monsters/skeleton1.png"},
 			{varName: skeletonPic2, theFile: "Monsters/skeleton2.png"},
 			{varName: skeletonPic3, theFile: "Monsters/skeleton3.png"},
@@ -261,6 +267,7 @@ function loadImages() {
 			{varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png"},
 			{varName: bullywugPic, theFile: "Monsters/Bullywug.png"},
 			{varName: archerPic, theFile: "Monsters/archer.png"},
+			{varName: archerPic2, theFile: "Monsters/archer2.png"},
 			{varName: deadArcherPic, theFile: "Monsters/deadGoblin.png"},
 			{varName: storeFrontPic, theFile: "storefront.jpg"},
 			{varName: healerStorePic, theFile: "healerStore.jpg"},
@@ -288,8 +295,9 @@ function loadImages() {
 			{varName: mapPic, theFile: "map.png"},
 			{varName: healingPotionPic, theFile: "healingPotion.png"},
 			{varName: heartPic, theFile: "heart.png"},
-			{varName: fireballPic, theFile: "fireball.png"},
-			{varName: circlePic, theFile: "circle.png"},
+			{varName: fireballPic, theFile: "Weapons/fireball.png"},
+			{varName: rockPic, theFile: "Weapons/rock.png"},
+			{varName: playerMiniMap, theFile: "playerMiniMap.png"},
 			//{varName: waterScrollImg, theFile: "water_scroll.png"}
 			{varName: decorationsImg, theFile: "decorations.png"}
 			
