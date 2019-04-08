@@ -29,7 +29,7 @@ var scrollBackground = false;
 var characterCreationScreen = false;
 var isInShop = false;
 var isAtHealer = false;
-var questOneCompletionScreen = false;
+var questCompletionScreenActive = false;
 var debugMode = false;
 var displayHealth = false;
 var tileEditor = false;
@@ -111,6 +111,7 @@ function imageLoadingDoneSoStartGame() {
 
     setupInput();
     console.log("setupInput should run - Main.js");
+	OverlayFX.nightMode = true;
     // levelNow = 3; // Use this line to skip to level being worked on.
     if (continueGame === false) {
         redWarrior.initialize("Red warrior");
@@ -499,7 +500,7 @@ function drawAll() {
         }
     } else if (tileEditor) {
         drawEditorMode();
-	} else if (questOneCompletionScreen) {
+	} else if (questCompletionScreenActive) {
         drawQuestOneCompletionScreen();	
     } else {
         colorRect(0,0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays

@@ -1,4 +1,5 @@
-var goblinsKilledInFallDale = 9;
+var goblinsKilledInFallDale = 8;
+
 
 function countGoblinforQuestOne(){
 	if(redWarrior.questOneComplete == false){ 
@@ -15,8 +16,9 @@ function checkForQuestOneComplete(){
 		redWarrior.questOneComplete = true;
 		dialogManager.setDialogWithCountdown("I have van-quest all the Goblins from Falldale!", 8);
 		backgroundMusic.loopSong("have-a-nice-beer");
-		questOneCompletionScreen = true;
-		gamePaused = true;
+		OverlayFX.nightMode = false;
+		levelList[7] = fallDale2;
+		questCompletionScreenActive  = true;
 	}
 	
 }

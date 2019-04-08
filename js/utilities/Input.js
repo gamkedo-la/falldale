@@ -162,7 +162,7 @@ function keyPressed(evt) {
         scrollBackgroundScreenInput(evt.keyCode);
     } else if (tileEditor) {
         tileEditorInput(evt.keyCode);
-	} else if (questOneCompletionScreen) {
+	} else if (questCompletionScreenActive) {
         questOneCompletionScreenInput(evt.keyCode);
     } else {
         keySet(evt, redWarrior, true);

@@ -5,11 +5,9 @@ function questOneCompletionScreenInput(whichKeyCode){
 		
 		case KEY_SPACEBAR:
 		case ENTER:
-		{
 			console.log("enter");
-			questOneCompletionScreen = false;
-			gamePaused = false;
-		} 		break;
+			questCompletionScreenActive = false;
+			break;
 		
 		default:
 			gameKeeperFeedback = "";
