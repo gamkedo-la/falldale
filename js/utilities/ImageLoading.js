@@ -242,7 +242,7 @@ function loadImages() {
 				
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
-			{varName: biggyPic, theFile: "Sprites/player/biggy.png"},
+			{varName: biggyPic, theFile: "Sprites/player/biggy/biggy.png"},
 			{varName: swordPic, theFile: "Weapons/basicSword.png"},
 			{varName: magicSwordPic, theFile: "Weapons/magicSword.png"},
 			{varName: skeletonPic, theFile: "Monsters/skeleton1.png"},
