@@ -29,6 +29,7 @@ var scrollBackground = false;
 var characterCreationScreen = false;
 var isInShop = false;
 var isAtHealer = false;
+var questOneCompletionScreen = false;
 var debugMode = false;
 var displayHealth = false;
 var tileEditor = false;
@@ -498,6 +499,8 @@ function drawAll() {
         }
     } else if (tileEditor) {
         drawEditorMode();
+	} else if (questOneCompletionScreen) {
+        drawQuestOneCompletionScreen();	
     } else {
         colorRect(0,0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
         canvasContext.save();
