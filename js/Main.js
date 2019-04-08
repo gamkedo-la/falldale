@@ -40,7 +40,7 @@ var continueGame = false;
 
 // Sounds //
 
-var backgroundMusic = new BackgroundMusicClass();
+var backgroundMusic = new BackgroundMusicClass("goblinRaid");
 var doorSound = new SoundOverlapsClass("woodDoorOpen");
 var keySound = new SoundOverlapsClass("keys");
 var spikeSound = new SoundOverlapsClass("spikes");
@@ -125,17 +125,16 @@ function imageLoadingDoneSoStartGame() {
 }
 
 function backgroundMusicSelect(){
- console.log(levelNow);
 	var musicLevel = levelNow;
 	switch(musicLevel){
 		case 1:
-		    backgroundMusic.loopSong("have-a-nice-beer")			
+		    backgroundMusic.loopSong("woodsbgm")			
 			break;
 		case 2:
-		    backgroundMusic.loopSong("goblinRaid");
+		    backgroundMusic.loopSong("woodsbgm");
 			break;
 		case 3:
-		    backgroundMusic.loopSong("have-a-nice-beer")
+		    backgroundMusic.loopSong("woodsbgm")
 			break;
 		case 4:
 			backgroundMusic.loopSong("woodsbgm");
@@ -154,16 +153,16 @@ function backgroundMusicSelect(){
 			}
 			break;
 		case 8:
-		    backgroundMusic.loopSong("have-a-nice-beer")
+		    backgroundMusic.loopSong("woodsbgm")
 			break;
 		case 9:
-		    backgroundMusic.loopSong("have-a-nice-beer")
+		    backgroundMusic.loopSong("woodsbgm")
 			break;
 		case 10:
-		    backgroundMusic.loopSong("goblinRaid");
+		    backgroundMusic.loopSong("woodsbgm");
 			break;
 		case 12:
-		    backgroundMusic.loopSong("goblinRaid");
+		    backgroundMusic.loopSong("woodsbgm");
 			break;
 	}
 }
@@ -512,12 +511,13 @@ function drawAll() {
         // FIXME these fx are Falldale-only right now
         // it would be nice if they also were on all game regions
         if (levelNow == 7) { //7=fallDale??? elsewhere it is listed as 0 FIXME
-            drawRooftops(); // FIXME: hardcoded for main town area only
+            drawRooftops(fallDaleRooftops); // FIXME: hardcoded for main town area only
             // this is now rendered inside depthSortedDraw right after floor tiles
             //OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
-        }
-
-        
+        } else if (levelNow == 3){
+			drawRooftops(orcBossForestRoofTops);
+		}
+		
 		canvasContext.restore();
 		if(redWarrior.questOneComplete == false) {
 			colorText(goblinsKilledInFallDale + " out of the 10 Goblins killed in Falldale.", canvas.width - 400, 20, "red");

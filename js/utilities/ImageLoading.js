@@ -239,7 +239,15 @@ function loadImages() {
 			{tileType: TILE_DRUID_HOUSE_BL, theFile: "graves/druidhouse_fl.png"},
 			{tileType: TILE_DRUID_HOUSE_BM, theFile: "graves/druidhouse_fm.png"},
 			{tileType: TILE_DRUID_HOUSE_BR, theFile: "graves/druidhouse_fr.png"},
-				
+			{tileType: TILE_ORC_HOUSE_FL, theFile: "orcHuts/OrcLayerFLWall.png"},
+			{tileType: TILE_ORC_HOUSE_FR, theFile: "orcHuts/OrcLayerFRWall.png"},
+			{tileType: TILE_ORC_HOUSE_BL, theFile: "orcHuts/OrcLayerBLWall.png"},
+			{tileType: TILE_ORC_HOUSE_BR, theFile: "orcHuts/OrcLayerBRWall.png"},
+			{tileType: TILE_ORC_HOUSE_WALL, theFile: "orcHuts/OrcLayerWall.png"},
+			{tileType: TILE_ORC_HOUSE_LS, theFile: "orcHuts/OrcLayerLWall.png"},
+			{tileType: TILE_ORC_HOUSE_RS, theFile: "orcHuts/OrcLayerRWall.png"},
+			{tileType: TILE_ORC_HOUSE_WINDOW, theFile: "orcHuts/OrcLayerWindow.png"},
+							
 			{varName: muteAudioPic, theFile: "muteAudio.png"},
 			{varName: warriorPic, theFile: "warrior.png"},
 			{varName: biggyPic, theFile: "Sprites/player/biggy/biggy.png"},
