@@ -1,7 +1,6 @@
 var goblinsKilledInForest = 0;
 var orcsKilledInForest = 0
 
-
 function countGoblinforQuestTwo(){
 	if(redWarrior.questTwoComplete == false){ 
 		if (levelNow == 6) { // located in Forest
