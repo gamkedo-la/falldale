@@ -74,7 +74,7 @@ function npcClass(npcName, npcPic) {
 					humanMaleHi.play();
 				}
             } else if (this.myName == "Taran") {
-                if (redWarrior.questOneComplete == false) {
+                if (redWarrior.questOneCompleteActive) {
                     NPCDialog = "Taran:  I'm Taran.  Now is not the best time to talk.  These Goblins are destroying the town!";
 					humanMaleGoodDay.play();
 				} else if (redWarrior.questOneComplete) {
@@ -82,8 +82,7 @@ function npcClass(npcName, npcPic) {
 					humanMaleGoodDay.play();
                 }
             } else if (this.myName == "Delkon") {
-				console.log(redWarrior.questOneComplete, redWarrior.delkonRewardOffer);
-                if (redWarrior.questOneComplete == false) {
+                if (redWarrior.questOneCompleteActive) {
                     NPCDialog = "The name is Delkon.  I have 50 gold pieces I can give you if you clear the town of the Goblins!";
                     redWarrior.delkonRewardOffer = true;
 					humanMaleHi4.play();
@@ -97,13 +96,14 @@ function npcClass(npcName, npcPic) {
 					 humanMaleHi4.play();
 				}
             } else if (this.myName == "Princess") {
-                if (redWarrior.questOneComplete == false) {
+                if (redWarrior.questOneCompleteActive) {
                     NPCDialog = "Princess:  My town is being destroyed by these horrible Goblins.  Please do something!";
                 } else if (redWarrior.questOneComplete) {
-					NPCDialog = "Princess:  I am incredible grateful for you saving our town of Falldale.  These Goblin attacks have been happening more often of late."
+					NPCDialog = "Princess:  I am incredible grateful for you saving our town of Falldale.  These Goblin attacks have been happening more often of late.  I need you to enter the forest and clear the Goblins and Orcs."
+					redWarrior.questTwoActive = true;
 				}
 			} else if (this.myName == "Gabriel") {
-                if (redWarrior.questOneComplete == false) {
+                if (redWarrior.questOneCompleteActive) {
                     NPCDialog = "Gabriel:  Please clear this town of all these Goblins!";
 					humanMaleGoodAfternoon.play();
 				} else if (redWarrior.questOneComplete) {
@@ -111,7 +111,7 @@ function npcClass(npcName, npcPic) {
 					humanMaleGoodAfternoon.play();
 				}
             } else if (this.myName == "Fenton") {
-                if (redWarrior.questOneComplete == false) {
+                if (redWarrior.questOneCompleteActive) {
                     NPCDialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
 					humanMaleWelcome.play();
                 } else if (redWarrior.questOneComplete) {
@@ -127,7 +127,7 @@ function npcClass(npcName, npcPic) {
                 isInShop = true;
 				humanMaleHi3.play();
 			} else if (this.myName == "Fenton") {
-				if (redWarrior.questOneComplete == false) {
+				if (redWarrior.questOneCompleteActive) {
 					NPCDialog = "Fenton:  I'm Fenton, our town is being overran by Goblins!  Please do something!";
 					humanMaleHi4.play();
 				} else if (redWarrior.questOneComplete) {
@@ -135,7 +135,7 @@ function npcClass(npcName, npcPic) {
 					humanMaleHi4.play();
 				}
 			} else if (this.myName == "Arya") {
-                if (redWarrior.questOneComplete == false) {
+                if (redWarrior.questOneCompleteActive) {
                     NPCDialog = "Arya:  I'm Arya, our town is being overran by Goblins!  Please do something!";
 					humanFemaleHello.play();
                 } else if (redWarrior.questOneComplete) {
@@ -143,7 +143,7 @@ function npcClass(npcName, npcPic) {
 					humanFemaleHello.play();
                 }
 			} else if (this.myName == "Lawrence") {
-                if (redWarrior.questOneComplete == false) {
+                if (redWarrior.questOneCompleteActive) {
                     NPCDialog = "Lawrence:  I'm Lawrence, our town is being overran by Goblins!  Please do something!  I'm to scared and going to stay here in the bar.";
 					humanMaleHi2.play();
                 } else if (redWarrior.questOneComplete) {
@@ -151,7 +151,7 @@ function npcClass(npcName, npcPic) {
 					humanMaleHi2.play();
                 }
 			} else if (this.myName == "Rowan") {
-                if (redWarrior.questOneComplete == false) {
+                if (redWarrior.questOneCompleteActive) {
                     NPCDialog = "Rowan:  I'm Rowan, our town is being overran by Goblins!  Please do something!";
 					humanFemaleHi.play();
                 } else if (redWarrior.questOneComplete) {

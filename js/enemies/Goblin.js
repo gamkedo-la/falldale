@@ -71,6 +71,7 @@ function goblinClass() {
 			this.treasureAvailable = false;
 			goblinsKilled++;
 			countGoblinforQuestOne();
+			countGoblinforQuestTwo();
 		}
     }
     	

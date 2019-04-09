@@ -221,6 +221,7 @@ function loadImages() {
 			{tileType: TILE_GRAVEYARD_FENCE_LEFTSIDE, theFile: "graves/fenceleftside.png"},
 			{tileType: TILE_GRAVEYARD_FENCE_TL, theFile: "graves/fencetopleftpost.png"},
 			{tileType: TILE_GRAVEYARD_FENCE_BL, theFile: "graves/fencebottomleftpost.png"},
+			{tileType: TILE_GRAVEYARD_YELLOW_GATE, theFile: "Roads/yellowGate.png"},
 			{tileType: TILE_DRUID_CIRCLE_1, theFile: "graves/druidcircle1.png"},
 			{tileType: TILE_DRUID_CIRCLE_2, theFile: "graves/druidcircle2.png"},
 			{tileType: TILE_DRUID_CIRCLE_3, theFile: "graves/druidcircle3.png"},

@@ -520,8 +520,12 @@ function drawAll() {
 			drawRooftops(forestRoofTops);
 		}
 		canvasContext.restore();
-		if(redWarrior.questOneComplete == false) {
-			colorText(goblinsKilledInFallDale + " out of the 10 Goblins killed in Falldale.", canvas.width - 400, 20, "red");
+		if(redWarrior.questOneActive) {
+			colorText(goblinsKilledInFallDale + " out of the 10 Goblins killed in Falldale.", 10, 20, "red");
+		}
+		if(redWarrior.questTwoActive){
+			colorText(goblinsKilledInForest + " out of the 10 Goblins killed in the forest.", 10, 20, "red");
+			colorText(orcsKilledInForest + " out of the 10 Orcs killed in the forest.", 10, 40, "red");
 		}
         health();
         dialogManager.drawDialog();

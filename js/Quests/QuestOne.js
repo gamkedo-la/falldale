@@ -1,4 +1,4 @@
-var goblinsKilledInFallDale = 10;
+var goblinsKilledInFallDale = 9;
 
 
 function countGoblinforQuestOne(){
@@ -18,6 +18,7 @@ function checkForQuestOneComplete(){
 		backgroundMusic.loopSong("have-a-nice-beer");
 		OverlayFX.nightMode = false;
 		levelList[7] = fallDale2;
+		redWarrior.questOneActive = false;
 		questCompletionScreenActive  = true;
 	}
 	
