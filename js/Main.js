@@ -514,7 +514,7 @@ function drawAll() {
             drawRooftops(fallDaleRooftops); // FIXME: hardcoded for main town area only
             // this is now rendered inside depthSortedDraw right after floor tiles
             //OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
-        } else if (levelNow == 3){
+        } else if (levelNow == 0){
 			drawRooftops(orcBossForestRoofTops);
 		} else if (levelNow == 6){
 			drawRooftops(forestRoofTops);
