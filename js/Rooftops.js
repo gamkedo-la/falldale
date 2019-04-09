@@ -21,7 +21,20 @@ var fallDaleRooftops = [ // x1,y1,x2,y2
 	
 var orcBossForestRoofTops = [
 		[46,25,51,28], // orc hut near entrance right side
-		[29,28,33,31],  // orc hut near entrance left side
+		[29,28,33,31], // orc hut near entrance left side
+		[ 2, 5, 8,15], // orc Boss house room 1
+		[ 2,16, 8,24], // orc Boss house room 2
+		[ 9,16,13,24], // orc Boss house room 3 (right side room)
+		[ 2,25, 8,31], // orc Boss house room 4 (just North of Boss fight room
+		[ 2,32,13,42], // orc Boss house room 5 (Orc Boss's room)
+		[44,10,48,13], // left orc hut near dirt road
+		[51,10,55,13], // right orc hut near dirt road
+]
+
+var forestRoofTops = [
+		[23,11,27,15], // orc hut near main road
+		[ 2, 4, 5,11], // orc hut top left corner
+		[ 2,38, 6,43], // orc hut bottom left corner
 ]
 
 

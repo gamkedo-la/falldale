@@ -1,4 +1,4 @@
-var goblinsKilledInFallDale = 8;
+var goblinsKilledInFallDale = 10;
 
 
 function countGoblinforQuestOne(){

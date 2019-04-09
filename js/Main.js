@@ -516,8 +516,9 @@ function drawAll() {
             //OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
         } else if (levelNow == 3){
 			drawRooftops(orcBossForestRoofTops);
+		} else if (levelNow == 6){
+			drawRooftops(forestRoofTops);
 		}
-		
 		canvasContext.restore();
 		if(redWarrior.questOneComplete == false) {
 			colorText(goblinsKilledInFallDale + " out of the 10 Goblins killed in Falldale.", canvas.width - 400, 20, "red");
