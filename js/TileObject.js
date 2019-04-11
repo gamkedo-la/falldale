@@ -31,32 +31,39 @@ function TileObject(index) {
                 frameCounter * 0.01); // radians per frame
         }
 
-        if (this.type == TILE_WATER) { // scrolling water effect
+        // scrolling water effect
+        if (this.type == TILE_WATER || 
+            this.type == TILE_BRIDGE_UPPER ||
+            this.type == TILE_BRIDGE_LOWER) { 
             //console.log("we have scrolling water!");
-            // in two passes, grab offset segments of the original sprite
-            var offset = (frameCounter * 0.5) // slowly
-                % (TILE_H - 1); // move up and wrap around
-                offset = TILE_H - offset - 1; // make it move down instead
-            // top bit
-            canvasContext.drawImage(this.image, //waterScrollImg, 
+
+            var offset = TILE_H - ((frameCounter * 0.5) % (TILE_H));
+
+            // the water-scroll image is large enough to have two tiles worth
+            
+            canvasContext.drawImage(waterScrollImg, 
                 0, offset, 					// src x,y
-                TILE_W, TILE_H - offset,	// src w,h
-                this.x, this.y,		// dst x,y
-                TILE_W, TILE_H - offset);	// dst w,h
-            // bottom bit
-            canvasContext.drawImage(this.image, //waterScrollImg, 
-                0, 0,	 					// src x,y
-                TILE_W, offset,	// src w,h
-                this.x, this.y+TILE_H-offset,			// dst x,y
-                TILE_W, offset);			// dst w,h
+                TILE_W, TILE_H,	            // src w,h
+                this.x, this.y,		        // dst x,y
+                TILE_W, TILE_H);        	// dst w,h
         } 
 
     }
     
     this.draw = function() {
+        
+        // draw the tile
         canvasContext.drawImage(this.image, this.x, this.y);
+
         // optional sparkles, splashes, glows are drawn on top
-		this.drawTileFX();
+        this.drawTileFX();
+
+        // bridge needs to be drawn over top of flowing water
+        if (this.type == TILE_BRIDGE_UPPER ||
+            this.type == TILE_BRIDGE_LOWER) {
+            canvasContext.drawImage(this.image, this.x, this.y);
+        }
+        
     }
 
     this.setNewType = function(newType) {

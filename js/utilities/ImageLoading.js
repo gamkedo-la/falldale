@@ -75,7 +75,7 @@ var miniMapPlayerSouth = document.createElement("img");
 var miniMapPlayerEast = document.createElement("img");
 var miniMapPlayerWest = document.createElement("img");
 var playerMiniMap = document.createElement("img");
-//var waterScrollImg = document.createElement("img");
+var waterScrollImg = document.createElement("img");
 var decorationsImg = document.createElement("img");
 
 var worldPics = [];
@@ -307,7 +307,7 @@ function loadImages() {
 			{varName: fireballPic, theFile: "Weapons/fireball.png"},
 			{varName: rockPic, theFile: "Weapons/rock.png"},
 			{varName: playerMiniMap, theFile: "playerMiniMap.png"},
-			//{varName: waterScrollImg, theFile: "water_scroll.png"}
+			{varName: waterScrollImg, theFile: "water_scroll.png"},
 			{varName: decorationsImg, theFile: "decorations.png"}
 			
 		];
