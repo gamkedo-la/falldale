@@ -54,7 +54,10 @@ function warriorClass() {
 	this.armor = 10;
 	this.healingPotion = 0;
 	this.haveMap = false;
+	this.questOneActive = true;
 	this.questOneComplete = false; // Clear the town of Goblins
+	this.questTwoActive = false;
+	this.questionTwoComplete = false; // Clear the forest of the Goblins and Orcs
 	this.delkonRewardOffer = false; // 50 gp
 	this.goblinsKilledInFallDale = 0;
 
@@ -586,7 +589,7 @@ function warriorClass() {
 			dialogManager.setDialogWithCountdown("I need a yellow key to open this treasure chest.");
 		}
 	};
-
+	
 	this.pickUpThrowingRocks = function(tileIndex) {
 		this.myRock.quantity += 5;
 		this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS, null);
@@ -671,6 +674,9 @@ function warriorClass() {
 				break;
 			case TILE_MAP:
 				this.pickUpMap(walkIntoTileIndex);
+				break;
+			case TILE_GRAVEYARD_YELLOW_GATE:
+				this.tryToOpenYellowDoor(walkIntoTileIndex);
 				break;
 			case TILE_TREASURE:
 				this.tryToGetTreasureWithYellowKey(walkIntoTileIndex);

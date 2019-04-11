@@ -2,32 +2,41 @@
 // used by World.js drawRoom()
 
 // TODO: add to level editor
-var rooftops = [ // x1,y1,x2,y2
+var fallDaleRooftops = [ // x1,y1,x2,y2
 	//rooftops for the town area
+		
+		[1,1,6,3], // player's house
+		[9,1,11,3], // farmer next door
+		[7,12,10,14], // small house south
+		[12,12,15,14], // their neighbor
+		[8,19,11,22], // south w farmer
+		[12,19,16,22], // south bar
+		[23,1,30,5], // nw store
+		[35,1,42,5], // nww store
+		[29,14,38,28], // tavern
+		[29,38,31,40], // se house
+		[34,38,36,40], // se house 2
+		[40,24,42,27], // se house 3
+]
 	
-	[1,1,6,3], // player's house
-	[9,1,11,3], // farmer next door
-	[7,12,10,14], // small house south
-	[12,12,15,14], // their neighbor
-	[8,19,11,22], // south w farmer
-	[12,19,16,22], // south bar
-	[23,1,30,5], // nw store
-	[35,1,42,5], // nww store
-	[29,14,38,28], // tavern
-	[29,38,31,40], // se house
-	[34,38,36,40], // se house 2
-	[40,24,42,27], // se house 3
+var orcBossForestRoofTops = [
+		[46,25,51,28], // orc hut near entrance right side
+		[29,28,33,31], // orc hut near entrance left side
+		[ 2, 5, 8,15], // orc Boss house room 1
+		[ 2,16, 8,24], // orc Boss house room 2
+		[ 9,16,13,24], // orc Boss house room 3 (right side room)
+		[ 2,25, 8,31], // orc Boss house room 4 (just North of Boss fight room
+		[ 2,32,13,42], // orc Boss house room 5 (Orc Boss's room)
+		[44,10,48,13], // left orc hut near dirt road
+		[51,10,55,13], // right orc hut near dirt road
+]
 
+var forestRoofTops = [
+		[23,11,27,15], // orc hut near main road
+		[ 2, 4, 5,11], // orc hut top left corner
+		[ 2,38, 6,43], // orc hut bottom left corner
+]
 
-
-	/*[1,1,6,2],   
-	[19,0,24,3],
-	[26,0,31,3],
-	[8,3,16,8], 
-	[0,18,4,22],
-	[11,16,17,22],
-	[21,12,28,17] */
-];
 
 //TILE_ROOF_SIDERIGHT
 //TILE_ROOF_BACKRIGHT
@@ -38,7 +47,7 @@ var rooftops = [ // x1,y1,x2,y2
 //TILE_ROOF_FRONTLEFT
 //TILE_ROOF_FRONT
 //TILE_ROOF_CENTER
-function drawRooftops() {
+function drawRooftops(rooftops) {
 	var px = Math.round(redWarrior.x/TILE_W);
 	var py = Math.round(redWarrior.y/TILE_H);
 	
