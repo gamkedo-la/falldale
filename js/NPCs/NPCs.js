@@ -101,6 +101,7 @@ function npcClass(npcName, npcPic) {
                     NPCDialog = "Princess:  My town is being destroyed by these horrible Goblins.  Please do something!";
                 } else if (redWarrior.questOneComplete && redWarrior.questTwoActive == false) {
 					NPCDialog = "Princess:  I am incredible grateful for you saving our town of Falldale.  These Goblin attacks have been happening more often of late.  I need you to enter the forest and clear the Goblins and Orcs."
+					redWarrior.yellowKeysHeld++;
 					redWarrior.questTwoActive = true;
 				} else if (redWarrior.questTwoActive){
 					NPCDialog = "Princess:  Thank you for going into the forest."
