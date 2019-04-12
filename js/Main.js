@@ -28,6 +28,7 @@ var scrollBackgroundScreen = true;
 var menuScreen = true;
 var scrollBackground = false;
 var characterCreationScreen = false;
+var characterSelectionScreen = false;
 var isInShop = false;
 var isAtHealer = false;
 var questCompletionScreenActive = false;
@@ -493,6 +494,11 @@ function drawAll() {
         if(debugSkipToGame){
             characterCreationScreenInput(KEY_SPACEBAR);
             characterCreationScreenInput(ENTER);
+        }
+	} else if (characterSelectionScreen) {
+		drawSelectorScreen();
+        if(debugSkipToGame){
+            characterSelectorScreenInput(ENTER);
         }
     } else if (scrollBackgroundScreen) {
         drawScrollNarrative();

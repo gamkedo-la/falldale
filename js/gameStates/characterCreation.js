@@ -144,7 +144,7 @@ function characterCreationScreenInput(whichKeyCode){
 		if (ready)
 		{
 			characterCreationScreen = false;
-			scrollBackgroundScreen = true;
+			characterSelectionScreen = true;
 
 			gameKeeperFeedback = "Have you chosen wisely?";
 		}
