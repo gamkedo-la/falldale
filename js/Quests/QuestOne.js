@@ -1,4 +1,6 @@
-var goblinsKilledInFallDale = 9;
+// Clearing Falldale of the Goblins
+
+var goblinsKilledInFallDale = 0;
 
 
 function countGoblinforQuestOne(){

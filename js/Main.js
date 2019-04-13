@@ -14,6 +14,7 @@ var camera;
 var redWarrior = new warriorClass();
 var enemyList = [];
 var tileList = [];
+var particleList = [];
 const dialogManager = new DialogManager();
 dialogManager.setDialogWithCountdown("H: Hides health, I: Inventory, O: Stats", 3);
 var inventory = " ";
@@ -27,6 +28,7 @@ var scrollBackgroundScreen = true;
 var menuScreen = true;
 var scrollBackground = false;
 var characterCreationScreen = false;
+var characterSelectionScreen = false;
 var isInShop = false;
 var isAtHealer = false;
 var questCompletionScreenActive = false;
@@ -293,6 +295,7 @@ function moveAll() {
         // no movement
     } else if (!gamePaused) {
         redWarrior.move();
+		updateParticles();
         for (var i=0; i< enemyList.length; i++) {
             enemyList[i].move();
             if (enemyList[i].health > 0) {
@@ -492,6 +495,11 @@ function drawAll() {
             characterCreationScreenInput(KEY_SPACEBAR);
             characterCreationScreenInput(ENTER);
         }
+	} else if (characterSelectionScreen) {
+		drawSelectorScreen();
+        if(debugSkipToGame){
+            characterSelectorScreenInput(ENTER);
+        }
     } else if (scrollBackgroundScreen) {
         drawScrollNarrative();
         if(debugSkipToGame){
@@ -519,6 +527,7 @@ function drawAll() {
 		} else if (levelNow == 6){
 			drawRooftops(forestRoofTops);
 		}
+		drawParticles();
 		canvasContext.restore();
 		if(redWarrior.questOneActive) {
 			colorText(goblinsKilledInFallDale + " out of the 10 Goblins killed in Falldale.", 10, 20, "red");

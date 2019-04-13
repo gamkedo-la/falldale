@@ -1,5 +1,7 @@
-//Clearing the Woods of the Orcs and Goblins
-//Player discovers Orc King is behind all the raids trying to steal the Princess's Crystal
+//Player discovers the Druid Queen has gone insane and can't be trusted with her Crystal
+//Player goes on a quest to kill the Druid Queen and return the Crystal to the Princess
+//Player discovers the Wizard in the Tower is the master mind behind the Druid going crazy 
+//and the Orc King attacking the village
 
 var goblinsKilledInForest = 0;
 var orcsKilledInForest = 0

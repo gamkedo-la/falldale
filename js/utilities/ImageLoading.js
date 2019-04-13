@@ -75,7 +75,7 @@ var miniMapPlayerSouth = document.createElement("img");
 var miniMapPlayerEast = document.createElement("img");
 var miniMapPlayerWest = document.createElement("img");
 var playerMiniMap = document.createElement("img");
-//var waterScrollImg = document.createElement("img");
+var waterScrollImg = document.createElement("img");
 var decorationsImg = document.createElement("img");
 
 var worldPics = [];
@@ -152,6 +152,9 @@ function loadImages() {
 			{tileType: TILE_TREE3BOTTOMHALF,  theFile: "Trees/tree3bottomhalf.png"},
 			{tileType: TILE_TREE4TOPHALF,  theFile: "Trees/tree4tophalf.png"},
 			{tileType: TILE_TREE4BOTTOMHALF,  theFile: "Trees/tree4bottomhalf.png"},
+			{tileType: TILE_TREE5FALLEN_TOP,  theFile: "Trees/tree5FallenTopHalf.png"},
+			{tileType: TILE_TREE5FALLEN_BOTTOM,  theFile: "Trees/tree5FallenBottom.png"},
+			{tileType: TILE_TREE5FALLEN_BOTTOM_GRASS,  theFile: "Trees/tree5FallenBottom.png"},
 			{tileType: TILE_BRIDGE_UPPER,  theFile: "bridge-upper.png"},				
 			{tileType: TILE_BRIDGE_LOWER,  theFile: "bridge-lower.png"},		
 			{tileType: TILE_HEALER_BW,  theFile: "shopHealer/backwall.png"},
@@ -307,7 +310,7 @@ function loadImages() {
 			{varName: fireballPic, theFile: "Weapons/fireball.png"},
 			{varName: rockPic, theFile: "Weapons/rock.png"},
 			{varName: playerMiniMap, theFile: "playerMiniMap.png"},
-			//{varName: waterScrollImg, theFile: "water_scroll.png"}
+			{varName: waterScrollImg, theFile: "water_scroll.png"},
 			{varName: decorationsImg, theFile: "decorations.png"}
 			
 		];

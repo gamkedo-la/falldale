@@ -27,6 +27,7 @@ function warriorClass() {
 	this.myWarriorPic = biggyPic; // which picture to use
 	this.name = "Untitled warrior";
 	this.keysHeld = 0;
+	this.woodAx = 0;
 	this.goldpieces = 10;
 	this.experience = 0;
 	this.maxHealth = 4;
@@ -55,10 +56,18 @@ function warriorClass() {
 	this.healingPotion = 0;
 	this.haveMap = false;
 	this.questOneActive = true;
+	this.delkonRewardOffer = false; // 50 gp
 	this.questOneComplete = false; // Clear the town of Goblins
 	this.questTwoActive = false;
-	this.questionTwoComplete = false; // Clear the forest of the Goblins and Orcs
-	this.delkonRewardOffer = false; // 50 gp
+	this.questTwoComplete = false; // Clear the forest of the Goblins and Orcs
+	this.questThreeActive = false;
+	this.questThreeComplete = false;
+	this.questFourActive = false;
+	this.questFourComplete = true;
+	this.questFiveActive = false;
+	this.questFiveComplete = false;
+	this.questSixActive = false;
+	this.questSixComplete = false;
 	this.goblinsKilledInFallDale = 0;
 
 	this.keyHeld_WalkNorth = false;
@@ -353,6 +362,10 @@ function warriorClass() {
 	this.drawWarriorAndShadow = function() {
 		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
+			for (var i = 0; i < PARTICLES_PER_TICK; i++) {
+				var tempParticle = new particleClass(this.x+20, this.y, 'lime');
+				particle.push(tempParticle);
+			}
 	};
 
 	this.draw = function() {
@@ -547,6 +560,24 @@ function warriorClass() {
 			dialogManager.setDialogWithCountdown("I need a blue key to open this door.");
 		}
 	};
+	
+	this.tryToRemoveFallenTreeOnRoad = function(tileIndex) {
+		if(this.woodAx > 0 || debugMode) {
+			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD);
+			dialogManager.setDialogWithCountdown("Chop Chop");
+		} else {
+			dialogManager.setDialogWithCountdown("This tree is in my way.  If I only had an Ax.");
+		}
+	};
+	
+	this.tryToRemoveFallenTreeOnGrass = function(tileIndex) {
+		if(this.woodAx > 0 || debugMode) {
+			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_GRASS);
+			dialogManager.setDialogWithCountdown("Chop Chop");
+		} else {
+			dialogManager.setDialogWithCountdown("This tree is in my way.  If I only had an Ax.");
+		}
+	};
 
 	this.pickUpYellowKey = function(tileIndex) {
 		this.yellowKeysHeld++; // one more key
@@ -633,14 +664,12 @@ function warriorClass() {
 			case TILE_GARDEN_1:
 				this.setSpeedAndPosition(2.0, nextX, nextY);
 				break;
-			case TILE_GRAVE_YARD_PORTAL:
-				this.loadNextLevel(3, 1);
+			case TILE_TREE5FALLEN_BOTTOM:
+				this.tryToRemoveFallenTreeOnRoad(walkIntoTileIndex);
 				break;
-			case TILE_HOME_VILLAGE_PORTAL:
-				this.loadNextLevel(2, 1);
-				break;
-			case TILE_FOREST_PORTAL:
-				this.loadNextLevel(3, 0);
+			case TILE_TREE5FALLEN_TOP:
+			case TILE_TREE5FALLEN_BOTTOM_GRASS:
+				 this.tryToRemoveFallenTreeOnGrass(walkIntoTileIndex);
 				break;
 			case TILE_HEALER_FRONTDOOR:
 				this.openHealerDoor(walkIntoTileIndex);
