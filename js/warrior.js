@@ -5,7 +5,7 @@ var direction = "south";
 
 levelExperienceArray = [500, 2000, 4000, 6000, 10000, 16000, 26000, 42000, 68000]
 
-function warriorClass() {
+function warriorClass(whichPlayerPic) {
 	this.mySword = new swordClass();
 	this.myArrow = new arrowClass(direction);
 	this.myRock = new rockClass();
