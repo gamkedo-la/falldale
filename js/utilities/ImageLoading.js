@@ -56,6 +56,7 @@ var rowanPic = document.createElement("img");
 
 var archerPic = document.createElement("img");
 var archerPic2 = document.createElement("img");
+var archerPic3 = document.createElement("img");
 var deadArcherPic = document.createElement("img");
 
 var dicePic = document.createElement("img");
@@ -280,6 +281,7 @@ function loadImages() {
 			{varName: bullywugPic, theFile: "Monsters/Bullywug.png"},
 			{varName: archerPic, theFile: "Monsters/archer.png"},
 			{varName: archerPic2, theFile: "Monsters/archer2.png"},
+			{varName: archerPic3, theFile: "Monsters/archer3.png"},
 			{varName: deadArcherPic, theFile: "Monsters/deadGoblin.png"},
 			{varName: storeFrontPic, theFile: "storefront.jpg"},
 			{varName: healerStorePic, theFile: "healerStore.jpg"},

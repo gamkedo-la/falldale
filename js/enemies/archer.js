@@ -7,9 +7,9 @@ archerClass.prototype = new enemyClass();
 function archerClass(archerName) {
     this.speed = archerMoveSpeed;
     this.maxhealth = 6;
-    this.width = 28;
-	this.height = 43;
-    this.ticksPerFrame = 5;
+    this.width = 50;
+	this.height = 50;
+    this.ticksPerFrame = 8;
 	this.faceNorthMul = 1;
 	this.faceSouthMul = 0;
 	this.shadowXOffset = 8;
