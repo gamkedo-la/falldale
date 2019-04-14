@@ -158,6 +158,8 @@ function keyPressed(evt) {
         healerInput(evt.keyCode);
     } else if (characterCreationScreen) {
         characterCreationScreenInput(evt.keyCode);
+	 } else if (characterSelectionScreen) {
+        characterSelectorScreenInput(evt.keyCode);
     } else if (scrollBackgroundScreen) {
         scrollBackgroundScreenInput(evt.keyCode);
     } else if (tileEditor) {

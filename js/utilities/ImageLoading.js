@@ -56,6 +56,7 @@ var rowanPic = document.createElement("img");
 
 var archerPic = document.createElement("img");
 var archerPic2 = document.createElement("img");
+var archerPic3 = document.createElement("img");
 var deadArcherPic = document.createElement("img");
 
 var dicePic = document.createElement("img");
@@ -152,6 +153,9 @@ function loadImages() {
 			{tileType: TILE_TREE3BOTTOMHALF,  theFile: "Trees/tree3bottomhalf.png"},
 			{tileType: TILE_TREE4TOPHALF,  theFile: "Trees/tree4tophalf.png"},
 			{tileType: TILE_TREE4BOTTOMHALF,  theFile: "Trees/tree4bottomhalf.png"},
+			{tileType: TILE_TREE5FALLEN_TOP,  theFile: "Trees/tree5FallenTopHalf.png"},
+			{tileType: TILE_TREE5FALLEN_BOTTOM,  theFile: "Trees/tree5FallenBottom.png"},
+			{tileType: TILE_TREE5FALLEN_BOTTOM_GRASS,  theFile: "Trees/tree5FallenBottom.png"},
 			{tileType: TILE_BRIDGE_UPPER,  theFile: "bridge-upper.png"},				
 			{tileType: TILE_BRIDGE_LOWER,  theFile: "bridge-lower.png"},		
 			{tileType: TILE_HEALER_BW,  theFile: "shopHealer/backwall.png"},
@@ -277,6 +281,7 @@ function loadImages() {
 			{varName: bullywugPic, theFile: "Monsters/Bullywug.png"},
 			{varName: archerPic, theFile: "Monsters/archer.png"},
 			{varName: archerPic2, theFile: "Monsters/archer2.png"},
+			{varName: archerPic3, theFile: "Monsters/archer3.png"},
 			{varName: deadArcherPic, theFile: "Monsters/deadGoblin.png"},
 			{varName: storeFrontPic, theFile: "storefront.jpg"},
 			{varName: healerStorePic, theFile: "healerStore.jpg"},

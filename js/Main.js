@@ -1,4 +1,4 @@
-var debugSkipToGame = true;
+var debugSkipToGame = false;
 
 // Characters //
 
@@ -28,6 +28,7 @@ var scrollBackgroundScreen = true;
 var menuScreen = true;
 var scrollBackground = false;
 var characterCreationScreen = false;
+var characterSelectionScreen = false;
 var isInShop = false;
 var isAtHealer = false;
 var questCompletionScreenActive = false;
@@ -213,7 +214,7 @@ function loadLevel() {
 				newEnemy.initialize('Orc - Ax', orcPic3, 4);
             } else if(roomGrid[arrayIndex] == TILE_ARCHER) {
                 newEnemy = new archerClass();
-				newEnemy.initialize('Archer', archerPic2, 6);
+				newEnemy.initialize('Archer', archerPic3, 4);
             } else if(roomGrid[arrayIndex] == TILE_BULLYWUG) {
                 newEnemy = new bullywugClass();
 				newEnemy.initialize('Bullywug', bullywugPic, 0);
@@ -493,6 +494,11 @@ function drawAll() {
         if(debugSkipToGame){
             characterCreationScreenInput(KEY_SPACEBAR);
             characterCreationScreenInput(ENTER);
+        }
+	} else if (characterSelectionScreen) {
+		drawSelectorScreen();
+        if(debugSkipToGame){
+            characterSelectorScreenInput(ENTER);
         }
     } else if (scrollBackgroundScreen) {
         drawScrollNarrative();
