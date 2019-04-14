@@ -1,5 +1,6 @@
 var characters = ['theWarrior', 'Biggy', 'Smally', 'Teeny', 'Weeny'];
-var characterSelected = characters[0];
+var characterSelectedIndex = 0;;
+var characterSelected = characters[characterSelectedIndex];
 
 
 function drawSelectorScreen(){
@@ -16,30 +17,29 @@ function drawSelectorScreen(){
 }
 
 
+
+
 function characterSelectorScreenInput(whichKeyCode){
-	var character = 0;
-	switch(whichKeyCode){
-		
-		case KEY_SPACEBAR:
-		
-		break;
-
-		case KEY_UP_ARROW:
-			if(character < character.length){
-				character++;
-				characterSelected = characters[character];
+    switch(whichKeyCode){
+        case KEY_UP_ARROW:
+			console.log(characterSelectedIndex)
+            characterSelectedIndex++; // go to next item in array
+            if (characterSelectedIndex>=characters.length){ 
+                characterSelectedIndex = 0; // wrap around
+				characterSelected = characters[characterSelectedIndex];
 				console.log(characterSelected);
-			}
-		break;
-		
+            }
+        break;
 		case KEY_DOWN_ARROW:
-			if(character >= 0){
-				character--;
-				characterSelected = characters[character];
+			console.log(characterSelectedIndex)
+            characterSelectedIndex--; // go to next item in array
+            if (characterSelectedIndex <= 0){ 
+                characterSelectedIndex = characters.length; // wrap around
+				characterSelected = characters[characterSelectedIndex];
 				console.log(characterSelected);
-			}
+            }
 		break;
-
+		case KEY_SPACEBAR:
 		case ENTER:
 		if (ready)
 		{
