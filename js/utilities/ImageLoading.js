@@ -4,11 +4,13 @@ var storeFrontPic = document.createElement("img");
 var healerStorePic = document.createElement("img");
 var muteAudioPic = document.createElement("img");
 
+//player Pictures
 var warriorPic = document.createElement("img");
+var biggyPic = document.createElement("img");
 var swordPic = document.createElement("img");
 var magicSwordPic = document.createElement("img");
 var rockPic = document.createElement("img");
-var biggyPic = document.createElement("img");
+
 
 var skeletonPic = document.createElement("img");
 var skeletonPic2 = document.createElement("img");

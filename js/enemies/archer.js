@@ -1,7 +1,7 @@
 var archerMoveSpeed = 0.5;
 const ARCHER_TIME_BETWEEN_CHANGE_DIR = 20;
 const ARCHER_PATROL_RADIUS = 200;
-const ARCHER_TAKE_SHOT_RANGE = 50;
+const ARCHER_SHOTLANE_THICKNESS = 50;
 
 archerClass.prototype = new enemyClass();
 function archerClass(archerName) {
@@ -42,38 +42,38 @@ function archerClass(archerName) {
 	}
 
     this.checkToFireArrow = function() {
-        if (this.direction == "north") {
-            if (this.y >= redWarrior.y) { //player above the Archer
-                if ((this.x - ARCHER_TAKE_SHOT_RANGE <= redWarrior.x) &&
-                    (this.x + ARCHER_TAKE_SHOT_RANGE >= redWarrior.x)) {
-                    console.log("player is above & within range, take shot");
+        if (this.direction == "south") {
+            if (this.y <= redWarrior.y) { //Archer above the player
+                if ((this.x <= redWarrior.x + ARCHER_SHOTLANE_THICKNESS) && 
+                    (this.x >= redWarrior.x - ARCHER_SHOTLANE_THICKNESS)) {
+                    console.log("I'm facing South and above the player");
                     this.shotArrow();
                 }
             }
         }
-        if (this.direction == "south") { //player is below the Archer
-            if (this.y <= redWarrior.y) {
-                if ((this.x - ARCHER_TAKE_SHOT_RANGE <= redWarrior.x) &&
-                    (this.x + ARCHER_TAKE_SHOT_RANGE >= redWarrior.x)) {
-                    console.log("player is below & within range, take shot");
+        if (this.direction == "north") { //Archer is below the Archer
+            if (this.y >= redWarrior.y) {
+                if ((this.x <= redWarrior.x + ARCHER_SHOTLANE_THICKNESS) &&
+                    (this.x >= redWarrior.x - ARCHER_SHOTLANE_THICKNESS)) {
+                    console.log("I'm facing North and below the player");
                     this.shotArrow();
                 }
             }
         }
-        if (this.direction == "west") { // player is West of the Archer
-            if (this.x >= redWarrior.x) {
-                if ((this.y - ARCHER_TAKE_SHOT_RANGE <= redWarrior.y) &&
-                    (this.y + ARCHER_TAKE_SHOT_RANGE >= redWarrior.y)) {
-                    console.log("player is west & within range.  Take shot");
-                    this.shotArrow();
-                }
-            }
-        }
-        if (this.direction == "east") { // player is East of the Archer
+        if (this.direction == "east") { // Archer is West of the Archer
             if (this.x <= redWarrior.x) {
-                if ((this.y - ARCHER_TAKE_SHOT_RANGE <= redWarrior.y) &&
-                    (this.y + ARCHER_TAKE_SHOT_RANGE >= redWarrior.y)) {
-                    console.log("player is east & within range.  Take shot");
+                if ((this.y <= redWarrior.y + ARCHER_SHOTLANE_THICKNESS) &&
+                    (this.y >= redWarrior.y - ARCHER_SHOTLANE_THICKNESS)) {
+                    console.log("I'm facing East and West of the player");
+                    this.shotArrow();
+                }
+            }
+        }
+        if (this.direction == "west") { // Archer is East of the Archer
+            if (this.x >= redWarrior.x) {
+                if ((this.y <= redWarrior.y + ARCHER_SHOTLANE_THICKNESS) &&
+                    (this.y >= redWarrior.y - ARCHER_SHOTLANE_THICKNESS)) {
+                    console.log("I'm facing West and East of the player");
                     this.shotArrow();
                 }
             }
@@ -82,7 +82,7 @@ function archerClass(archerName) {
 
 	this.shotArrow = function() {
 		if (this.myArrow.isReady()) {
-			this.myArrow.shootFrom(this, direction);
+			this.myArrow.shootFrom(this, this.direction);
 			arrowShotSound.play();
 		}
     }
