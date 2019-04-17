@@ -103,6 +103,20 @@ function enemyClass() {
 				colorRect(this.x, this.y + this.height, 5, 5, "red")
 				colorRect(this.x + this.width, this.y, 5, 5, "red")
 				colorRect(this.x + this.width, this.y + this.height, 5, 5, "red")
+		
+				if(typeof this.currentPath !== "undefined" && this.currentPath != null){
+					canvasContext.globalAlpha = 0.2;
+					for(var i=0; i< this.currentPath.length; i++){
+						var locHere = getPixelCoordForArrayIndex(this.currentPath[i]);
+						if(i == this.currentPathIndex){
+							colorRect(locHere.x, locHere.y, TILE_W, TILE_H, "yellow");
+						} else {
+							colorRect(locHere.x, locHere.y, TILE_W, TILE_H, "white");
+						}
+					}
+					canvasContext.globalAlpha = 1.0;
+				}
+				
 			}
 		} else if (this.deadPic != null) {
 			canvasContext.drawImage(this.deadPic, Math.round(this.x), Math.round(this.y));
