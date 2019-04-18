@@ -28,7 +28,7 @@ function npcSuperClass() {
         if (this.health <= 0) {
 			return;
 		}
-
+		console.log("Calling Superclass Pathfinding");
         let nextPos = this.pathFindingMove(timeBetweenChangeDir, this.speed);
 		if(this.currentPath == null) {
             nextPos = this.randomMove(timeBetweenChangeDir, this.speed);
@@ -43,11 +43,16 @@ function npcSuperClass() {
     }
 
     this.pathFindingMove = function(timeBetweenDirChange) {
+		console.log("calling this path finding move from Superclass NPC");
         if(this.pather == null) {return null;} //this enemy is not fully initialized yet
-        if(this.patrolPoints == null) {return null;}
+        if(this.patrolPoints == null) {
+			console.log("No Patrol points, bailing on path finding move");
+			return null;
+			}
 
         const currentTile = getTileIndexAtPixelCoord(this.x, this.y);
         if(this.currentPath == null) {
+			console.log("Attempting to use patrol path");
             this.currentPath = this.pather.pathFrom_To_(currentTile, this.patrolPoints[0], this.isPassableTile);
             this.currentPathIndex = 0;
         }
