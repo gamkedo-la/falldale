@@ -4,7 +4,7 @@ orcBossClass.prototype = new enemyClass();
 function orcBossClass() {
     this.speed = ORC_SPEED;
     this.maxhealth = 100;
-    this.width = 50;
+    this.width = 81;
     this.height = 100;
     this.ticksPerFrame = 5;
 	this.faceNorthMul = 1;
