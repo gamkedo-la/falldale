@@ -526,6 +526,8 @@ function drawAll() {
 			drawRooftops(orcBossForestRoofTops);
 		} else if (levelNow == 6){
 			drawRooftops(forestRoofTops);
+		} else if (levelNow == 8){
+			drawRooftops(eastWoodsRoofTops);
 		}
 		drawParticles();
 		canvasContext.restore();
