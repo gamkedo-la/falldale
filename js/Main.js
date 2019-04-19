@@ -528,6 +528,8 @@ function drawAll() {
 			drawRooftops(forestRoofTops);
 		} else if (levelNow == 8){
 			drawRooftops(eastWoodsRoofTops);
+		} else if (levelNow == 5){
+			drawRooftops(eastMiddleWoodsRoofTops);
 		}
 		drawParticles();
 		canvasContext.restore();

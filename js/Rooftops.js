@@ -41,6 +41,10 @@ var eastWoodsRoofTops = [
 		[3,2,8,5]
 ]
 
+var eastMiddleWoodsRoofTops = [
+		[4,40,7,43]
+]
+
 
 //TILE_ROOF_SIDERIGHT
 //TILE_ROOF_BACKRIGHT
