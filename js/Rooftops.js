@@ -19,7 +19,7 @@ var fallDaleRooftops = [ // x1,y1,x2,y2
 		[40,24,42,27] // se house 3
 ]
 	
-var orcBossForestRoofTops = [
+var orcKingforestRoofTops = [
 		[46,25,51,28], // orc hut near entrance right side
 		[29,28,33,31], // orc hut near entrance left side
 		[ 2, 5, 8,15], // orc Boss house room 1

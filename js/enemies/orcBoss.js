@@ -22,10 +22,12 @@ function orcBossClass() {
     this.superClassIsOverlappingPoint = this.isOverlappingPoint;
     this.isOverlappingPoint = function() {
         if(this.superClassIsOverlappingPoint()) {
-            dialogManager.setDialogWithCountdown("Ouch! I've been bitten by an OrcBoss! That really hurts.", 5);
-//            dialog = "Ouch! I've been bite by a OrcBoss! That really hurts.";
+            dialogManager.setDialogWithCountdown("Ouch! I've been bitten by the Orc King! That really hurts.", 5);
             return true;
         }
+		if(this.health <= 0){
+			questThreeComplete()
+		}
         return false;
     }
 }
