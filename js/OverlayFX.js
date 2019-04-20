@@ -47,8 +47,14 @@ var OverlayFX = new function() {
         [[530,829],[284,839],[579,418],[652,434],[595,235],[830,1216],[856,1251],[355,1369],[291,1666],[400,1676],[33,1481],[148,927],[1066,291],[1035,748],[1080,730],[1069,772],[1179,1611],[604,247]],
         // 7 red flowers
         [[517,430],[745,348],[131,768],[92,574],[98,1029],[293,810],[381,920],[415,909],[416,1253],[122,1439],[489,1677],[812,862],[1042,560],[1148,635],[1101,984],[929,152],[1107,320],[388,188],[441,250],[126,320],[366,1395],[857,1669],[1038,1634],[1089,1671],[1151,1379]],
-        // tufts of grass on the riverbank
-        [[950,187],[949,212],[949,436],[952,416],[946,392],[949,290],[1001,54],[1001,77],[1002,368],[1003,404],[949,513],[952,531],[948,571],[947,618],[949,634],[946,644],[949,720],[946,741],[949,780],[950,797],[949,824],[948,866],[949,905],[952,886],[1003,6],[947,7],[950,22],[945,70],[949,76],[949,86],[950,112],[1003,124],[1002,207],[1002,219],[1005,235],[1004,269],[1004,517],[1004,535],[1005,568],[1002,638],[1001,655],[1003,672],[1003,708],[1003,754],[1001,767],[1007,782],[1001,795],[1004,832],[947,129],[949,946],[948,976],[951,1000],[946,1016],[950,1117],[949,1131],[949,1203],[950,1270],[948,1281],[946,1404],[949,1417],[945,1432],[947,1457],[950,1539],[947,1524],[1003,927],[1001,945],[1004,978],[1003,1046],[1003,1241],[1001,1256],[1002,1468],[1002,1451],[1001,1530],[948,1618],[955,1628],[951,1639],[948,1655],[948,1684],[951,1757]]
+        // 8 tufts of grass on the riverbank
+        [[950,187],[949,212],[949,436],[952,416],[946,392],[949,290],[1001,54],[1001,77],[1002,368],[1003,404],[949,513],[952,531],[948,571],[947,618],[949,634],[946,644],[949,720],[946,741],[949,780],[950,797],[949,824],[948,866],[949,905],[952,886],[1003,6],[947,7],[950,22],[945,70],[949,76],[949,86],[950,112],[1003,124],[1002,207],[1002,219],[1005,235],[1004,269],[1004,517],[1004,535],[1005,568],[1002,638],[1001,655],[1003,672],[1003,708],[1003,754],[1001,767],[1007,782],[1001,795],[1004,832],[947,129],[949,946],[948,976],[951,1000],[946,1016],[950,1117],[949,1131],[949,1203],[950,1270],[948,1281],[946,1404],[949,1417],[945,1432],[947,1457],[950,1539],[947,1524],[1003,927],[1001,945],[1004,978],[1003,1046],[1003,1241],[1001,1256],[1002,1468],[1002,1451],[1001,1530],[948,1618],[955,1628],[951,1639],[948,1655],[948,1684],[951,1757]],
+        // 9 grass tuft facing other way
+        [],
+        // 10 horizontal footprint
+        [],
+        // 11 vertical footprint
+        []
     ];
     // size of decoration tiles
     var decoW = 25;
@@ -59,6 +65,18 @@ var OverlayFX = new function() {
 
     this.currentEditingDecoration = 8; // which sprite number are we painting?
 
+    this.add = function(x,y,decorationNumber) { // can be any image
+        decorationContext.drawImage(decorationsImg,
+            decorationNumber*decoW, 0, // src x,y
+            decoW, decoH, // src w,h
+            x,y, // dst x,y
+            decoW,decoH); // dst w,h);
+    }
+
+    this.addDecal = function(img,x,y) { // can be any image
+        decorationContext.drawImage(img,x,y);
+    }
+    
     this.addDecoration = function(x,y) {
         console.log('new overlayFX decoration at ' + x+','+y);
         decorationContext.drawImage(decorationsImg,
@@ -67,6 +85,34 @@ var OverlayFX = new function() {
             x+ofsX,y+ofsY, // dst x,y
             decoW,decoH); // dst w,h
     }
+
+    function distance(x1,y1,x2,y2){
+        var XD = x2 - x1;
+        var YD = y2 - y1;
+        return Math.sqrt(XD*XD + YD*YD);
+    }
+
+    this.maybeLeaveFootprint = function(who) {
+        
+        // see OverlayFX for numbers
+        var FOOTPRINT_DECORATION_NUM = 5; // 10/11
+        var FOOTPRINT_OFSX = 15;
+        var FOOTPRINT_OFSY = 35;
+        var FOOTPRINT_DISTANCE = 15;
+        
+        // first time init
+        if (who.footstepX==undefined) who.footstepX = who.x;
+        if (who.footstepY==undefined) who.footstepY = who.y;
+
+        // measure dist
+        var dist = distance(who.x,who.y,who.footstepX,who.footstepY);
+        if (dist > FOOTPRINT_DISTANCE) {
+            //console.log("new footstep required at "+who.x+","+who.y);
+            OverlayFX.add(who.x+FOOTPRINT_OFSX,who.y+FOOTPRINT_OFSY,FOOTPRINT_DECORATION_NUM);
+            who.footstepX = who.x;
+            who.footstepY = who.y;
+        }
+    }    
 
     // run every frame: draws extremely fast
     this.draw = function() {

@@ -316,6 +316,7 @@ function loadImages() {
 			{varName: playerMiniMap, theFile: "playerMiniMap.png"},
 			{varName: waterScrollImg, theFile: "water_scroll.png"},
 			{varName: decorationsImg, theFile: "decorations.png"}
+
 			
 		];
 			

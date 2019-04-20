@@ -362,10 +362,13 @@ function warriorClass(whichPlayerPic) {
 	this.drawWarriorAndShadow = function() {
 		canvasContext.drawImage(shadowPic, this.x-16, this.y+32);
 		canvasContext.drawImage(this.myWarriorPic, this.sx, this.sy, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
-			for (var i = 0; i < PARTICLES_PER_TICK; i++) {
-				var tempParticle = new particleClass(this.x+20, this.y, 'lime');
-				particle.push(tempParticle);
-			}
+
+		for (var i = 0; i < PARTICLES_PER_TICK; i++) {
+			var tempParticle = new particleClass(this.x+20, this.y, 'lime');
+			particle.push(tempParticle);
+		}
+			
+		OverlayFX.maybeLeaveFootprint(this);			
 	};
 
 	this.draw = function() {

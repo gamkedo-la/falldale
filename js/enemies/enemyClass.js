@@ -150,13 +150,15 @@ function enemyClass() {
             this.sy = this.height*this.faceEastMul;
         }
 	}
-	
+
     this.move = function(timeBetweenChangeDir) {
         if (this.health <= 0 || !this.enemyMove) {
 			return;
 		}
 
         this.storePos();
+
+        OverlayFX.maybeLeaveFootprint(this);
 
         let nextPos = this.pathFindingMove(timeBetweenChangeDir, this.speed);
 		if(this.currentPath == null) {
