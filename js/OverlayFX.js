@@ -95,7 +95,7 @@ var OverlayFX = new function() {
     this.maybeLeaveFootprint = function(who) {
         
         // see OverlayFX for numbers
-        var FOOTPRINT_DECORATION_NUM = 5; // 10/11
+        var FOOTPRINT_DECORATION_NUM = 10; // 10=horiz 11=vert
         var FOOTPRINT_OFSX = 15;
         var FOOTPRINT_OFSY = 35;
         var FOOTPRINT_DISTANCE = 15;
@@ -104,11 +104,15 @@ var OverlayFX = new function() {
         if (who.footstepX==undefined) who.footstepX = who.x;
         if (who.footstepY==undefined) who.footstepY = who.y;
 
+        var vert = 0; // 0 or 1 so switch the sprite we use
+        if (distance(who.x,0,who.footstepX,0)<distance(0,who.y,0,who.footstepY))
+            vert = 1;
+
         // measure dist
         var dist = distance(who.x,who.y,who.footstepX,who.footstepY);
         if (dist > FOOTPRINT_DISTANCE) {
             //console.log("new footstep required at "+who.x+","+who.y);
-            OverlayFX.add(who.x+FOOTPRINT_OFSX,who.y+FOOTPRINT_OFSY,FOOTPRINT_DECORATION_NUM);
+            OverlayFX.add(who.x+FOOTPRINT_OFSX,who.y+FOOTPRINT_OFSY,FOOTPRINT_DECORATION_NUM+vert);
             who.footstepX = who.x;
             who.footstepY = who.y;
         }
