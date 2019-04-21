@@ -401,6 +401,7 @@ function drawMenuScreen() {
     canvasContext.save();
     canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
     canvasContext.drawImage(titlepagePic, 0, 0); // blanks out the screen
+    colorRect(150, 225, 250, 315, "midnightblue");
     canvasContext.font = "30px Georgia";
     colorText("Falldale", 120, 100, "white");
     canvasContext.font = "20px Georgia";
@@ -414,6 +415,11 @@ function drawMenuScreen() {
     colorText("Move Right - Right Arrow", 170, 350, "white");
     colorText("Move Up - Up Arrow", 170, 375, "white");
     colorText("Sword Attack - Space bar", 170, 400, "white");
+    colorText("Shoot Arrow - A", 170, 425, "white");
+    colorText("Throw Rock - S", 170, 450, "white");
+    colorText("Show Health - H", 170, 475, "white");
+    colorText("Show Inventory - I", 170, 500, "white");
+    colorText("Show Stats - O", 170, 525, "white");
     canvasContext.restore();
 }
 
