@@ -1,4 +1,4 @@
-var debugSkipToGame = true;
+var debugSkipToGame = false;
 
 // Characters //
 
@@ -523,9 +523,13 @@ function drawAll() {
             // this is now rendered inside depthSortedDraw right after floor tiles
             //OverlayFX.draw(); // night mode, light glows, detail decals, footsteps etc
         } else if (levelNow == 0){
-			drawRooftops(orcBossForestRoofTops);
+			drawRooftops(orcKingforestRoofTops);
 		} else if (levelNow == 6){
 			drawRooftops(forestRoofTops);
+		} else if (levelNow == 8){
+			drawRooftops(eastWoodsRoofTops);
+		} else if (levelNow == 5){
+			drawRooftops(eastMiddleWoodsRoofTops);
 		}
 		drawParticles();
 		canvasContext.restore();

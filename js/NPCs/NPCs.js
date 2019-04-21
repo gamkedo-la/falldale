@@ -223,6 +223,8 @@ function npcClass(npcName, npcPic) {
 
             canvasContext.drawImage(shadowPic, this.x - 16, this.y + 32);
             
+            OverlayFX.maybeLeaveFootprint(this);
+            
 			// temp fix for "Fido"
 			
 			if(this.name == "Fido"){
