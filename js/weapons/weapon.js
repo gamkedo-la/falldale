@@ -12,17 +12,19 @@ function weaponClass() {
     this.life = 0;
     this.coolDownTime = 0;
     this.damageDice = 6; // 6 Sided Dice
+    this.damageBonus = 1;
 	this.damagePoints = 6;
     this.toHitPoints = 0;
-	this.attackDice = 20;
+    this.attackDice = 20;
+    this.attackBonus = 1;
 
     this.rollToDetermineIfHit = function() {
 		this.setDamageUICountdown();
-        this.toHitPoints = Math.floor(Math.random() * this.attackDice) + 1;
+        this.toHitPoints = Math.floor(Math.random() * this.attackDice) + this.attackBonus;
 	}
 	
 	this.rollForDamage = function() {
-			this.damagePoints = Math.floor(Math.random() * this.damageDice) + 1;
+			this.damagePoints = Math.floor(Math.random() * this.damageDice) + this.damageBonus;
 			displayDamagePoints = this.damagePoints;
 	}
 	

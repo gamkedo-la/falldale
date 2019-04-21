@@ -1,24 +1,26 @@
 //Club for Goblins
 const CLUB_LIFE = 5;
-const CLUB_SPEED = 1.0;
-const CLUB_COOLDOWN = 2;
+const BASE_CLUB_COOLDOWN = 15;
 
 clubClass.prototype = new weaponClass();
 function clubClass() {
     this.damageDice = 4; // 6 Sided Dice
     this.damagePoints = 4;
-    
+    this.attackDice = 20;
+    this.attackBonus = 1;
+
     this.life = 0;
     this.baseClubLife = CLUB_LIFE;
     this.coolDownTime = 0;
-    this.baseClubCooldown = CLUB_COOLDOWN;
+    this.clubCooldown = BASE_CLUB_COOLDOWN;
 
     this.shootFrom = function(weilder) {
 		this.x = weilder.x;
 		this.y = weilder.y;
         
 		this.life = this.baseClubLife;
-        this.coolDownTime = this.baseClubCooldown;
+        this.coolDownTime = this.clubCooldown;
+        this.clubCooldown = Math.floor(Math.random() * BASE_CLUB_COOLDOWN);
     }
 
     //override weaponClass.rangeTest
@@ -54,7 +56,7 @@ function clubClass() {
 		}
 
         this.rollToDetermineIfHit();
-        if(this.toHitPoints > 10){
+        if(this.toHitPoints > redWarrior.armor){
             //this is a hit
             this.rollForDamage();
             this.life = 0;//assumes weapons are only good for one hit
