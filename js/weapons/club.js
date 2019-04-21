@@ -1,6 +1,6 @@
 //Club for Goblins
-const CLUB_LIFE = 5;
-const BASE_CLUB_COOLDOWN = 15;
+const CLUB_LIFE = 6;
+const BASE_CLUB_COOLDOWN = 20;
 
 clubClass.prototype = new weaponClass();
 function clubClass() {
@@ -59,13 +59,64 @@ function clubClass() {
         if(this.toHitPoints > redWarrior.armor){
             //this is a hit
             this.rollForDamage();
-            this.life = 0;//assumes weapons are only good for one hit
             adversary.takeDamage(this.damagePoints);
             return true;
         } else {
             //this is a miss
-            this.life = 0;//assumes weapons are only good for one try
             return false;
         }
     }
+
+    this.draw = function(wielder) {
+
+		let clubWidth = 10;
+		let clubLength = 40;
+		let clubXLocation = wielder.x;
+		let clubYLocation = wielder.y;
+        let rotation = 0;
+        
+        let centerX = wielder.x + wielder.width / 2;
+		let centerY = wielder.y + wielder.height / 2;
+		
+		if(wielder.direction == "north") {
+			clubWidth = 10;
+			clubLength = 20;
+			clubXLocation = centerX+5;
+			clubYLocation = wielder.y - clubLength + 10;
+		} else if(wielder.direction == "south") {
+			clubWidth = 10;
+			clubLength = 40;
+			clubXLocation = centerX - 5;
+			clubYLocation = centerY + 35;
+			rotation = Math.PI;
+		} else if(wielder.direction == "west") {
+			clubWidth = 40;
+			clubLength = 10;
+			clubXLocation = wielder.x - clubWidth + 30;
+			clubYLocation = centerY;
+			rotation = -Math.PI / 2;
+		} else if(wielder.direction == "east") {
+			clubWidth = 40;
+			clubLength = 10;
+			clubXLocation = wielder.x + 60;
+			clubYLocation = centerY + 30;
+			rotation = Math.PI / 2;
+		} 
+        
+        if(this.life > 0) 
+        {
+			this.myclubPic = clubPic;
+            canvasContext.save();
+            
+			if(rotation != 0) {
+				canvasContext.translate(clubXLocation, clubYLocation);
+				canvasContext.rotate(rotation);
+                canvasContext.drawImage(this.myclubPic, -clubWidth/2, -clubLength/2);
+			} else {
+                canvasContext.drawImage(this.myclubPic, clubXLocation, clubYLocation);
+            }
+
+            canvasContext.restore();
+        }				
+    }	
 }

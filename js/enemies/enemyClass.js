@@ -93,10 +93,21 @@ function enemyClass() {
 			}
 			if (!gamePaused || this.animateOnGamePause) {
 				this.sx = this.frameIndex * this.width;
-			}
+            }
+
+            var hasMelee = this.myMelee != null;            
+            if (hasMelee && (this.direction == "north" || this.direction == "west")) {
+                this.myMelee.draw(this);
+            }
+
 			canvasContext.drawImage(shadowPic, this.x - this.shadowXOffset, this.y + this.shadowYOffset);
 			canvasContext.drawImage(this.myPic, this.sx, this.sy, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
-			if (debugMode) {
+            
+            if (hasMelee && (this.direction == "south" || this.direction == "east")) {
+                this.myMelee.draw(this);
+            }
+            
+            if (debugMode) {
 				colorText(this.myName, this.x, this.y - 20, "red");
 				colorText("HP: " + this.health, this.x, this.y - 10, "red");
 				colorRect(this.x, this.y, 5, 5, "red");

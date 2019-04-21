@@ -8,6 +8,7 @@ var muteAudioPic = document.createElement("img");
 var warriorPic = document.createElement("img");
 var biggyPic = document.createElement("img");
 var swordPic = document.createElement("img");
+var clubPic = document.createElement("img");
 var magicSwordPic = document.createElement("img");
 var rockPic = document.createElement("img");
 
@@ -260,6 +261,7 @@ function loadImages() {
 			{varName: biggyPic, theFile: "Sprites/player/biggy/biggy.png"},
 			{varName: swordPic, theFile: "Weapons/basicSword.png"},
 			{varName: magicSwordPic, theFile: "Weapons/magicSword.png"},
+			{varName: clubPic, theFile: "Weapons/club.png"},
 			{varName: skeletonPic, theFile: "Monsters/skeleton1.png"},
 			{varName: skeletonPic2, theFile: "Monsters/skeleton2.png"},
 			{varName: skeletonPic3, theFile: "Monsters/skeleton3.png"},
