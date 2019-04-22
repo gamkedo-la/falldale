@@ -175,23 +175,11 @@ function keyPressed(evt) {
         } else if (evt.keyCode == redWarrior.controlKeyRock) {
             redWarrior.shotRock();
         } else if (evt.keyCode == redWarrior.controlKeyInventory) {
-            if (inventoryScreen) {
-                inventoryScreen = false;
-            } else {
-                inventoryScreen = true;
-            }
+            inventoryScreen = !inventoryScreen
         } else if (evt.keyCode == redWarrior.controlKeyStats) {
-            if (statsScreen) {
-                statsScreen = false;
-            } else {
-                statsScreen = true;
-            }
+            statsScreen = !statsScreen
         } else if (evt.keyCode == debugModeKey || evt.keyCode === KEY_ZERO) {
-            if (debugMode) {
-                debugMode = false;
-            } else {
-                debugMode = true;
-            }
+            debugMode = !debugMode
         } else if (evt.keyCode == tileEditorModeKey) {
             if (tileEditor) {
                 tileEditor = false;

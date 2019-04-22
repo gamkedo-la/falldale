@@ -2,12 +2,14 @@ function drawShop() {
     canvasContext.save();
     canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
     canvasContext.drawImage(storeFrontPic, 0, 0); 
-    colorText("Please let me know if you would like any of our", 25, 50, "white");
-    colorText("items in stock.", 25, 65, "white");
+    colorText("Please let me know if you would like any", 25, 50, "white");
+    colorText("of our items in stock.", 25, 65, "white");
     colorText("1.) 10 Arrows 	- 	10 gp", 50, 100, "white");
     colorText("2.) 10 Rocks 	- 	 10 gp", 50, 120, "white");
-    colorText("3.)  1 Heart 	- 	 5 gp", 50, 140, "white");
+    colorText("3.)  1 Heart 	- 	 10 gp", 50, 140, "white");
     colorText("4.) 'Nothing at this time'", 50, 160, "white");
+    colorRect(630, 25, 150, 40, "black");
+    colorText(`Your gold: ${redWarrior.goldpieces}`, 650, 50, "gold");
     canvasContext.restore();
 }
 
