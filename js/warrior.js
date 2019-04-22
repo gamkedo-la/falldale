@@ -676,7 +676,7 @@ function warriorClass(whichPlayerPic) {
 			case TILE_DIRTROAD_W_N:
 			case TILE_DIRTROAD_W_S:
 			case TILE_DIRTROAD_W_N_E:
-			case TILE_DIRTROAD_W_S_E:
+			case TILE_DIRTROAD_W_S_E:		
 				this.setSpeedAndPosition(5.0, nextX, nextY);
 				break;
 			case TILE_GRASS:
@@ -754,6 +754,7 @@ function warriorClass(whichPlayerPic) {
 				this.impaledOnBloodySpikes(nextX, nextY);
 				break;
 			case TILE_HOUSE_DRESSER_BOTTOM:
+				this.setSpeedAndPosition(5.0, nextX, nextY);
 				dialogManager.setDialogWithCountdown("I really need to get some new clothes.");
 				break;
 			case TILE_HOUSE_LS_BED_BOTTOM:

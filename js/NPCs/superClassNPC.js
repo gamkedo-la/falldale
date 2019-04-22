@@ -376,9 +376,9 @@ function npcSuperClass() {
 		return;//failure to override results in invincible enemies
 	}
 	
-	this.reset = function(resetX, resetY) {
+	this.reset = function(resetX, resetY, direction) {
         this.pather = new Pathfinder3();
-        this.changeDirection();
+        this.changeDirection(direction);
         this.x = resetX;
         this.y = resetY;
     }
@@ -495,7 +495,7 @@ function npcSuperClass() {
             case TILE_TARAN:
             case TILE_DELKON:
             case TILE_ADDY:
-            case TILE_GABRIEL:
+            // case TILE_GABRIEL:
             case TILE_FENTON:
             case TILE_TREE:
             case TILE_TREE2TOPHALF:

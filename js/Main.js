@@ -235,7 +235,11 @@ function loadLevel() {
                 newEnemy = new npcClass('Fenton', fentonPic);
             } else if(roomGrid[arrayIndex] == TILE_GABRIEL) {   // NPC
                 newEnemy = new npcClass('Gabriel', gabrielPic);
-                newEnemy.patrolPoints = [157, 73, 74, 138];//index of tiles Gabriel cycles through, Not working yet
+                newEnemy.speed = 0;
+                newEnemy.direction = "south";
+                newEnemy.startOffsetX = 5;
+                newEnemy.startOffsetY = -TILE_H/2;
+                // newEnemy.patrolPoints = [157, 73, 74, 138]; //index of tiles Gabriel cycles through, Not working yet
             } else if(roomGrid[arrayIndex] == TILE_HEALER) {   // NPC
                 newEnemy = new npcClass('Healer', healerPic);
             } else if(roomGrid[arrayIndex] == TILE_PRINCESS) {   // NPC
@@ -272,9 +276,12 @@ function loadLevel() {
                 arrayIndex++;
                 continue;//Don't reset or add to enemyList if no enemy tile found
             }
-            resetX = eachCol * TILE_W + TILE_W/2;
-            resetY = eachRow * TILE_H + TILE_H/2;
-            newEnemy.reset(resetX, resetY);
+
+            let offsetX = newEnemy.startOffsetX != undefined ? newEnemy.startOffsetX : 0;
+            let offsetY = newEnemy.startOffsetY != undefined ? newEnemy.startOffsetY : 0;
+            resetX = (eachCol * TILE_W) + offsetX;
+            resetY = (eachRow * TILE_H) + offsetY;
+            newEnemy.reset(resetX, resetY, newEnemy.direction);
             enemyList.push(newEnemy);
             roomGrid[arrayIndex] = TILE_ROAD;
             tileList.push(new TileObject(arrayIndex));
