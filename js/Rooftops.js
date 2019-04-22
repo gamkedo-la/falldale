@@ -55,10 +55,13 @@ var eastMiddleWoodsRoofTops = [
 //TILE_ROOF_FRONTLEFT
 //TILE_ROOF_FRONT
 //TILE_ROOF_CENTER
+
 function drawRooftops(rooftops) {
 	var px = Math.round(redWarrior.x/TILE_W);
-	var py = Math.round(redWarrior.y/TILE_H);
+	var py = Math.round(redWarrior.y/TILE_H);	
 	
+	redWarrior.isInsideAnyBuilding = false;
+
 	for (var roofnum = 0; roofnum < rooftops.length; roofnum++) {
 
 		var firstRow = rooftops[roofnum][1];
@@ -67,11 +70,12 @@ function drawRooftops(rooftops) {
 		var lastCol = rooftops[roofnum][2];
 		var pic = TILE_ROOF_CENTER;
 		var playerInsideBuilding = false;
-		var mouseInsideBuilding = false;
+		var mouseInsideBuilding = false;		
 
 		// only draw roof if player is not underneath it
 		if (px>=firstCol && px<=lastCol && py>=firstRow && py<=lastRow) {
 			playerInsideBuilding = true;
+			redWarrior.isInsideAnyBuilding = true;
 		}
 
 		var mx = Math.round((mouseX+camera.x-TILE_W/2)/TILE_W);
@@ -82,7 +86,7 @@ function drawRooftops(rooftops) {
 
 		if (!playerInsideBuilding) {
 
-			if (mouseInsideBuilding) canvasContext.globalAlpha = 0.5;
+			if (mouseInsideBuilding) canvasContext.globalAlpha = 0.85;
 
 			for(var row = firstRow; row < lastRow+1; row++) {
 				for(var col = firstCol; col < lastCol+1; col++) {
@@ -111,6 +115,7 @@ function drawRooftops(rooftops) {
 			canvasContext.globalAlpha = 1.0;
 
 		}
-	}
-}
+	}	
 
+	redWarrior.tryCloseDoor();
+}

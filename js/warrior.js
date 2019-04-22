@@ -35,6 +35,7 @@ function warriorClass(whichPlayerPic) {
 	this.warriorHealthCountdownSeconds = 5;
 	this.warriorDisplayHealthCountdown = this.warriorHealthCountdownSeconds * FRAMES_PER_SECOND;
 	this.waitTime = 0;
+	this.walkIntoTileIndex = 0;
 	this.previousTileType = -1;
 	this.sx = 40;
 	this.sy = 0;
@@ -81,6 +82,10 @@ function warriorClass(whichPlayerPic) {
 	this.controlKeyDown;
 	this.controlKeyLeft;
 	this.controlKeySword;
+
+	this.isInsideAnyBuilding = true;
+	this.lastOpenDoorIndex = rowColToArrayIndex(4, 4);
+	this.lastOpenDoorTile = TILE_FRONTDOOR_YELLOW;
 
 	this.savePrefix = "player_";
 	this.saveVariables = ["x", "y", "health", "maxHealth", "name", "experience", "keysHeld", "goldpieces",
@@ -174,13 +179,12 @@ function warriorClass(whichPlayerPic) {
 		const didLoadNewLevel = this.loadNewLevelIfAtEdge(tileC, tileR);
 		if(didLoadNewLevel) {return;}
 
-		const walkIntoTileIndex = this.indexOfNextTile(nextX, nextY);
-
-		this.previousTileType = this.updatePosition(nextX, nextY, walkIntoTileIndex);
+		this.walkIntoTileIndex = this.indexOfNextTile(nextX, nextY);
+		this.previousTileType = this.updatePosition(nextX, nextY, this.walkIntoTileIndex);		
 
 		this.mySword.move();
 		this.myArrow.move();
-		this.myRock.move();
+		this.myRock.move();		
 
 		this.tryToTriggerMonsterSpawnAt(skeletonClass, skeletonPic, skeletonSpawnTiles, this.x + this.width / 2, this.y + this.height / 2, direction);
 	};
@@ -518,11 +522,6 @@ function warriorClass(whichPlayerPic) {
 		roomGrid[aTileIndex] = aTileType;
 	};
 
-	this.openHealerDoor = function(tileIndex) {
-		this.replaceTileAtIndexWithTileOfTypeAndPlaySound(tileIndex, TILE_ROAD, doorSound);
-		dialogManager.setDialogWithCountdown("This place smells nice.  Is that lavender?");
-	};
-
 	this.tryToOpenYellowDoor = function(tileIndex) {
 		if(this.yellowKeysHeld > 0 || debugMode) {
 			this.yellowKeysHeld--; // one less key
@@ -647,12 +646,29 @@ function warriorClass(whichPlayerPic) {
 		dialogManager.setDialogWithCountdown("OUCH! Bloody Spikes!");
 	};
 
+	this.openDoor = function(nextX, nextY, walkIntoTileIndex, doorTileType, message) {
+		this.replaceTileAtIndexWithTileOfTypeAndPlaySound(walkIntoTileIndex, TILE_OPEN_DOORWAY, doorSound);
+		this.setSpeedAndPosition(5.0, nextX, nextY);
+		this.lastOpenDoorIndex = walkIntoTileIndex
+		this.lastOpenDoorTile = doorTileType;
+		dialogManager.setDialogWithCountdown(message);
+	}
+
+	this.tryCloseDoor = function() {
+		if (!this.isInsideAnyBuilding && this.lastOpenDoorIndex != -1)
+		{
+			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(this.lastOpenDoorIndex, this.lastOpenDoorTile, null);		
+			this.lastOpenDoorIndex = -1;
+		}
+	}
+
 	this.updatePosition = function(nextX, nextY, walkIntoTileIndex) {
 		const walkIntoTileType = this.tileTypeForIndex(walkIntoTileIndex);
 
 		switch(walkIntoTileType) {
 			case TILE_BRIDGE_LOWER:
 			case TILE_ROAD: 
+			case TILE_OPEN_DOORWAY: 
 			case TILE_DIRTROAD_N_E:
 			case TILE_DIRTROAD_N_S:
 			case TILE_DIRTROAD_S_E:
@@ -665,7 +681,7 @@ function warriorClass(whichPlayerPic) {
 				break;
 			case TILE_GRASS:
 			case TILE_GARDEN_1:
-				this.setSpeedAndPosition(2.0, nextX, nextY);
+				this.setSpeedAndPosition(3.0, nextX, nextY);
 				break;
 			case TILE_TREE5FALLEN_BOTTOM:
 				this.tryToRemoveFallenTreeOnRoad(walkIntoTileIndex);
@@ -675,7 +691,8 @@ function warriorClass(whichPlayerPic) {
 				 this.tryToRemoveFallenTreeOnGrass(walkIntoTileIndex);
 				break;
 			case TILE_HEALER_FRONTDOOR:
-				this.openHealerDoor(walkIntoTileIndex);
+				this.openDoor(nextX, nextY, walkIntoTileIndex, TILE_HEALER_FRONTDOOR, 
+					"This place smells nice.  Is that lavender?");
 				break;
 			case TILE_YELLOW_DOOR:
 				this.tryToOpenYellowDoor(walkIntoTileIndex);
@@ -684,7 +701,7 @@ function warriorClass(whichPlayerPic) {
 				this.tryToOpenGreenDoor(walkIntoTileIndex);
 				break;
 			case TILE_FRONTDOOR_YELLOW:
-				this.replaceTileAtIndexWithTileOfTypeAndPlaySound(walkIntoTileIndex, TILE_ROAD, null);
+				this.openDoor(nextX, nextY, walkIntoTileIndex, TILE_FRONTDOOR_YELLOW);
 				break;
 			case TILE_RED_DOOR:
 				this.tryToOpenRedDoor(walkIntoTileIndex);
@@ -754,7 +771,7 @@ function warriorClass(whichPlayerPic) {
 			case TILE_WALL:
 			default:
 				break;
-		} // end of switch
+		} // end of switch		
 
 		return walkIntoTileType;
 	};// end of updatePosition()

@@ -792,6 +792,7 @@ const TILE_FOUNTAIN = 19;
 const TILE_BRIDGE_UPPER = 20;
 const TILE_BRIDGE_LOWER = 21;
 const TILE_GARDEN_1 = 22;
+const TILE_OPEN_DOORWAY = 23;
 //portals Number 50 through 99
 const TILE_GRAVE_YARD_PORTAL = 50;
 const TILE_HOME_VILLAGE_PORTAL = 51;

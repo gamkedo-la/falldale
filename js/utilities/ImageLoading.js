@@ -109,6 +109,7 @@ function loadImages() {
 	
 		var imageList = [
 			{tileType: TILE_ROAD,  theFile: "worldRoad.png"},
+			{tileType: TILE_OPEN_DOORWAY,  theFile: "openDoorway.png"},
 			{tileType: TILE_DIRTROAD_N_E,  theFile: "Roads/dirtRoadNorthToEast.png"},
 			{tileType: TILE_DIRTROAD_N_S,  theFile: "Roads/dirtRoadNorthToSouth.png"},
 			{tileType: TILE_DIRTROAD_S_E,  theFile: "Roads/dirtRoadSouthToEast.png"},

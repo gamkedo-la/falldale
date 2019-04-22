@@ -219,7 +219,7 @@ function enemyClass() {
             var dist = this.nonPathDistance(this.x, this.y, redWarrior.x, redWarrior.y);
             //console.log("distance to player is " + dist);
 
-            if(dist > AI_VISION_RANGE) {
+            if(dist > AI_VISION_RANGE || redWarrior.isInsideAnyBuilding) {
                this.currentPath = null;
                return null; 
             }
@@ -515,7 +515,8 @@ function enemyClass() {
             case TILE_TREE3TOPHALF:
 			case TILE_TREE3BOTTOMHALF:
 			case TILE_WATER:
-			case TILE_FOUNTAIN:
+            case TILE_FOUNTAIN:
+            case TILE_OPEN_DOORWAY:
                 return 0;
 			case TILE_GRASS:
                 return 0.5
@@ -634,7 +635,8 @@ function enemyClass() {
 			case TILE_SPIKES_BLOODY:
 			case TILE_WATER:
             case TILE_FOUNTAIN:
-			case TILE_BRIDGE_UPPER:
+            case TILE_BRIDGE_UPPER:
+            case TILE_OPEN_DOORWAY:
                 return false;
             case TILE_PLAYERSTART:
 			case TILE_ROAD:
