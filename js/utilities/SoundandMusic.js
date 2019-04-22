@@ -119,6 +119,7 @@ function CycleMute() {
 		humanMaleGoodAfternoon.startOrStopSFX();
 		humanFemaleHello.startOrStopSFX();
         humanFemaleHi.startOrStopMusic();
+        closeDoor.startOrStopMusic();
     }
 
     function muteSFX() {
@@ -143,6 +144,7 @@ function CycleMute() {
 		humanMaleWelcome.startOrStopSFX();
 		humanMaleGoodAfternoon.startOrStopSFX();
 		humanFemaleHello.startOrStopSFX();
-		humanFemaleHi.startOrStopSFX();
+        humanFemaleHi.startOrStopSFX();
+        closeDoor.startOrStopSFX();
 	}
 }

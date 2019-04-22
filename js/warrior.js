@@ -647,7 +647,7 @@ function warriorClass(whichPlayerPic) {
 	};
 
 	this.openDoor = function(nextX, nextY, walkIntoTileIndex, doorTileType, message) {
-		this.replaceTileAtIndexWithTileOfTypeAndPlaySound(walkIntoTileIndex, TILE_OPEN_DOORWAY, doorSound);
+		this.replaceTileAtIndexWithTileOfTypeAndPlaySound(walkIntoTileIndex, TILE_OPEN_DOORWAY, shutDoor);
 		this.setSpeedAndPosition(5.0, nextX, nextY);
 		this.lastOpenDoorIndex = walkIntoTileIndex
 		this.lastOpenDoorTile = doorTileType;
@@ -657,7 +657,7 @@ function warriorClass(whichPlayerPic) {
 	this.tryCloseDoor = function() {
 		if (!this.isInsideAnyBuilding && this.lastOpenDoorIndex != -1)
 		{
-			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(this.lastOpenDoorIndex, this.lastOpenDoorTile, null);		
+			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(this.lastOpenDoorIndex, this.lastOpenDoorTile, shutDoor);		
 			this.lastOpenDoorIndex = -1;
 		}
 	}

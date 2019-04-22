@@ -69,6 +69,7 @@ var humanMaleWelcome = new SoundOverlapsClass("humanMaleWelcome");
 var humanMaleGoodAfternoon = new SoundOverlapsClass("humanMaleGoodAfternoon");
 var humanFemaleHello = new SoundOverlapsClass("humanFemaleHello");
 var humanFemaleHi = new SoundOverlapsClass("humanFemaleHi");
+var shutDoor = new SoundOverlapsClass("closeDoor");
 
 const DIALOG_BOX_HEIGHT = 50;
 
