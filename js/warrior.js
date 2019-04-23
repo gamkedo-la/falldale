@@ -171,15 +171,17 @@ function warriorClass(whichPlayerPic) {
 
 		var {nextX, nextY} = this.nextPosWithInput(nextY, nextX);
 
+		let feetY = nextY + (this.height / 2) - 5; // shift checks to character's feet - little offset
+
 		this.playerMove = !this.isFrozen && (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast);
 
 		const tileC = pixelXtoTileCol(nextX);
-		const tileR = pixelYtoTileRow(nextY);
+		const tileR = pixelYtoTileRow(feetY);
 
 		const didLoadNewLevel = this.loadNewLevelIfAtEdge(tileC, tileR);
 		if(didLoadNewLevel) {return;}
 
-		this.walkIntoTileIndex = this.indexOfNextTile(nextX, nextY);
+		this.walkIntoTileIndex = this.indexOfNextTile(nextX, feetY); 
 		this.previousTileType = this.updatePosition(nextX, nextY, this.walkIntoTileIndex);		
 
 		this.mySword.move();
@@ -403,30 +405,63 @@ function warriorClass(whichPlayerPic) {
 
 	};
 
+	this.getWalkSpeed = function() {
+    
+    let xSpeed = 0;
+    let ySpeed = 0;    
+
+    if (this.keyHeld_WalkWest) {
+        xSpeed = -this.speed;
+    }
+
+    if (this.keyHeld_WalkEast) {
+        xSpeed = this.speed;
+    }
+
+    if (this.keyHeld_WalkNorth) {
+        ySpeed = -this.speed;
+    }
+
+    if (this.keyHeld_WalkSouth) {
+        ySpeed = this.speed;
+    }
+
+    // reduce diagonal speed
+    if ((this.keyHeld_WalkWest || this.keyHeld_WalkEast) && 
+        (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth))
+    {
+        xSpeed *= 0.85; // sin 45
+        ySpeed *= 0.85;
+    }
+
+    return { x: xSpeed, y: ySpeed };
+	};
+
 	this.nextPosWithInput = function() {
 		let x = this.x;
 		let y = this.y;
+		
+		let speed = this.getWalkSpeed();
+		x += speed.x;
+		y += speed.y;
 
-		if (this.keyHeld_WalkNorth) {
-			y -= this.speed;
+		if (this.keyHeld_WalkNorth) {			
 			direction = "north";
 			this.sx = 0;
 			this.sy = 0;
 		}
+
 		if (this.keyHeld_WalkSouth) {
-			y += this.speed;
 			direction = "south";
 			this.sx = 0;
 			this.sy = this.height;
 		}
 		if (this.keyHeld_WalkWest) {
-			x -= this.speed;
 			direction = "west";
 			this.sx = 0;
 			this.sy = this.height * 2;
 		}
 		if (this.keyHeld_WalkEast) {
-			x += this.speed;
 			direction = "east";
 			this.sx = 0;
 			this.sy = this.height * 3;
@@ -470,20 +505,35 @@ function warriorClass(whichPlayerPic) {
 		}
 
 		return false;
-	};
+	};	
 
 	this.indexOfNextTile = function(nextX, nextY) {
-		if(direction == "north") {
-			return getTileIndexAtPixelCoord(nextX+(this.width/2),nextY);
-		} else if(direction == "south") {
-			return getTileIndexAtPixelCoord(nextX+(this.width/2),nextY+this.height);
-		} else if(direction == "west") {
-			return getTileIndexAtPixelCoord(nextX, nextY+(this.height/2));
-		} else if(direction == "east") {
-			return getTileIndexAtPixelCoord(nextX+this.width, nextY+(this.height/2));
-		} else {
-			return getTileIndexAtPixelCoord(nextX, nextY);
+
+		let xOffset = 0;
+		let yOffset = 0;
+
+		if (this.keyHeld_WalkNorth) {
+			xOffset = Math.max(xOffset, this.width / 2);
+		} else if (this.keyHeld_WalkSouth) {
+			xOffset = Math.max(xOffset, this.width / 2);
+			yOffset = Math.max(yOffset, this.height);
+		} 
+		
+		if (this.keyHeld_WalkWest) {
+			yOffset = Math.max(yOffset, this.height / 2);
+		} else if(this.keyHeld_WalkEast) {
+			xOffset = Math.max(xOffset, this.width);
+			yOffset = Math.max(yOffset, this.height / 2);
+		} 
+
+		if ((this.keyHeld_WalkWest || this.keyHeld_WalkEast) && 
+        (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth))
+    {
+        xOffset *= 0.85; // sin 45
+        yOffset *= 0.85;
 		}
+		
+		return getTileIndexAtPixelCoord(nextX + xOffset, nextY + yOffset);
 	};
 
 	this.tileTypeForIndex = function(tileIndex) {
@@ -775,5 +825,6 @@ function warriorClass(whichPlayerPic) {
 		} // end of switch		
 
 		return walkIntoTileType;
-	};// end of updatePosition()
+	};// end of updatePosition()	
+
 }// end of warriorClass

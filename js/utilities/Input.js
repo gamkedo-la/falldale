@@ -236,3 +236,4 @@ function handleMouseClick(evt) {
         tileSelectedClicked = true;
     }
 }
+
