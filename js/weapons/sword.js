@@ -29,13 +29,7 @@ function swordClass() {
 		this.coolDownTime = SWORD_COOLDOWN;
 	}
 	
-	//override weaponClass.hitTest
-	this.hitTest = function(weilder, adversary) {
-		if(this.life <= 0) {
-			return false;
-		}
-
-	this.checkhit = function() {
+	this.checkhit = function(adversary) {
 		if(this.toHitPoints >= 10){
 			
 			if(this.damagePoints > 0){
@@ -54,48 +48,61 @@ function swordClass() {
 			dialogManager.setDialogWithCountdown(adversary.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints);
 		}
 	}
-	
-		if(direction == "north") {// warrior facing North
+
+	//override weaponClass.hitTest
+	this.hitTest = function(weilder, adversary) {
+		if(this.life <= 0) {
+			return false;
+		}
 			
-						
-			if(	this.x+25 > adversary.x &&    // within left side
-				this.x+25 < (adversary.x + adversary.width) && //within right side
-				this.y-20 > adversary.y && // within top side
-				this.y-20 < (adversary.y + adversary.height)) // within bottom 
-					{ 
-						this.checkhit();
-					}
+		let enemyRect = adversary;
+		let weaponRect = {};
+		let warriorWidth = 50;
+		let swordLength = 30;
+		let swordWidth = 30
+
+		if (direction == "north") {// warrior facing North
+			
+			weaponRect.x = this.x + warriorWidth - swordWidth;
+			weaponRect.width = swordWidth;
+			weaponRect.y = this.y - swordLength;
+			weaponRect.height = swordLength;
+
 		} else if(direction == "south") {// warrior facing South
 			
-			if(	this.x + 10 > adversary.x &&    // within left side
-				this.x + 10 < (adversary.x + adversary.width) && //within right side
-				this.y + 70 > adversary.y && // within top side
-				this.y + 70 < (adversary.y + adversary.height)) // within bottom 
-					{ 
-						this.checkhit();
-					}			
+			weaponRect.x = this.x;
+			weaponRect.width = swordWidth;
+			weaponRect.y = this.y + warriorWidth;
+			weaponRect.height = swordLength;
+		
 		} else if(direction == "west") {// warrior facing West
 						
-			if(	this.x -30 > adversary.x &&    // within left side
-				this.x -30 < (adversary.x + adversary.width) && //within right side
-				this.y + 25 > adversary.y && // within top side
-				this.y + 25 < (adversary.y + adversary.height)) 
-					{
-						this.checkhit();
-					}			
+			weaponRect.x = this.x - swordLength;
+			weaponRect.width = swordLength;
+			weaponRect.y = this.y + warriorWidth - swordWidth;
+			weaponRect.height = swordWidth;
+			
 		} else if(direction == "east") {// warrior facing East
 						
-			if(	this.x + 60 > adversary.x &&    // within left side
-				this.x + 60 < (adversary.x + adversary.width) && //within right side
-				this.y + 25 > adversary.y && // within top side
-				this.y + 25 < (adversary.y + adversary.height)) // within bottom 
-					{ 
-						this.checkhit();
-					}			    
+			weaponRect.x = this.x + warriorWidth;
+			weaponRect.width = swordLength;
+			weaponRect.y = this.y + warriorWidth - swordWidth;
+			weaponRect.height = swordWidth;
+			    
  		} else {
 			return false;
 		}
+
+		if (this.rangeTest(weaponRect, enemyRect))
+			this.checkhit(adversary)
 	}
+
+	this.rangeTest = function(weaponRect, enemyRect) {
+		return !(enemyRect.x > (weaponRect.x + weaponRect.width) || 
+	             (enemyRect.x + enemyRect.width) < weaponRect.x || 
+	             enemyRect.y > (weaponRect.y + weaponRect.height) ||
+	             (enemyRect.y + enemyRect.height) < weaponRect.y);
+    }
 	
 	this.draw = function(weilder) {
 
