@@ -17,6 +17,11 @@ var OverlayFX = new function() {
     var nightModeOverlay = document.createElement("canvas");
     var nightModeContext = nightModeOverlay.getContext('2d'); 
 
+    // smooth transition from day to night
+    var nightModePercent = this.nightMode ? 1 : 0;
+    var nightModeTransitionSpeed = 0.01; // opacity change per frame
+    var MAX_DARKNESS = 0.66; // maximum night mode opacity
+
     // flowers, pebbles, grass tufts, cracks, etc
     this.drawDecorations = true;
     
@@ -65,7 +70,8 @@ var OverlayFX = new function() {
 
     this.currentEditingDecoration = 8; // which sprite number are we painting?
 
-    this.add = function(x,y,decorationNumber) { // can be any image
+    // to add more decals at runtime:
+    this.add = function(x,y,decorationNumber) {
         decorationContext.drawImage(decorationsImg,
             decorationNumber*decoW, 0, // src x,y
             decoW, decoH, // src w,h
@@ -73,10 +79,12 @@ var OverlayFX = new function() {
             decoW,decoH); // dst w,h);
     }
 
+    // for using any image (as opposed to the internal spritesheet)
     this.addDecal = function(img,x,y) { // can be any image
         decorationContext.drawImage(img,x,y);
     }
     
+    // used by the debug mode click level editor
     this.addDecoration = function(x,y) {
         console.log('new overlayFX decoration at ' + x+','+y);
         decorationContext.drawImage(decorationsImg,
@@ -92,6 +100,7 @@ var OverlayFX = new function() {
         return Math.sqrt(XD*XD + YD*YD);
     }
 
+    // used by warrior and enemyClass and NPCs in their .draw()
     this.maybeLeaveFootprint = function(who) {
         
         // see OverlayFX for numbers
@@ -129,9 +138,18 @@ var OverlayFX = new function() {
             canvasContext.drawImage(decorationOverlay,0,0);
         }
 
-        // experimental night mode
+        // smooth transition from day to night
         if (this.nightMode) {
-            canvasContext.globalAlpha = 0.66;
+            nightModePercent += nightModeTransitionSpeed;
+            if (nightModePercent>MAX_DARKNESS) nightModePercent=MAX_DARKNESS;
+        } else {
+            nightModePercent -= nightModeTransitionSpeed;
+            if (nightModePercent<0) nightModePercent=0;
+        }
+
+        // experimental night mode
+        if (nightModePercent != 0) {
+            canvasContext.globalAlpha = nightModePercent;
             canvasContext.drawImage(nightModeOverlay,0,0);
             canvasContext.globalAlpha = 1;
         }
