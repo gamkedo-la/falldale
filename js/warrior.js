@@ -3,7 +3,9 @@
 // this also doesn't allow diagonal movement
 var direction = "south";
 
-levelExperienceArray = [500, 2000, 4000, 6000, 10000, 16000, 26000, 42000, 68000]
+var PLAYER_SPEED = 4.0;
+
+var levelExperienceArray = [500, 2000, 4000, 6000, 10000, 16000, 26000, 42000, 68000];
 
 function warriorClass(whichPlayerPic) {
 	this.mySword = new swordClass();
@@ -21,7 +23,7 @@ function warriorClass(whichPlayerPic) {
 	this.feet = this.y + 25;
 	this.leftArm = this.x + 25;
 	this.rightArm = this.x - 25;
-	this.speed = 3.0;
+	this.speed = PLAYER_SPEED;
 	this.isFrozen = false;
 	this.isEnemyCollision = false;
 	this.myWarriorPic = biggyPic; // which picture to use
