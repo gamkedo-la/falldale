@@ -307,7 +307,7 @@ function warriorClass(whichPlayerPic) {
 	this.shotArrow = function() {
 		if( this.myArrow.isReady() ) {
 			this.recentWeapon = this.myArrow;
-			this.myArrow.shootFrom(this, direction);
+			this.myArrow.shootFrom(this, this.direction);
 			arrowShotSound.play();
 		}
 	};
@@ -315,7 +315,7 @@ function warriorClass(whichPlayerPic) {
 	this.shotRock = function() {
 		if( this.myRock.isReady() ) {
 			this.recentWeapon = this.myRock;
-			this.myRock.shootFrom(this, direction);
+			this.myRock.shootFrom(this, this.direction);
 			rockThrowSound1.play();
 		}
 	};
