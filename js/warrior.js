@@ -173,18 +173,18 @@ function warriorClass(whichPlayerPic) {
 
 		var {nextX, nextY} = this.nextPosWithInput(nextY, nextX);
 		
+		const tileC = pixelXtoTileCol(nextX);
+		const tileR = pixelYtoTileRow(nextY + (this.height / 2));		
+
+		const didLoadNewLevel = this.loadNewLevelIfAtEdge(tileC, tileR);
+		if(didLoadNewLevel) {return;}
+
 		if (this.prevX != nextX || this.prevY != nextY)
 		{
 			let collision = this.collisionCheck(nextX, nextY);
 			this.setDirection(collision.x, collision.y);
 			this.updatePosition(collision.x, collision.y);			
-		}
-
-		const tileC = pixelXtoTileCol(this.x);
-		const tileR = pixelYtoTileRow(this.y + (this.height / 2));
-
-		const didLoadNewLevel = this.loadNewLevelIfAtEdge(tileC, tileR);
-		if(didLoadNewLevel) {return;}
+		}		
 				
 		this.mySword.move();
 		this.myArrow.move();
