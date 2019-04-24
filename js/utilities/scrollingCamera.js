@@ -3,22 +3,14 @@ var camPanY = 0.0;
 const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X = 150;
 const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y = 100;
 
+/*
 function sliderMove() {
     var nextX = redWarrior.x;
     var nextY = redWarrior.y;
 
-    if (redWarrior.keyHeld_WalkWest) {
-        nextX += -playerMoveSpeed;
-    }
-    if (redWarrior.keyHeld_WalkEast) {
-        nextX += playerMoveSpeed;
-    }
-    if (redWarrior.keyHeld_WalkNorth) {
-        nextY += -playerMoveSpeed;
-    }
-    if (redWarrior.keyHeld_WalkSouth) {
-        nextY += playerMoveSpeed;
-    }
+    var speed = redWarrior.getWalkSpeed();
+    nextX += speed.x;
+    nextY += speed.y;
 
     if (isBrickAtPixelCoord(nextX, nextY) == false) {
         redWarrior.x = nextX;
@@ -31,6 +23,7 @@ function sliderReset() {
     redWarrior.x = canvas.width / 2;
     redWarrior.y = canvas.height / 2;
 }
+*/
 
 /*function instantCamFollow() {
     camPanX = redWarrior.x - canvas.width / 2;
