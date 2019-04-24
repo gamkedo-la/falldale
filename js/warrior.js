@@ -173,7 +173,8 @@ function warriorClass(whichPlayerPic) {
 
 		var {nextX, nextY} = this.nextPosWithInput(nextY, nextX);
 		
-		this.updatePosition(nextX, nextY);
+		if (this.prevX != nextX || this.prevY != nextY)
+			this.updatePosition(nextX, nextY);
 
 		const tileC = pixelXtoTileCol(this.x);
 		const tileR = pixelYtoTileRow(this.y + (this.height / 2));
@@ -688,7 +689,11 @@ function warriorClass(whichPlayerPic) {
 		dialogManager.setDialogWithCountdown("OUCH! Bloody Spikes!");
 	};
 
-	this.openDoor = function(nextX, nextY, walkIntoTileIndex, doorTileType, message) {
+	this.tryOpenDoor = function(walkIntoTileIndex, doorTileType, message) {
+
+		if (this.isInsideAnyBuilding || this.lastOpenDoorIndex > 0)
+			return;
+
 		this.replaceTileAtIndexWithTileOfTypeAndPlaySound(walkIntoTileIndex, TILE_OPEN_DOORWAY, shutDoor);
 		this.lastOpenDoorIndex = walkIntoTileIndex
 		this.lastOpenDoorTile = doorTileType;
@@ -696,11 +701,13 @@ function warriorClass(whichPlayerPic) {
 	}
 
 	this.tryCloseDoor = function() {
-		if (!this.isInsideAnyBuilding && this.lastOpenDoorIndex != -1)
+		if (!this.isInsideAnyBuilding && this.lastOpenDoorIndex > 0)
 		{
 			this.replaceTileAtIndexWithTileOfTypeAndPlaySound(this.lastOpenDoorIndex, this.lastOpenDoorTile, shutDoor);		
 			this.lastOpenDoorIndex = -1;
+			return true;
 		}
+		return false;
 	}
 
 	this.updatePosition = function(nextX, nextY) {
@@ -715,14 +722,12 @@ function warriorClass(whichPlayerPic) {
 		switch(walkIntoTileTypeFeet) {
 			case TILE_GRASS:
 			case TILE_GARDEN_1:
-			case TILE_FRONTDOOR_YELLOW:
-			case TILE_HEALER_FRONTDOOR:
 				this.setSpeedAndPosition(3.0, nextX, nextY);
 				break;
 			default:
 				if (this.isPassableTile(walkIntoTileType))
 					this.setSpeedAndPosition(5.0, nextX, nextY);
-		}
+		}		
 
 		switch(walkIntoTileType) {
 			case TILE_TREE5FALLEN_BOTTOM:
@@ -733,9 +738,10 @@ function warriorClass(whichPlayerPic) {
 				 this.tryToRemoveFallenTreeOnGrass(walkIntoTileIndex);
 				break;
 			case TILE_HEALER_FRONTDOOR:
-				this.openDoor(nextX, nextY, walkIntoTileIndex, TILE_HEALER_FRONTDOOR, 
-					"This place smells nice.  Is that lavender?");
-				break;
+				if (this.lastOpenDoorIndex = -1)
+					this.tryOpenDoor(walkIntoTileIndex, TILE_HEALER_FRONTDOOR, 
+						"This place smells nice.  Is that lavender?");
+				return;
 			case TILE_YELLOW_DOOR:
 				this.tryToOpenYellowDoor(walkIntoTileIndex);
 				break;
@@ -743,8 +749,9 @@ function warriorClass(whichPlayerPic) {
 				this.tryToOpenGreenDoor(walkIntoTileIndex);
 				break;
 			case TILE_FRONTDOOR_YELLOW:
-				this.openDoor(nextX, nextY, walkIntoTileIndex, TILE_FRONTDOOR_YELLOW);
-				break;
+				if (this.lastOpenDoorIndex = -1)
+					this.tryOpenDoor(walkIntoTileIndex, TILE_FRONTDOOR_YELLOW);
+				return;
 			case TILE_RED_DOOR:
 				this.tryToOpenRedDoor(walkIntoTileIndex);
 				break;
@@ -808,11 +815,14 @@ function warriorClass(whichPlayerPic) {
 				dialogManager.setDialogWithCountdown("I really need a drink!");
 				break;
 			case TILE_WALL:
+			case TILE_OPEN_DOORWAY:
+				return;
 			default:
 				break;
-		} // end of switch		
+		} // end of switch						
 
-		return walkIntoTileType;
+		this.tryCloseDoor();
+
 	};// end of updatePosition()	
 
 	this.isPassableTile = function(aTile) {
@@ -869,7 +879,6 @@ function warriorClass(whichPlayerPic) {
             case TILE_HOUSE_BW_WINDOW:
 			case TILE_HOUSE_LS_BED_TOP:
 			case TILE_HOUSE_LS_BED_BOTTOM:
-			case TILE_HOUSE_DRESSER_BOTTOM:
             case TILE_HOUSE_DRESSER_TOP:
             case TILE_BAR_CABINET:
             case TILE_BAR:

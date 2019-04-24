@@ -57,8 +57,8 @@ var eastMiddleWoodsRoofTops = [
 //TILE_ROOF_CENTER
 
 function drawRooftops(rooftops) {
-	var px = Math.round(redWarrior.x/TILE_W);
-	var py = Math.round(redWarrior.y/TILE_H);	
+	var px = Math.round(redWarrior.x / TILE_W);
+	var py = Math.round(redWarrior.y / TILE_H);	
 	
 	redWarrior.isInsideAnyBuilding = false;
 
@@ -115,7 +115,5 @@ function drawRooftops(rooftops) {
 			canvasContext.globalAlpha = 1.0;
 
 		}
-	}	
-
-	redWarrior.tryCloseDoor();
+	}		
 }
