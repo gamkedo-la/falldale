@@ -167,23 +167,20 @@ function warriorClass(whichPlayerPic) {
 	};
 
 	this.move = function() {
+		this.playerMove = !this.isFrozen && (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast);
+
 		this.storePos();
 
 		var {nextX, nextY} = this.nextPosWithInput(nextY, nextX);
+		
+		this.updatePosition(nextX, nextY);
 
-		let feetY = nextY + (this.height / 2) - 5; // shift checks to character's feet - little offset
-
-		this.playerMove = !this.isFrozen && (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth || this.keyHeld_WalkWest || this.keyHeld_WalkEast);
-
-		const tileC = pixelXtoTileCol(nextX);
-		const tileR = pixelYtoTileRow(feetY);
+		const tileC = pixelXtoTileCol(this.x);
+		const tileR = pixelYtoTileRow(this.y + (this.height / 2));
 
 		const didLoadNewLevel = this.loadNewLevelIfAtEdge(tileC, tileR);
 		if(didLoadNewLevel) {return;}
-
-		this.walkIntoTileIndex = this.indexOfNextTile(nextX, feetY); 
-		this.previousTileType = this.updatePosition(nextX, nextY, this.walkIntoTileIndex);		
-
+				
 		this.mySword.move();
 		this.myArrow.move();
 		this.myRock.move();		
@@ -407,34 +404,34 @@ function warriorClass(whichPlayerPic) {
 
 	this.getWalkSpeed = function() {
     
-    let xSpeed = 0;
-    let ySpeed = 0;    
+		let xSpeed = 0;
+		let ySpeed = 0;    
 
-    if (this.keyHeld_WalkWest) {
-        xSpeed = -this.speed;
-    }
+		if (this.keyHeld_WalkWest) {
+			xSpeed = -this.speed;
+		}
 
-    if (this.keyHeld_WalkEast) {
-        xSpeed = this.speed;
-    }
+		if (this.keyHeld_WalkEast) {
+			xSpeed = this.speed;
+		}
 
-    if (this.keyHeld_WalkNorth) {
-        ySpeed = -this.speed;
-    }
+		if (this.keyHeld_WalkNorth) {
+			ySpeed = -this.speed;
+		}
 
-    if (this.keyHeld_WalkSouth) {
-        ySpeed = this.speed;
-    }
+		if (this.keyHeld_WalkSouth) {
+			ySpeed = this.speed;
+		}
 
-    // reduce diagonal speed
-    if ((this.keyHeld_WalkWest || this.keyHeld_WalkEast) && 
-        (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth))
-    {
-        xSpeed *= 0.85; // sin 45
-        ySpeed *= 0.85;
-    }
+		// reduce diagonal speed
+		if ((this.keyHeld_WalkWest || this.keyHeld_WalkEast) && 
+			(this.keyHeld_WalkNorth || this.keyHeld_WalkSouth))
+		{
+			xSpeed *= 0.85; // sin 45
+			ySpeed *= 0.85;
+		}
 
-    return { x: xSpeed, y: ySpeed };
+		return { x: xSpeed, y: ySpeed };
 	};
 
 	this.nextPosWithInput = function() {
@@ -513,25 +510,20 @@ function warriorClass(whichPlayerPic) {
 		let yOffset = 0;
 
 		if (this.keyHeld_WalkNorth) {
-			xOffset = Math.max(xOffset, this.width / 2);
+			yOffset = 0;
 		} else if (this.keyHeld_WalkSouth) {
-			xOffset = Math.max(xOffset, this.width / 2);
-			yOffset = Math.max(yOffset, this.height);
-		} 
+			yOffset = this.height;
+		} else {
+			yOffset = this.height / 2;
+		}
 		
 		if (this.keyHeld_WalkWest) {
-			yOffset = Math.max(yOffset, this.height / 2);
+			xOffset = 0;				
 		} else if(this.keyHeld_WalkEast) {
-			xOffset = Math.max(xOffset, this.width);
-			yOffset = Math.max(yOffset, this.height / 2);
+			xOffset = this.width;
+		} else {
+			xOffset = this.width / 2;
 		} 
-
-		if ((this.keyHeld_WalkWest || this.keyHeld_WalkEast) && 
-        (this.keyHeld_WalkNorth || this.keyHeld_WalkSouth))
-    {
-        xOffset *= 0.85; // sin 45
-        yOffset *= 0.85;
-		}
 		
 		return getTileIndexAtPixelCoord(nextX + xOffset, nextY + yOffset);
 	};
@@ -698,7 +690,6 @@ function warriorClass(whichPlayerPic) {
 
 	this.openDoor = function(nextX, nextY, walkIntoTileIndex, doorTileType, message) {
 		this.replaceTileAtIndexWithTileOfTypeAndPlaySound(walkIntoTileIndex, TILE_OPEN_DOORWAY, shutDoor);
-		this.setSpeedAndPosition(5.0, nextX, nextY);
 		this.lastOpenDoorIndex = walkIntoTileIndex
 		this.lastOpenDoorTile = doorTileType;
 		dialogManager.setDialogWithCountdown(message);
@@ -712,27 +703,28 @@ function warriorClass(whichPlayerPic) {
 		}
 	}
 
-	this.updatePosition = function(nextX, nextY, walkIntoTileIndex) {
-		const walkIntoTileType = this.tileTypeForIndex(walkIntoTileIndex);
+	this.updatePosition = function(nextX, nextY) {
 
-		switch(walkIntoTileType) {
-			case TILE_BRIDGE_LOWER:
-			case TILE_ROAD: 
-			case TILE_OPEN_DOORWAY: 
-			case TILE_DIRTROAD_N_E:
-			case TILE_DIRTROAD_N_S:
-			case TILE_DIRTROAD_S_E:
-			case TILE_DIRTROAD_W_E:
-			case TILE_DIRTROAD_W_N:
-			case TILE_DIRTROAD_W_S:
-			case TILE_DIRTROAD_W_N_E:
-			case TILE_DIRTROAD_W_S_E:		
-				this.setSpeedAndPosition(5.0, nextX, nextY);
-				break;
+		let walkIntoTileIndex = this.indexOfNextTile(nextX, nextY);
+		let walkIntoTileIndexFeet = this.indexOfNextTile(nextX, nextY + (this.height / 2));	
+
+		const walkIntoTileType = this.tileTypeForIndex(walkIntoTileIndex);
+		const walkIntoTileTypeFeet = this.tileTypeForIndex(walkIntoTileIndexFeet);
+
+		//speed buffs/debuffs
+		switch(walkIntoTileTypeFeet) {
 			case TILE_GRASS:
 			case TILE_GARDEN_1:
+			case TILE_FRONTDOOR_YELLOW:
+			case TILE_HEALER_FRONTDOOR:
 				this.setSpeedAndPosition(3.0, nextX, nextY);
 				break;
+			default:
+				if (this.isPassableTile(walkIntoTileType))
+					this.setSpeedAndPosition(5.0, nextX, nextY);
+		}
+
+		switch(walkIntoTileType) {
 			case TILE_TREE5FALLEN_BOTTOM:
 				this.tryToRemoveFallenTreeOnRoad(walkIntoTileIndex);
 				break;
@@ -804,7 +796,6 @@ function warriorClass(whichPlayerPic) {
 				this.impaledOnBloodySpikes(nextX, nextY);
 				break;
 			case TILE_HOUSE_DRESSER_BOTTOM:
-				this.setSpeedAndPosition(5.0, nextX, nextY);
 				dialogManager.setDialogWithCountdown("I really need to get some new clothes.");
 				break;
 			case TILE_HOUSE_LS_BED_BOTTOM:
@@ -816,9 +807,6 @@ function warriorClass(whichPlayerPic) {
 			case TILE_CHAIR:
 				dialogManager.setDialogWithCountdown("I really need a drink!");
 				break;
-			case TILE_CHAIR:
-				this.setSpeedAndPosition(this.speed, nextX, nextY);
-				break;
 			case TILE_WALL:
 			default:
 				break;
@@ -826,5 +814,89 @@ function warriorClass(whichPlayerPic) {
 
 		return walkIntoTileType;
 	};// end of updatePosition()	
+
+	this.isPassableTile = function(aTile) {
+        switch(aTile) {
+            case TILE_WALL:
+            case TILE_DOOR:
+            case TILE_YELLOW_DOOR:
+            case TILE_GREEN_DOOR:
+            case TILE_BLUE_DOOR:
+            case TILE_RED_DOOR:
+            case TILE_ROOF_FRONTRIGHT:
+            case TILE_ROOF_SIDERIGHT:
+            case TILE_ROOF_BACKRIGHT:
+            case TILE_FRONTWALL_WINDOW:
+            case TILE_FRONTWALL_SOLID:
+            case TILE_ROOF_BACKSIDE:
+            case TILE_ROOF_BACKLEFT:
+            case TILE_ROOF_LEFTSIDE:
+            case TILE_ROOF_FRONTLEFT:
+            case TILE_ROOF_FRONT:
+            case TILE_ROOF_CENTER:
+            case TILE_HEALER_BW:
+            case TILE_HEALER_BW_CABINET_POTIONS:
+            case TILE_HEALER_BW_CABINET_LH:
+            case TILE_HEALER_BW_CABINET_EMPTY:
+            case TILE_HEALER_BW_LS:
+            case TILE_HEALER_BW_RS:
+            case TILE_HEALER_DESK:
+            case TILE_HEALER_FW_LS:
+            case TILE_HEALER_FW_WINDOW:
+            case TILE_HEALER_LW:
+            case TILE_HEALER_RW:
+            case TILE_HEALER_FW_RS:
+            case TILE_BS_BW:
+            case TILE_BS_BW_CABINET_POTIONS:
+            case TILE_BS_BW_CABINET_EMPTY:
+            case TILE_BS_BW_LS:
+            case TILE_BS_BW_RS:
+            case TILE_BS_DESK:
+            case TILE_BS_BW_WEAPONSRACK:
+            case TILE_BS_FW_LS:
+            case TILE_BS_LW:	
+            case TILE_BS_FW_RS:
+            case TILE_HOUSE_FRONT_WALL:
+            case TILE_HOUSE_FRONT_WALL_DAMAGED:
+            case TILE_HOUSE_FRONT_WALL_BROKEN:
+            case TILE_HOUSE_FRONT_WINDOW:
+            case TILE_HOUSE_FRONT_WINDOW_BROKEN:
+            case TILE_HOUSE_FW_RS:
+            case TILE_HOUSE_FW_LS:
+            case TILE_HOUSE_BW:
+            case TILE_HOUSE_BW_LS:
+            case TILE_HOUSE_BW_RS:
+            case TILE_HOUSE_BW_WINDOW:
+			case TILE_HOUSE_LS_BED_TOP:
+			case TILE_HOUSE_LS_BED_BOTTOM:
+			case TILE_HOUSE_DRESSER_BOTTOM:
+            case TILE_HOUSE_DRESSER_TOP:
+            case TILE_BAR_CABINET:
+            case TILE_BAR:
+            case TILE_BAR_TOP:
+            case TILE_CHAIR:
+            case TILE_MAUSOLEUM_TL:
+            case TILE_MAUSOLEUM_TM:
+            case TILE_MAUSOLEUM_TR:
+            case TILE_MAUSOLEUM_ML:
+            case TILE_MAUSOLEUM_MM:
+            case TILE_MAUSOLEUM_MR:
+            case TILE_MAUSOLEUM_BL:
+            case TILE_MAUSOLEUM_BM:
+			case TILE_MAUSOLEUM_BR:
+			case TILE_GRAVEYARD_FENCE_LEFT:
+			case TILE_GRAVEYARD_FENCE_RIGHT:
+			case TILE_GRAVEYARD_FENCE:
+			case TILE_GRAVEYARD_FENCE_SIDE:
+			case TILE_GRAVEYARD_FENCE_BR:
+			case TILE_GRAVEYARD_FENCE_TR:
+			case TILE_GRAVEYARD_FENCE_LEFTSIDE:
+			case TILE_GRAVEYARD_FENCE_BL:
+			case TILE_GRAVEYARD_FENCE_TL:
+				return false;
+			default:
+				return true;
+		}
+	}
 
 }// end of warriorClass
