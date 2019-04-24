@@ -3,7 +3,8 @@
 // this also doesn't allow diagonal movement
 var direction = "south";
 
-var PLAYER_SPEED = 4.0;
+const PLAYER_SPEED = 6.0;
+const PLAYER_SPEED_DEBUFF = 4.0;
 
 var levelExperienceArray = [500, 2000, 4000, 6000, 10000, 16000, 26000, 42000, 68000];
 
@@ -770,13 +771,13 @@ function warriorClass(whichPlayerPic) {
 		switch(walkIntoTileTypeFeet) {
 			case TILE_GRASS:
 			case TILE_GARDEN_1:
-				this.setSpeedAndPosition(3.0, nextX, nextY);
+				this.setSpeedAndPosition(PLAYER_SPEED_DEBUFF, nextX, nextY);
 				break;
 			default:
 				const index = this.indexOfNextTile(nextX, nextY);
 				const type = this.tileTypeForIndex(index);
 				if (this.isPassableTile(type))
-					this.setSpeedAndPosition(5.0, nextX, nextY);				
+					this.setSpeedAndPosition(PLAYER_SPEED, nextX, nextY);				
 		}	
 
 		return { x: nextX, y: nextY };
