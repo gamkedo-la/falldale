@@ -969,6 +969,11 @@ function warriorClass(whichPlayerPic) {
 			case TILE_TREE5FALLEN_TOP:
 			case TILE_TREE5FALLEN_BOTTOM:
 			case TILE_TREE5FALLEN_BOTTOM_GRASS:
+			case TILE_YELLOW_DOOR:
+			case TILE_GREEN_DOOR:
+			case TILE_BLUE_DOOR:
+			case TILE_RED_DOOR:
+			case TILE_GRAVEYARD_YELLOW_GATE:
 				return false;
 			default:
 				return true;
