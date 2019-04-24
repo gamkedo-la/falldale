@@ -61,28 +61,28 @@ function swordClass() {
 		let swordLength = 30;
 		let swordWidth = 30
 
-		if (direction == "north") {// warrior facing North
+		if (redWarrior.direction == "north") {// warrior facing North
 			
 			weaponRect.x = this.x + warriorWidth - swordWidth;
 			weaponRect.width = swordWidth;
 			weaponRect.y = this.y - swordLength;
 			weaponRect.height = swordLength;
 
-		} else if(direction == "south") {// warrior facing South
+		} else if(redWarrior.direction == "south") {// warrior facing South
 			
 			weaponRect.x = this.x;
 			weaponRect.width = swordWidth;
 			weaponRect.y = this.y + warriorWidth;
 			weaponRect.height = swordLength;
 		
-		} else if(direction == "west") {// warrior facing West
+		} else if(redWarrior.direction == "west") {// warrior facing West
 						
 			weaponRect.x = this.x - swordLength;
 			weaponRect.width = swordLength;
 			weaponRect.y = this.y + warriorWidth - swordWidth;
 			weaponRect.height = swordWidth;
 			
-		} else if(direction == "east") {// warrior facing East
+		} else if(redWarrior.direction == "east") {// warrior facing East
 						
 			weaponRect.x = this.x + warriorWidth;
 			weaponRect.width = swordLength;
@@ -112,24 +112,24 @@ function swordClass() {
 		var swordYLocation = weilder.y;
 		var rotation = 0;
 		
-		if(direction == "north") {
+		if(redWarrior.direction == "north") {
 			swordWidth = 10;
 			swordLength = 20;
 			swordXLocation = weilder.centerX+5;
 			swordYLocation = weilder.y - swordLength + 10;
-		} else if(direction == "south") {
+		} else if(redWarrior.direction == "south") {
 			swordWidth = 10;
 			swordLength = 40;
 			swordXLocation = weilder.centerX - 5;
 			swordYLocation = weilder.centerY + 35;
 			rotation = Math.PI;
-		} else if(direction == "west") {
+		} else if(redWarrior.direction == "west") {
 			swordWidth = 40;
 			swordLength = 10;
 			swordXLocation = weilder.x - swordWidth + 30;
 			swordYLocation = weilder.centerY;
 			rotation = -Math.PI / 2;
-		} else if(direction == "east") {
+		} else if(redWarrior.direction == "east") {
 			swordWidth = 40;
 			swordLength = 10;
 			swordXLocation = weilder.x + 60;

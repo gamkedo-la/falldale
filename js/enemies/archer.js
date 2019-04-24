@@ -46,7 +46,7 @@ function archerClass(archerName) {
             if (this.y <= redWarrior.y) { //Archer above the player
                 if ((this.x <= redWarrior.x + ARCHER_SHOTLANE_THICKNESS) && 
                     (this.x >= redWarrior.x - ARCHER_SHOTLANE_THICKNESS)) {
-                    console.log("I'm facing South and above the player");
+                    // console.log("I'm facing South and above the player");
                     this.shotArrow();
                 }
             }
@@ -55,7 +55,7 @@ function archerClass(archerName) {
             if (this.y >= redWarrior.y) {
                 if ((this.x <= redWarrior.x + ARCHER_SHOTLANE_THICKNESS) &&
                     (this.x >= redWarrior.x - ARCHER_SHOTLANE_THICKNESS)) {
-                    console.log("I'm facing North and below the player");
+                    // console.log("I'm facing North and below the player");
                     this.shotArrow();
                 }
             }
@@ -64,7 +64,7 @@ function archerClass(archerName) {
             if (this.x <= redWarrior.x) {
                 if ((this.y <= redWarrior.y + ARCHER_SHOTLANE_THICKNESS) &&
                     (this.y >= redWarrior.y - ARCHER_SHOTLANE_THICKNESS)) {
-                    console.log("I'm facing East and West of the player");
+                    // console.log("I'm facing East and West of the player");
                     this.shotArrow();
                 }
             }
@@ -73,7 +73,7 @@ function archerClass(archerName) {
             if (this.x >= redWarrior.x) {
                 if ((this.y <= redWarrior.y + ARCHER_SHOTLANE_THICKNESS) &&
                     (this.y >= redWarrior.y - ARCHER_SHOTLANE_THICKNESS)) {
-                    console.log("I'm facing West and East of the player");
+                    // console.log("I'm facing West and East of the player");
                     this.shotArrow();
                 }
             }

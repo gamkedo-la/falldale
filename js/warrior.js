@@ -174,7 +174,11 @@ function warriorClass(whichPlayerPic) {
 		var {nextX, nextY} = this.nextPosWithInput(nextY, nextX);
 		
 		if (this.prevX != nextX || this.prevY != nextY)
-			this.updatePosition(nextX, nextY);
+		{
+			let collision = this.collisionCheck(nextX, nextY);
+			this.setDirection(collision.x, collision.y);
+			this.updatePosition(collision.x, collision.y);			
+		}
 
 		const tileC = pixelXtoTileCol(this.x);
 		const tileR = pixelYtoTileRow(this.y + (this.height / 2));
@@ -435,6 +439,58 @@ function warriorClass(whichPlayerPic) {
 		return { x: xSpeed, y: ySpeed };
 	};
 
+	this.setDirection = function(nextX, nextY) {
+
+		if (nextX > this.prevX)
+		{
+			this.direction = "east";
+			this.sx = 0;
+			this.sy = this.height * 3;
+		}
+		else if (nextX < this.prevX)
+		{
+			this.direction = "west";
+			this.sx = 0;
+			this.sy = this.height * 2;
+		}
+		else if (nextY < this.prevY)
+		{
+			this.direction = "north";
+			this.sx = 0;
+			this.sy = 0;
+		}
+		else if (nextY > this.prevY)
+		{
+			this.direction = "south";
+			this.sx = 0;
+			this.sy = this.height;
+		}
+		else if (this.keyHeld_WalkWest)
+		{
+			this.direction = "west";
+			this.sx = 0;
+			this.sy = this.height * 2;
+		}
+		else if (this.keyHeld_WalkEast)
+		{
+			this.direction = "east";
+			this.sx = 0;
+			this.sy = this.height * 3;
+		}
+		else if (this.keyHeld_WalkNorth)
+		{
+			this.direction = "north";
+			this.sx = 0;
+			this.sy = 0;
+		}
+		else if (this.keyHeld_WalkSouth)
+		{
+			this.direction = "south";
+			this.sx = 0;
+			this.sy = this.height;
+		}
+	};
+
 	this.nextPosWithInput = function() {
 		let x = this.x;
 		let y = this.y;
@@ -442,28 +498,6 @@ function warriorClass(whichPlayerPic) {
 		let speed = this.getWalkSpeed();
 		x += speed.x;
 		y += speed.y;
-
-		if (this.keyHeld_WalkNorth) {			
-			direction = "north";
-			this.sx = 0;
-			this.sy = 0;
-		}
-
-		if (this.keyHeld_WalkSouth) {
-			direction = "south";
-			this.sx = 0;
-			this.sy = this.height;
-		}
-		if (this.keyHeld_WalkWest) {
-			direction = "west";
-			this.sx = 0;
-			this.sy = this.height * 2;
-		}
-		if (this.keyHeld_WalkEast) {
-			direction = "east";
-			this.sx = 0;
-			this.sy = this.height * 3;
-		}
 
 		return {nextX:x, nextY:y};
 	};
@@ -710,25 +744,49 @@ function warriorClass(whichPlayerPic) {
 		return false;
 	}
 
-	this.updatePosition = function(nextX, nextY) {
+	this.collisionCheck = function(nextX, nextY) {
 
-		let walkIntoTileIndex = this.indexOfNextTile(nextX, nextY);
-		let walkIntoTileIndexFeet = this.indexOfNextTile(nextX, nextY + (this.height / 2));	
+		let col = new Array();
+		col[0] = { index: this.indexOfNextTile(nextX, nextY), x: nextX, y: nextY };
+		col[1] = { index: this.indexOfNextTile(nextX, this.y), x: nextX, y: this.y };
+		col[2] = { index: this.indexOfNextTile(this.x, nextY), x: this.x, y: nextY };
 
-		const walkIntoTileType = this.tileTypeForIndex(walkIntoTileIndex);
-		const walkIntoTileTypeFeet = this.tileTypeForIndex(walkIntoTileIndexFeet);
+		for (i = 0; i <= 2; i++)
+		{
+			const walkIntoTileType = this.tileTypeForIndex(col[i].index);
 
+			if (this.isPassableTile(walkIntoTileType))
+			{				
+				nextX = col[i].x;
+				nextY = col[i].y;	
+				break;
+			}
+		}		
+		
 		//speed buffs/debuffs
+		const walkIntoTileTypeIndex = this.indexOfNextTile(nextX, nextY + (this.height / 2));
+		const walkIntoTileTypeFeet = this.tileTypeForIndex(walkIntoTileTypeIndex);
+
 		switch(walkIntoTileTypeFeet) {
 			case TILE_GRASS:
 			case TILE_GARDEN_1:
 				this.setSpeedAndPosition(3.0, nextX, nextY);
 				break;
 			default:
-				if (this.isPassableTile(walkIntoTileType))
-					this.setSpeedAndPosition(5.0, nextX, nextY);
-		}		
+				const index = this.indexOfNextTile(nextX, nextY);
+				const type = this.tileTypeForIndex(index);
+				if (this.isPassableTile(type))
+					this.setSpeedAndPosition(5.0, nextX, nextY);				
+		}	
 
+		return { x: nextX, y: nextY };
+	}
+
+	this.updatePosition = function(nextX, nextY) {
+
+		let walkIntoTileIndex = this.indexOfNextTile(nextX, nextY);
+		const walkIntoTileType = this.tileTypeForIndex(walkIntoTileIndex);
+		
 		switch(walkIntoTileType) {
 			case TILE_TREE5FALLEN_BOTTOM:
 				this.tryToRemoveFallenTreeOnRoad(walkIntoTileIndex);
