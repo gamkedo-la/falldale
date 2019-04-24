@@ -384,7 +384,7 @@ function warriorClass(whichPlayerPic) {
 
 		this.sx = this.frameIndex * this.width;
 
-		if((direction == "north") || (direction == "west")) {
+		if((this.direction == "north") || (this.direction == "west")) {
 			this.mySword.draw(this);
 		}
 
@@ -396,13 +396,11 @@ function warriorClass(whichPlayerPic) {
 
 		if(debugMode) {this.drawDebug();}
 
-		if((direction == "south") || (direction == "east")) {
+		if((this.direction == "south") || (this.direction == "east")) {
 			this.mySword.draw(this);
 		}
-//		this.mySword.draw(this);
 
 		this.myArrow.draw();
-
 		this.myRock.draw();
 
 	};
@@ -960,6 +958,17 @@ function warriorClass(whichPlayerPic) {
 			case TILE_GRAVEYARD_FENCE_LEFTSIDE:
 			case TILE_GRAVEYARD_FENCE_BL:
 			case TILE_GRAVEYARD_FENCE_TL:
+			case TILE_WATER:
+			case TILE_TREE:
+			case TILE_TREE2TOPHALF:
+			case TILE_TREE2BOTTOMHALF:
+			case TILE_TREE3TOPHALF:
+			case TILE_TREE3BOTTOMHALF:
+			case TILE_TREE4TOPHALF:
+			case TILE_TREE4BOTTOMHALF:
+			case TILE_TREE5FALLEN_TOP:
+			case TILE_TREE5FALLEN_BOTTOM:
+			case TILE_TREE5FALLEN_BOTTOM_GRASS:
 				return false;
 			default:
 				return true;
