@@ -43,39 +43,41 @@ function archerClass(archerName) {
   };
 
   this.checkToFireArrow = function () {
-    if (this.direction == "south") {
-      if (this.y <= redWarrior.y) { //Archer above the player
-        if ((this.x <= redWarrior.x + ARCHER_SHOTLANE_THICKNESS) &&
-            (this.x >= redWarrior.x - ARCHER_SHOTLANE_THICKNESS)) {
-          // console.log("I'm facing South and above the player");
-          this.shotArrow();
+    if(!redWarrior.isInsideAnyBuilding) {
+      if (this.direction == "south") {
+        if (this.y <= redWarrior.y) { //Archer above the player
+          if ((this.x <= redWarrior.x + ARCHER_SHOTLANE_THICKNESS) &&
+              (this.x >= redWarrior.x - ARCHER_SHOTLANE_THICKNESS)) {
+            // console.log("I'm facing South and above the player");
+            this.shotArrow();
+          }
         }
       }
-    }
-    if (this.direction == "north") { //Archer is below the Archer
-      if (this.y >= redWarrior.y) {
-        if ((this.x <= redWarrior.x + ARCHER_SHOTLANE_THICKNESS) &&
-            (this.x >= redWarrior.x - ARCHER_SHOTLANE_THICKNESS)) {
-          // console.log("I'm facing North and below the player");
-          this.shotArrow();
+      if (this.direction == "north") { //Archer is below the Archer
+        if (this.y >= redWarrior.y) {
+          if ((this.x <= redWarrior.x + ARCHER_SHOTLANE_THICKNESS) &&
+              (this.x >= redWarrior.x - ARCHER_SHOTLANE_THICKNESS)) {
+            // console.log("I'm facing North and below the player");
+            this.shotArrow();
+          }
         }
       }
-    }
-    if (this.direction == "east") { // Archer is West of the Archer
-      if (this.x <= redWarrior.x) {
-        if ((this.y <= redWarrior.y + ARCHER_SHOTLANE_THICKNESS) &&
-            (this.y >= redWarrior.y - ARCHER_SHOTLANE_THICKNESS)) {
-          // console.log("I'm facing East and West of the player");
-          this.shotArrow();
+      if (this.direction == "east") { // Archer is West of the Archer
+        if (this.x <= redWarrior.x) {
+          if ((this.y <= redWarrior.y + ARCHER_SHOTLANE_THICKNESS) &&
+              (this.y >= redWarrior.y - ARCHER_SHOTLANE_THICKNESS)) {
+            // console.log("I'm facing East and West of the player");
+            this.shotArrow();
+          }
         }
       }
-    }
-    if (this.direction == "west") { // Archer is East of the Archer
-      if (this.x >= redWarrior.x) {
-        if ((this.y <= redWarrior.y + ARCHER_SHOTLANE_THICKNESS) &&
-            (this.y >= redWarrior.y - ARCHER_SHOTLANE_THICKNESS)) {
-          // console.log("I'm facing West and East of the player");
-          this.shotArrow();
+      if (this.direction == "west") { // Archer is East of the Archer
+        if (this.x >= redWarrior.x) {
+          if ((this.y <= redWarrior.y + ARCHER_SHOTLANE_THICKNESS) &&
+              (this.y >= redWarrior.y - ARCHER_SHOTLANE_THICKNESS)) {
+            // console.log("I'm facing West and East of the player");
+            this.shotArrow();
+          }
         }
       }
     }

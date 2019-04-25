@@ -230,6 +230,8 @@ function handleMouseClick(evt) {
     characterCreationScreenClick(evt);
   } else if (characterSelectionScreen) {
     characterSelectorScreenClick(evt);
+  } else if (scrollBackgroundScreen) {
+    scrollBackgroundScreenClick(evt);
   } else if (tileEditor) {
     tileSelectedClicked = true;
   }

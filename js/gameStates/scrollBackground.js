@@ -1,3 +1,9 @@
+function scrollBackgroundScreenClick(evt) {
+  var gameKeeperFeedback = null;
+
+  scrollBackgroundScreen = false;
+}
+
 function scrollBackgroundScreenInput(whichKeyCode) {
   var gameKeeperFeedback = null;
 
