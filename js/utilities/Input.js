@@ -155,8 +155,6 @@ function keyPressed(evt) {
     shopInput(evt.keyCode);
   } else if (isAtHealer) {
     healerInput(evt.keyCode);
-  } else if (characterCreationScreen) {
-    characterCreationScreenInput(evt.keyCode);
   } else if (scrollBackgroundScreen) {
     scrollBackgroundScreenInput(evt.keyCode);
   } else if (tileEditor) {
@@ -230,6 +228,8 @@ function handleMouseClick(evt) {
     characterCreationScreen = true;
   } else if (characterCreationScreen) {
     characterCreationScreenClick(evt);
+  } else if (characterSelectionScreen) {
+    characterSelectorScreenClick(evt);
   } else if (tileEditor) {
     tileSelectedClicked = true;
   }
