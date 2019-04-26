@@ -269,7 +269,7 @@ function warriorClass(whichPlayerPic) {
     this.centerX = this.x + this.width / 2;
     this.centerY = this.y + this.height / 2;
 
-    if (this.rangeTest(thisEnemy) && thisEnemy.type == "enemy") {
+    if (!debugMode && this.rangeTest(thisEnemy) && thisEnemy.type == "enemy") {
       this.restorePos();
       thisEnemy.restorePos();
       thisEnemy.enemyMove = false;
@@ -866,6 +866,10 @@ function warriorClass(whichPlayerPic) {
   };// end of updatePosition()
 
   this.isPassableTile = function (aTile) {
+
+    if (debugMode)
+      return true;
+
     switch (aTile) {
       case TILE_WALL:
       case TILE_DOOR:
@@ -956,9 +960,14 @@ function warriorClass(whichPlayerPic) {
       case TILE_YELLOW_DOOR:
       case TILE_GREEN_DOOR:
       case TILE_BLUE_DOOR:
-      case TILE_RED_DOOR:
-      case TILE_GRAVEYARD_YELLOW_GATE:
+      case TILE_RED_DOOR:      
         return false;
+      case TILE_GRAVEYARD_YELLOW_GATE:
+        if (this.yellowKeysHeld > 0) {
+          return true;
+        } else {
+          return false;
+        }
       default:
         return true;
     }
