@@ -26,12 +26,12 @@ function countOrcforQuestTwo() {
 
 function checkForQuestTwoComplete() {
   if (goblinsKilledInForest >= 10 && orcsKilledInForest >= 10) {
-    redWarrior.questOneComplete = true;
+    redWarrior.questTwoComplete = true;
     dialogManager.setDialogWithCountdown("I have van-quest all the Goblins and Orcs from the forest!", 8);
     backgroundMusic.loopSong("have-a-nice-beer");
     levelList[ 6 ] = forest2;
-    questTwoActive = false;
-    questCompletionScreenActive = true;
+    redWarrior.questTwoActive = false;
+    questTwoCompletionScreenActive = true;
   }
 
 }

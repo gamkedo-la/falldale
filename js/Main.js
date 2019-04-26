@@ -31,7 +31,8 @@ var characterCreationScreen = false;
 var characterSelectionScreen = false;
 var isInShop = false;
 var isAtHealer = false;
-var questCompletionScreenActive = false;
+var questOneCompletionScreenActive = false;
+var questTwoCompletionScreenActive = false;
 var debugMode = false;
 var displayHealth = false;
 var tileEditor = false;
@@ -213,10 +214,10 @@ function loadLevel() {
         newEnemy.initialize('Orc - Sword', orcPic, 6);
       } else if (roomGrid[ arrayIndex ] == TILE_GREEN_ORC_CLUB) {
         newEnemy = new orcClass();
-        newEnemy.initialize('Orc - Club2', orcPic2, 4);
+        newEnemy.initialize('Orc - Club2', orcPic2, 6);
       } else if (roomGrid[ arrayIndex ] == TILE_GREEN_ORC_AX) {
         newEnemy = new orcClass();
-        newEnemy.initialize('Orc - Ax', orcPic3, 4);
+        newEnemy.initialize('Orc - Ax', orcPic3, 6);
       } else if (roomGrid[ arrayIndex ] == TILE_ARCHER) {
         newEnemy = new archerClass();
         newEnemy.initialize('Archer', archerPic3, 4);
@@ -526,8 +527,10 @@ function drawAll() {
     }
   } else if (tileEditor) {
     drawEditorMode();
-  } else if (questCompletionScreenActive) {
+  } else if (questOneCompletionScreenActive) {
     drawQuestOneCompletionScreen();
+  } else if (questTwoCompletionScreenActive) {
+    drawQuestTwoCompletionScreen();
   } else {
     colorRect(0, 0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
     canvasContext.save();
