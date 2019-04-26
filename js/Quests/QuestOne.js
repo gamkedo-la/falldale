@@ -21,7 +21,7 @@ function checkForQuestOneComplete() {
     OverlayFX.nightMode = false;
     levelList[ 7 ] = fallDale2;
     redWarrior.questOneActive = false;
-    questOneCompletionScreenActive = true;
+    questCompletionScreenActive = true;
   }
 
 }

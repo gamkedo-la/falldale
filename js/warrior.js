@@ -59,11 +59,11 @@ function warriorClass(whichPlayerPic) {
   this.armor = 10;
   this.healingPotion = 0;
   this.haveMap = false;
-  this.questOneActive = true; 
-  this.delkonRewardOffer = false; 
-  this.questOneComplete = false; 
-  this.questTwoActive = false;   
-  this.questTwoComplete = false; 
+  this.questOneActive = true;
+  this.delkonRewardOffer = false; // 50 gp
+  this.questOneComplete = false; // Clear the town of Goblins
+  this.questTwoActive = false;
+  this.questTwoComplete = false; // Clear the forest of the Goblins and Orcs
   this.questThreeActive = false;
   this.questThreeComplete = false;
   this.questFourActive = false;
