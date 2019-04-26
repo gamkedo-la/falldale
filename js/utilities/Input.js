@@ -159,8 +159,10 @@ function keyPressed(evt) {
     scrollBackgroundScreenInput(evt.keyCode);
   } else if (tileEditor) {
     tileEditorInput(evt.keyCode);
-  } else if (questCompletionScreenActive) {
+  } else if (questOneCompletionScreenActive) {
     questOneCompletionScreenInput(evt.keyCode);
+  } else if (questTwoCompletionScreenActive) {
+    questTwoCompletionScreenInput(evt.keyCode);
   } else {
     keySet(evt, redWarrior, true);
     if (evt.keyCode == redWarrior.controlKeySword) {

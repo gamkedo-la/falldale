@@ -1,4 +1,7 @@
 const ORC_SPEED = 0.6;
+const ORC_TIME_BETWEEN_CHANGE_DIR = 200;
+
+var orcsKilled = 0;
 
 orcClass.prototype = new enemyClass();
 
@@ -6,7 +9,9 @@ function orcClass() {
   this.speed = ORC_SPEED;
   this.health = 12;
   this.maxhealth = 12;
+  this.myMelee = new clubClass();
   this.alive = true;
+  this.treasureAvailable = true;
   this.myBite = new biteClass();
   this.displayHealth = false;
   this.tickCount = 0;
@@ -20,6 +25,13 @@ function orcClass() {
   this.deadPic = deadOrcPic;
   this.picVariants = [ orcPic, orcPic2, orcPic3 ];
 
+  this.superClassInitialize = this.initialize;
+  this.initialize = function (enemyName, enemyPic, numberOfFrames) {
+    this.superClassInitialize(enemyName, enemyPic, numberOfFrames);
+    this.originalNumberOfFrames = this.numberOfFrames;
+  };
+  
+  
   this.superClassReset = this.reset;
   this.reset = function (resetX, resetY) {
     this.superClassReset(resetX, resetY);
@@ -29,20 +41,40 @@ function orcClass() {
 
   this.superClassMove = this.move;
   this.move = function () {
-    this.superClassMove(this.timeBetweenChangeDir);
+    this.superClassMove(ORC_TIME_BETWEEN_CHANGE_DIR);
+    this.myMelee.move();
+    this.myMelee.x = this.x;
+    this.myMelee.y = this.y;
+  };
 
-    if (this.walkNorth) {
-      this.sy = 0;
+  this.distributeTreasure = function () {
+    // TODO: port back to enemyClass
+    var chanceOnTreasure = Math.round(Math.random() * 10);
+    if (chanceOnTreasure >= 8) {
+      console.log("Treasure Provided");
+      var randomTreasure = Math.round(Math.random() * 3);
+      switch (randomTreasure) {
+        case 1:
+          heartsList.push(new heartClass(2, this.x, this.y));
+          break;
+        case 2:
+          goldList.push(new goldClass(10, this.x, this.y));
+          break;
+        case 3:
+          healingPotionList.push(new healingPotionClass(1, this.x, this.y));
+          break;
+      }
     }
+  };
 
-    if (this.walkSouth) {
-      this.sy = this.height * 1;
-    }
-    if (this.walkWest) {
-      this.sy = this.height * 2;
-    }
-    if (this.walkEast) {
-      this.sy = this.height * 3;
+  this.superClassTakeDamage = this.takeDamage;
+  this.takeDamage = function (howMuch) {
+    this.superClassTakeDamage(howMuch);
+    if (!this.alive && this.treasureAvailable) {
+      this.distributeTreasure();
+      this.treasureAvailable = false;
+      orcsKilled++;
+      countOrcforQuestTwo();
     }
   };
 
