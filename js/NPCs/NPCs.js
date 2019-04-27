@@ -65,7 +65,7 @@ function npcClass(npcName, npcPic) {
           NPCDialog = "Addy:  Thank you for saving Falldale!  You should talk to the Princess.  We are very grateful.";
         } else if (redWarrior.questTwoActive) {
           NPCDialog = "Addy:  You are brave to adventure into the Forest."
-        } else if (redWarrior.questTwoComplete) {
+        } else if (redWarrior.questTwoComplete && redWarrior.questThreeActive == false) {
           NPCDialog = "Addy:  The Shop Keeper has a present for you."
         }
       } else if (this.myName == "Dodd") {
@@ -120,7 +120,7 @@ function npcClass(npcName, npcPic) {
         humanMaleGoodAfternoon.play();
         if (redWarrior.questOneCompleteActive) {
           NPCDialog = "Gabriel:  Please clear this town of all these Goblins!";
-        } else if (redWarrior.questOneComplete) {
+        } else if (redWarrior.questOneComplete && redWarrior.questTwoActive == false) {
           NPCDialog = "Gabriel:  Sorry we couldn't talk earlier.  My name is Gabriel, I am grateful you saved our town.  These Goblins have been attacking us a lot lately.";
         } else if (redWarrior.questTwoActive) {
           NPCDialog = "Gabriel:  You're going to stop future Goblin attacks?!"
@@ -134,7 +134,7 @@ function npcClass(npcName, npcPic) {
         } else if (redWarrior.questTwoActive) {
           NPCDialog = "Fenton:  You're going to do something about the goblins and orcs?!"
         } else if (redWarrior.questTwoComplete) {
-          NPCDialog = "Addy:  The Shop Keeper has a present for you."
+          NPCDialog = "Fenton:  The Shop Keeper has a present for you."
         }
       } else if (this.myName == "Healer") {
         NPCDialog = "Healer:  Hi, I'm the Healer.  I could use a better name.";
@@ -152,10 +152,10 @@ function npcClass(npcName, npcPic) {
         humanFemaleHello.play();
         if (redWarrior.questOneCompleteActive) {
           NPCDialog = "Arya:  I'm Arya, our town is being overran by Goblins!  Please do something!";
-        } else if (redWarrior.questOneComplete) {
+        } else if (redWarrior.questOneComplete && redWarrior.questTwoActive == false) {
           NPCDialog = "Arya:  Thank you for saving our town!";
         } else if (redWarrior.questTwoComplete) {
-          NPCDialog = "Addy:  The Shop Keeper has a present for you."
+          NPCDialog = "Arya:  The Shop Keeper has a present for you."
         }
       } else if (this.myName == "Lawrence") {
         humanMaleHi2.play();
@@ -166,7 +166,7 @@ function npcClass(npcName, npcPic) {
         } else if (redWarrior.questTwoActive) {
           NPCDialog = "Lawrence:  I'm too scared to leave the bar."
         } else if (redWarrior.questTwoComplete) {
-          NPCDialog = "Addy:  The Shop Keeper has a present for you."
+          NPCDialog = "Lawrence:  The Shop Keeper has a present for you."
         }
       } else if (this.myName == "Rowan") {
         humanFemaleHi.play();
@@ -177,7 +177,7 @@ function npcClass(npcName, npcPic) {
         } else if (redWarrior.questTwoActive) {
           NPCDialog = "Rowan:  You're entering the woods?  You're my hero!";
         } else if (redWarrior.questTwoComplete) {
-          NPCDialog = "Addy:  The Shop Keeper has a present for you."
+          NPCDialog = "Rowan:  The Shop Keeper has a present for you."
         }
       } else if (this.myName == "Fido") {
         // alternately, we can choose a random one from the array

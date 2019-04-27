@@ -6,7 +6,7 @@ function questOneCompletionScreenInput(whichKeyCode) {
     case KEY_SPACEBAR:
     case ENTER:
       console.log("enter");
-      questCompletionScreenActive = false;
+      questOneCompletionScreenActive = false;
       break;
 
     default:
