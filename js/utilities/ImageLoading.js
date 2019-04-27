@@ -110,7 +110,7 @@ function loadImages() {
 
   var imageList = [
     { tileType: TILE_ROAD, theFile: "worldRoad.png" },
-    { tileType: TILE_OPEN_DOORWAY, theFile: "openDoorway.png" },
+    { tileType: TILE_OPEN_DOORWAY, theFile: "OpenDoorway.png" },
     { tileType: TILE_DIRTROAD_N_E, theFile: "Roads/dirtRoadNorthToEast.png" },
     { tileType: TILE_DIRTROAD_N_S, theFile: "Roads/dirtRoadNorthToSouth.png" },
     { tileType: TILE_DIRTROAD_S_E, theFile: "Roads/dirtRoadSouthToEast.png" },
@@ -260,7 +260,7 @@ function loadImages() {
 
     { varName: muteAudioPic, theFile: "muteAudio.png" },
     { varName: warriorPic, theFile: "warrior.png" },
-    { varName: biggyPic, theFile: "Sprites/player/biggy/biggy.png" },
+    { varName: biggyPic, theFile: "Sprites/player/BIggy/biggy.png" },
     { varName: swordPic, theFile: "Weapons/basicSword.png" },
     { varName: magicSwordPic, theFile: "Weapons/magicSword.png" },
     { varName: clubPic, theFile: "Weapons/club.png" },
