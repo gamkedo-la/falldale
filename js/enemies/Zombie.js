@@ -1,5 +1,5 @@
-const ZOMBIE_SPEED = 0.3;
-
+const ZOMBIE_SPEED = 1.3; // 0.3;
+const ZOMBIE_TIME_BETWEEN_CHANGE_DIR = 100;
 
 zombieClass.prototype = new enemyClass();
 
@@ -16,6 +16,7 @@ function zombieClass() {
   this.deadPic = deadZombiePic;
   this.shadowXOffset = 20;
   this.shadowYOffset = 32;
+  this.myMelee = new biteClass();
 
   this.superClassInitialize = this.initialize;
   this.initialize = function (enemyName, enemyPic) {
@@ -38,4 +39,12 @@ function zombieClass() {
     }
     return false;
   }
+
+  this.superClassMove = this.move;
+  this.move = function () {
+    this.superClassMove(ZOMBIE_TIME_BETWEEN_CHANGE_DIR);
+    this.myMelee.move();
+    this.myMelee.x = this.x;
+    this.myMelee.y = this.y;
+  };
 }
