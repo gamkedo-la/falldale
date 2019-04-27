@@ -278,8 +278,8 @@ function loadImages() {
     { varName: goblinPic3, theFile: "Monsters/Goblin3.png" },
     { varName: goblinPic4, theFile: "Monsters/Goblin4.png" },
     { varName: orcPic, theFile: "Monsters/Orc1.png" },
-    { varName: orcPic2, theFile: "Monsters/Orc2.png" },
-    { varName: orcPic3, theFile: "Monsters/Orc3.png" },
+    { varName: orcPic2, theFile: "Monsters/Orc1.png" }, // i've stubbed these last two until they are animated - SD
+    { varName: orcPic3, theFile: "Monsters/Orc1.png" },
     { varName: orcBossPic, theFile: "Monsters/OrcChief.png" },
     { varName: druidPic, theFile: "Monsters/druid.png" },
     { varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png" },

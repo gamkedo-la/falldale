@@ -1,4 +1,4 @@
-const ORC_SPEED = 0.6;
+const ORC_SPEED = 1.2;
 const ORC_TIME_BETWEEN_CHANGE_DIR = 200;
 
 var orcsKilled = 0;
@@ -10,7 +10,7 @@ function orcClass() {
   this.health = 12;
   this.maxhealth = 12;
   this.alive = true;
-  this.myMelee = new clubClass();
+  this.myMelee = new orcSwordClass();  
   this.treasureAvailable = true;
   this.myBite = new biteClass();
   this.displayHealth = false;
