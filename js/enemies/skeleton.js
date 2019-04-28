@@ -52,6 +52,9 @@ function skeletonClass() {
       this.distributeTreasure();
       this.treasureAvailable = false;
     }
+	if (this.health <= 0){
+		skeletonsKilledInGraveyardOneorTwo();
+	}
   };
 
   this.superClassIsOverlappingPoint = this.isOverlappingPoint;
