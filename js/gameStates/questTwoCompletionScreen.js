@@ -5,7 +5,6 @@ function questTwoCompletionScreenInput(whichKeyCode) {
 
     case KEY_SPACEBAR:
     case ENTER:
-      console.log("enter");
       questTwoCompletionScreenActive = false;
       break;
 
@@ -18,7 +17,7 @@ function questTwoCompletionScreenInput(whichKeyCode) {
   dialogManager.setDialogWithCountdown(gameKeeperFeedback, 5);
 }
 
-function drawQuestTwoCompletionScreen() {
+function drawQuestTwoCompletionScreen () {
   canvasContext.save();
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(scrollBackgroundPic, 0, 0);

@@ -67,7 +67,7 @@ function warriorClass(whichPlayerPic) {
   this.questThreeActive = false;
   this.questThreeComplete = false;
   this.questFourActive = false;
-  this.questFourComplete = true;
+  this.questFourComplete = false;
   this.questFiveActive = false;
   this.questFiveComplete = false;
   this.questSixActive = false;
