@@ -22,11 +22,10 @@ function drawQuestOneCompletionScreen() {
   canvasContext.save();
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(scrollBackgroundPic, 0, 0);
-  colorText("The Goblins are no more.", 350, 50, "white");
-  colorText("After waking up to find your lovely town of Falldale was under attack,", 100, 300, "white");
-  colorText("you were able to save the town by killing all of the Goblin invaders.", 100, 350, "white");
-  colorText("The residents of Falldale are happy to have you as their town hero.", 100, 400, "white");
-  colorText("Bards will start writing songs about your heroic acts.", 100, 450, "white");
-  colorText("Press ENTER", 100, 400, "white");
+  colorText("Falldale Saved", 310, 75, "blue", font = "bold 42px Georgia");
+  colorText("You have saved your lovely town of Falldale of the beasts roaming the streets.", 115, 150, "green", font = "20px Georgia");
+  colorText("You wonder what has happened in your absence?", 150, 200, "green", font = "20px Georgia");
+  colorText("Comforted of your town being safe, you want to go check on your Princess.", 153, 250, "green", font = "20px Georgia");
+  //Feel free to edit/update/change to this storyline.
   canvasContext.restore();
 }

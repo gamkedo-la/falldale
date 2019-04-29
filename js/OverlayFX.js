@@ -206,8 +206,8 @@ var OverlayFX = new function () {
     }
 
     // init night mode
-    nightModeOverlay.width = TILE_W * ROOM_ROWS;
-    nightModeOverlay.height = TILE_H * ROOM_COLS;
+    nightModeOverlay.width = TILE_W * ROOM_COLS;
+    nightModeOverlay.height = TILE_H * ROOM_ROWS;
     nightModeContext.fillStyle = "black";
     nightModeContext.fillRect(0, 0, nightModeOverlay.width, nightModeOverlay.height);
     nightModeContext.globalCompositeOperation = "destination-out"; // cut out
