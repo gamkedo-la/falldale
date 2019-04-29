@@ -33,7 +33,7 @@ function drawScrollNarrative() {
   colorText("Today you have finally returned to your beloved Falldale.", 150, 200, "green", font = "20px Georgia");
   colorText("Noticing that there are many beasts roaming the streets", 153, 250, "green", font = "20px Georgia");
   colorText("You quickly run to the house of your childhood", 180, 300, "green", font = "20px Georgia");
-  colorText("Only to find that your home is devoid of life.", 185, 350, "green", font = "20px Georgia");
+  colorText("Only to find that your home is devoid of life. Except for the cat!", 120, 350, "green", font = "20px Georgia");
   colorText("Determined to find the Druid who raised you", 184, 400, "green", font = "20px Georgia");
   colorText("And what is happening to your town, you set out on a new adventure.", 95, 450, "green", font = "20px Georgia");
   canvasContext.restore();
