@@ -228,6 +228,9 @@ function loadLevel() {
       } else if (roomGrid[ arrayIndex ] == TILE_DRUID) {
         newEnemy = new druidClass();
         newEnemy.initialize('Druid', druidPic, 1);
+	      } else if (roomGrid[ arrayIndex ] == TILE_WIZARD) {
+        newEnemy = new wizardClass();
+        newEnemy.initialize('Wizard', wizardPic, 1);
       } else if (roomGrid[ arrayIndex ] == TILE_ORCBOSS) {
         newEnemy = new orcBossClass();
         newEnemy.initialize('Orc Boss', orcBossPic, 8);

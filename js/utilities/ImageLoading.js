@@ -45,6 +45,8 @@ var druidPic = document.createElement("img");
 var orcBossPic = document.createElement("img");
 var deadOrcBossPic = document.createElement("img");
 
+var wizardPic = document.createElement("img");
+
 var addyPic = document.createElement("img");
 var delkonPic = document.createElement("img");
 var doddPic = document.createElement("img");
@@ -286,7 +288,8 @@ function loadImages() {
     { varName: orcBossPic, theFile: "Monsters/OrcChief.png" },
 	{ varName: deadOrcBossPic, theFile: "Monsters/deadGoblin.png" },  //placeholder.  Need a dead Orc Boss Pic
     { varName: druidPic, theFile: "Monsters/druid.png" },
-    { varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png" },
+    { varName: wizardPic, theFile: "Monsters/wizard.png" },
+	{ varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png" },
     { varName: bullywugPic, theFile: "Monsters/Bullywug.png" },
     { varName: archerPic, theFile: "Monsters/archer.png" },
     { varName: archerPic2, theFile: "Monsters/archer2.png" },
