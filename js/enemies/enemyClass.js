@@ -38,8 +38,8 @@ function enemyClass() {
   this.walkEast = true;
   this.walkSouth = false;
   this.walkWest = false;
-  this.faceNorthMul = 0;
-  this.faceSouthMul = 1;
+  this.faceNorthMul = 1;
+  this.faceSouthMul = 0;
   this.faceWestMul = 2;
   this.faceEastMul = 3;
   this.myBite = null;
@@ -290,14 +290,14 @@ function enemyClass() {
     if (this.walkNorth) {
       newY -= this.speed * this.speedMult;
       this.sx = 0;
-      this.sy = (this.height) + 1;
+      this.sy = 0;
       this.direction = "north";
     }
 
     if (this.walkSouth) {
       newY += this.speed * this.speedMult;
       this.sx = 0;
-      this.sy = 0;
+      this.sy = (this.height) + 1;
       this.direction = "south";
     }
     if (this.walkWest) {
