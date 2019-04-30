@@ -14,7 +14,7 @@ function skeletonsKilledInGraveyardOneorTwo() {
 }
 
 function zombiesKilledInGraveyardOneorTwo() {
-  if (redWarrior.questThreeComplete == false) {
+  if (redWarrior.questFourComplete == false) {
     if (levelNow == 10 || levelNow == 11) { // located in Falldale
       zombiesKilledInGraveyardOneorTwo++;
       checkForQuestFourComplete();

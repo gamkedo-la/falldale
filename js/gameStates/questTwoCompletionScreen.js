@@ -1,3 +1,5 @@
+
+
 function questTwoCompletionScreenInput(whichKeyCode) {
   var gameKeeperFeedback = null;
 

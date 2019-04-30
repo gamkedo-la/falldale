@@ -1,3 +1,5 @@
+displayQ3 = true;
+
 function questThreeCompletionScreenInput(whichKeyCode) {
   var gameKeeperFeedback = null;
 
@@ -6,6 +8,7 @@ function questThreeCompletionScreenInput(whichKeyCode) {
     case KEY_SPACEBAR:
     case ENTER:
       questThreeCompletionScreenActive = false;
+	  displayQ3 = false;
       break;
 
     default:
@@ -17,7 +20,7 @@ function questThreeCompletionScreenInput(whichKeyCode) {
   dialogManager.setDialogWithCountdown(gameKeeperFeedback, 5);
 }
 
-function drawQuestThreeCompletionScreen () {
+function drawQuestThreeCompletionScreen() {
   canvasContext.save();
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(scrollBackgroundPic, 0, 0);

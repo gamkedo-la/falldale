@@ -117,7 +117,7 @@ function skeletonClass() {
     }
   }
 
-this.superClassDraw = this.draw;
+  this.superClassDraw = this.draw;
   this.draw = function () {
     this.superClassDraw();
 	console.log(this.health)

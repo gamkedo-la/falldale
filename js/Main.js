@@ -33,6 +33,10 @@ var isInShop = false;
 var isAtHealer = false;
 var questOneCompletionScreenActive = false;
 var questTwoCompletionScreenActive = false;
+var questThreeCompletionScreenActive = false;
+var questFourCompletionScreenActive = false;
+var questFiveCompletionScreenActive = false;
+var questSixCompletionScreenActive = false;
 var debugMode = false;
 var displayHealth = false;
 var tileEditor = false;
@@ -528,6 +532,14 @@ function drawAll() {
     drawQuestOneCompletionScreen();
   } else if (questTwoCompletionScreenActive) {
     drawQuestTwoCompletionScreen();
+  } else if (questThreeCompletionScreenActive) {
+    drawQuestThreeCompletionScreen();
+  } else if (questFourCompletionScreenActive) {
+    drawQuestFourCompletionScreen();
+  } else if (questFiveCompletionScreenActive) {
+    drawQuestFiveCompletionScreen();
+  } else if (questSixCompletionScreenActive) {
+    drawQuestSixCompletionScreen();
   } else {
     colorRect(0, 0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
     canvasContext.save();

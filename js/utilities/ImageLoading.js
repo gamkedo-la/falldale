@@ -43,6 +43,7 @@ var bullywugPic = document.createElement("img");
 
 var druidPic = document.createElement("img");
 var orcBossPic = document.createElement("img");
+var deadOrcBossPic = document.createElement("img");
 
 var addyPic = document.createElement("img");
 var delkonPic = document.createElement("img");
@@ -283,6 +284,7 @@ function loadImages() {
     { varName: orcPic2, theFile: "Monsters/Orc1.png" }, // i've stubbed these last two until they are animated - SD
     { varName: orcPic3, theFile: "Monsters/Orc1.png" },
     { varName: orcBossPic, theFile: "Monsters/OrcChief.png" },
+	{ varName: deadOrcBossPic, theFile: "Monsters/deadGoblin.png" },  //placeholder.  Need a dead Orc Boss Pic
     { varName: druidPic, theFile: "Monsters/druid.png" },
     { varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png" },
     { varName: bullywugPic, theFile: "Monsters/Bullywug.png" },
