@@ -192,11 +192,8 @@ function loadLevel() {
         newEnemy = new batClass();
         newEnemy.initialize("bat", batPic, 4);
       } else if (roomGrid[ arrayIndex ] == TILE_SKELETON) {
-        newEnemy = new skeletonClass('Skeleton1', skeletonPic, 4);
-      } else if (roomGrid[ arrayIndex ] == TILE_SKELETON) {
-        newEnemy = new skeletonClass('Skeleton2', skeletonPic2, 6);
-      } else if (roomGrid[ arrayIndex ] == TILE_SKELETON) {
-        newEnemy = new skeletonClass('Skeleton3', skeletonPic3, 6);
+        newEnemy = new skeletonClass();
+		newEnemy.initialize('Skeleton1', skeletonPic, 6);
       } else if (roomGrid[ arrayIndex ] == TILE_ZOMBIE) {
         newEnemy = new zombieClass();
         newEnemy.initialize('Zombie', zombiePic, 4);
@@ -562,7 +559,6 @@ function drawAll() {
       colorText(goblinsKilledInForest + " out of the 10 Goblins killed in the forest.", 10, 20, "red");
       colorText(orcsKilledInForest + " out of the 10 Orcs killed in the forest.", 10, 40, "red");
     }
-    health();
     dialogManager.drawDialog();
 //        messageDraw();
     damageDraw();
