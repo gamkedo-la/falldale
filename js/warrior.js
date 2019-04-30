@@ -194,7 +194,7 @@ function warriorClass(whichPlayerPic) {
     this.myArrow.move();
     this.myRock.move();
 
-    this.tryToTriggerMonsterSpawnAt(skeletonClass, skeletonPic, skeletonSpawnTiles, this.x + this.width / 2, this.y + this.height / 2, direction);
+    this.tryToTriggerMonsterSpawnAt(skeletonClass, skeletonPic, skeletonSpawnTiles, this.x + this.width / 2, this.y + this.height / 2, direction, 6);
   };
 
   this.freeze = function (duration) {
@@ -207,12 +207,12 @@ function warriorClass(whichPlayerPic) {
     })(this);
   };
 
-  this.tryToTriggerMonsterSpawnAt = function (monsterClass, monsterPic, spawnTiles, x, y, dir = direction, chance = 0.3) { // 0.0 to less than 2.0 chance
+  this.tryToTriggerMonsterSpawnAt = function (monsterClass, monsterPic, spawnTiles, x, y, dir = direction, frameCount, chance = 0.3) { // 0.0 to less than 2.0 chance
     for (var i = 0; i < spawnTiles.length; i++) {
       if (isTileIndexAdjacentToPixelCoord(x, y, spawnTiles[ i ])) {
         // TODO: Find a better way to determine the chance?
         if (this.tickCount * 12 % 10 == 0 && Math.random() + Math.random() > 2.0 - chance) {
-          var monsterInstance = new monsterClass('Papyrus', monsterPic);
+          var monsterInstance = new monsterClass('Papyrus', monsterPic, frameCount);
           if (dir == "north") {
             y -= 2 * TILE_H;
           }
@@ -227,6 +227,7 @@ function warriorClass(whichPlayerPic) {
           }
           monsterInstance.reset(x, y);
           enemyList.push(monsterInstance);
+		  monsterInstance.initialize('Skeleton1', skeletonPic, frameCount);
           return;
         }
       }
