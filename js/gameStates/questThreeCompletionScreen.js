@@ -9,6 +9,7 @@ function questThreeCompletionScreenInput(whichKeyCode) {
     case ENTER:
       questThreeCompletionScreenActive = false;
 	  displayQ3 = false;
+	  OverlayFX.nightMode = true;
       break;
 
     default:

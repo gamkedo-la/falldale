@@ -571,6 +571,11 @@ function drawAll() {
       colorText(goblinsKilledInForest + " out of the 10 Goblins killed in the forest.", 10, 20, "red");
       colorText(orcsKilledInForest + " out of the 10 Orcs killed in the forest.", 10, 40, "red");
     }
+	if (redWarrior.questThreeActive) {
+      colorText(skeletonsKilledInGraveyardOneorTwo + " out of the 20 Skeletons killed in the forest.", 10, 20, "red");
+      colorText(zombiesKilledInGraveyardOneorTwo + " out of the 20 Zombies killed in the forest.", 10, 40, "red");
+    }
+	
     dialogManager.drawDialog();
 //        messageDraw();
     damageDraw();

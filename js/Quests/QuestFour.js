@@ -4,18 +4,19 @@ var skeletonsKilledInGraveyardOneorTwo = 0;
 var zombiesKilledInGraveyardOneorTwo = 0;
 
 
-function skeletonsKilledInGraveyardOneorTwo() {
-  if (redWarrior.questFourComplete == false) {
-    if (levelNow == 10 || levelNow == 11) { // located in Falldale
+function skeletonsKilledInGraveyard() {
+  if ( redWarrior.questFourActive == true) {
+    if (levelNow == 10 || levelNow == 11) { // located in Graveyard
       skeletonsKilledInGraveyardOneorTwo++;
       checkForQuestFourComplete();
     }
   }
 }
 
-function zombiesKilledInGraveyardOneorTwo() {
-  if (redWarrior.questFourComplete == false) {
-    if (levelNow == 10 || levelNow == 11) { // located in Falldale
+function zombiesKilledInGraveyard() {
+	console.log(levelNow)
+  if (redWarrior.questFourActive == true) {
+    if (levelNow == 10 || levelNow == 11) { // located in Graveyard
       zombiesKilledInGraveyardOneorTwo++;
       checkForQuestFourComplete();
     }
@@ -23,7 +24,7 @@ function zombiesKilledInGraveyardOneorTwo() {
 }
 
 function checkForQuestFourComplete() {
-  if (skeletonsKilledInGraveyardOneorTwo >= 15 && zombiesKilledInGraveyardOneorTwo >= 15) {
+  if (skeletonsKilledInGraveyardOneorTwo >= 20 && zombiesKilledInGraveyardOneorTwo >= 20) {
     redWarrior.questFourComplete = true;
     dialogManager.setDialogWithCountdown("I have van-quest all the zombies and skeletons from the graveyard!", 8);
     backgroundMusic.loopSong("have-a-nice-beer");
@@ -31,6 +32,7 @@ function checkForQuestFourComplete() {
     //levelList[ 10 ] = graveYard2;
     redWarrior.questFourActive = false;
     questFourCompletionScreenActive  = true;
+	OverlayFX.nightMode = false;
   }
 
 }

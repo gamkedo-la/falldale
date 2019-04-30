@@ -59,12 +59,12 @@ function warriorClass(whichPlayerPic) {
   this.armor = 10;
   this.healingPotion = 0;
   this.haveMap = false;
-  this.questOneActive = false; 
+  this.questOneActive = true; 
   this.delkonRewardOffer = false; 
   this.questOneComplete = false; 
   this.questTwoActive = false;   
   this.questTwoComplete = false; 
-  this.questThreeActive = true;
+  this.questThreeActive = false;
   this.questThreeComplete = false;
   this.questFourActive = false;
   this.questFourComplete = false;

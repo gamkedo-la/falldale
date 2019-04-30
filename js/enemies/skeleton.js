@@ -1,5 +1,6 @@
 const SKELETON_SPEED = 0.5;
 const SKELETON_TIME_BETWEEN_CHANGE_DIR = 600;
+var skeletonKilled = 0;
 
 skeletonClass.prototype = new enemyClass();
 
@@ -20,6 +21,7 @@ function skeletonClass() {
   this.shadowYOffset = 32;
   this.deadPic = deadSkeletonPic;
   this.health = 15;
+  this.alive = true;
 
   this.superClassInitialize = this.initialize;
   this.initialize = function (enemyName, enemyPic, numberOfFrames) {
@@ -49,17 +51,44 @@ function skeletonClass() {
       }
     }
   };
+  
+  this.distributeTreasure = function () {
+    // TODO: port back to enemyClass
+    var chanceOnTreasure = Math.round(Math.random() * 10);
+    if (chanceOnTreasure >= 9) {
+      console.log("Treasure Provided");
+      var randomTreasure = Math.round(Math.random() * 4);
+      switch (randomTreasure) {
+        case 1:
+          heartsList.push(new heartClass(1, this.x, this.y));
+          break;
+        case 2:
+          goldList.push(new goldClass(5, this.x, this.y));
+          break;
+        case 3:
+          healingPotionList.push(new healingPotionClass(1, this.x, this.y));
+          break;
+        case 4:
+          console.log("Provide Map");
+          if (redWarrior.haveMap == false) {
+            mapList.push(new mapClass(this.x, this.y));
+          } else {
+            goldList.push(new goldClass(5, this.x, this.y));
+          }
+          break;
+      }
+    }
+  };
 
   this.superClassTakeDamage = this.takeDamage;
   this.takeDamage = function (howMuch) {
     this.superClassTakeDamage(howMuch);
-    if (this.alive && this.treasureAvailable) {
+    if (!this.alive && this.treasureAvailable) {
       this.distributeTreasure();
       this.treasureAvailable = false;
+	  skeletonsKilledInGraveyard();
+	  skeletonKilled++;
     }
-	if (this.health <= 0){
-		skeletonsKilledInGraveyardOneorTwo();
-	}
   };
 
   this.superClassMove = this.move;
@@ -120,7 +149,6 @@ function skeletonClass() {
   this.superClassDraw = this.draw;
   this.draw = function () {
     this.superClassDraw();
-	console.log(this.health)
     if (!this.alive) {
       this.countFramesForDeadSkeleton();
       removeEnemy();
