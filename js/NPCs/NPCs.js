@@ -2,7 +2,6 @@ const NPC_SPEED = 0.5;
 
 npcClass.prototype = new enemyClass();
 
-// Kumar woz 'ere - test commit, will remove
 function npcClass(npcName, npcPic) {
   this.speed = NPC_SPEED;
   this.myNPCPic = npcPic; // which picture to use
