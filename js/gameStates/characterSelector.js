@@ -1,4 +1,17 @@
-var characters = [ 'warriorPic', 'Biggy', 'Smally', 'Teeny', 'Weeny' ];
+// TODO: add new characters here and in the `characters` array.
+var warrior = {
+  name : "Warrior",
+  sprites : warriorPic,
+  portrait: null,
+};
+
+var biggy = {
+  name : "Biggy",
+  sprites : biggyPic,
+  portrait: null,
+};
+
+var characters = [ warrior, biggy ]; 
 var characterSelectedIndex = 0;
 var characterSelected = characters[ characterSelectedIndex ];
 
@@ -11,7 +24,7 @@ function drawSelectorScreen() {
   // drawTextWithShadowCentered(gameKeeperFeedback, 0.40 * canvas.width, 50, "white", "35px sans-serif");
   colorText("Character Creation", 25, 50, "white");
   // colorText('Press "Up" and "Down" to Choose', 25, 70, "white");
-  colorText(characterSelected, 25, 90, "red");
+  colorText(characterSelected.name, 25, 90, "red");
   colorRect(310, 130, 40, 40, 'white');
   colorText('prev', 313, 155, "black");
   colorRect(310, 175, 40, 40, 'white');
@@ -79,8 +92,8 @@ function selectNextCharacter() {
 function selectCharacter(index){
   characterSelectedIndex = index;
   characterSelected = characters[ characterSelectedIndex ];
-  console.log(characterSelected);
-  // redWarrior.myWarriorPic = characterSelected; // TODO: set the character pic file name here
+  console.log(characterSelected.name);
+  redWarrior.myWarriorPic = characterSelected.sprites;
 }
 
 function launchGame() {
