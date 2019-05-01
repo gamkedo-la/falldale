@@ -563,7 +563,10 @@ function drawAll() {
       drawRooftops(eastWoodsRoofTops);
     } else if (levelNow == 5) {
       drawRooftops(eastMiddleWoodsRoofTops);
+	} else if (levelNow == 1) {
+      drawRooftops(wizardsRoofTops);
     }
+	
     drawParticles();
     canvasContext.restore();
     if (redWarrior.questOneActive) {

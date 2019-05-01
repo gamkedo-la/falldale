@@ -268,6 +268,9 @@ function loadImages() {
 	{ tileType: TILE_WIZARD_BW_RC_BS, theFile: "wizardsLayer/backwallrightsidefloor.png" },  
 	{ tileType: TILE_WIZARD_LW, theFile: "wizardsLayer/leftwall.png" }, 
 	{ tileType: TILE_WIZARD_RW, theFile: "wizardsLayer/rightwall.png" }, 
+	{ tileType: TILE_WIZARD_BOTTOM_W, theFile: "wizardsLayer/bottomwall.png" },
+	{ tileType: TILE_WIZARD_BOTTOM_L, theFile: "wizardsLayer/bottomleft.png" },
+	{ tileType: TILE_WIZARD_BOTTOM_R, theFile: "wizardsLayer/bottomright.png" },
 
     { varName: muteAudioPic, theFile: "muteAudio.png" },
     { varName: warriorPic, theFile: "warrior.png" },
