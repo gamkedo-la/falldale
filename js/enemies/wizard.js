@@ -1,13 +1,13 @@
-const DRUID_SPEED = 0.6;
+const WIZARD_SPEED = 0.6;
 
 
-druidClass.prototype = new enemyClass();
+wizardClass.prototype = new enemyClass();
 
-function druidClass() {
-  this.speed = DRUID_SPEED;
-  this.maxhealth = 200;
+function wizardClass() {
+  this.speed = WIZARD_SPEED;
+  this.maxhealth = 500;
   this.width = 50;
-  this.height = 100;
+  this.height = 90;
   this.ticksPerFrame = 5;
   this.shadowXOffset = 4;
   this.shadowYOffset = 54;
@@ -23,8 +23,8 @@ function druidClass() {
   this.superClassIsOverlappingPoint = this.isOverlappingPoint;
   this.isOverlappingPoint = function () {
     if (this.superClassIsOverlappingPoint()) {
-      dialogManager.setDialogWithCountdown("Ouch! I've been bitten by a Druid! That really hurts.", 5);
-//            dialog = "Ouch! I've been bitten by a Druid! That really hurts.";
+      dialogManager.setDialogWithCountdown("Ouch! I've been bitten by a Wizard! That really hurts.", 5);
+//            dialog = "Ouch! I've been bitten by a Wizard! That really hurts.";
       return true;
     }
     return false;

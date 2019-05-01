@@ -1,9 +1,28 @@
-var characters = [ 'warriorPic', 'Biggy', 'Smally', 'Teeny', 'Weeny' ];
-var characterSelectedIndex = 0;
-var characterSelected = characters[ characterSelectedIndex ];
+// TODO: add new characters here and in the `characters` array.
+var warrior = {
+  name : "Warrior",
+  sprites : warriorPic,
+  portrait: null,
+};
 
+var biggy = {
+  name : "Biggy",
+  sprites : biggyPic,
+  portrait: null,
+};
+
+var characters = [ warrior, biggy ]; 
+var characterSelectedIndex = 0;
+var characterSelected = null;
+var firstTimeCharacterSelection = true;
 
 function drawSelectorScreen() {
+
+  if(firstTimeCharacterSelection)
+  {
+    firstTimeCharacterSelection = false;
+    selectCharacter(0);
+  }
 
   canvasContext.save();
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
@@ -11,7 +30,7 @@ function drawSelectorScreen() {
   // drawTextWithShadowCentered(gameKeeperFeedback, 0.40 * canvas.width, 50, "white", "35px sans-serif");
   colorText("Character Creation", 25, 50, "white");
   // colorText('Press "Up" and "Down" to Choose', 25, 70, "white");
-  colorText(characterSelected, 25, 90, "red");
+  colorText(characterSelected.name, 25, 90, "red");
   colorRect(310, 130, 40, 40, 'white');
   colorText('prev', 313, 155, "black");
   colorRect(310, 175, 40, 40, 'white');
@@ -31,28 +50,13 @@ function characterSelectorScreenClick(evt) {
   console.log(differenceX, differenceY);
   if (310 <= differenceX && differenceX <= 350 && 130 <= differenceY && differenceY <= 170) {
     // clicked prev button
-    characterSelectedIndex--; // go to next item in array
-    if (characterSelectedIndex <= 0) {
-      characterSelectedIndex = characters.length - 1; // wrap around
-    }
-    characterSelected = characters[ characterSelectedIndex ];
-    redWarrior.myWarriorPic = characterSelected;
+    selectPreviousCharacter();
   } else if (310 <= differenceX && differenceX <= 350 && 175 <= differenceY && differenceY <= 215) {
     // clicked next button
-    characterSelectedIndex++; // go to next item in array
-    if (characterSelectedIndex >= characters.length) {
-      characterSelectedIndex = 0; // wrap around
-    }
-    characterSelected = characters[ characterSelectedIndex ];
-    console.log(characterSelected);
-    redWarrior.myWarriorPic = characterSelected;
-
+    selectNextCharacter();
   } else if (15 <= differenceX && differenceX <= 215 && 262 <= differenceY && differenceY <= 311) {
     if (ready) {
-      characterSelectionScreen = false;
-      scrollBackgroundScreen = true;
-
-      gameKeeperFeedback = "Have you chosen wisely?";
+      launchGame();
     }
   }
 
@@ -65,10 +69,7 @@ function characterSelectorScreenInput(whichKeyCode) {
   switch (whichKeyCode) {
     case ENTER:
       if (ready) {
-        characterSelectionScreen = false;
-        scrollBackgroundScreen = true;
-
-        gameKeeperFeedback = "Have you chosen wisely?";
+        launchGame();
       }
 
     default:
@@ -76,4 +77,35 @@ function characterSelectorScreenInput(whichKeyCode) {
       break;
   }
   dialogManager.setDialogWithCountdown(gameKeeperFeedback, 40);
+}
+
+function selectPreviousCharacter() {
+  var newIndex = characterSelectedIndex -1 ; // go to next item in array
+  if (newIndex < 0) {
+    newIndex = characters.length - 1; // wrap around
+  }
+  selectCharacter(newIndex);
+}
+
+function selectNextCharacter() {
+  var newIndex = characterSelectedIndex + 1;
+  if (newIndex >= characters.length) {
+    newIndex = 0; // wrap around
+  }
+  selectCharacter(newIndex);
+}
+
+function selectCharacter(index){
+  characterSelectedIndex = index;
+  characterSelected = characters[ characterSelectedIndex ];
+  console.log(characterSelected.name);
+  redWarrior.myWarriorPic = characterSelected.sprites;
+}
+
+function launchGame() {
+  loadLevel();
+  characterSelectionScreen = false;
+  scrollBackgroundScreen = true;
+
+  gameKeeperFeedback = "Have you chosen wisely?";
 }

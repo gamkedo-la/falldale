@@ -163,6 +163,14 @@ function keyPressed(evt) {
     questOneCompletionScreenInput(evt.keyCode);
   } else if (questTwoCompletionScreenActive) {
     questTwoCompletionScreenInput(evt.keyCode);
+  } else if (questThreeCompletionScreenActive) {
+    questThreeCompletionScreenInput(evt.keyCode);
+  } else if (questFourCompletionScreenActive) {
+    questFourCompletionScreenInput(evt.keyCode);
+  } else if (questFiveCompletionScreenActive) {
+    questFiveCompletionScreenInput(evt.keyCode);
+  } else if (questSixCompletionScreenActive) {
+    questSixCompletionScreenInput(evt.keyCode);
   } else {
     keySet(evt, redWarrior, true);
     if (evt.keyCode == redWarrior.controlKeySword) {

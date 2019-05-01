@@ -33,6 +33,10 @@ var isInShop = false;
 var isAtHealer = false;
 var questOneCompletionScreenActive = false;
 var questTwoCompletionScreenActive = false;
+var questThreeCompletionScreenActive = false;
+var questFourCompletionScreenActive = false;
+var questFiveCompletionScreenActive = false;
+var questSixCompletionScreenActive = false;
 var debugMode = false;
 var displayHealth = false;
 var tileEditor = false;
@@ -109,9 +113,8 @@ window.onload = function () {
 
   colorRect(0, 0, canvas.width, canvas.height, 'orange'); // startup page
   colorText("Loading Images... please wait", 400, 300, 'black');
-  loadImages();
-  canvas.addEventListener('mousedown', handleMouseClick);
-  backgroundMusic.loopSong("goblinRaid");
+  loadImages(); // Once images are loaded, imageLoadingDoneSoStartGame() is called to setup the rest.
+  
 };
 
 function imageLoadingDoneSoStartGame() {
@@ -126,7 +129,7 @@ function imageLoadingDoneSoStartGame() {
   } else {
     saveGame.loadData();
   }
-  loadLevel();
+  canvas.addEventListener('mousedown', handleMouseClick);  
   if (debugSkipToGame) {
     console.log("Debug Mode is on, skip directly to game");
   }
@@ -192,11 +195,8 @@ function loadLevel() {
         newEnemy = new batClass();
         newEnemy.initialize("bat", batPic, 4);
       } else if (roomGrid[ arrayIndex ] == TILE_SKELETON) {
-        newEnemy = new skeletonClass('Skeleton1', skeletonPic, 4);
-      } else if (roomGrid[ arrayIndex ] == TILE_SKELETON) {
-        newEnemy = new skeletonClass('Skeleton2', skeletonPic2, 6);
-      } else if (roomGrid[ arrayIndex ] == TILE_SKELETON) {
-        newEnemy = new skeletonClass('Skeleton3', skeletonPic3, 6);
+        newEnemy = new skeletonClass();
+		newEnemy.initialize('Skeleton1', skeletonPic, 6);
       } else if (roomGrid[ arrayIndex ] == TILE_ZOMBIE) {
         newEnemy = new zombieClass();
         newEnemy.initialize('Zombie', zombiePic, 4);
@@ -227,6 +227,9 @@ function loadLevel() {
       } else if (roomGrid[ arrayIndex ] == TILE_DRUID) {
         newEnemy = new druidClass();
         newEnemy.initialize('Druid', druidPic, 1);
+	      } else if (roomGrid[ arrayIndex ] == TILE_WIZARD) {
+        newEnemy = new wizardClass();
+        newEnemy.initialize('Wizard', wizardPic, 1);
       } else if (roomGrid[ arrayIndex ] == TILE_ORCBOSS) {
         newEnemy = new orcBossClass();
         newEnemy.initialize('Orc Boss', orcBossPic, 8);
@@ -531,6 +534,14 @@ function drawAll() {
     drawQuestOneCompletionScreen();
   } else if (questTwoCompletionScreenActive) {
     drawQuestTwoCompletionScreen();
+  } else if (questThreeCompletionScreenActive) {
+    drawQuestThreeCompletionScreen();
+  } else if (questFourCompletionScreenActive) {
+    drawQuestFourCompletionScreen();
+  } else if (questFiveCompletionScreenActive) {
+    drawQuestFiveCompletionScreen();
+  } else if (questSixCompletionScreenActive) {
+    drawQuestSixCompletionScreen();
   } else {
     colorRect(0, 0, canvas.width, canvas.height, "#008000"); // fill areas not covered by room on wide displays
     canvasContext.save();
@@ -552,7 +563,10 @@ function drawAll() {
       drawRooftops(eastWoodsRoofTops);
     } else if (levelNow == 5) {
       drawRooftops(eastMiddleWoodsRoofTops);
+	} else if (levelNow == 1) {
+      drawRooftops(wizardsRoofTops);
     }
+	
     drawParticles();
     canvasContext.restore();
     if (redWarrior.questOneActive) {
@@ -562,7 +576,11 @@ function drawAll() {
       colorText(goblinsKilledInForest + " out of the 10 Goblins killed in the forest.", 10, 20, "red");
       colorText(orcsKilledInForest + " out of the 10 Orcs killed in the forest.", 10, 40, "red");
     }
-    health();
+	if (redWarrior.questThreeActive) {
+      colorText(skeletonsKilledInGraveyardOneorTwo + " out of the 20 Skeletons killed in the forest.", 10, 20, "red");
+      colorText(zombiesKilledInGraveyardOneorTwo + " out of the 20 Zombies killed in the forest.", 10, 40, "red");
+    }
+	
     dialogManager.drawDialog();
 //        messageDraw();
     damageDraw();

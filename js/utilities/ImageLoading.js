@@ -43,6 +43,9 @@ var bullywugPic = document.createElement("img");
 
 var druidPic = document.createElement("img");
 var orcBossPic = document.createElement("img");
+var deadOrcBossPic = document.createElement("img");
+
+var wizardPic = document.createElement("img");
 
 var addyPic = document.createElement("img");
 var delkonPic = document.createElement("img");
@@ -257,6 +260,17 @@ function loadImages() {
     { tileType: TILE_ORC_HOUSE_LS, theFile: "orcHuts/OrcLayerLWall.png" },
     { tileType: TILE_ORC_HOUSE_RS, theFile: "orcHuts/OrcLayerRWall.png" },
     { tileType: TILE_ORC_HOUSE_WINDOW, theFile: "orcHuts/OrcLayerWindow.png" },
+    { tileType: TILE_WIZARD_BW_TS, theFile: "wizardsLayer/backwallcolumn.png" },
+	{ tileType: TILE_WIZARD_BW_BS, theFile: "wizardsLayer/backwallfloor.png" }, 
+	{ tileType: TILE_WIZARD_BW_LC_TS, theFile: "wizardsLayer/backwallleftide.png" }, 
+	{ tileType: TILE_WIZARD_BW_LC_BS, theFile: "wizardsLayer/backwallleftsidefloor.png" }, 
+	{ tileType: TILE_WIZARD_BW_RC_TS, theFile: "wizardsLayer/backwallrightside.png" }, 
+	{ tileType: TILE_WIZARD_BW_RC_BS, theFile: "wizardsLayer/backwallrightsidefloor.png" },  
+	{ tileType: TILE_WIZARD_LW, theFile: "wizardsLayer/leftwall.png" }, 
+	{ tileType: TILE_WIZARD_RW, theFile: "wizardsLayer/rightwall.png" }, 
+	{ tileType: TILE_WIZARD_BOTTOM_W, theFile: "wizardsLayer/bottomwall.png" },
+	{ tileType: TILE_WIZARD_BOTTOM_L, theFile: "wizardsLayer/bottomleft.png" },
+	{ tileType: TILE_WIZARD_BOTTOM_R, theFile: "wizardsLayer/bottomright.png" },
 
     { varName: muteAudioPic, theFile: "muteAudio.png" },
     { varName: warriorPic, theFile: "warrior.png" },
@@ -283,8 +297,10 @@ function loadImages() {
     { varName: orcPic2, theFile: "Monsters/Orc1.png" }, // i've stubbed these last two until they are animated - SD
     { varName: orcPic3, theFile: "Monsters/Orc1.png" },
     { varName: orcBossPic, theFile: "Monsters/OrcChief.png" },
+	{ varName: deadOrcBossPic, theFile: "Monsters/deadGoblin.png" },  //placeholder.  Need a dead Orc Boss Pic
     { varName: druidPic, theFile: "Monsters/druid.png" },
-    { varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png" },
+    { varName: wizardPic, theFile: "Monsters/wizard.png" },
+	{ varName: deadGoblinPic, theFile: "Monsters/deadGoblin.png" },
     { varName: bullywugPic, theFile: "Monsters/Bullywug.png" },
     { varName: archerPic, theFile: "Monsters/archer.png" },
     { varName: archerPic2, theFile: "Monsters/archer2.png" },
@@ -294,7 +310,7 @@ function loadImages() {
     { varName: healerStorePic, theFile: "healerStore.jpg" },
     { varName: dicePic, theFile: "dice.png" },
     { varName: twentySidedDicePic, theFile: "20sided.png" },
-    { varName: scrollBackgroundPic, theFile: "scrollBackground.jpg" },
+    { varName: scrollBackgroundPic, theFile: "scrollBackground.png" },
     { varName: titlepagePic, theFile: "background.png" },
     { varName: shadowPic, theFile: "shadow.png" },
     { varName: shinyPic, theFile: "shiny.png" },

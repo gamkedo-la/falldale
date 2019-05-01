@@ -1,5 +1,6 @@
 const ZOMBIE_SPEED = 1.3; // 0.3;
 const ZOMBIE_TIME_BETWEEN_CHANGE_DIR = 100;
+var zombieKilled = 0;
 
 zombieClass.prototype = new enemyClass();
 
@@ -17,6 +18,7 @@ function zombieClass() {
   this.shadowXOffset = 20;
   this.shadowYOffset = 32;
   this.myMelee = new biteClass();
+  this.treasureAvailable = true;
 
   this.superClassInitialize = this.initialize;
   this.initialize = function (enemyName, enemyPic) {
@@ -29,6 +31,17 @@ function zombieClass() {
   this.reset = function (resetX, resetY) {
     this.superClassReset(resetX, resetY);
     this.timeBetweenChangeDir = Math.floor(Math.random() * 700) + 101;//set minimum time to 101 => avoid tazmanian zombie
+  };
+  
+  this.superClassTakeDamage = this.takeDamage;
+  this.takeDamage = function (howMuch) {
+    this.superClassTakeDamage(howMuch);
+    if (!this.alive && this.treasureAvailable) {
+      this.distributeTreasure();
+      this.treasureAvailable = false;
+      zombieKilled++;
+      zombiesKilledInGraveyard();
+    }
   };
 
   this.superClassIsOverlappingPoint = this.isOverlappingPoint;
