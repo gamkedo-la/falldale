@@ -49,10 +49,7 @@ function characterSelectorScreenClick(evt) {
 
   } else if (15 <= differenceX && differenceX <= 215 && 262 <= differenceY && differenceY <= 311) {
     if (ready) {
-      characterSelectionScreen = false;
-      scrollBackgroundScreen = true;
-
-      gameKeeperFeedback = "Have you chosen wisely?";
+      launchGame();
     }
   }
 
@@ -65,10 +62,7 @@ function characterSelectorScreenInput(whichKeyCode) {
   switch (whichKeyCode) {
     case ENTER:
       if (ready) {
-        characterSelectionScreen = false;
-        scrollBackgroundScreen = true;
-
-        gameKeeperFeedback = "Have you chosen wisely?";
+        launchGame();
       }
 
     default:
@@ -76,4 +70,12 @@ function characterSelectorScreenInput(whichKeyCode) {
       break;
   }
   dialogManager.setDialogWithCountdown(gameKeeperFeedback, 40);
+}
+
+function launchGame() {
+  loadLevel();
+  characterSelectionScreen = false;
+  scrollBackgroundScreen = true;
+
+  gameKeeperFeedback = "Have you chosen wisely?";
 }

@@ -113,9 +113,8 @@ window.onload = function () {
 
   colorRect(0, 0, canvas.width, canvas.height, 'orange'); // startup page
   colorText("Loading Images... please wait", 400, 300, 'black');
-  loadImages();
-  canvas.addEventListener('mousedown', handleMouseClick);
-  backgroundMusic.loopSong("goblinRaid");
+  loadImages(); // Once images are loaded, imageLoadingDoneSoStartGame() is called to setup the rest.
+  
 };
 
 function imageLoadingDoneSoStartGame() {
@@ -130,7 +129,7 @@ function imageLoadingDoneSoStartGame() {
   } else {
     saveGame.loadData();
   }
-  loadLevel();
+  canvas.addEventListener('mousedown', handleMouseClick);  
   if (debugSkipToGame) {
     console.log("Debug Mode is on, skip directly to game");
   }
