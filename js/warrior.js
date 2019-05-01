@@ -279,7 +279,7 @@ function warriorClass(whichPlayerPic) {
     }
 
     if (thisEnemy.isOverlappingPoint(this.centerX, this.centerY)) {
-      //empty
+      // thisEnemy.interractWithPlayer(); // TODO: once all isOverlappingPoint are refactored to return true/false AND not react directly
     }
 
     if (this.mySword.hitTest(this, thisEnemy)) {

@@ -31,6 +31,7 @@ var characterCreationScreen = false;
 var characterSelectionScreen = false;
 var isInShop = false;
 var isAtHealer = false;
+var lastShopScreenTime = new Date().getTime();
 var questOneCompletionScreenActive = false;
 var questTwoCompletionScreenActive = false;
 var questThreeCompletionScreenActive = false;

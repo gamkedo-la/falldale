@@ -54,5 +54,6 @@ function shopInput(whichKeyCode) {
       break;
   }
   isInShop = false;
+  lastShopScreenTime = new Date().getTime();
   dialogManager.setDialogWithCountdown(shopKeeperFeedback, 3);
 }

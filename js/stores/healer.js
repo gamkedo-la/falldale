@@ -57,7 +57,8 @@ function healerInput(whichKeyCode) {
       shopKeeperFeedback = "Healer:  Please come again.";
       break;
   }
-  console.log("worked");
+  console.log("healer interraction done");
   isAtHealer = false;
+  lastShopScreenTime = new Date().getTime();
   dialogManager.setDialogWithCountdown(shopKeeperFeedback, 3);
 }

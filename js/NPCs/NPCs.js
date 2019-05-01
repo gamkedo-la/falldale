@@ -1,4 +1,5 @@
 const NPC_SPEED = 0.5;
+const NPC_INTERACTION_DELAY = 1.0;
 
 npcClass.prototype = new enemyClass();
 
@@ -52,11 +53,24 @@ function npcClass(npcName, npcPic) {
   var meowcount = 0;
 
   this.isOverlappingPoint = function (testX, testY) { // textX is redWarrior.x and testY is redWarrior.y
+
+    if (this.x < testX && (this.x + this.width) > testX && this.y < testY && (this.y + this.height) > testY)
+    {
+      this.interractWithPlayer();
+    }
+  };
+
+  this.interractWithPlayer = function () {
+
+    var nextInterractionTime = lastShopScreenTime + (NPC_INTERACTION_DELAY * 1000.0);
+    var now = new Date().getTime();
+    if(now < nextInterractionTime)
+      return;
+    
     var dialogcount = 0;
     //test if redWarrior is inside box of NPC
     let NPCDialog = "";
-
-    if (this.x < testX && (this.x + this.width) > testX && this.y < testY && (this.y + this.height) > testY) {
+    {
       if (this.myName == "Addy") {
         humanMaleHello.play();
         if (redWarrior.questOneCompleteActive) {
@@ -193,7 +207,7 @@ function npcClass(npcName, npcPic) {
     if (NPCDialog != "") {
       dialogManager.setDialogWithCountdown(NPCDialog, 5);
     }
-  };
+  }
 
   this.draw = function () {
 
