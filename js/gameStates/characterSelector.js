@@ -80,7 +80,7 @@ function selectCharacter(index){
   characterSelectedIndex = index;
   characterSelected = characters[ characterSelectedIndex ];
   console.log(characterSelected);
-  redWarrior.myWarriorPic = characterSelected;
+  // redWarrior.myWarriorPic = characterSelected; // TODO: set the character pic file name here
 }
 
 function launchGame() {
