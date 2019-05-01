@@ -2,12 +2,18 @@
 var warrior = {
   name : "Warrior",
   sprites : warriorPic,
+  sprite_width : 40,
+  sprite_height : 50,
+  sprite_frames : 4,
   portrait: null,
 };
 
 var biggy = {
   name : "Biggy",
   sprites : biggyPic,
+  sprite_width : 50,
+  sprite_height : 50,
+  sprite_frames : 6,
   portrait: null,
 };
 
@@ -100,6 +106,9 @@ function selectCharacter(index){
   characterSelected = characters[ characterSelectedIndex ];
   console.log(characterSelected.name);
   redWarrior.myWarriorPic = characterSelected.sprites;
+  redWarrior.width = characterSelected.sprite_width;
+  redWarrior.height = characterSelected.sprite_height;
+  redWarrior.numberOfFrames = characterSelected.sprite_frames;
 }
 
 function launchGame() {
