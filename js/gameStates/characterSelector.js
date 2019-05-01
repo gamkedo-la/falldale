@@ -13,10 +13,16 @@ var biggy = {
 
 var characters = [ warrior, biggy ]; 
 var characterSelectedIndex = 0;
-var characterSelected = characters[ characterSelectedIndex ];
-
+var characterSelected = null;
+var firstTimeCharacterSelection = true;
 
 function drawSelectorScreen() {
+
+  if(firstTimeCharacterSelection)
+  {
+    firstTimeCharacterSelection = false;
+    selectCharacter(0);
+  }
 
   canvasContext.save();
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);

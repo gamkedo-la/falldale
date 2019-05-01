@@ -27,7 +27,7 @@ function warriorClass(whichPlayerPic) {
   this.speed = PLAYER_SPEED;
   this.isFrozen = false;
   this.isEnemyCollision = false;
-  this.myWarriorPic = biggyPic; // which picture to use
+  this.myWarriorPic = null; // which picture to use
   this.name = "Untitled warrior";
   this.keysHeld = 0;
   this.woodAx = 0;
