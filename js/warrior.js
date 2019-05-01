@@ -489,16 +489,16 @@ function warriorClass(whichPlayerPic) {
   };
 
   this.loadNewLevelIfAtEdge = function (tileC, tileR) {
-    if (tileC <= 0) {
+    if (tileC <= 0 && (levelCol-1) >= 0) {
       console.log("Touching left edge of map");
       levelCol--;
       console.log("this.x before is " + this.x);
       this.x = (ROOM_COLS - 3) * TILE_W;
       loadLevel();
-      return true;
+      return true;          
     }
 
-    if (tileR <= 0) {
+    if (tileR <= 0 && (levelRow - 1) >= 0) {
       console.log("Touching top edge of map");
       levelRow--;
       this.y = (ROOM_ROWS - 3) * TILE_H;
@@ -506,7 +506,7 @@ function warriorClass(whichPlayerPic) {
       return true;
     }
 
-    if (tileC >= ROOM_COLS - 1) {
+    if (tileC >= ROOM_COLS - 1 && levelCol < MAP_WIDTH) {
       console.log("Touching right edge of map");
       levelCol++;
       this.x = TILE_W;
@@ -514,7 +514,7 @@ function warriorClass(whichPlayerPic) {
       return true;
     }
 
-    if (tileR >= ROOM_ROWS - 1) {
+    if (tileR >= ROOM_ROWS - 1 && levelRow < MAP_WIDTH) {
       console.log("Touching bottom edge of map");
       levelRow++;
       this.y = TILE_H;

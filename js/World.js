@@ -806,8 +806,8 @@ var allGrass =   [ 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 1
 
 var levelList = [orcKingforest, wizardsLayer, 	eastNorthWoods,  // 0, 1, 2
 				upperForest, 	middleWoods, 	eastMiddleWoods, // 3, 4, 5
-				forest, 		fallDale, 		eastWoods, // 6, 7, 8
-				druidsGroove, 	graveYard, 		oldGraveYard]; // 9, 10, 11
+				forest, 		fallDale, 		eastWoods, 	     // 6, 7, 8
+				druidsGroove, 	graveYard, 		oldGraveYard];   // 9, 10, 11
 var levelRow = 2;
 var levelCol = 1;
 var levelNow = 0;  // 0 is invalid, will be using recalulateLevelNow() to initialize elsewhere
@@ -1072,7 +1072,7 @@ var RANGED_NO_COLLIDE = [TILE_SKELETON, TILE_GOBLIN, TILE_BAT, TILE_ZOMBIE, TILE
  TILE_WATER_MINIMAP, TILE_ROAD_MINIMAP, TILE_GRASS_MINIMAP, TILE_BLOCKED_MINIMAP];
 
 function recalulateLevelNow() {
-	levelNow = MAP_WIDTH * levelRow + levelCol;
+	levelNow = (MAP_WIDTH * levelRow) + levelCol;
 	return levelNow;
 }
 
