@@ -20,14 +20,20 @@ function SoundOverlapsClass(filenameWithPath) {
   var altSoundTurn = false;
 
   this.play = function () {
+  
     if (altSoundTurn) {
       altSound.currentTime = 0;
-      altSound.play();
+      altSound.play().catch(function(error){
+        console.log("Warning: failed to play sound: " + error);
+      });;
     } else {
       mainSound.currentTime = 0;
-      mainSound.play();
+      mainSound.play().catch(function(error){
+        console.log("Warning: failed to play sound: " + error);
+      });;
     }
     altSoundTurn = !this.altSoundTurn;
+  
   };
 
   this.startOrStopSFX = function () {
@@ -47,20 +53,26 @@ function BackgroundMusicClass() {
 
   this.loopSong = function (filenameWithPath) {
     setFormat();
-
-    if (musicSound != null) {
-      musicSound.pause();
-      musicSound = null;
-    }
-    musicSound = new Audio("sound/" + filenameWithPath + audioFormat);
-    musicSound.loop = true;
-    musicSound.play();
-    muteAudio = false;
+    
+      if (musicSound != null) {
+        musicSound.pause();
+        musicSound = null;
+      }
+      musicSound = new Audio("sound/" + filenameWithPath + audioFormat);
+      musicSound.loop = true;
+      musicSound.play().catch(function(error){
+        console.log("Warning: failed to play background music: " + error);
+      });
+      muteAudio = false;
+    
+    
   };
 
-  this.startOrStopMusic = function () {
+  this.startOrStopMusic = function () {  
     if (musicSound.paused) {
-      musicSound.play();
+      musicSound.play().catch(function(error){
+        console.log("Warning: failed to play background music: " + error);
+      });
     } else {
       musicSound.pause();
       muteAudio = true;
