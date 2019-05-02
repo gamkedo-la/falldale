@@ -17,7 +17,19 @@ var biggy = {
   portrait: null,
 };
 
-var characters = [ warrior, biggy ]; 
+var smally = {
+  name : "Smally",
+  sprites : smallyPic,
+  sprite_width : 50,
+  sprite_height : 50,
+  sprite_frames : 6,
+  portrait: null,
+	
+}
+
+
+
+var characters = [ warrior, biggy, smally ]; 
 var characterSelectedIndex = 0;
 var characterSelected = null;
 var firstTimeCharacterSelection = true;
