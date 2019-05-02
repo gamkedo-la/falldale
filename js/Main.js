@@ -131,6 +131,7 @@ function imageLoadingDoneSoStartGame() {
     saveGame.loadData();
   }
   canvas.addEventListener('mousedown', handleMouseClick);  
+  backgroundMusic.loopSong("mainMenu");
   if (debugSkipToGame) {
     console.log("Debug Mode is on, skip directly to game");
   }

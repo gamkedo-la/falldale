@@ -236,6 +236,7 @@ function handleMouseClick(evt) {
   if (menuScreen) {
     menuScreen = false;
     characterCreationScreen = true;
+    backgroundMusic.loopSong("mainMenu");
   } else if (characterCreationScreen) {
     characterCreationScreenClick(evt);
   } else if (characterSelectionScreen) {
