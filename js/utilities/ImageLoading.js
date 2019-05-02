@@ -8,8 +8,8 @@ var muteAudioPic = document.createElement("img");
 var warriorPic = document.createElement("img");
 var biggyPic = document.createElement("img");
 var smallyPic = document.createElement("img");
-//var teenyPic = document.createElement("img");
-//var weenyPic = document.createElement("img");
+var teenyPic = document.createElement("img");
+var weenyPic = document.createElement("img");
 var swordPic = document.createElement("img");
 var clubPic = document.createElement("img");
 var bitePic = document.createElement("img");
@@ -279,6 +279,7 @@ function loadImages() {
     { varName: muteAudioPic, theFile: "muteAudio.png" },
     { varName: warriorPic, theFile: "warrior.png" },
     { varName: biggyPic, theFile: "Sprites/player/BIggy/biggy.png" },
+	{ varName: teenyPic, theFile: "Sprites/player/Teeny/teeny.png" },
     { varName: smallyPic, theFile: "Sprites/player/smally/smally.png" },
     { varName: swordPic, theFile: "Weapons/basicSword.png" },
     { varName: magicSwordPic, theFile: "Weapons/magicSword.png" },
