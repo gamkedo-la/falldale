@@ -127,7 +127,6 @@ function loadImages() {
     { tileType: TILE_GREEN_KEY, theFile: "keyedDoorsandKeys/greenKey.png" },
     { tileType: TILE_BLUE_KEY, theFile: "keyedDoorsandKeys/blueKey.png" },
     { tileType: TILE_RED_KEY, theFile: "keyedDoorsandKeys/redKey.png" },
-    { tileType: TILE_WALL, theFile: "wallEast.png" },
     { tileType: TILE_YELLOW_DOOR, theFile: "keyedDoorsandKeys/yellowDoor.png" },
     { tileType: TILE_BLUE_DOOR, theFile: "keyedDoorsandKeys/blueDoor.png" },
     { tileType: TILE_GREEN_DOOR, theFile: "keyedDoorsandKeys/greenDoor.png" },
