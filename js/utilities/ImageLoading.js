@@ -280,6 +280,7 @@ function loadImages() {
     { varName: warriorPic, theFile: "warrior.png" },
     { varName: biggyPic, theFile: "Sprites/player/BIggy/biggy.png" },
 	{ varName: teenyPic, theFile: "Sprites/player/Teeny/teeny.png" },
+	{ varName: weenyPic, theFile: "Sprites/player/Weeny/weeny.png" },
     { varName: smallyPic, theFile: "Sprites/player/smally/smally.png" },
     { varName: swordPic, theFile: "Weapons/basicSword.png" },
     { varName: magicSwordPic, theFile: "Weapons/magicSword.png" },

@@ -37,7 +37,17 @@ var teeny = {
 	
 }
 
-var characters = [ warrior, biggy, smally, teeny ]; 
+var weeny = {
+  name : "Weeny",
+  sprites : weenyPic,
+  sprite_width : 50,
+  sprite_height : 50,
+  sprite_frames : 6,
+  portrait: null,
+	
+}
+
+var characters = [ warrior, biggy, smally, teeny, weeny ]; 
 var characterSelectedIndex = 0;
 var characterSelected = null;
 var firstTimeCharacterSelection = true;
