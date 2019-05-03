@@ -136,7 +136,6 @@ function loadImages() {
     { tileType: TILE_BLUE_DOOR, theFile: "keyedDoorsandKeys/blueDoor.png" },
     { tileType: TILE_GREEN_DOOR, theFile: "keyedDoorsandKeys/greenDoor.png" },
     { tileType: TILE_RED_DOOR, theFile: "keyedDoorsandKeys/redDoor.png" },
-    { tileType: TILE_FOREST_PORTAL, theFile: "world_goal.png" },
     { tileType: TILE_SPIKES, theFile: "spikes.png" },
     { tileType: TILE_SPIKES_BLOODY, theFile: "spikesBloody.png" },
     { tileType: TILE_GRASS, theFile: "grass.png" },
