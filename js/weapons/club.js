@@ -101,7 +101,7 @@ function clubClass() {
     } else if (wielder.direction == "west") {
       clubWidth = 40;
       clubLength = 10;
-      clubXLocation = wielder.x - clubWidth + 30;
+      clubXLocation = wielder.x - clubWidth + 10;
       clubYLocation = centerY;
       rotation = -Math.PI / 2;
     } else if (wielder.direction == "east") {
