@@ -143,8 +143,11 @@ function imageLoadingDoneSoStartGame() {
 function backgroundMusicSelect() {
   var musicLevel = levelNow;
   switch (musicLevel) {
-    case 1:
+    case 0:
       backgroundMusic.loopSong("woodsbgm");
+      break;
+    case 1:
+      backgroundMusic.loopSong("wizard-tower");
       break;
     case 2:
       backgroundMusic.loopSong("woodsbgm");
