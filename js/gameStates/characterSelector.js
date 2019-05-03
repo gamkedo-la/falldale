@@ -72,7 +72,10 @@ function drawSelectorScreen() {
   colorRect(310, 175, 40, 40, 'white');
   colorText('next', 313, 200, "black");
   colorText('Click next or prev to select character', 60, 230, "white");
-
+  if(characterSelected.portrait)
+  {
+    canvasContext.drawImage(characterSelected.portrait, 100, 100, 100, 100);
+  }
   colorRect(15, 260, 200, 50, 'blue');
   colorText("Continue >>", 30, 290, "white");
   canvasContext.restore();
