@@ -118,7 +118,8 @@ function npcClass(npcName, npcPic) {
         } else if (redWarrior.questTwoComplete) {
           NPCDialog = "Addy:  The Shop Keeper has a present for you."
         }
-      } else if (this.myName == "Princess") {
+      } else if (this.myName == "Princess Pauline") {
+		princesHello.play();
         if (redWarrior.questOneCompleteActive) {
           NPCDialog = "Princess:  My town is being destroyed by these horrible Goblins.  Please do something!";
         } else if (redWarrior.questOneComplete && redWarrior.questTwoActive == false) {

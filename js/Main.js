@@ -76,6 +76,7 @@ var humanMaleWelcome = new SoundOverlapsClass("humanMaleWelcome");
 var humanMaleGoodAfternoon = new SoundOverlapsClass("humanMaleGoodAfternoon");
 var humanFemaleHello = new SoundOverlapsClass("humanFemaleHello");
 var humanFemaleHi = new SoundOverlapsClass("humanFemaleHi");
+var princesHello = new SoundOverlapsClass("PrincessPauline");
 var shutDoor = new SoundOverlapsClass("closeDoor");
 
 const DIALOG_BOX_HEIGHT = 50;
@@ -254,7 +255,7 @@ function loadLevel() {
       } else if (roomGrid[ arrayIndex ] == TILE_HEALER) {   // NPC
         newEnemy = new npcClass('Healer', healerPic);
       } else if (roomGrid[ arrayIndex ] == TILE_PRINCESS) {   // NPC
-        newEnemy = new npcClass('Princess', princessPic);
+        newEnemy = new npcClass('Princess Pauline', princessPic);
       } else if (roomGrid[ arrayIndex ] == TILE_SHOPKEEPER) {   // NPC
         newEnemy = new npcClass('Shop Keeper', shopkeeperPic);
       } else if (roomGrid[ arrayIndex ] == TILE_ARYA) {   // NPC
