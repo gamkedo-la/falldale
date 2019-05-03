@@ -9,6 +9,7 @@ var warriorPic = document.createElement("img");
 var biggyPic = document.createElement("img");
 var smallyPic = document.createElement("img");
 var teenyPic = document.createElement("img");
+var weeyProfilePic = document.createElement("img");
 var weenyPic = document.createElement("img");
 var swordPic = document.createElement("img");
 var clubPic = document.createElement("img");
@@ -280,6 +281,7 @@ function loadImages() {
     { varName: warriorPic, theFile: "warrior.png" },
     { varName: biggyPic, theFile: "Sprites/player/BIggy/biggy.png" },
 	{ varName: teenyPic, theFile: "Sprites/player/Teeny/teeny.png" },
+	{ varName: weeyProfilePic, theFile: "Sprites/player/Weeny/weenyProfile.png" },
 	{ varName: weenyPic, theFile: "Sprites/player/Weeny/Weeny.png" },
     { varName: smallyPic, theFile: "Sprites/player/smally/smally.png" },
     { varName: swordPic, theFile: "Weapons/basicSword.png" },

@@ -43,7 +43,7 @@ var weeny = {
   sprite_width : 50,
   sprite_height : 50,
   sprite_frames : 6,
-  portrait: null,
+  portrait: weeyProfilePic,
 	
 }
 
