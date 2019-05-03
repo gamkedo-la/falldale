@@ -8,6 +8,7 @@ var muteAudioPic = document.createElement("img");
 var warriorPic = document.createElement("img");
 var biggyPic = document.createElement("img");
 var smallyPic = document.createElement("img");
+var smallyProfilePic = document.createElement("img");
 var teenyPic = document.createElement("img");
 var weeyProfilePic = document.createElement("img");
 var weenyPic = document.createElement("img");
@@ -284,6 +285,7 @@ function loadImages() {
 	{ varName: weeyProfilePic, theFile: "Sprites/player/Weeny/weenyProfile.png" },
 	{ varName: weenyPic, theFile: "Sprites/player/Weeny/Weeny.png" },
     { varName: smallyPic, theFile: "Sprites/player/smally/smally.png" },
+    { varName: smallyProfilePic, theFile: "Sprites/player/smally/smally-portrait.png" },
     { varName: swordPic, theFile: "Weapons/basicSword.png" },
     { varName: magicSwordPic, theFile: "Weapons/magicSword.png" },
     { varName: clubPic, theFile: "Weapons/club.png" },
