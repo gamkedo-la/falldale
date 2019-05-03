@@ -50,8 +50,18 @@ function SoundOverlapsClass(filenameWithPath) {
 function BackgroundMusicClass() {
 
   var musicSound = null;
+  var currentFile = null;
 
   this.loopSong = function (filenameWithPath) {
+    if(currentFile == filenameWithPath)
+    {
+      if(!musicSound.paused)
+      {
+        return;
+      }
+    }
+    
+    currentFile = filenameWithPath;
     setFormat();
     
       if (musicSound != null) {

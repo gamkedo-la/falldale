@@ -244,7 +244,7 @@ function handleMouseClick(evt) {
     {
       menuScreen = true;
       shownCreditsYet = true;
-      //backgroundMusic.loopSong("mainMenu");    
+      backgroundMusic.loopSong("mainMenu");
     }    
   } else if (characterCreationScreen) {
     characterCreationScreenClick(evt);
