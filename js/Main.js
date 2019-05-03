@@ -26,6 +26,7 @@ var scrollBackgroundScreen = true;
 // Game States //
 
 var menuScreen = true;
+var shownCreditsYet = false;
 var scrollBackground = false;
 var characterCreationScreen = false;
 var characterSelectionScreen = false;
@@ -419,13 +420,14 @@ function drawMenuScreen() {
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(titlepagePic, 0, 0); // blanks out the screen
   colorRect(150, 225, 250, 315, "midnightblue");
-  canvasContext.font = "30px Georgia";
-  colorText("Falldale", 120, 100, "white");
+  canvasContext.fillStyle = "white";
+  canvasContext.font = "45px Georgia";
+  canvasContext.fillText("Falldale", 180, 200);
   canvasContext.font = "20px Georgia";
   colorText("", 170, 150, "white");
   colorText("", 170, 200, "white");
   colorText("", 170, 225, "white");
-  colorText("Click to start to begin", 170, 255, "white");
+  colorText("Click anywhere to play", 170, 255, "white");
   canvasContext.font = "15px Georgia";
   colorText("Move Left - Left Arrow", 170, 300, "white");
   colorText("Move Down - Down Arrow", 170, 325, "white");
@@ -438,6 +440,57 @@ function drawMenuScreen() {
   colorText("Show Inventory - I", 170, 500, "white");
   colorText("Show Stats - O", 170, 525, "white");
   canvasContext.restore();
+}
+
+function drawCredits() {
+    var creditsArray = [
+        
+        "Click once more anywhere to begin the game!",
+        "",
+"Falldale is brought to you by the following members of Gamkedo Club...",
+        "",
+"Vince McKeown: Project lead, core gameplay and initial functionality, leveling, level and quest design, many sprites (including healer, princess,",
+        "    villagers, goblin, NPCs, non-chief orcs, zombies, skeletons, druid boss, bullywug), blacksmith shop, trees, editor, pause support, mausoleums,",
+        "    fireballs, treasure, quest dialog writing, NPC voices, assorted sounds",
+"Christer \"McFunkypants\" Kaitila: game scaling, gamead support, shadows,rays of light, shine effect, rooftop mouse peek feature, editor ",
+        "    improvements, bridge, cat, night mode, minimap, optimization, decoration tiles, footprints, water effect",
+"Steve Driscoll: Archer sprite and integration, goblin club tuning, initial bite support, door functionality and audio, improved word collision test,","    diagonal movement support, player-monster collisions, assorted bug fixes",
+"H Trayford: AI path finding, dialog manager, screen culling optimization, organization of weapon code (swords, rocks, arrows, clubs, biting, magic",
+        "    sword), zombie movement tweaks, tile, transparency support, additional input for character selection screen, assorted bug fixes",
+"Gonzalo Delgado: Orc chief art and animations, house art (door, window,and walls), file case issue fix, missing tile error handling, shoe attack","    prototype, ranged weapon improvements, Firefox compatibility fix",
+"Randy Tan Shaoxian: Projectile directionality, flashing effect after recent damage, skeleton spawning from disturbed graves, speed adjustments,",
+        "    camera improvements, assorted refactoring, enemy point collision code",
+"Klaim (A. Joël Lamotte): Pub song, Goblinraid song, title menu song, character and sprite selector improvements, boundary checks",
+"Vismaya Menon (Quenzel201Aliza): Sprites for Player and several characters (Smally, Teeny, Weeny) including facings and animations, initial","    overall storyline",
+"Trolzie: Minimap feature, sword UI fade after delay, image display fix, pause screen improvements",
+"Jeremy Kenyon: Save and load feature, question one rewards, map edge transition, movement debug features, reset improvements",
+"Andrew Mushel: Enemy spawn improvements, bat spawn and collision fixes, orc sprite randomization, state screen positioning",
+"Cyriel De Neve: Health shows only after hit (players and zombies): Bugbear hurt sound and integration, opening story writing",
+"Daniel Peach: In-game instructions, character roll UI improvements, prevention of ranged attacks if player is indoors",
+"Michelly Oliveira: Mute feature, background music initialization",
+"Eugene Meidinger: Level up feature improvements, armor rating calculation, refactor of directional code",
+"Justin Horner: Rock sounds, player freeze feature",
+"Ryan Malm: New grass and road tiles, improved perspective of roof tiles",
+"I-wei Chen: Retouched art for grass, house garden, and road",
+"Dominick Aiudi: Character creation update, rock and arrow tile collisions",
+"Charlene A.: Kenku art",
+"Kise: Woods background music",
+"Vaan Hope Khani: Computer distance to the player from AI"
+    ];  
+  canvasContext.save();
+  canvasContext.font = "12px Sans";
+  canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
+  canvasContext.drawImage(titlepagePic, 0, 0); // blanks out the screen
+   canvasContext.globalAlpha=0.7;
+  colorRect(0, 0, titlepagePic.width, titlepagePic.height, "midnightblue");
+  canvasContext.globalAlpha=1.0;
+
+    canvasContext.fillStyle = "white";
+  for(var i=0;i<creditsArray.length;i++) {
+    canvasContext.fillText(creditsArray[i], 8, 25+i*17);
+  }
+  canvasContext.restore();
+
 }
 
 function depthSortedDraw() {
@@ -501,9 +554,20 @@ function depthSortedDraw() {
 }
 
 function drawAll() {
+  if(menuScreen == false && shownCreditsYet == false) {
+      console.log("ugly intercept hack to show credits after main menu");
+      console.log("if there's time to connect to a key etc. this can be removed");
+      shownCreditsYet = true;
+      menuScreen = true;
+  }
+    
   frameCounter++;
   if (menuScreen) {
-    drawMenuScreen();
+    if(shownCreditsYet) {
+        drawCredits();
+    } else {
+        drawMenuScreen();
+    }
     if (debugSkipToGame) {
       handleMouseClick(null);
     }
