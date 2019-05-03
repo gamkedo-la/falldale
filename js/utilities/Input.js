@@ -234,9 +234,18 @@ function handleMouseClick(evt) {
   }
 
   if (menuScreen) {
-    menuScreen = false;
-    characterCreationScreen = true;
-    backgroundMusic.loopSong("mainMenu");
+    if(shownCreditsYet)
+    {
+      menuScreen = false;
+      shownCreditsYet = false;
+      characterCreationScreen = true;
+    }
+    else
+    {
+      menuScreen = true;
+      shownCreditsYet = true;
+      backgroundMusic.loopSong("mainMenu");    
+    }    
   } else if (characterCreationScreen) {
     characterCreationScreenClick(evt);
   } else if (characterSelectionScreen) {

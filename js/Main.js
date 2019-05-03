@@ -555,13 +555,7 @@ function depthSortedDraw() {
 }
 
 function drawAll() {
-  if(menuScreen == false && shownCreditsYet == false) {
-      console.log("ugly intercept hack to show credits after main menu");
-      console.log("if there's time to connect to a key etc. this can be removed");
-      shownCreditsYet = true;
-      menuScreen = true;
-  }
-    
+     
   frameCounter++;
   if (menuScreen) {
     if(shownCreditsYet) {
