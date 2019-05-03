@@ -7,6 +7,7 @@ var muteAudioPic = document.createElement("img");
 //player Pictures
 var warriorPic = document.createElement("img");
 var biggyPic = document.createElement("img");
+var biggyProfilePic = document.createElement("img");
 var smallyPic = document.createElement("img");
 var smallyProfilePic = document.createElement("img");
 var teenyPic = document.createElement("img");
@@ -280,6 +281,7 @@ function loadImages() {
     { varName: muteAudioPic, theFile: "muteAudio.png" },
     { varName: warriorPic, theFile: "warrior.png" },
     { varName: biggyPic, theFile: "Sprites/player/BIggy/biggy.png" },
+    { varName: biggyProfilePic, theFile: "Sprites/player/BIggy/Biggy-portrait.png" },
 	{ varName: teenyPic, theFile: "Sprites/player/Teeny/teeny.png" },
 	{ varName: weeyProfilePic, theFile: "Sprites/player/Weeny/weenyProfile.png" },
 	{ varName: weenyPic, theFile: "Sprites/player/Weeny/Weeny.png" },
