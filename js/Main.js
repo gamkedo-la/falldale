@@ -407,11 +407,11 @@ function statsDraw() {
   colorText("Experience Level: " + redWarrior.experienceLevel, canvas.width - 190, canvas.height - 300, "Black");
   colorText("Level Up at: " + redWarrior.experienceLevel, canvas.width - 190, canvas.height - 280, "Black");
   colorText("Armor Class: " + redWarrior.armor, canvas.width - 190, canvas.height - 260, "Black");
-  colorText("Hit Point: " + redWarrior.health, canvas.width - 190, canvas.height - 240, "Black");
+  colorText("Hit Point: " + redWarrior.health.toFixed(1), canvas.width - 190, canvas.height - 240, "Black");
   colorText("Experience: " + redWarrior.experience, canvas.width - 190, canvas.height - 220, "Black");
-  colorText("Max Sword Damage: " + redWarrior.mySword.damageDice, canvas.width - 190, canvas.height - 200, "Black");
-  colorText("Max Arrow Damage: " + redWarrior.myArrow.damage, canvas.width - 190, canvas.height - 180, "Black");
-  colorText("Max Stone Damage: " + redWarrior.myRock.damage, canvas.width - 190, canvas.height - 160, "Black");
+  colorText("Max Sword Roll: " + redWarrior.mySword.damageDice, canvas.width - 190, canvas.height - 200, "Black");
+  colorText("Max Arrow Roll: " + redWarrior.myArrow.damageDice, canvas.width - 190, canvas.height - 180, "Black");
+  colorText("Max Stone Roll: " + redWarrior.myRock.damageDice, canvas.width - 190, canvas.height - 160, "Black");
   colorText("STR: " + redWarrior.strength + "     DEX: " + redWarrior.dexterity, canvas.width - 190, canvas.height - 120, "Black");
   colorText("CON: " + redWarrior.constitution + "     INT: " + redWarrior.intelligence, canvas.width - 190, canvas.height - 100, "Black");
   colorText("WIS: " + redWarrior.wisdom + "     CHA: " + redWarrior.charisma, canvas.width - 190, canvas.height - 80, "Black");
