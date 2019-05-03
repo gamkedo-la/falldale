@@ -25,7 +25,7 @@ var smally = {
   sprite_frames : 6,
   portrait: null,
 	
-}
+};
 
 var teeny = {
   name : "Teeny",
@@ -35,7 +35,7 @@ var teeny = {
   sprite_frames : 6,
   portrait: null,
 	
-}
+};
 
 var weeny = {
   name : "Weeny",
@@ -45,7 +45,7 @@ var weeny = {
   sprite_frames : 6,
   portrait: weeyProfilePic,
 	
-}
+};
 
 var characters = [ warrior, biggy, smally, teeny, weeny ]; 
 var characterSelectedIndex = 0;
