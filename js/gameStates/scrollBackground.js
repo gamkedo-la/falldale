@@ -27,6 +27,7 @@ function scrollBackgroundScreenInput(whichKeyCode) {
 function drawScrollNarrative() {
   canvasContext.save();
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
+  colorRect(0, 0, canvas.width, canvas.height, 'orange');
   canvasContext.drawImage(scrollBackgroundPic, 0, 0);
   colorText("Falldale", 310, 75, "blue", font = "bold 42px Georgia");
   colorText("You have been on the road for months exploring the outside world.", 115, 150, "green", font = "20px Georgia");
