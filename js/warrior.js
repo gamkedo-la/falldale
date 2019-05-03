@@ -181,6 +181,7 @@ function warriorClass(whichPlayerPic) {
 
     const didLoadNewLevel = this.loadNewLevelIfAtEdge(tileC, tileR);
     if (didLoadNewLevel) {
+      OverlayFX.init();
       return;
     }
 
