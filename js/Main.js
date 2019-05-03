@@ -121,6 +121,7 @@ window.onload = function () {
 };
 
 function imageLoadingDoneSoStartGame() {
+  colorRect(0, 0, canvas.width, canvas.height, 'orange');
   setInterval(updateAll, 1000 / FRAMES_PER_SECOND);
 
   setupInput();
