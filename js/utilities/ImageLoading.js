@@ -6,11 +6,15 @@ var muteAudioPic = document.createElement("img");
 
 //player Pictures
 var warriorPic = document.createElement("img");
+var warriorProfilePic = document.createElement("img");
 var biggyPic = document.createElement("img");
+var biggyProfilePic = document.createElement("img");
 var smallyPic = document.createElement("img");
+var smallyProfilePic = document.createElement("img");
 var teenyPic = document.createElement("img");
-var weeyProfilePic = document.createElement("img");
+var teenyProfilePic = document.createElement("img");
 var weenyPic = document.createElement("img");
+var weeyProfilePic = document.createElement("img");
 var swordPic = document.createElement("img");
 var clubPic = document.createElement("img");
 var bitePic = document.createElement("img");
@@ -135,7 +139,6 @@ function loadImages() {
     { tileType: TILE_BLUE_DOOR, theFile: "keyedDoorsandKeys/blueDoor.png" },
     { tileType: TILE_GREEN_DOOR, theFile: "keyedDoorsandKeys/greenDoor.png" },
     { tileType: TILE_RED_DOOR, theFile: "keyedDoorsandKeys/redDoor.png" },
-    { tileType: TILE_FOREST_PORTAL, theFile: "world_goal.png" },
     { tileType: TILE_SPIKES, theFile: "spikes.png" },
     { tileType: TILE_SPIKES_BLOODY, theFile: "spikesBloody.png" },
     { tileType: TILE_GRASS, theFile: "grass.png" },
@@ -279,11 +282,15 @@ function loadImages() {
 
     { varName: muteAudioPic, theFile: "muteAudio.png" },
     { varName: warriorPic, theFile: "warrior.png" },
+    { varName: warriorProfilePic, theFile: "warrior-portrait.png" },
     { varName: biggyPic, theFile: "Sprites/player/BIggy/biggy.png" },
-	{ varName: teenyPic, theFile: "Sprites/player/Teeny/teeny.png" },
+    { varName: biggyProfilePic, theFile: "Sprites/player/BIggy/Biggy-portrait.png" },
+  { varName: teenyPic, theFile: "Sprites/player/Teeny/teeny.png" },
+  { varName: teenyProfilePic, theFile: "Sprites/player/Teeny/teeny-portrait.png" },
 	{ varName: weeyProfilePic, theFile: "Sprites/player/Weeny/weenyProfile.png" },
 	{ varName: weenyPic, theFile: "Sprites/player/Weeny/Weeny.png" },
     { varName: smallyPic, theFile: "Sprites/player/smally/smally.png" },
+    { varName: smallyProfilePic, theFile: "Sprites/player/smally/smally-portrait.png" },
     { varName: swordPic, theFile: "Weapons/basicSword.png" },
     { varName: magicSwordPic, theFile: "Weapons/magicSword.png" },
     { varName: clubPic, theFile: "Weapons/club.png" },

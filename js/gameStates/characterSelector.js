@@ -5,7 +5,7 @@ var warrior = {
   sprite_width : 40,
   sprite_height : 50,
   sprite_frames : 4,
-  portrait: null,
+  portrait: warriorProfilePic,
 };
 
 var biggy = {
@@ -14,7 +14,7 @@ var biggy = {
   sprite_width : 50,
   sprite_height : 50,
   sprite_frames : 6,
-  portrait: null,
+  portrait: biggyProfilePic,
 };
 
 var smally = {
@@ -23,7 +23,7 @@ var smally = {
   sprite_width : 50,
   sprite_height : 50,
   sprite_frames : 6,
-  portrait: null,
+  portrait: smallyProfilePic,
 	
 };
 
@@ -33,7 +33,7 @@ var teeny = {
   sprite_width : 50,
   sprite_height : 50,
   sprite_frames : 6,
-  portrait: null,
+  portrait: teenyProfilePic,
 	
 };
 
