@@ -2,7 +2,8 @@ var titlepagePic = document.createElement("img");
 var scrollBackgroundPic = document.createElement("img");
 var storeFrontPic = document.createElement("img");
 var healerStorePic = document.createElement("img");
-var muteAudioPic = document.createElement("img");
+var muteMusicPic = document.createElement("img");
+var muteSFXPic = document.createElement("img");
 
 //player Pictures
 var warriorPic = document.createElement("img");
@@ -280,7 +281,8 @@ function loadImages() {
 	{ tileType: TILE_WIZARD_FIREPLACE_TS, theFile: "wizardsLayer/fireplace.png" },
 	{ tileType: TILE_WIZARD_FIREPLACE_BS, theFile: "wizardsLayer/fireplacebottom.png" },
 
-    { varName: muteAudioPic, theFile: "muteAudio.png" },
+    { varName: muteMusicPic, theFile: "muteMusic.png" },
+    { varName: muteSFXPic, theFile: "muteSFX.png" },
     { varName: warriorPic, theFile: "warrior.png" },
     { varName: warriorProfilePic, theFile: "warrior-portrait.png" },
     { varName: biggyPic, theFile: "Sprites/player/BIggy/biggy.png" },

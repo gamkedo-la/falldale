@@ -20,17 +20,21 @@ function weaponClass() {
 
   this.rollToDetermineIfHit = function () {
     this.setDamageUICountdown();
-    this.toHitPoints = Math.floor(Math.random() * this.attackDice) + this.attackBonus;
+    this.diceRoll(this.toHitPoints, this.attackDice);
   };
 
   this.rollForDamage = function () {
-    this.damagePoints = Math.floor(Math.random() * this.damageDice) + this.damageBonus;
+  	this.diceRoll(this.damagePoints, this.damageDice);
     displayDamagePoints = this.damagePoints;
   };
 
   this.setDamageUICountdown = function () {
     damageUIVisibilityCountdown = damageUICountdown * FRAMES_PER_SECOND;
   };
+
+  this.diceRoll = function(varToSet, dieToRoll) {
+  	varToSet = Math.floor(Math.random() * (dieToRoll - 1)) + 1 + this.damageBonus;
+  }
 
   this.reset = function () {
     this.life = 0;

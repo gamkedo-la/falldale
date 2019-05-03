@@ -649,8 +649,11 @@ function drawAll() {
     //canvasContext.drawImage(minimapCanvas, canvas.width-minimapCanvas.width-20, 20);
     miniMapDraw();
 
-    if (muteAudio) {
-      canvasContext.drawImage(muteAudioPic, 20, 20);
+    if (muteInputCycle >= 1) {
+      canvasContext.drawImage(muteMusicPic, 10, 25);
+    }
+    if (muteInputCycle >= 2) {
+      canvasContext.drawImage(muteSFXPic, 10 + muteSFXPic.width, 25);
     }
     if (inventoryScreen) {
       inventoryDraw();

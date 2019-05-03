@@ -64,8 +64,6 @@ function BackgroundMusicClass() {
         console.log("Warning: failed to play background music: " + error);
       });
       muteAudio = false;
-    
-    
   };
 
   this.startOrStopMusic = function () {  
@@ -130,8 +128,8 @@ function CycleMute() {
     humanMaleWelcome.startOrStopSFX();
     humanMaleGoodAfternoon.startOrStopSFX();
     humanFemaleHello.startOrStopSFX();
-    humanFemaleHi.startOrStopMusic();
-    closeDoor.startOrStopMusic();
+    humanFemaleHi.startOrStopSFX();
+    shutDoor.startOrStopSFX();
   }
 
   function muteSFX() {
@@ -157,6 +155,6 @@ function CycleMute() {
     humanMaleGoodAfternoon.startOrStopSFX();
     humanFemaleHello.startOrStopSFX();
     humanFemaleHi.startOrStopSFX();
-    closeDoor.startOrStopSFX();
+    shutDoor.startOrStopSFX();
   }
 }
