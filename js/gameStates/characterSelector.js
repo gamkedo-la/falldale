@@ -5,7 +5,7 @@ var warrior = {
   sprite_width : 40,
   sprite_height : 50,
   sprite_frames : 4,
-  portrait: null,
+  portrait: warriorProfilePic,
 };
 
 var biggy = {
