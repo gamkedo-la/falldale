@@ -48,6 +48,10 @@ function rangedWeaponClass() {
   };
 
   this.shootFrom = function (warriorAttack, dir = direction) {
+  	if (this.quantity <= 0) {
+  		dialogManager.setDialogWithCountdown("I need to find more " + this.pluralName + "!");
+  		return;
+  	}
     if (this.quantity > 0) {
       this.quantity--;
       this.setDialogForQuanitity();
@@ -109,11 +113,11 @@ function rangedWeaponClass() {
   };
 
   this.setDialogForQuanitity = function () {
-    if (redWarrior.quantity > 1) {
+    if (this.quantity > 1) {
       dialogManager.setDialogWithCountdown("I used " + this.indefiniteArticle + " " + this.name + ". I now have " + this.quantity + " " + this.pluralName + "!");
-    } else if (redWarrior.quantity == 1) {
-      dialogManager.setDialogWithCountdown("I used " + this.indefiniteArticle + " " + this.name + ". I now have only 1 " + this.name + " left");
-    } else if (redWarrior.quantity == 0) {
+    } else if (this.quantity == 1) {
+      dialogManager.setDialogWithCountdown("I used " + this.indefiniteArticle + " " + this.name + ". I now have only 1 " + this.name + " left.");
+    } else if (this.quantity == 0) {
       dialogManager.setDialogWithCountdown("That was my last " + this.name + ". I need to find more!");
     }
   }
