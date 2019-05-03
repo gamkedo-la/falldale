@@ -46,7 +46,7 @@ function swordClass() {
         weilder.checkForLevelUp();
       }
     } else {
-      dialogManager.setDialogWithCountdown(adversary.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints);
+      dialogManager.setDialogWithCountdown(adversary.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints + ".");
     }
   };
 
