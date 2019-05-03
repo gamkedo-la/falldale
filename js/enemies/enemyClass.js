@@ -643,6 +643,25 @@ function enemyClass() {
       case TILE_FOUNTAIN:
       case TILE_BRIDGE_UPPER:
       case TILE_OPEN_DOORWAY:
+	  case TILE_ORC_HOUSE_FL:
+	  case TILE_ORC_HOUSE_FR:
+	  case TILE_ORC_HOUSE_BL:
+	  case TILE_ORC_HOUSE_BR:
+	  case TILE_ORC_HOUSE_WALL:
+	  case TILE_ORC_HOUSE_LS:
+	  case TILE_ORC_HOUSE_RS:
+	  case TILE_ORC_HOUSE_WINDOW:
+	  case TILE_WIZARD_BW_TS:
+	  case TILE_WIZARD_BW_BS:
+	  case TILE_WIZARD_BW_LC_TS:
+	  case TILE_WIZARD_BW_RC_TS:
+	  case TILE_WIZARD_LW:
+	  case TILE_WIZARD_RW:
+	  case TILE_WIZARD_BOTTOM_W:
+	  case TILE_WIZARD_BOTTOM_L:
+	  case TILE_WIZARD_BOTTOM_R:
+	  case TILE_WIZARD_FIREPLACE_TS:
+	  case TILE_WIZARD_FIREPLACE_BS:
         return false;
       case TILE_PLAYERSTART:
       case TILE_ROAD:
