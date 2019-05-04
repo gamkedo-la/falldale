@@ -593,20 +593,26 @@ var barC = "rgba(0,255,0,0.2)";
   if (redWarrior.questOneActive) {
     barW = Math.floor(barW*goblinsKilledInFallDale/10);
     colorRect(barX,barY,barW,barH,barC);
-    drawTextCentered("Quest Progress:", tx, ty1, "#3d3126", "14px");
-    drawTextCentered(goblinsKilledInFallDale + " of 10 Goblins killed in Falldale.", tx, ty2, "#3d3126", "14px");
+    drawTextCentered("Falldale Quest Progress:", tx, ty1, "#3d3126", "14px");
+    drawTextCentered(goblinsKilledInFallDale + " of 10 Goblins Killed", tx, ty2, "#3d3126", "14px");
   }
   if (redWarrior.questTwoActive) {
     barW = Math.floor(barW*(goblinsKilledInForest+orcsKilledInForest)/20);
     colorRect(barX,barY,barW,barH,barC);
-    drawTextCentered(goblinsKilledInForest + "  of 10 Goblins killed in the forest.", tx, ty1, "#3d3126", "14px");
-    drawTextCentered(orcsKilledInForest + " of 10 Orcs killed in the forest.", tx, ty2, "#3d3126", "14px");
+    //drawTextCentered(goblinsKilledInForest + "  of 10 Goblins killed in the forest.", tx, ty1, "#3d3126", "14px");
+    //drawTextCentered(orcsKilledInForest + " of 10 Orcs killed in the forest.", tx, ty2, "#3d3126", "14px");
+    drawTextCentered("Forest Quest Progress:", tx, ty1, "#3d3126", "14px");
+    drawTextCentered(goblinsKilledInForest + "  of 10 Goblins and " +
+      orcsKilledInForest + " of 10 Orcs", tx, ty2, "#3d3126", "14px");
   }
   if (redWarrior.questThreeActive) {
     barW = Math.floor(barW*(skeletonsKilledInGraveyardOneorTwo+zombiesKilledInGraveyardOneorTwo)/40);
     colorRect(barX,barY,barW,barH,barC);
-    drawTextCentered(skeletonsKilledInGraveyardOneorTwo + " of 20 Skeletons killed in the forest.", tx, ty1, "#3d3126", "14px");
-    drawTextCentered(zombiesKilledInGraveyardOneorTwo + " of 20 Zombies killed in the forest.", tx, ty2, "#3d3126", "14px");
+    //drawTextCentered(skeletonsKilledInGraveyardOneorTwo + " of 20 Skeletons killed in the forest.", tx, ty1, "#3d3126", "14px");
+    //drawTextCentered(zombiesKilledInGraveyardOneorTwo + " of 20 Zombies killed in the forest.", tx, ty2, "#3d3126", "14px");
+    drawTextCentered("Graveyard Quest Progress:", tx, ty1, "#3d3126", "14px");
+    drawTextCentered(skeletonsKilledInGraveyardOneorTwo + "  of 20 Skeletons and " +
+      zombiesKilledInGraveyardOneorTwo + " of 20 Zombies", tx, ty2, "#3d3126", "14px");
   }
   canvasContext.textAlign = "left";  // reset
 }
