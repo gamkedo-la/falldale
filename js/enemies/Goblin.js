@@ -89,10 +89,6 @@ function goblinClass() {
   this.superClassNewRandomPic = this.newRandomPic;
   this.newRandomPic = function () {
     this.superClassNewRandomPic();
-    if (this.myPic == goblinPic) {
-      this.numberOfFrames = this.originalNumberOfFrames;
-    } else {
-      this.numberOfFrames = 1;
-    }
+    this.numberOfFrames = this.originalNumberOfFrames;
   }
 }
