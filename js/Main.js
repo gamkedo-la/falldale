@@ -575,6 +575,43 @@ function depthSortedDraw() {
   }
 }
 
+function drawQuestGUI() {
+
+var tx = 156;
+var ty1 = 22;
+var ty2 = 41
+var barW = 256;
+var barH = 16;
+var barX = 28;
+var barY = 28;
+var barC = "rgba(0,255,0,0.2)";
+
+  canvasContext.drawImage(questGUIPic,4,4);
+
+
+  canvasContext.textAlign = "center"; 
+  if (redWarrior.questOneActive) {
+    barW = Math.floor(barW*goblinsKilledInFallDale/10);
+    colorRect(barX,barY,barW,barH,barC);
+    drawTextCentered("Quest Progress:", tx, ty1, "#3d3126", "14px");
+    drawTextCentered(goblinsKilledInFallDale + " of 10 Goblins killed in Falldale.", tx, ty2, "#3d3126", "14px");
+  }
+  if (redWarrior.questTwoActive) {
+    barW = Math.floor(barW*(goblinsKilledInForest+orcsKilledInForest)/20);
+    colorRect(barX,barY,barW,barH,barC);
+    drawTextCentered(goblinsKilledInForest + "  of 10 Goblins killed in the forest.", tx, ty1, "#3d3126", "14px");
+    drawTextCentered(orcsKilledInForest + " of 10 Orcs killed in the forest.", tx, ty2, "#3d3126", "14px");
+  }
+  if (redWarrior.questThreeActive) {
+    barW = Math.floor(barW*(skeletonsKilledInGraveyardOneorTwo+zombiesKilledInGraveyardOneorTwo)/40);
+    colorRect(barX,barY,barW,barH,barC);
+    drawTextCentered(skeletonsKilledInGraveyardOneorTwo + " of 20 Skeletons killed in the forest.", tx, ty1, "#3d3126", "14px");
+    drawTextCentered(zombiesKilledInGraveyardOneorTwo + " of 20 Zombies killed in the forest.", tx, ty2, "#3d3126", "14px");
+  }
+  canvasContext.textAlign = "left";  // reset
+}
+
+
 function drawAll() {
      
   frameCounter++;
@@ -651,18 +688,9 @@ function drawAll() {
 	
     drawParticles();
     canvasContext.restore();
-    if (redWarrior.questOneActive) {
-      colorText(goblinsKilledInFallDale + " out of the 10 Goblins killed in Falldale.", 10, 20, "red");
-    }
-    if (redWarrior.questTwoActive) {
-      colorText(goblinsKilledInForest + " out of the 10 Goblins killed in the forest.", 10, 20, "red");
-      colorText(orcsKilledInForest + " out of the 10 Orcs killed in the forest.", 10, 40, "red");
-    }
-	if (redWarrior.questThreeActive) {
-      colorText(skeletonsKilledInGraveyardOneorTwo + " out of the 20 Skeletons killed in the forest.", 10, 20, "red");
-      colorText(zombiesKilledInGraveyardOneorTwo + " out of the 20 Zombies killed in the forest.", 10, 40, "red");
-    }
-	
+
+    drawQuestGUI();
+
     dialogManager.drawDialog();
 //        messageDraw();
     damageDraw();

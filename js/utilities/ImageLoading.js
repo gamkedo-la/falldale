@@ -4,6 +4,7 @@ var storeFrontPic = document.createElement("img");
 var healerStorePic = document.createElement("img");
 var muteMusicPic = document.createElement("img");
 var muteSFXPic = document.createElement("img");
+var questGUIPic = document.createElement("img");
 
 //player Pictures
 var warriorPic = document.createElement("img");
@@ -354,7 +355,8 @@ function loadImages() {
     { varName: rockPic, theFile: "Weapons/rock.png" },
     { varName: playerMiniMap, theFile: "playerMiniMap.png" },
     { varName: waterScrollImg, theFile: "water_scroll.png" },
-    { varName: decorationsImg, theFile: "decorations.png" }
+    { varName: decorationsImg, theFile: "decorations.png" },
+    { varName: questGUIPic, theFile: "questGUI.png" }
 
 
   ];

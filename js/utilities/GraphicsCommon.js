@@ -41,6 +41,22 @@ function drawTextWithShadowCentered(text, x, y, color, font = "13px sans-serif")
   canvasContext.shadowBlur = 0;
 }
 
+function drawTextWith1pxShadowCentered(text, x, y, color, font = "13px sans-serif") {
+  canvasContext.textAlign = "center";
+  canvasContext.font = font;
+  canvasContext.fillStyle = "black";
+  canvasContext.fillText(text, x+1, y+1);
+  canvasContext.fillStyle = color;
+  canvasContext.fillText(text, x, y);
+}
+
+function drawTextCentered(text, x, y, color, font = "13px sans-serif") {
+  canvasContext.textAlign = "center";
+  canvasContext.font = font;
+  canvasContext.fillStyle = color;
+  canvasContext.fillText(text, x, y);
+}
+
 function emptyRect(x, y, width, height, lineWidth, strokeColor) {
   canvasContext.lineWidth = lineWidth;
   canvasContext.strokeStyle = strokeColor;
