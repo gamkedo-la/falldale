@@ -580,24 +580,25 @@ function drawQuestGUI() {
 var tx = 156;
 var ty1 = 22;
 var ty2 = 41
-var barW = 256;
+var barMaxW = 256;
 var barH = 16;
 var barX = 28;
 var barY = 28;
 var barC = "rgba(0,255,0,0.2)";
+var guiW = 304; // including padding
+var guiH = 54;
+var guiOffsetX = 0;
 
   canvasContext.drawImage(questGUIPic,4,4);
 
-
-  canvasContext.textAlign = "center"; 
   if (redWarrior.questOneActive) {
-    barW = Math.floor(barW*goblinsKilledInFallDale/10);
+    barW = Math.floor(barMaxW*goblinsKilledInFallDale/10);
     colorRect(barX,barY,barW,barH,barC);
     drawTextCentered("Falldale Quest Progress:", tx, ty1, "#3d3126", "14px");
     drawTextCentered(goblinsKilledInFallDale + " of 10 Goblins Killed", tx, ty2, "#3d3126", "14px");
   }
-  if (redWarrior.questTwoActive) {
-    barW = Math.floor(barW*(goblinsKilledInForest+orcsKilledInForest)/20);
+  else if (redWarrior.questTwoActive) {
+    barW = Math.floor(barMaxW*(goblinsKilledInForest+orcsKilledInForest)/20);
     colorRect(barX,barY,barW,barH,barC);
     //drawTextCentered(goblinsKilledInForest + "  of 10 Goblins killed in the forest.", tx, ty1, "#3d3126", "14px");
     //drawTextCentered(orcsKilledInForest + " of 10 Orcs killed in the forest.", tx, ty2, "#3d3126", "14px");
@@ -605,8 +606,8 @@ var barC = "rgba(0,255,0,0.2)";
     drawTextCentered(goblinsKilledInForest + "  of 10 Goblins and " +
       orcsKilledInForest + " of 10 Orcs", tx, ty2, "#3d3126", "14px");
   }
-  if (redWarrior.questThreeActive) {
-    barW = Math.floor(barW*(skeletonsKilledInGraveyardOneorTwo+zombiesKilledInGraveyardOneorTwo)/40);
+  else if (redWarrior.questThreeActive) {
+    barW = Math.floor(barMaxW*(skeletonsKilledInGraveyardOneorTwo+zombiesKilledInGraveyardOneorTwo)/40);
     colorRect(barX,barY,barW,barH,barC);
     //drawTextCentered(skeletonsKilledInGraveyardOneorTwo + " of 20 Skeletons killed in the forest.", tx, ty1, "#3d3126", "14px");
     //drawTextCentered(zombiesKilledInGraveyardOneorTwo + " of 20 Zombies killed in the forest.", tx, ty2, "#3d3126", "14px");
@@ -614,7 +615,31 @@ var barC = "rgba(0,255,0,0.2)";
     drawTextCentered(skeletonsKilledInGraveyardOneorTwo + "  of 20 Skeletons and " +
       zombiesKilledInGraveyardOneorTwo + " of 20 Zombies", tx, ty2, "#3d3126", "14px");
   }
-  canvasContext.textAlign = "left";  // reset
+  else { // no current quest
+    drawTextCentered("Current Quest:", tx, ty1, "#3d3126", "14px");
+    drawTextCentered("Talk to the Princess", tx, ty2, "#3d3126", "14px");
+  }
+
+  // side quests, just for fun! =)
+  if (redWarrior.catsMet < 10) {
+    guiOffsetX += guiW;
+    canvasContext.drawImage(questGUIPic,4+guiOffsetX,4);
+    barW = Math.floor(barMaxW*(redWarrior.catsMet)/10);
+    colorRect(barX+guiOffsetX,barY,barW,barH,barC);
+    drawTextCentered("Wilderness Quest Progress:", tx+guiOffsetX, ty1, "#3d3126", "14px");
+    drawTextCentered(redWarrior.catsMet + " of 10 Cats Pet", tx+guiOffsetX, ty2, "#3d3126", "14px");
+  }
+  if (redWarrior.stepsTaken < 1000) {
+    guiOffsetX += guiW;
+    canvasContext.drawImage(questGUIPic,4+guiOffsetX,4);
+    barW = Math.floor(barMaxW*(redWarrior.stepsTaken)/1000);
+    colorRect(barX+guiOffsetX,barY,barW,barH,barC);
+    drawTextCentered("Explorer Quest Progress:", tx+guiOffsetX, ty1, "#3d3126", "14px");
+    drawTextCentered(redWarrior.stepsTaken + " of 1000 Steps Taken", tx+guiOffsetX, ty2, "#3d3126", "14px");
+  }
+
+
+
 }
 
 

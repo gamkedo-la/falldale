@@ -198,10 +198,14 @@ function npcClass(npcName, npcPic) {
         // alternately, we can choose a random one from the array
         // NPCDialog = meows[Math.floor(Math.random()*meows.length)];
 
+        
         //every 30 frames, switch to the next one and loop around
         meowcount++;
         NPCDialog = meows[ Math.floor(meowcount / meowframes) % meows.length ];
-        if (meowcount % meowframes == 1) meowPurrSound.play();
+        if (meowcount % meowframes == 1) {
+          redWarrior.catsMet++; // side quest
+          meowPurrSound.play();
+        }
       }
     }
 

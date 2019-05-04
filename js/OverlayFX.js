@@ -112,6 +112,7 @@ var OverlayFX = new function () {
     // first time init
     if (who.footstepX == undefined) who.footstepX = who.x;
     if (who.footstepY == undefined) who.footstepY = who.y;
+    if (who.stepsTaken == undefined) who.stepsTaken = 0;
 
     var vert = 0; // 0 or 1 so switch the sprite we use
     if (distance(who.x, 0, who.footstepX, 0) < distance(0, who.y, 0, who.footstepY))
@@ -124,6 +125,7 @@ var OverlayFX = new function () {
       OverlayFX.add(who.x + FOOTPRINT_OFSX, who.y + FOOTPRINT_OFSY, FOOTPRINT_DECORATION_NUM + vert);
       who.footstepX = who.x;
       who.footstepY = who.y;
+      who.stepsTaken++; // for side quest
     }
   };
 

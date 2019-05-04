@@ -73,6 +73,12 @@ function warriorClass(whichPlayerPic) {
   this.questSixActive = false;
   this.questSixComplete = false;
   this.goblinsKilledInFallDale = 0;
+  
+  // side quests
+  this.catsMet = 0;
+  this.stepsTaken = 0;
+  this.attackCount = 0;
+  this.doorOpenCount = 0;
 
   this.keyHeld_WalkNorth = false;
   this.keyHeld_WalkSouth = false;
