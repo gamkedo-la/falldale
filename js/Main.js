@@ -33,6 +33,7 @@ var characterSelectionScreen = false;
 var isInShop = false;
 var isAtHealer = false;
 var lastShopScreenTime = new Date().getTime();
+var firstQuestEnemyList = [];
 var questOneCompletionScreenActive = false;
 var questTwoCompletionScreenActive = false;
 var questThreeCompletionScreenActive = false;
@@ -190,6 +191,12 @@ function loadLevel() {
   recalulateLevelNow();
   var whichLevel = levelList[ levelNow ];
   roomGrid = whichLevel.slice();
+  if (previousLevelNow == 7 && redWarrior.questOneComplete == false) {
+  	firstQuestEnemyList = [];
+  	for (var e = 0; e < enemyList.length; e++) {
+  		firstQuestEnemyList.push(enemyList[e]);
+  	}
+  }
   enemyList.splice(0, enemyList.length); //Empty enemyList
   tileList.splice(0, tileList.length); //Empty tileList
   backgroundMusicSelect();
@@ -304,6 +311,16 @@ function loadLevel() {
       arrayIndex++;
     } //end of col for
   } // end of row for
+
+  if (levelNow == 7 && redWarrior.questOneComplete == false && firstQuestLoad) {
+  	enemyList = [];
+  	for (var e = 0; e < firstQuestEnemyList.length; e++) {
+  		enemyList.push(firstQuestEnemyList[e]);
+  	}
+  } else {
+  	firstQuestLoad = true;
+  }
+
   redrawMinimapTiles();
 }
 

@@ -811,6 +811,7 @@ var levelList = [orcKingforest, wizardsLayer, 	eastNorthWoods,  // 0, 1, 2
 var levelRow = 2;
 var levelCol = 1;
 var levelNow = 0;  // 0 is invalid, will be using recalulateLevelNow() to initialize elsewhere
+var previousLevelNow;
 var roomGrid = [];
 
 
@@ -1074,6 +1075,7 @@ var RANGED_NO_COLLIDE = [TILE_SKELETON, TILE_GOBLIN, TILE_BAT, TILE_ZOMBIE, TILE
  TILE_WATER_MINIMAP, TILE_ROAD_MINIMAP, TILE_GRASS_MINIMAP, TILE_BLOCKED_MINIMAP];
 
 function recalulateLevelNow() {
+	previousLevelNow = levelNow;
 	levelNow = (MAP_WIDTH * levelRow) + levelCol;
 	return levelNow;
 }

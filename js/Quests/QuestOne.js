@@ -1,7 +1,7 @@
 // Clearing Falldale of the Goblins
 
 var goblinsKilledInFallDale = 0;
-
+var firstQuestLoad = false;
 
 function countGoblinforQuestOne() {
   if (redWarrior.questOneComplete == false) {
