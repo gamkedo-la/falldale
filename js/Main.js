@@ -182,10 +182,10 @@ function backgroundMusicSelect() {
       backgroundMusic.loopSong("woodsbgm");
       break;
     case 10:
-      backgroundMusic.loopSong("woodsbgm");
+      backgroundMusic.loopSong("cemeteryBGM");
       break;
     case 12:
-      backgroundMusic.loopSong("woodsbgm");
+      backgroundMusic.loopSong("cemeteryBGM");
       break;
   }
 }
@@ -476,29 +476,32 @@ function drawCredits() {
         "",
 "Vince McKeown: Project lead, core gameplay and initial functionality, leveling, level and quest design, many sprites (including healer, princess,",
         "    villagers, goblin, NPCs, non-chief orcs, zombies, skeletons, druid boss, bullywug), blacksmith shop, trees, editor, pause support, mausoleums,",
-        "    fireballs, treasure, quest dialog writing, NPC voices, Goblinraid song, assorted sounds",
+        "    fireballs, treasure, quest dialog writing, NPC voices, Goblinraid song, assorted sounds, princess audio",
 "Christer \"McFunkypants\" Kaitila: game scaling, gamead support, shadows,rays of light, shine effect, rooftop mouse peek feature, editor ",
-        "    improvements, bridge, cat, night mode, minimap, optimization, decoration tiles, footprints, water effect",
+        "    improvements, bridge, cat, night mode, minimap, optimization, decoration tiles, footprints, water effect, side quests",
 "Steve Driscoll: Archer sprite and integration, goblin club tuning, initial bite support, door functionality and audio, improved word collision test,","    diagonal movement support, player-monster collisions, assorted bug fixes",
 "H Trayford: AI path finding, dialog manager, screen culling optimization, organization of weapon code (swords, rocks, arrows, clubs, biting, magic",
         "    sword), zombie movement tweaks, tile, transparency support, additional input for character selection screen, assorted bug fixes",
 "Gonzalo Delgado: Orc chief art and animations, house art (door, window,and walls), file case issue fix, missing tile error handling, shoe attack","    prototype, ranged weapon improvements, Firefox compatibility fix",
 "Randy Tan Shaoxian: Projectile directionality, flashing effect after recent damage, skeleton spawning from disturbed graves, speed adjustments,",
         "    camera improvements, assorted refactoring, enemy point collision code",
-"Klaim (A. Joël Lamotte): Pub song, title menu song, character and sprite selector improvements, boundary checks",
+"Klaim (A. Joël Lamotte): \"Have A Nice Beer\" pub/happy song, title menu music, wizard tower music, graveyard music,",
+        "    character and sprite selector improvements, boundary checks, charater portrait display",
 "Vismaya Menon (Quenzel201Aliza): Sprites for Player and several characters (Smally, Teeny, Weeny) including facings and animations, initial","    overall storyline",
 "Trolzie: Minimap feature, sword UI fade after delay, image display fix, pause screen improvements",
 "Jeremy Kenyon: Save and load feature, question one rewards, map edge transition, movement debug features, reset improvements",
 "Andrew Mushel: Enemy spawn improvements, bat spawn and collision fixes, orc sprite randomization, state screen positioning",
 "Cyriel De Neve: Health shows only after hit (players and zombies): Bugbear hurt sound and integration, opening story writing",
 "Daniel Peach: In-game instructions, character roll UI improvements, prevention of ranged attacks if player is indoors",
+"Terrence McDonnell: out of ammo message, health rounding, loading flicker fix, improvements to mute and dice rolling, assorted polish",
 "Michelly Oliveira: Mute feature, background music initialization",
+"Kumar Daryanani: Bow and arrow weapon art, including arrow and quiver items",
 "Eugene Meidinger: Level up feature improvements, armor rating calculation, refactor of directional code",
 "Justin Horner: Rock sounds, player freeze feature",
 "Ryan Malm: New grass and road tiles, improved perspective of roof tiles",
 "I-wei Chen: Retouched art for grass, house garden, and road",
 "Dominick Aiudi: Character creation update, rock and arrow tile collisions",
-"Charlene A.: Kenku art",
+"Charlene A.: Kenku art and animation",
 "Kise: Woods background music",
 "Vaan Hope Khani: Computer distance to the player from AI"
     ];
@@ -512,7 +515,7 @@ function drawCredits() {
 
     canvasContext.fillStyle = "white";
   for(var i=0;i<creditsArray.length;i++) {
-    canvasContext.fillText(creditsArray[i], 8, 25+i*17);
+    canvasContext.fillText(creditsArray[i], 8, 25+i*16);
   }
   canvasContext.restore();
 
@@ -539,8 +542,12 @@ function depthSortedDraw() {
       enemy => (enemy.isFlying)
   );
 
+  let deadEnemies = visibleEnemies.filter(
+      enemy => (!enemy.alive)
+  );
+
   objectsToDraw = objectsToDraw.concat(visibleEnemies.filter(
-      enemy => (!enemy.isFlying)
+      enemy => (!enemy.isFlying && enemy.alive)
   ));
 
   objectsToDraw = objectsToDraw.concat(heartsList.filter(
@@ -568,6 +575,10 @@ function depthSortedDraw() {
   }
 
   OverlayFX.draw(); // grass, pebbles, cracks, flowers, night mode
+
+  for (let i = 0; i < deadEnemies.length; i++) {
+    deadEnemies[ i ].draw();
+  }
 
   for (let i = 0; i < objectsToDraw.length; i++) {
     objectsToDraw[ i ].draw();

@@ -6,7 +6,7 @@ function heartsReadyToRemove() {
         heartsList[ i ].y < redWarrior.centerY && (heartsList[ i ].y + heartsList[ i ].height) > redWarrior.centerY) {
       heartsList[ i ].readyToRemove = true;
     }
-    console.log(heartsList[ i ].readyToRemove);
+    //console.log(heartsList[ i ].readyToRemove);
   }
 }
 
