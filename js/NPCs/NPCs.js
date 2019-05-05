@@ -39,9 +39,15 @@ function npcClass(npcName, npcPic) {
     }
     if (this.walkWest) {
       this.sy = this.height * 3;
+      if (this.myName == "Fido") {
+      	this.sy = 0;
+      }
     }
     if (this.walkEast) {
       this.sy = this.height * 2;
+      if (this.myName == "Fido") {
+      	this.sy = this.height;
+      }
     }
     if (this.npcMove == false) {
       this.sy = this.height * 4;
@@ -244,15 +250,9 @@ function npcClass(npcName, npcPic) {
 
     OverlayFX.maybeLeaveFootprint(this);
 
-    // temp fix for "Fido"
-
-    if (this.name == "Fido") {
-      this.width = 50;
-    }
-
     // draw a mirror image when walking other way? use row 2
-    if (this.spriteSheetRows && (this.walkEast || this.walkNorth)) {
-      canvasContext.drawImage(this.myNPCPic, this.sx, this.sy + this.height, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
+    if (this.walkEast || this.walkNorth) {
+      canvasContext.drawImage(this.myNPCPic, this.sx, this.sy, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
     } else {
       // normal drawing, never flipped, used by nearly all entities
       canvasContext.drawImage(this.myNPCPic, this.sx, this.sy, this.width, this.height, Math.round(this.x), Math.round(this.y), this.width, this.height);
