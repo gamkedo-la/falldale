@@ -179,6 +179,7 @@ var OverlayFX = new function () {
     TILE_HOUSE_FRONT_WINDOW,
     TILE_HOUSE_FRONT_WINDOW_BROKEN,
     TILE_HOUSE_BW_WINDOW,
+    TILE_BS_FW_LS,
     TILE_GRAVEYARD_FENCE_BR,
     TILE_GRAVEYARD_FENCE_TR,
     TILE_GRAVEYARD_FENCE_BL,
@@ -221,7 +222,17 @@ var OverlayFX = new function () {
         var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
         var tileKindHere = roomGrid[ arrayIndex ];
         if (glowingTiles.includes(tileKindHere)) {
-          nightModeContext.drawImage(shinyPic, drawTileX - 40, drawTileY - 25);
+        	if (tileKindHere == TILE_GRAVEYARD_FENCE_LEFT) {
+        		nightModeContext.drawImage(shinyPic, drawTileX - shinyPic.width/2 + 6, drawTileY - shinyPic.height/3);
+        	} else if (tileKindHere == TILE_GRAVEYARD_FENCE_RIGHT) {
+        		nightModeContext.drawImage(shinyPic, drawTileX - shinyPic.width/6, drawTileY - shinyPic.height/3);
+        	} else if (tileKindHere == TILE_GRAVEYARD_FENCE_BL || tileKindHere == TILE_GRAVEYARD_FENCE_TL) {
+        		nightModeContext.drawImage(shinyPic, drawTileX - shinyPic.width/2.25, drawTileY - shinyPic.height/3);
+        	} else if (tileKindHere == TILE_GRAVEYARD_FENCE_BR || tileKindHere == TILE_GRAVEYARD_FENCE_TR) {
+        		nightModeContext.drawImage(shinyPic, drawTileX - 20, drawTileY - shinyPic.height/3);
+        	} else {
+        		nightModeContext.drawImage(shinyPic, drawTileX - 40, drawTileY - 25);
+        	}
         }
         drawTileX += TILE_W;
       }

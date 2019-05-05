@@ -64,20 +64,20 @@ function drawSelectorScreen() {
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(storeFrontPic, 0, 0);  // replace with a Creation Screen background
   // drawTextWithShadowCentered(gameKeeperFeedback, 0.40 * canvas.width, 50, "white", "35px sans-serif");
-  colorText("Character Creation", 25, 50, "white");
+  colorText("Character Creation", 25, 50, "black");
   // colorText('Press "Up" and "Down" to Choose', 25, 70, "white");
   colorText(characterSelected.name, 25, 90, "red");
   colorRect(310, 130, 40, 40, 'white');
   colorText('prev', 313, 155, "black");
   colorRect(310, 175, 40, 40, 'white');
   colorText('next', 313, 200, "black");
-  colorText('Click next or prev to select character', 60, 230, "white");
+  colorText('Click next or prev to select character', 60, 230, "black");
   if(characterSelected.portrait)
   {
     canvasContext.drawImage(characterSelected.portrait, 100, 100, 100, 100);
   }
   colorRect(15, 260, 200, 50, 'blue');
-  colorText("Continue >>", 30, 290, "white");
+  colorText("Continue >>", 30, 290, "black");
   canvasContext.restore();
 }
 

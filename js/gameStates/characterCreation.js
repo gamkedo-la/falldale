@@ -22,13 +22,13 @@ function drawCreationScreen() {
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(storeFrontPic, 0, 0);  // replace with a Creation Screen background
   // drawTextWithShadowCentered(gameKeeperFeedback, 0.40 * canvas.width, 50, "white", "35px sans-serif");
-  colorText("Character Creation", 25, 50, "white");
-  colorText("Strength: " + redWarrior.strength, 50, 100, "white");
-  colorText("Dexterity: " + redWarrior.dexterity, 50, 120, "white");
-  colorText("Constitution: " + redWarrior.constitution, 50, 140, "white");
-  colorText("Intelligence: " + redWarrior.intelligence, 50, 160, "white");
-  colorText("Wisdom: " + redWarrior.wisdom, 50, 180, "white");
-  colorText("Charisma: " + redWarrior.charisma, 50, 200, "white");
+  colorText("Character Creation", 25, 50, "black");
+  colorText("Strength: " + redWarrior.strength, 50, 100, "black");
+  colorText("Dexterity: " + redWarrior.dexterity, 50, 120, "black");
+  colorText("Constitution: " + redWarrior.constitution, 50, 140, "black");
+  colorText("Intelligence: " + redWarrior.intelligence, 50, 160, "black");
+  colorText("Wisdom: " + redWarrior.wisdom, 50, 180, "black");
+  colorText("Charisma: " + redWarrior.charisma, 50, 200, "black");
   colorRect(15, 260, 200, 50, 'blue');
   colorText(rollCharacterButtonText, 40, 290, "white");
 
