@@ -536,8 +536,12 @@ function depthSortedDraw() {
       enemy => (enemy.isFlying)
   );
 
+  let deadEnemies = visibleEnemies.filter(
+      enemy => (!enemy.alive)
+  );
+
   objectsToDraw = objectsToDraw.concat(visibleEnemies.filter(
-      enemy => (!enemy.isFlying)
+      enemy => (!enemy.isFlying && enemy.alive)
   ));
 
   objectsToDraw = objectsToDraw.concat(heartsList.filter(
@@ -565,6 +569,10 @@ function depthSortedDraw() {
   }
 
   OverlayFX.draw(); // grass, pebbles, cracks, flowers, night mode
+
+  for (let i = 0; i < deadEnemies.length; i++) {
+    deadEnemies[ i ].draw();
+  }
 
   for (let i = 0; i < objectsToDraw.length; i++) {
     objectsToDraw[ i ].draw();
