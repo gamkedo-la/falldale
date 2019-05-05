@@ -20,7 +20,7 @@ function SoundOverlapsClass(filenameWithPath) {
   var altSoundTurn = false;
 
   this.play = function () {
-  
+
     if (altSoundTurn) {
       altSound.currentTime = 0;
       altSound.play().catch(function(error){
@@ -33,7 +33,7 @@ function SoundOverlapsClass(filenameWithPath) {
       });;
     }
     altSoundTurn = !this.altSoundTurn;
-  
+
   };
 
   this.startOrStopSFX = function () {
@@ -60,10 +60,10 @@ function BackgroundMusicClass() {
         return;
       }
     }
-    
+
     currentFile = filenameWithPath;
     setFormat();
-    
+
       if (musicSound != null) {
         musicSound.pause();
         musicSound = null;
@@ -76,7 +76,7 @@ function BackgroundMusicClass() {
       muteAudio = false;
   };
 
-  this.startOrStopMusic = function () {  
+  this.startOrStopMusic = function () {
     if (musicSound.paused) {
       musicSound.play().catch(function(error){
         console.log("Warning: failed to play background music: " + error);
@@ -140,6 +140,7 @@ function CycleMute() {
     humanFemaleHello.startOrStopSFX();
     humanFemaleHi.startOrStopSFX();
     shutDoor.startOrStopSFX();
+
   }
 
   function muteSFX() {
@@ -166,5 +167,6 @@ function CycleMute() {
     humanFemaleHello.startOrStopSFX();
     humanFemaleHi.startOrStopSFX();
     shutDoor.startOrStopSFX();
+    
   }
 }

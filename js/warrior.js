@@ -59,11 +59,11 @@ function warriorClass(whichPlayerPic) {
   this.armor = 10;
   this.healingPotion = 0;
   this.haveMap = false;
-  this.questOneActive = true; 
-  this.delkonRewardOffer = false; 
-  this.questOneComplete = false; 
-  this.questTwoActive = false;   
-  this.questTwoComplete = false; 
+  this.questOneActive = true;
+  this.delkonRewardOffer = false;
+  this.questOneComplete = false;
+  this.questTwoActive = false;
+  this.questTwoComplete = false;
   this.questThreeActive = false;
   this.questThreeComplete = false;
   this.questFourActive = false;
@@ -73,7 +73,7 @@ function warriorClass(whichPlayerPic) {
   this.questSixActive = false;
   this.questSixComplete = false;
   this.goblinsKilledInFallDale = 0;
-  
+
   // side quests
   this.catsMet = 0;
   this.stepsTaken = 0;
@@ -339,6 +339,20 @@ function warriorClass(whichPlayerPic) {
   this.updateTickCountAndFrameIndex = function () {
     if (this.playerMove) {
       this.tickCount++;
+      if (footsteps.currentTime > footsteps.duration - 0.44) {
+        footsteps.currentTime = 0;
+      }
+      if (!footStepsPlaying) {
+        footsteps.play();
+        footStepsPlaying = true;
+      }
+    }
+    if (!this.playerMove) {
+      if (footStepsPlaying) {
+        footsteps.pause();
+        footStepsPlaying = false;
+      }
+
     }
 
     if (this.tickCount > this.ticksPerFrame) {
@@ -502,7 +516,7 @@ function warriorClass(whichPlayerPic) {
       console.log("this.x before is " + this.x);
       this.x = (ROOM_COLS - 3) * TILE_W;
       loadLevel();
-      return true;          
+      return true;
     }
 
     if (tileR <= 0 && (levelRow - 1) >= 0) {
@@ -968,7 +982,7 @@ function warriorClass(whichPlayerPic) {
       case TILE_YELLOW_DOOR:
       case TILE_GREEN_DOOR:
       case TILE_BLUE_DOOR:
-      case TILE_RED_DOOR: 
+      case TILE_RED_DOOR:
 	  case TILE_ORC_HOUSE_FL:
 	  case TILE_ORC_HOUSE_FR:
 	  case TILE_ORC_HOUSE_BL:
@@ -988,7 +1002,7 @@ function warriorClass(whichPlayerPic) {
 	  case TILE_WIZARD_BOTTOM_R:
 	  case TILE_WIZARD_FIREPLACE_TS:
 	  case TILE_WIZARD_FIREPLACE_BS:
-	  
+
         return false;
       case TILE_GRAVEYARD_YELLOW_GATE:
         if (this.yellowKeysHeld > 0) {

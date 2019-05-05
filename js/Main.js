@@ -79,6 +79,9 @@ var humanFemaleHello = new SoundOverlapsClass("humanFemaleHello");
 var humanFemaleHi = new SoundOverlapsClass("humanFemaleHi");
 var princesHello = new SoundOverlapsClass("PrincessPauline");
 var shutDoor = new SoundOverlapsClass("closeDoor");
+var footsteps = new Audio("sound/falldaleFootsteps"+ audioFormat);
+footsteps.playbackRate = 2.0;
+var footStepsPlaying = false;
 
 const DIALOG_BOX_HEIGHT = 50;
 
@@ -118,7 +121,7 @@ window.onload = function () {
   colorRect(0, 0, canvas.width, canvas.height, 'orange'); // startup page
   colorText("Loading Images... please wait", 400, 300, 'black');
   loadImages(); // Once images are loaded, imageLoadingDoneSoStartGame() is called to setup the rest.
-  
+
 };
 
 function imageLoadingDoneSoStartGame() {
@@ -134,7 +137,7 @@ function imageLoadingDoneSoStartGame() {
   } else {
     saveGame.loadData();
   }
-  canvas.addEventListener('mousedown', handleMouseClick);  
+  canvas.addEventListener('mousedown', handleMouseClick);
   backgroundMusic.loopSong("mainMenu");
   if (debugSkipToGame) {
     console.log("Debug Mode is on, skip directly to game");
@@ -466,7 +469,7 @@ function drawMenuScreen() {
 
 function drawCredits() {
     var creditsArray = [
-        
+
         "Click once more anywhere to begin the game!",
         "",
 "Falldale is brought to you by the following members of Gamkedo Club...",
@@ -498,7 +501,7 @@ function drawCredits() {
 "Charlene A.: Kenku art",
 "Kise: Woods background music",
 "Vaan Hope Khani: Computer distance to the player from AI"
-    ];  
+    ];
   canvasContext.save();
   canvasContext.font = "12px Sans";
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
@@ -644,7 +647,7 @@ var guiOffsetX = 0;
 
 
 function drawAll() {
-     
+
   frameCounter++;
   if (menuScreen) {
     if(shownCreditsYet) {
@@ -716,7 +719,7 @@ function drawAll() {
 	} else if (levelNow == 1) {
       drawRooftops(wizardsRoofTops);
     }
-	
+
     drawParticles();
     canvasContext.restore();
 
