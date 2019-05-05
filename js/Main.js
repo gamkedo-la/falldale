@@ -80,8 +80,9 @@ var humanFemaleHi = new SoundOverlapsClass("humanFemaleHi");
 var princesHello = new SoundOverlapsClass("PrincessPauline");
 var shutDoor = new SoundOverlapsClass("closeDoor");
 var footsteps = new Audio("sound/falldaleFootsteps"+ audioFormat);
-footsteps.playbackRate = 2.0;
+footsteps.playbackRate = 1.7;
 var footStepsPlaying = false;
+footsteps.volume = 0.25;
 
 const DIALOG_BOX_HEIGHT = 50;
 

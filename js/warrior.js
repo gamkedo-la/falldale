@@ -346,7 +346,7 @@ function warriorClass(whichPlayerPic) {
   this.updateTickCountAndFrameIndex = function () {
     if (this.playerMove) {
       this.tickCount++;
-      if (footsteps.currentTime > footsteps.duration - 0.44) {
+      if (footsteps.currentTime > footsteps.duration - 0.2) {
         footsteps.currentTime = 0;
       }
       if (!footStepsPlaying) {
