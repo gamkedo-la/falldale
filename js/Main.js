@@ -519,7 +519,7 @@ function drawCredits() {
 
     canvasContext.fillStyle = "white";
   for(var i=0;i<creditsArray.length;i++) {
-    canvasContext.fillText(creditsArray[i], 8, 25+i*16);
+    canvasContext.fillText(creditsArray[i], 8, 12+i*16);
   }
   canvasContext.restore();
 
