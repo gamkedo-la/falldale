@@ -179,10 +179,10 @@ function backgroundMusicSelect() {
       backgroundMusic.loopSong("woodsbgm");
       break;
     case 10:
-      backgroundMusic.loopSong("woodsbgm");
+      backgroundMusic.loopSong("cemeteryBGM");
       break;
     case 12:
-      backgroundMusic.loopSong("woodsbgm");
+      backgroundMusic.loopSong("cemeteryBGM");
       break;
   }
 }
