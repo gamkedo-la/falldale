@@ -346,18 +346,34 @@ function warriorClass(whichPlayerPic) {
   this.updateTickCountAndFrameIndex = function () {
     if (this.playerMove) {
       this.tickCount++;
-      if (footsteps.currentTime > footsteps.duration - 0.2) {
-        footsteps.currentTime = 0;
+      let currentTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
+      let currentTileType = roomGrid[currentTileIndex];
+      console.log(currentTileIndex, currentTileType);
+      if (groundFootsteps.currentTime > groundFootsteps.duration - 0.2) {
+        groundFootsteps.currentTime = 0;
       }
-      if (!footStepsPlaying) {
-        footsteps.play();
-        footStepsPlaying = true;
+      if (stoneFootsteps.currentTime > stoneFootsteps.duration - 0.2) {
+        stoneFootsteps.currentTime = 0;
+      }
+      if (currentTileType === 18 && !groundFootStepsPlaying) {
+        groundFootsteps.play();
+        groundFootStepsPlaying = true;
+        stoneFootsteps.pause();
+        stoneFootstepsPlaying = false;
+      }
+      if (currentTileType === 0 && !stoneFootstepsPlaying) {
+        stoneFootsteps.play();
+        stoneFootstepsPlaying = true;
+        groundFootsteps.pause();
+        groundFootStepsPlaying = false;
       }
     }
     if (!this.playerMove) {
-      if (footStepsPlaying) {
-        footsteps.pause();
-        footStepsPlaying = false;
+      if (groundFootStepsPlaying || stoneFootstepsPlaying) {
+        groundFootsteps.pause();
+        groundFootStepsPlaying = false;
+        stoneFootsteps.pause();
+        stoneFootstepsPlaying = false;
       }
 
     }

@@ -79,10 +79,16 @@ var humanFemaleHello = new SoundOverlapsClass("humanFemaleHello");
 var humanFemaleHi = new SoundOverlapsClass("humanFemaleHi");
 var princesHello = new SoundOverlapsClass("PrincessPauline");
 var shutDoor = new SoundOverlapsClass("closeDoor");
-var footsteps = new Audio("sound/falldaleFootsteps"+ audioFormat);
-footsteps.playbackRate = 1.7;
-var footStepsPlaying = false;
-footsteps.volume = 0.25;
+
+var groundFootsteps = new Audio("sound/falldale_ground_footsteps"+ audioFormat);
+groundFootsteps.playbackRate = 1.7;
+var groundFootStepsPlaying = false;
+groundFootsteps.volume = 0.25;
+
+var stoneFootsteps = new Audio("sound/falldale_stone_footsteps" + audioFormat);
+stoneFootsteps.playbackRate = 1.7;
+var stoneFootstepsPlaying = false;
+stoneFootsteps.volume = 0.75;
 
 const DIALOG_BOX_HEIGHT = 50;
 
