@@ -30,7 +30,7 @@ function drawQuestThreeCompletionScreen() {
   colorText("You have found the Crystal Shard of Obsidian.", 100, 200, "black");
   colorText("This is one of the three shards the Princess has", 100, 250, "black");
   colorText("asked for.  Why does she require these crystal shards?", 100, 300, "black");
-  colorText("I guess it's not my place to ask.", 100, 300, "black");
+  colorText("I guess it's not my place to ask.", 100, 350, "black");
   colorText("Press ENTER", 100, 400, "black");
   canvasContext.restore();
 } 
