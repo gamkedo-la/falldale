@@ -1,3 +1,5 @@
+var welcomeSpeech = false;
+
 function drawShop() {
   canvasContext.save();
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
@@ -11,13 +13,22 @@ function drawShop() {
   colorRect(630, 25, 150, 40, "black");
   colorText(`Your gold: ${ redWarrior.goldpieces }`, 650, 50, "gold");
   canvasContext.restore();
+
+  if (!welcomeSpeech) {
+  	if (redWarrior.questTwoComplete) {
+  	  shopKeeperFeedback = "Shop Keeper:  You could use this Ax for your journey through the woods.";
+  	} else {
+  	  shopKeeperFeedback = "Shop Keeper:  Hi, I'm the Shop Keeper.  I could use a better name.";
+  	}
+  }
+  welcomeSpeech = true;
+  dialogManager.setDialogWithCountdown(shopKeeperFeedback, 3);
 }
 
 function shopInput(whichKeyCode) {
   var shopKeeperFeedback = null;
 
   switch (whichKeyCode) {
-
     case NUM_1:
       if (redWarrior.goldpieces >= 10) {
         redWarrior.goldpieces = redWarrior.goldpieces - 10;
@@ -54,6 +65,7 @@ function shopInput(whichKeyCode) {
       break;
   }
   isInShop = false;
+  welcomeSpeech = false;
   lastShopScreenTime = new Date().getTime();
   dialogManager.setDialogWithCountdown(shopKeeperFeedback, 3);
 }

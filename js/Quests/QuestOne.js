@@ -1,6 +1,6 @@
 // Clearing Falldale of the Goblins
 
-var goblinsKilledInFallDale = 0;
+var goblinsKilledInFallDale = 9;
 var firstQuestLoad = false;
 
 function countGoblinforQuestOne() {

@@ -666,8 +666,10 @@ function drawAll() {
     }
   } else if (isInShop) {
     drawShop();
+    dialogManager.drawDialog();
   } else if (isAtHealer) {
     drawHealerShop();
+    dialogManager.drawDialog();
   } else if (characterCreationScreen) {
     drawCreationScreen(strength);
     drawDice(Dice1);

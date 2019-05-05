@@ -1,12 +1,12 @@
 //Clearing the Woods of the Orcs and Goblins
 //Player discovers Orc King is behind all the raids trying to steal the Princess's Crystal
 
-var goblinsKilledInForest = 0;
-var orcsKilledInForest = 0;
+var goblinsKilledInForest = 9;
+var orcsKilledInForest = 10;
 
 function countGoblinforQuestTwo() {
   if (redWarrior.questTwoComplete == false) {
-    if (levelNow == 6) { // located in Forest
+    if (levelNow == 6 && goblinsKilledInForest < 10) { // located in Forest
       goblinsKilledInForest++;
       checkForQuestTwoComplete();
     }
@@ -15,7 +15,7 @@ function countGoblinforQuestTwo() {
 
 function countOrcforQuestTwo() {
   if (redWarrior.questTwoComplete == false) {
-    if (levelNow == 6) { // located in Forest
+    if (levelNow == 6 && orcsKilledInForest < 10) { // located in Forest
       orcsKilledInForest++;
       checkForQuestTwoComplete();
     }
