@@ -25,13 +25,12 @@ function drawQuestThreeCompletionScreen() {
   canvasContext.save();
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(scrollBackgroundPic, 0, 0);
-  colorText("The Orc King is DEAD.", 350, 50, "white");
-  colorText("JUST A CONCEPT, NEEDS TO BE WRITTEN", 100, 100, "white");
-  colorText("JUST A CONCEPT, NEEDS TO BE WRITTEN", 100, 350, "white");
-  colorText("....", 100, 150, "white");
-  colorText("....", 100, 200, "white");
-  colorText("....", 100, 250, "white");
-  colorText("....", 100, 300, "white");
-  colorText("Press ENTER", 100, 400, "white");
+  colorText("The Orc King is DEAD.", 350, 50, "black");
+  colorText("You have brought the Orc King to his end.", 100, 150, "black");
+  colorText("You have found the Crystal Shard of Obsidian.", 100, 200, "black");
+  colorText("This is one of the three shards the Princess has", 100, 250, "black");
+  colorText("asked for.  Why does she require these crystal shards?", 100, 300, "black");
+  colorText("I guess it's not my place to ask.", 100, 300, "black");
+  colorText("Press ENTER", 100, 400, "black");
   canvasContext.restore();
 } 
