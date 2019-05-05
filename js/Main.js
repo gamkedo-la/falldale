@@ -601,34 +601,35 @@ var guiH = 54;
 var guiOffsetX = 0;
 
   canvasContext.drawImage(questGUIPic,4,4);
+  questionProgressionFont = "25px endor_altregular"
 
   if (redWarrior.questOneActive) {
     barW = Math.floor(barMaxW*goblinsKilledInFallDale/10);
     colorRect(barX,barY,barW,barH,barC);
-    drawTextCentered("Falldale Quest Progress:", tx, ty1, "#3d3126", "14px");
-    drawTextCentered(goblinsKilledInFallDale + " of 10 Goblins Killed", tx, ty2, "#3d3126", "14px");
+    drawTextCentered("Falldale Quest Progress:", tx, ty1, "#3d3126", questionProgressionFont);
+    drawTextCentered(goblinsKilledInFallDale + " of 10 Goblins Killed", tx, ty2, "#3d3126", questionProgressionFont);
   }
   else if (redWarrior.questTwoActive) {
     barW = Math.floor(barMaxW*(goblinsKilledInForest+orcsKilledInForest)/20);
     colorRect(barX,barY,barW,barH,barC);
     //drawTextCentered(goblinsKilledInForest + "  of 10 Goblins killed in the forest.", tx, ty1, "#3d3126", "14px");
     //drawTextCentered(orcsKilledInForest + " of 10 Orcs killed in the forest.", tx, ty2, "#3d3126", "14px");
-    drawTextCentered("Forest Quest Progress:", tx, ty1, "#3d3126", "14px");
+    drawTextCentered("Forest Quest Progress:", tx, ty1, "#3d3126", questionProgressionFont);
     drawTextCentered(goblinsKilledInForest + "  of 10 Goblins and " +
-      orcsKilledInForest + " of 10 Orcs", tx, ty2, "#3d3126", "14px");
+      orcsKilledInForest + " of 10 Orcs", tx, ty2, "#3d3126", questionProgressionFont);
   }
   else if (redWarrior.questThreeActive) {
     barW = Math.floor(barMaxW*(skeletonsKilledInGraveyardOneorTwo+zombiesKilledInGraveyardOneorTwo)/40);
     colorRect(barX,barY,barW,barH,barC);
     //drawTextCentered(skeletonsKilledInGraveyardOneorTwo + " of 20 Skeletons killed in the forest.", tx, ty1, "#3d3126", "14px");
     //drawTextCentered(zombiesKilledInGraveyardOneorTwo + " of 20 Zombies killed in the forest.", tx, ty2, "#3d3126", "14px");
-    drawTextCentered("Graveyard Quest Progress:", tx, ty1, "#3d3126", "14px");
+    drawTextCentered("Graveyard Quest Progress:", tx, ty1, "#3d3126", questionProgressionFont);
     drawTextCentered(skeletonsKilledInGraveyardOneorTwo + "  of 20 Skeletons and " +
-      zombiesKilledInGraveyardOneorTwo + " of 20 Zombies", tx, ty2, "#3d3126", "14px");
+      zombiesKilledInGraveyardOneorTwo + " of 20 Zombies", tx, ty2, "#3d3126", questionProgressionFont);
   }
   else { // no current quest
-    drawTextCentered("Current Quest:", tx, ty1, "#3d3126", "14px");
-    drawTextCentered("Talk to the Princess", tx, ty2, "#3d3126", "14px");
+    drawTextCentered("Current Quest:", tx, ty1, "#3d3126", "14px endor_altregular");
+    drawTextCentered("Talk to the Princess", tx, ty2, "#3d3126", questionProgressionFont);
   }
 
   // side quests, just for fun! =)
@@ -648,9 +649,6 @@ var guiOffsetX = 0;
     drawTextCentered("Explorer Quest Progress:", tx+guiOffsetX, ty1, "#3d3126", "14px");
     drawTextCentered(redWarrior.stepsTaken + " of 1000 Steps Taken", tx+guiOffsetX, ty2, "#3d3126", "14px");
   }
-
-
-
 }
 
 

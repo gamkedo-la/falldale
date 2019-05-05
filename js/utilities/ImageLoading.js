@@ -124,6 +124,7 @@ function loadImages() {
   var imageList = [
     { tileType: TILE_ROAD, theFile: "worldRoad.png" },
     { tileType: TILE_OPEN_DOORWAY, theFile: "OpenDoorway.png" },
+    
     { tileType: TILE_DIRTROAD_N_E, theFile: "Roads/dirtRoadNorthToEast.png" },
     { tileType: TILE_DIRTROAD_N_S, theFile: "Roads/dirtRoadNorthToSouth.png" },
     { tileType: TILE_DIRTROAD_S_E, theFile: "Roads/dirtRoadSouthToEast.png" },
@@ -155,6 +156,7 @@ function loadImages() {
     { tileType: TILE_ROOF_BACKRIGHT, theFile: "House1/roofbackright.png" },
     { tileType: TILE_ROOF_FRONTRIGHT, theFile: "House1/roofFrontRight.png" },
     { tileType: TILE_FRONTDOOR_YELLOW, theFile: "House1/door.png" },
+
     { tileType: TILE_FRONTWALL_SOLID, theFile: "House1/solidwall.png" },
     { tileType: TILE_FRONTWALL_WINDOW, theFile: "House1/frontwall.png" },
     { tileType: TILE_ROOF_BACKSIDE, theFile: "House1/roofbackside.png" },
@@ -182,6 +184,7 @@ function loadImages() {
     { tileType: TILE_HEALER_BW_RS, theFile: "shopHealer/backwallrightside.png" },
     { tileType: TILE_HEALER_DESK, theFile: "shopHealer/desk.png" },
     { tileType: TILE_HEALER_FRONTDOOR, theFile: "shopHealer/frontdoor.png" },
+
     { tileType: TILE_HEALER_FW_LS, theFile: "shopHealer/frontwallleftside.png" },
     { tileType: TILE_HEALER_FW_RS, theFile: "shopHealer/frontwallrightside.png" },
     { tileType: TILE_HEALER_FW_WINDOW, theFile: "shopHealer/frontwallwindow.png" },
