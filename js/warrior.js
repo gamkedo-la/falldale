@@ -19,6 +19,7 @@ function warriorClass(whichPlayerPic) {
   this.centerX = 40;
   this.y = 100;
   this.prevY = this.y;
+  this.resetPositionCoords = {x: this.x, y: this.y};
   this.centerY = 80;
   this.head = this.y - 25;
   this.feet = this.y + 25;
@@ -261,9 +262,11 @@ function warriorClass(whichPlayerPic) {
   };
 
   this.death = function () {
-    this.health = 4;
-    this.x = 300; // a better location will be coded in the feature
-    this.y = 300; // a better location will be coded in the feature
+    this.health = this.maxHealth;
+    this.x = this.resetPositionCoords.x;
+    this.y = this.resetPositionCoords.y;
+    camera.x = this.x - 150;
+    camera.y = this.y - 150;
   };
 
   this.rangeTest = function (adversary) {
@@ -334,6 +337,10 @@ function warriorClass(whichPlayerPic) {
     this.health -= howMuch / 10;
     playerHurtSound.play();
     this.displayHealth = true;
+    if (this.health <= 0) {
+    	this.death();
+    	resetLevel();
+    }
   };
 
   this.updateTickCountAndFrameIndex = function () {
@@ -515,6 +522,8 @@ function warriorClass(whichPlayerPic) {
       levelCol--;
       console.log("this.x before is " + this.x);
       this.x = (ROOM_COLS - 3) * TILE_W;
+      this.resetPositionCoords.x = this.x;
+      this.resetPositionCoords.y = this.y;
       loadLevel();
       return true;
     }
@@ -523,6 +532,8 @@ function warriorClass(whichPlayerPic) {
       console.log("Touching top edge of map");
       levelRow--;
       this.y = (ROOM_ROWS - 3) * TILE_H;
+      this.resetPositionCoords.x = this.x;
+      this.resetPositionCoords.y = this.y;
       loadLevel();
       return true;
     }
@@ -531,6 +542,8 @@ function warriorClass(whichPlayerPic) {
       console.log("Touching right edge of map");
       levelCol++;
       this.x = TILE_W;
+      this.resetPositionCoords.x = this.x;
+      this.resetPositionCoords.y = this.y;
       loadLevel();
       return true;
     }
@@ -539,6 +552,8 @@ function warriorClass(whichPlayerPic) {
       console.log("Touching bottom edge of map");
       levelRow++;
       this.y = TILE_H;
+      this.resetPositionCoords.x = this.x;
+      this.resetPositionCoords.y = this.y;
       loadLevel();
       return true;
     }

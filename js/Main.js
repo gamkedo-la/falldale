@@ -358,12 +358,9 @@ function updateItems() {
   removeHealingPotion();
 }
 
-function health() {
-
-  if (redWarrior.health <= 0) {
-    resetLevel();
-    redWarrior.death();
-  }
+function resetGame() { // @TODO: WIP full game reset, not connected to anything for now
+	levelNow = 7;
+	loadLevel();
 }
 
 function damageDraw() {
