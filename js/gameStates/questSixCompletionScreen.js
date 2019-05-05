@@ -22,12 +22,9 @@ function drawQuestSixCompletionScreen () {
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(scrollBackgroundPic, 0, 0);
   colorText("The Wizard is DEAD.", 350, 50, "white");
-  colorText("JUST A CONCEPT, NEEDS TO BE WRITTEN", 100, 100, "white");
-  colorText("JUST A CONCEPT, NEEDS TO BE WRITTEN", 100, 350, "white");
-  colorText("....", 100, 150, "white");
-  colorText("....", 100, 200, "white");
-  colorText("....", 100, 250, "white");
-  colorText("....", 100, 300, "white");
+  colorText("You have killed the Wizard and have obtained the third Shard.", 100, 150, "white");
+  colorText("You are now ready to ready to go back to Falldale as the Hero.", 100, 200, "white");
+  colorText("The town has been saved from its enemies and can now live in peace.", 100, 250, "white");
   colorText("Press ENTER", 100, 400, "white");
   canvasContext.restore();
 } 

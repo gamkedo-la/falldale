@@ -21,13 +21,10 @@ function drawQuestFiveCompletionScreen () {
   canvasContext.save();
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(scrollBackgroundPic, 0, 0);
-  colorText("The DRUID is DEAD.", 350, 50, "white");
-  colorText("JUST A CONCEPT, NEEDS TO BE WRITTEN", 100, 100, "white");
-  colorText("JUST A CONCEPT, NEEDS TO BE WRITTEN", 100, 350, "white");
-  colorText("....", 100, 150, "white");
-  colorText("....", 100, 200, "white");
-  colorText("....", 100, 250, "white");
-  colorText("....", 100, 300, "white");
+  colorText("The Druid Queen is DEAD.", 350, 50, "white");
+  colorText("You tragically killed the Druid Queen, but it had to be done", 100, 150, "white");
+  colorText("to defend Falldale.  She could not be trusted to hold the Crystal Shard", 100, 200, "white");
+  colorText("of Earth, as she was doing evil with it.", 100, 250, "white");
   colorText("Press ENTER", 100, 400, "white");
   canvasContext.restore();
 } 

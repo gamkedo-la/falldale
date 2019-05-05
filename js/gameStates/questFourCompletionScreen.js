@@ -22,12 +22,10 @@ function drawQuestFourCompletionScreen () {
   canvasContext.translate(stateScreenOffsetX, stateScreenOffsetY);
   canvasContext.drawImage(scrollBackgroundPic, 0, 0);
   colorText("The graveyard is at peace.", 350, 50, "white");
-  colorText("JUST A CONCEPT, NEEDS TO BE WRITTEN", 100, 100, "white");
-  colorText("JUST A CONCEPT, NEEDS TO BE WRITTEN", 100, 350, "white");
-  colorText("....", 100, 150, "white");
-  colorText("....", 100, 200, "white");
-  colorText("....", 100, 250, "white");
-  colorText("....", 100, 300, "white");
+  colorText("In this quest, you have discovered that your friend", 100, 150, "white");
+  colorText("The Druid Queen has gone berserk and has been   ", 100, 200, "white");
+  colorText("raising the dead.  She can not be trusted with her", 100, 250, "white");
+  colorText("Crystal Shard of Earth.", 100, 300, "white");
   colorText("Press ENTER", 100, 400, "white");
   canvasContext.restore();
 } 
