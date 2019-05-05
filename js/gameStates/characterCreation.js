@@ -14,6 +14,7 @@ var rollCharacterButtonText = "Roll new character";
 
 
 function drawCreationScreen() {
+  colorRect(0, 0, canvas.width, canvas.height, 'orange'); // startup page
   if (rollingCreationDice) {
     updateCharaterAbilities();
   }
