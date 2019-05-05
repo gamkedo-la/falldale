@@ -473,7 +473,7 @@ function drawCredits() {
         "",
 "Vince McKeown: Project lead, core gameplay and initial functionality, leveling, level and quest design, many sprites (including healer, princess,",
         "    villagers, goblin, NPCs, non-chief orcs, zombies, skeletons, druid boss, bullywug), blacksmith shop, trees, editor, pause support, mausoleums,",
-        "    fireballs, treasure, quest dialog writing, NPC voices, Goblinraid song, assorted sounds, prince voice",
+        "    fireballs, treasure, quest dialog writing, NPC voices, Goblinraid song, assorted sounds, princess audio",
 "Christer \"McFunkypants\" Kaitila: game scaling, gamead support, shadows,rays of light, shine effect, rooftop mouse peek feature, editor ",
         "    improvements, bridge, cat, night mode, minimap, optimization, decoration tiles, footprints, water effect, side quests",
 "Steve Driscoll: Archer sprite and integration, goblin club tuning, initial bite support, door functionality and audio, improved word collision test,","    diagonal movement support, player-monster collisions, assorted bug fixes",
