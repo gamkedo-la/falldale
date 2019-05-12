@@ -36,6 +36,7 @@ function warriorClass(whichPlayerPic) {
   this.experience = 0;
   this.maxHealth = 4;
   this.health = 4;
+  this.isTakingDamage = false;
   this.warriorHealthCountdownSeconds = 5;
   this.warriorDisplayHealthCountdown = this.warriorHealthCountdownSeconds * FRAMES_PER_SECOND;
   this.waitTime = 0;
@@ -337,6 +338,7 @@ function warriorClass(whichPlayerPic) {
     this.health -= howMuch / 10;
     playerHurtSound.play();
     this.displayHealth = true;
+    this.isTakingDamage = true;
     if (this.health <= 0) {
     	this.death();
     	resetLevel();
@@ -389,8 +391,13 @@ function warriorClass(whichPlayerPic) {
   };
 
   this.drawFlashingWarriorAndHealth = function () {
-    if (this.warriorDisplayHealthCountdown % 10 >= 4) {
-      this.drawWarriorAndShadow()
+    if (this.isTakingDamage) {
+      if (this.warriorDisplayHealthCountdown % 10 >= 4) {
+        this.drawWarriorAndShadow();
+      }
+    }
+    else {
+      this.drawWarriorAndShadow();
     }
 
     colorRect(this.x, this.y - 16, 40, 12, "black");
@@ -400,6 +407,7 @@ function warriorClass(whichPlayerPic) {
     this.warriorDisplayHealthCountdown--;
     if (this.warriorDisplayHealthCountdown <= 0) {
       this.displayHealth = false;
+      this.isTakingDamage = false;
       this.warriorDisplayHealthCountdown = this.warriorHealthCountdownSeconds * FRAMES_PER_SECOND;
     }
   };

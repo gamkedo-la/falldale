@@ -18,6 +18,7 @@ function removeHearts() {
         redWarrior.health = redWarrior.maxHealth;
       }
       redWarrior.displayHealth = true;
+      redWarrior.isTakingDamage = false;
       heartsList.splice(i, 1);
     }
   }
