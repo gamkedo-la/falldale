@@ -183,7 +183,7 @@ function keyPressed(evt) {
       inventoryScreen = !inventoryScreen
     } else if (evt.keyCode == redWarrior.controlKeyStats) {
       statsScreen = !statsScreen
-    } /*else if (evt.keyCode == debugModeKey || evt.keyCode === KEY_ZERO) {
+    } else if (evt.keyCode == debugModeKey || evt.keyCode === KEY_ZERO) {  ////////// remove this code for itch /////////////////
       debugMode = !debugMode
     } else if (evt.keyCode == tileEditorModeKey) {
       if (tileEditor) {
@@ -201,7 +201,7 @@ function keyPressed(evt) {
       }
     } else if (evt.keyCode == redWarrior.controlKeyDisplayHealth) {
       displayHealth = !displayHealth
-    } */
+    } 																	////////////  ********************* /////////////////
   }
   evt.preventDefault(); // without this, arrow keys scroll the browser!
 }

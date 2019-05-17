@@ -35,6 +35,26 @@ function orcBossClass() {
       enemyReadyToRemove();
     }
   };
+  
+  this.superClassMove = this.move;
+  this.move = function () {
+   this.superClassMove(ORC_TIME_BETWEEN_CHANGE_DIR);
+   // this.myMelee.move();
+   // this.myMelee.x = this.x;
+   // this.myMelee.y = this.y;
+  
+	// keep Orc King in his room
+	console.log("Orc's X: " + this.x + " Y: " + this.y);
+	if(this.x < 128 || this.y < 1664 || this.x > 672 || this.y > 2025){
+		this.changeDirection();
+    }
+  
+  
+  
+  };
+  
+  
+  
     
   this.superClassDraw = this.draw;
   this.draw = function () {
