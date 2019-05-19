@@ -21,14 +21,26 @@ function colorCircle(centerX, centerY, radius, fillColor) {  //draw circles
   // canvasContext.drawImage(circlePic,centerX-radius,centerY-radius);
 }
 
-function colorText(showWords, textX, textY, fillColor, font = "14px Arial Black") {
+function resizeText(text, maxWidth = canvas.width, resizeFactor = 0.8) {
+  let theFont = canvasContext.font.split("px");
+  let fontsize = Number(theFont[0]);  
+
+  if (canvasContext.measureText(text).width > maxWidth)
+  {
+      fontsize *= resizeFactor;
+      canvasContext.font = fontsize + "px" + theFont[theFont.length - 1];
+  }
+}
+
+function colorText(showWords, textX, textY, fillColor, font = "14px Arial Black", maxWidth = canvas.width, resizeFactor = 0.5) {
   canvasContext.textAlign = "left";
   canvasContext.fillStyle = fillColor;
   canvasContext.font = font;
+  resizeText(showWords, maxWidth, resizeFactor);
   canvasContext.fillText(showWords, textX, textY);
 }
 
-function drawTextWithShadowCentered(text, x, y, color, font = "13px sans-serif") {
+function drawTextWithShadowCentered(text, x, y, color, font = "13px sans-serif", maxWidth = canvas.width, resizeFactor = 0.5) {
   canvasContext.textAlign = "center";
   canvasContext.font = font;
   canvasContext.shadowBlur = 8;
@@ -37,23 +49,27 @@ function drawTextWithShadowCentered(text, x, y, color, font = "13px sans-serif")
   canvasContext.shadowOffsetX = 0;
   canvasContext.shadowOffsetY = 0;
   canvasContext.fillStyle = color;
+  resizeText(text, maxWidth, resizeFactor);
   canvasContext.fillText(text, x, y);
   canvasContext.shadowBlur = 0;
 }
 
-function drawTextWith1pxShadowCentered(text, x, y, color, font = "13px sans-serif") {
+function drawTextWith1pxShadowCentered(text, x, y, color, font = "13px sans-serif", maxWidth = canvas.width, resizeFactor = 0.5) {
   canvasContext.textAlign = "center";
   canvasContext.font = font;
   canvasContext.fillStyle = "black";
+  resizeText(text, maxWidth, resizeFactor);
   canvasContext.fillText(text, x+1, y+1);
   canvasContext.fillStyle = color;
+  resizeText(text, maxWidth, resizeFactor);
   canvasContext.fillText(text, x, y);
 }
 
-function drawTextCentered(text, x, y, color, font = "13px sans-serif") {
+function drawTextCentered(text, x, y, color, font = "13px sans-serif", maxWidth = canvas.width, resizeFactor = 0.5) {
   canvasContext.textAlign = "center";
   canvasContext.font = font;
   canvasContext.fillStyle = color;
+  resizeText(text, maxWidth, resizeFactor);
   canvasContext.fillText(text, x, y);
 }
 

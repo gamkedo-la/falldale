@@ -450,7 +450,7 @@ function drawMenuScreen() {
   canvasContext.drawImage(titlepagePic, 0, 0); // blanks out the screen
   colorRect(150, 225, 250, 315, "midnightblue");
   canvasContext.fillStyle = "white";
-  canvasContext.font = "45px Georgia";
+  canvasContext.font = "45px Georgia";  
   canvasContext.fillText("Falldale", 180, 200);
   canvasContext.font = "20px Georgia";
   colorText("", 170, 150, "white");
@@ -518,7 +518,7 @@ function drawCredits() {
   canvasContext.globalAlpha=1.0;
 
     canvasContext.fillStyle = "white";
-  for(var i=0;i<creditsArray.length;i++) {
+  for(var i=0;i<creditsArray.length;i++) {    
     canvasContext.fillText(creditsArray[i], 8, 12+i*16);
   }
   canvasContext.restore();
@@ -692,7 +692,7 @@ function drawAll() {
       characterSelectorScreenInput(ENTER);
     }
   } else if (scrollBackgroundScreen) {
-    drawScrollNarrative();
+      drawScrollNarrative();
     if (debugSkipToGame) {
       scrollBackgroundScreenInput(KEY_SPACEBAR);
     }
