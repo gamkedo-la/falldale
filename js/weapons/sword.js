@@ -17,9 +17,9 @@ function swordClass() {
   this.immunity = false;
   this.attackHitBonus = 10;
 
-  this.shootFrom = function (weilder) {
-    this.x = weilder.x;
-    this.y = weilder.y;
+  this.shootFrom = function (wielder) {
+    this.x = wielder.x;
+    this.y = wielder.y;
 
     this.rollToDetermineIfHit();
     if (this.toHitPoints > 0) {
@@ -42,8 +42,8 @@ function swordClass() {
       }
 
       if (adversary.health < 0) {
-        weilder.experience = weilder.experience + 100;
-        weilder.checkForLevelUp();
+        wielder.experience = wielder.experience + 100;
+        wielder.checkForLevelUp();
       }
     } else {
       dialogManager.setDialogWithCountdown(adversary.myName + " dodged your sword swing.  You rolled a " + this.toHitPoints + ".");
@@ -51,7 +51,7 @@ function swordClass() {
   };
 
   //override weaponClass.hitTest
-  this.hitTest = function (weilder, adversary) {
+  this.hitTest = function (wielder, adversary) {
     if (this.life <= 0) {
       return false;
     }
@@ -105,36 +105,36 @@ function swordClass() {
         (enemyRect.y + enemyRect.height) < weaponRect.y);
   };
 
-  this.draw = function (weilder) {
+  this.draw = function (wielder) {
 
     var swordWidth = 10;
     var swordLength = 40;
-    var swordXLocation = weilder.x;
-    var swordYLocation = weilder.y;
+    var swordXLocation = wielder.x;
+    var swordYLocation = wielder.y;
     var rotation = 0;
 
     if (redWarrior.direction == "north") {
       swordWidth = 10;
       swordLength = 20;
-      swordXLocation = weilder.centerX + 5;
-      swordYLocation = weilder.y - swordLength + 10;
+      swordXLocation = wielder.centerX + 5;
+      swordYLocation = wielder.y - swordLength + 10;
     } else if (redWarrior.direction == "south") {
       swordWidth = 10;
       swordLength = 40;
-      swordXLocation = weilder.centerX - 5;
-      swordYLocation = weilder.centerY + 35;
+      swordXLocation = wielder.centerX - 5;
+      swordYLocation = wielder.centerY + 35;
       rotation = Math.PI;
     } else if (redWarrior.direction == "west") {
       swordWidth = 40;
       swordLength = 10;
-      swordXLocation = weilder.x - swordWidth + 30;
-      swordYLocation = weilder.centerY;
+      swordXLocation = wielder.x - swordWidth + 30;
+      swordYLocation = wielder.centerY;
       rotation = -Math.PI / 2;
     } else if (redWarrior.direction == "east") {
       swordWidth = 40;
       swordLength = 10;
-      swordXLocation = weilder.x + 60;
-      swordYLocation = weilder.centerY + 30;
+      swordXLocation = wielder.x + 60;
+      swordYLocation = wielder.centerY + 30;
       rotation = Math.PI / 2;
     }
 

@@ -16,9 +16,9 @@ function orcSwordClass() {
   this.coolDownTime = 0;
   this.orcSwordCooldown = BASE_ORCSWORD_COOLDOWN;
 
-  this.shootFrom = function (weilder) {
-    this.x = weilder.x;
-    this.y = weilder.y;
+  this.shootFrom = function (wielder) {
+    this.x = wielder.x;
+    this.y = wielder.y;
 
     this.life = this.baseOrcSwordLife;
     this.coolDownTime = this.orcSwordCooldown;
@@ -26,20 +26,20 @@ function orcSwordClass() {
   };
 
   //override weaponClass.rangeTest
-  this.rangeTest = function (weilder, adversary) {
-    if (weilder.direction == "north") {// warrior facing North
+  this.rangeTest = function (wielder, adversary) {
+    if (wielder.direction == "north") {// warrior facing North
       if (this.rangeHitTest(25, -20, adversary)) {
         return true;
       }
-    } else if (weilder.direction == "south") {// warrior facing South
+    } else if (wielder.direction == "south") {// warrior facing South
       if (this.rangeHitTest(10, 70, adversary)) {
         return true;
       }
-    } else if (weilder.direction == "west") {// warrior facing West
+    } else if (wielder.direction == "west") {// warrior facing West
       if (this.rangeHitTest(-30, 25, adversary)) {
         return true;
       }
-    } else if (weilder.direction == "east") {// warrior facing East
+    } else if (wielder.direction == "east") {// warrior facing East
       if (this.rangeHitTest(60, 25, adversary)) {
         return true;
       }
@@ -60,7 +60,7 @@ function orcSwordClass() {
   };
 
   //override weaponClass.hitTest
-  this.hitTest = function (weilder, adversary) {
+  this.hitTest = function (wielder, adversary) {
     if (this.life <= 0) {
       return false;
     }

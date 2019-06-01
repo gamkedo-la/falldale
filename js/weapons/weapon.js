@@ -59,14 +59,14 @@ function weaponClass() {
     }
   };
 
-  this.hitTest = function (weilder, adversary) {
+  this.hitTest = function (wielder, adversary) {
     if (this.life <= 0) {
       return false;
     }
 
     //Close enough to the enemy to determine if this is a hit or not
     this.rollToDetermineIfHit();
-    if (this.toHitPoints + weilder.experienceLevel > adversary.armorRating) {
+    if (this.toHitPoints + wielder.experienceLevel > adversary.armorRating) {
       //this is a hit
       this.rollForDamage();
       this.life = 0;//assumes weapons are only good for one hit
