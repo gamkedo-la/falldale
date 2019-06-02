@@ -70,7 +70,7 @@ function biteClass() {
     if (this.toHitPoints > redWarrior.armor) {
       //this is a hit
       this.rollForDamage();
-      adversary.takeDamage(this.damagePoints);
+      adversary.takeDamage(this.damagePoints, this.x, this.y);
       return true;
     } else {
       //this is a miss

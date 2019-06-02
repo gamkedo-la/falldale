@@ -65,8 +65,8 @@ function goblinClass() {
   };
 
   this.superClassTakeDamage = this.takeDamage;
-  this.takeDamage = function (howMuch) {
-    this.superClassTakeDamage(howMuch);
+  this.takeDamage = function (howMuch, fromX, fromY) {
+    this.superClassTakeDamage(howMuch, fromX, fromY);
     if (!this.alive && this.treasureAvailable) {
       this.distributeTreasure();
       this.treasureAvailable = false;

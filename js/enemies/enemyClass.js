@@ -20,6 +20,12 @@ function enemyClass() {
   this.type = "enemy";
   this.x = 0;
   this.y = 0;
+  this.bounceX = 0;
+  this.bounceY = 0;
+  this.bounceTargetX = 0;
+  this.bounceTargetY = 0;
+  this.isBouncedBack = false;
+  this.bounceSpeedFactor = 0.2;
   this.speed = 0.5;
   this.myName = "anEnemy";
   this.enemyMove = true;
@@ -163,7 +169,7 @@ function enemyClass() {
   };
 
   this.move = function (timeBetweenChangeDir) {
-    if (this.health <= 0 || !this.enemyMove) {
+    if ((this.health <= 0 || !this.enemyMove) && !this.isBouncedBack) {
       return;
     }
 
@@ -171,16 +177,28 @@ function enemyClass() {
 
     OverlayFX.maybeLeaveFootprint(this);
 
-    let nextPos = this.pathFindingMove(timeBetweenChangeDir, this.speed);
-    if (this.currentPath == null) {
-      nextPos = this.randomMove(timeBetweenChangeDir, this.speed);
-    } else {
-      if (nextPos == null) {
-        nextPos = this.randomMove(timeBetweenChangeDir, this.speed);
+    if (this.isBouncedBack) {      
+      this.x += this.bounceX * this.bounceSpeedFactor;
+      this.y += this.bounceY * this.bounceSpeedFactor;
+
+      if (Math.abs(this.x - this.bounceTargetX) < 0.1 || 
+          Math.abs(this.y - this.bounceTargetY) < 0.1) {
+        this.isBouncedBack = false;
       }
     }
-    this.x = nextPos.x;
-    this.y = nextPos.y;
+    else {
+      let nextPos = this.pathFindingMove(timeBetweenChangeDir, this.speed);
+      if (this.currentPath == null) {
+        nextPos = this.randomMove(timeBetweenChangeDir, this.speed);
+      } else {
+        if (nextPos == null) {
+          nextPos = this.randomMove(timeBetweenChangeDir, this.speed);
+        }
+      }
+      this.x = nextPos.x;
+      this.y = nextPos.y;
+    }
+
     this.setFacing();
     if (this.myBite != null) {
       this.myBite.move();
@@ -482,7 +500,7 @@ function enemyClass() {
     }
   };
 
-  this.takeDamage = function (howMuch) {
+  this.takeDamage = function (howMuch, fromX, fromY, bounceDistance = 100) {
     this.health -= howMuch;
     if (this.health < 0) {
       this.health = 0;
@@ -492,6 +510,20 @@ function enemyClass() {
     }
     this.alive = this.health > 0;
     this.displayHealth = true;
+    this.isBouncedBack = true;
+    
+    if (fromX != null && fromY != null) {
+      let dirX = this.x - fromX;
+      let dirY = this.y - fromY;
+      let length = Math.sqrt(dirX * dirX + dirY * dirY);
+      dirX /= length;
+      dirY /= length;
+
+      this.bounceX = dirX * bounceDistance;
+      this.bounceY = dirY * bounceDistance;      
+      this.bounceTargetX = this.x + this.bounceX;
+      this.bounceTargetY = this.y + this.bounceY;
+    }
   };
 
   this.reset = function (resetX, resetY) {

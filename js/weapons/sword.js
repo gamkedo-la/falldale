@@ -36,7 +36,7 @@ function swordClass() {
       if (this.damagePoints > 0) {
         dialogManager.setDialogWithCountdown("Successful hit " + adversary.myName + " for " + this.damagePoints + " damage point!");
         if (adversary.takeDamage) { // this can sometimes be undefined
-          adversary.takeDamage(this.damagePoints)
+          adversary.takeDamage(this.damagePoints, this.x, this.y);
         }
         this.damagePoints = 0;
       }

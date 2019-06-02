@@ -69,8 +69,8 @@ function weaponClass() {
     if (this.toHitPoints + wielder.experienceLevel > adversary.armorRating) {
       //this is a hit
       this.rollForDamage();
-      this.life = 0;//assumes weapons are only good for one hit
-      adversary.takeDamage(this.damagePoints);
+      this.life = 0;//assumes weapons are only good for one hit      
+      adversary.takeDamage(this.damagePoints, this.x, this.y);
       return true;
     } else {
       //this is a miss
