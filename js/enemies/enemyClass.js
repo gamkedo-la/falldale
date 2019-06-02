@@ -176,11 +176,14 @@ function enemyClass() {
     this.storePos();
 
     OverlayFX.maybeLeaveFootprint(this);
-
-    if (this.isBouncedBack) {      
-      this.x += this.bounceX * this.bounceSpeedFactor;
-      this.y += this.bounceY * this.bounceSpeedFactor;
-
+    
+    if (this.isBouncedBack) {            
+      let nextBounceX = this.x + this.bounceX * this.bounceSpeedFactor;
+      let nextBounceY = this.y + this.bounceY * this.bounceSpeedFactor;
+      if (this.isPassableTile(this.tileTypeAtPosition(nextBounceX, nextBounceY))) {
+        this.x = nextBounceX;
+        this.y = nextBounceY;
+      }
       if (Math.abs(this.x - this.bounceTargetX) < 0.1 || 
           Math.abs(this.y - this.bounceTargetY) < 0.1) {
         this.isBouncedBack = false;
